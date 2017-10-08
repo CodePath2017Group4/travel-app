@@ -6,7 +6,9 @@ Travel App is an app for planning your road trip.  Find a restuarant or point of
 
 The following **required** functionality is completed:
 
-- [] User can create a trip by selecting a Start location and Destination location
+- [] User can create an account using their Facebook login.
+- [] User can login with their Facebook credentials.
+- [] User can create a trip by selecting a Start location and Destination location.
 - [] User can select categories of stops to view along the trip route (gas stations, restaurants, hotels, rest stops, etc.)
 - [] User can select categories of stops to near current location (gas stations, restaurants, hotels, rest stops, etc.)
 - [] User can select categories of stops to near destination location (gas stations, restaurants, hotels, rest stops, etc.)
@@ -15,4 +17,4 @@ The following **required** functionality is completed:
 - [] Stops are displayed along the route with markers - each category of stop has a unique marker.
 - [] Photos and reviews are available for each stop.
 - [] User can post photos and a review for a stop.
-- [] User can view upcoming trips and past trips
+- [] User can view upcoming trips and past trips.
