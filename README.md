@@ -40,4 +40,4 @@ The following **optional** functionality is completed:
 
 Here's a walkthrough of the wireframes:
 
-<img src='' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/CodePath2017Group4/travel-app/blob/master/wireframes.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
