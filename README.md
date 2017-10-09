@@ -36,3 +36,8 @@ The following **optional** functionality is completed:
 - [] For multi-day trips, the app provides recommendations of trip segments for each day.
 - [] Trip photos may be annotated with emojis and other images (e.g. stickers)
 
+## Wireframe Walkthrough
+
+Here's a walkthrough of the wireframes:
+
+<img src='' title='Video Walkthrough' width='' alt='Video Walkthrough' />
