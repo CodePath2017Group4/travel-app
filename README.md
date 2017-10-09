@@ -1,6 +1,6 @@
 # Road Trip Planner
 
-Travel App is an app for planning your road trip.  Find a restuarant or point of interest along your route with estimates of how long it will take to get there.  See photos and reviews of stops along the way.  Post photos and provide your own review of places you stopped at.  Share your trip with friends and family.
+Road Trip Planner is an app for planning your road trip.  Find a restuarant or point of interest along your route with estimates of how long it will take to get there.  See photos and reviews of stops along the way.  Post photos and provide your own review of places you stopped at.  Share your trip with friends and family.
 
 ## User Stories
 
