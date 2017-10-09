@@ -34,4 +34,5 @@ The following **optional** functionality is completed:
 - [] If users begin their trip later than the anticipated start time, the app updates it's estimated arrival time for each segment destination.
 - [] User may indicate that a trip will span multiple days.
 - [] For multi-day trips, the app provides recommendations of trip segments for each day.
+- [] Trip photos may be annotated with emojis and other images (e.g. stickers)
 
