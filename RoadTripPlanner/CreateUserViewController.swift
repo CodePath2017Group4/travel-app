@@ -33,6 +33,9 @@ class CreateUserViewController: UIViewController {
         registerUser()
     }
     
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        loginUser()
+    }
     
     fileprivate func registerUser() {
         
@@ -53,7 +56,22 @@ class CreateUserViewController: UIViewController {
                 // manually segue to logged in view
             }
         }
-
+    }
+    
+    fileprivate func loginUser() {
+        
+        let username = usernameTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        
+        PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
+            if let error = error {
+                log.error("Error: \(error)")
+                self.showErrorAlert(title: "Sign Up Error", message: error.localizedDescription)
+            } else {
+                log.info("User logged in successfully")
+                // manually segue to logged in view
+            }
+        }
     }
     
     fileprivate func showErrorAlert(title: String, message: String) {

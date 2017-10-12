@@ -8,7 +8,7 @@ target 'RoadTripPlanner' do
   # Pods for RoadTripPlanner
   pod 'Parse'
   pod 'FLEX', '~> 2.4'
-  pod 'SwiftyBeaver'
+  pod 'SwiftyBeaver'  
   
   target 'RoadTripPlannerTests' do
     inherit! :search_paths
