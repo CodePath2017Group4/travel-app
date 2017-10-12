@@ -6,8 +6,11 @@ Road Trip Planner is an app for planning your road trip.  Find a restuarant or p
 
 The following **required** functionality is completed:
 
+- User
 - [] User can create an account using their Facebook login.
 - [] User can login with their Facebook credentials.
+
+- Trips
 - [] User can create a trip by selecting a Start location and Destination location.
 - [] A trip can have multiple segments with each segment existing of a Start and Destination location.
 - [] User can enter the expected start time of each segment of a trip.
@@ -35,6 +38,7 @@ The following **optional** functionality is completed:
 - [] User may indicate that a trip will span multiple days.
 - [] For multi-day trips, the app provides recommendations of trip segments for each day.
 - [] Trip photos may be annotated with emojis and other images (e.g. stickers)
+- [] Photo albums are shareable with other users of the app.
 
 ## Wireframe Walkthrough
 
