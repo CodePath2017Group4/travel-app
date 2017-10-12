@@ -7,6 +7,15 @@
 //
 
 import UIKit
+import Parse
+import SwiftyBeaver
+
+let log = SwiftyBeaver.self
+
+let parseApplicationId = "codepath2017group4"
+let parseClientKey = "afguNtaML8FuNSBc"
+let parseServer = "https://roadtripplanner.herokuapp.com/parse"
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    
+        // Direct log output to the console.
+        let console = ConsoleDestination()
+        log.addDestination(console)
+        
+        // Initialize Parse
+        Parse.initialize(with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) in
+                configuration.applicationId = parseApplicationId
+                configuration.server = parseServer
+            })
+        )
+        
         return true
     }
 
@@ -43,4 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+
+
 
