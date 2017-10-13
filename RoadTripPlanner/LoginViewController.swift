@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FBSDKCoreKit
+import Parse
 
 class LoginViewController: UIViewController {
 
@@ -18,20 +21,51 @@ class LoginViewController: UIViewController {
         loginButton.layer.cornerRadius = loginButton.frame.height / 2
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    
+    @IBAction func onFbLogin(_ sender: Any) {
+        print("onFbLogin")
+        
+        if FBSDKAccessToken.current() != nil {
+            User.fetchProfile()
+        } else {
+            
+            let loginManager = FBSDKLoginManager()
+
+            loginManager.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self, handler: { (loginResults: FBSDKLoginManagerLoginResult?, error: Error?) -> Void in
+                
+                if !(loginResults?.isCancelled)! {
+                    User.fetchProfile()
+
+                } else {    // Sign in request cancelled
+                    let err = NSError()
+                    // handle error object
+                }
+            })
+        }
+    }
+}
+
+extension LoginViewController:  FBSDKLoginButtonDelegate {
+    
+    func loginButtonWillLogin(_ loginButton: FBSDKLoginButton!) -> Bool {
+        
+        return true
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        
+        // On logOut, the user is logged out of the app. it will not logout from user fb account. Only workaround is it to go into safari, get to Facebook.com and logout from user account.
+        let loginManager: FBSDKLoginManager = FBSDKLoginManager()
+        loginManager.logOut()
     }
-    */
-
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if error != nil {
+            print(error)
+        } else {
+            User.fetchProfile()
+        }
+    }
+    
 }
