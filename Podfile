@@ -6,6 +6,8 @@ target 'RoadTripPlanner' do
   use_frameworks!
 
   # Pods for RoadTripPlanner
+  pod 'FBSDKCoreKit', '4.27.1'
+  pod 'FBSDKLoginKit', '4.27.1'
   pod 'Parse'
   pod 'FLEX', '~> 2.4'
   pod 'SwiftyBeaver'  
