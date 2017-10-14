@@ -11,9 +11,6 @@ target 'RoadTripPlanner' do
   pod 'Parse'
   pod 'FLEX', '~> 2.4'
   pod 'SwiftyBeaver'  
-  pod 'FBSDKLoginKit'
-  pod 'FBSDKCoreKit'
-  pod 'FBSDKShareKit'
   
   target 'RoadTripPlannerTests' do
     inherit! :search_paths

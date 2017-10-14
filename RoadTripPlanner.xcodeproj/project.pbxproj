@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B58879A7305AF3002D39B7C /* Pods_RoadTripPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53EEA32724205D1F1952438 /* Pods_RoadTripPlanner.framework */; };
+		486E3C261F92B246003D2FFF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C251F92B246003D2FFF /* User.swift */; };
 		9C8731A33DBA24408C710058 /* Pods_RoadTripPlannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39DB559DFCB34E19AB64006 /* Pods_RoadTripPlannerTests.framework */; };
 		BDC52887D7AE6C7070E2C748 /* Pods_RoadTripPlannerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC5F7D3C17E8EE7786074CA /* Pods_RoadTripPlannerUITests.framework */; };
 		DFF3FB841F9006890046413E /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF3FB831F9006890046413E /* CreateUserViewController.swift */; };
@@ -48,6 +49,7 @@
 		1EAC5E644C6972CE94571BE8 /* Pods-RoadTripPlannerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerTests/Pods-RoadTripPlannerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		272207FA07383704118BD9B9 /* Pods-RoadTripPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 		2EECAF54259FB51E0A2FE210 /* Pods-RoadTripPlannerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerUITests/Pods-RoadTripPlannerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		486E3C251F92B246003D2FFF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		56E68517E28AD20FED90C078 /* Pods-RoadTripPlannerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerUITests/Pods-RoadTripPlannerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		575890769E13546B1D1F5950 /* Pods-RoadTripPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		72BC00FD751BA4A60CBAD015 /* Pods-RoadTripPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerTests/Pods-RoadTripPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		F806F2F61F8ECB1300E11785 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				486E3C251F92B246003D2FFF /* User.swift */,
 				F806F2F71F8ECB2300E11785 /* Business.swift */,
 			);
 			name = Models;
@@ -531,6 +534,7 @@
 				F806F2B11F8E08B300E11785 /* MapViewController.swift in Sources */,
 				F806F2F81F8ECB2300E11785 /* Business.swift in Sources */,
 				F806F2AB1F8DEF0200E11785 /* LandingPageViewController.swift in Sources */,
+				486E3C261F92B246003D2FFF /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
