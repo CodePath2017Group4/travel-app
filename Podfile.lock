@@ -1,15 +1,29 @@
 PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - DatePickerDialog (2.0)
   - FBSDKCoreKit (4.27.1):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.27.1):
-    - FBSDKCoreKit
-  - FBSDKShareKit (4.27.1):
     - FBSDKCoreKit
   - FLEX (2.4.0)
   - Parse (1.15.3):
@@ -17,22 +31,24 @@ PODS:
   - SwiftyBeaver (1.4.2)
 
 DEPENDENCIES:
-  - FBSDKCoreKit
-  - FBSDKLoginKit
-  - FBSDKShareKit
+  - AFNetworking
+  - DatePickerDialog
+  - FBSDKCoreKit (= 4.27.1)
+  - FBSDKLoginKit (= 4.27.1)
   - FLEX (~> 2.4)
   - Parse
   - SwiftyBeaver
 
 SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  DatePickerDialog: 5e1c24d9fe6506cd45dbc573eed7b0a251b1c09d
   FBSDKCoreKit: 03365dad5d790249196ffad8be4f6d8a2d98f932
   FBSDKLoginKit: 66ff53b73cffd967ab773e32fac39e90a60e6d46
-  FBSDKShareKit: 6a6a0ef9e850c741e4e1d7a7d21335205e997ec1
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   Parse: cdc0f1f975ee8be0409e66f21b05df4ae067047c
   SwiftyBeaver: 91057725648ee4980308f1650af077d04b3654a0
 
-PODFILE CHECKSUM: 5d55acdfde6704ee5855e84d7bbcbc547a5b186a
+PODFILE CHECKSUM: 6f11622da1804ad269b0717591a251e8fa21219d
 
 COCOAPODS: 1.3.1
