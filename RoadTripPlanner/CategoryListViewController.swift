@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FBSDKCoreKit
+import Parse
 
 class CategoryListViewController: UIViewController {
 
@@ -18,7 +21,11 @@ class CategoryListViewController: UIViewController {
         tableView.estimatedRowHeight = 120
         tableView.separatorStyle = .none
     }
-    
+    @IBAction func onLogout(_ sender: Any) {
+        let manager = FBSDKLoginManager()
+        manager.logOut()
+                
+    }
 }
 
 extension CategoryListViewController: UITableViewDataSource, UITableViewDelegate {

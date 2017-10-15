@@ -24,25 +24,31 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func onFbLogin(_ sender: Any) {
-        print("onFbLogin")
         
         if FBSDKAccessToken.current() != nil {
+
             User.fetchProfile()
-        } else {
             
+        } else {
+
             let loginManager = FBSDKLoginManager()
 
             loginManager.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self, handler: { (loginResults: FBSDKLoginManagerLoginResult?, error: Error?) -> Void in
                 
                 if !(loginResults?.isCancelled)! {
                     User.fetchProfile()
-
+                    
                 } else {    // Sign in request cancelled
-                    let err = NSError()
                     // handle error object
+                    print("Error \(error?.localizedDescription)")
+
                 }
             })
         }
+        
+        let navPage = (self.storyboard?.instantiateViewController(withIdentifier: "TabController"))!
+        let appDelegate = UIApplication.shared.delegate
+        appDelegate?.window??.rootViewController = navPage
     }
 }
 
@@ -65,6 +71,7 @@ extension LoginViewController:  FBSDKLoginButtonDelegate {
             print(error)
         } else {
             User.fetchProfile()
+            
         }
     }
     
