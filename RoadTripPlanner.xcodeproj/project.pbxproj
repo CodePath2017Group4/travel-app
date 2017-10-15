@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		3B58879A7305AF3002D39B7C /* Pods_RoadTripPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53EEA32724205D1F1952438 /* Pods_RoadTripPlanner.framework */; };
+		486E3C261F92B246003D2FFF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C251F92B246003D2FFF /* User.swift */; };
+		486E3C291F92D2D4003D2FFF /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C281F92D2D4003D2FFF /* AlbumListViewController.swift */; };
+		486E3C2C1F92D2E5003D2FFF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C2B1F92D2E5003D2FFF /* ProfileViewController.swift */; };
+		486E3C2E1F92D2F3003D2FFF /* AlbumDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C2D1F92D2F3003D2FFF /* AlbumDetailsViewController.swift */; };
+		486E3C301F92D6BC003D2FFF /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C2F1F92D6BC003D2FFF /* PhotoCell.swift */; };
+		486E3C321F92D88A003D2FFF /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C311F92D88A003D2FFF /* AlbumCell.swift */; };
+		486E3C341F92DEAB003D2FFF /* PhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C331F92DEAB003D2FFF /* PhotoLayout.swift */; };
+		486E3C361F93113D003D2FFF /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C351F93113D003D2FFF /* Album.swift */; };
+		486E3C381F9317F6003D2FFF /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C371F9317F6003D2FFF /* PhotoViewController.swift */; };
 		9C8731A33DBA24408C710058 /* Pods_RoadTripPlannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E39DB559DFCB34E19AB64006 /* Pods_RoadTripPlannerTests.framework */; };
 		BDC52887D7AE6C7070E2C748 /* Pods_RoadTripPlannerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC5F7D3C17E8EE7786074CA /* Pods_RoadTripPlannerUITests.framework */; };
 		DFF3FB841F9006890046413E /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF3FB831F9006890046413E /* CreateUserViewController.swift */; };
@@ -48,6 +57,15 @@
 		1EAC5E644C6972CE94571BE8 /* Pods-RoadTripPlannerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerTests/Pods-RoadTripPlannerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		272207FA07383704118BD9B9 /* Pods-RoadTripPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 		2EECAF54259FB51E0A2FE210 /* Pods-RoadTripPlannerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerUITests/Pods-RoadTripPlannerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		486E3C251F92B246003D2FFF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		486E3C281F92D2D4003D2FFF /* AlbumListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListViewController.swift; sourceTree = "<group>"; };
+		486E3C2B1F92D2E5003D2FFF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		486E3C2D1F92D2F3003D2FFF /* AlbumDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewController.swift; sourceTree = "<group>"; };
+		486E3C2F1F92D6BC003D2FFF /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		486E3C311F92D88A003D2FFF /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
+		486E3C331F92DEAB003D2FFF /* PhotoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLayout.swift; sourceTree = "<group>"; };
+		486E3C351F93113D003D2FFF /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		486E3C371F9317F6003D2FFF /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		56E68517E28AD20FED90C078 /* Pods-RoadTripPlannerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerUITests/Pods-RoadTripPlannerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		575890769E13546B1D1F5950 /* Pods-RoadTripPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		72BC00FD751BA4A60CBAD015 /* Pods-RoadTripPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerTests/Pods-RoadTripPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +131,24 @@
 				BFC5F7D3C17E8EE7786074CA /* Pods_RoadTripPlannerUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		486E3C271F92D292003D2FFF /* Albums */ = {
+			isa = PBXGroup;
+			children = (
+				486E3C281F92D2D4003D2FFF /* AlbumListViewController.swift */,
+				486E3C2D1F92D2F3003D2FFF /* AlbumDetailsViewController.swift */,
+				486E3C371F9317F6003D2FFF /* PhotoViewController.swift */,
+			);
+			name = Albums;
+			sourceTree = "<group>";
+		};
+		486E3C2A1F92D2DB003D2FFF /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				486E3C2B1F92D2E5003D2FFF /* ProfileViewController.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		67B57F6BFB6DCD9E8F1282EA /* Pods */ = {
@@ -186,6 +222,8 @@
 		F806F2AE1F8DFCE800E11785 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				486E3C2A1F92D2DB003D2FFF /* Profile */,
+				486E3C271F92D292003D2FFF /* Albums */,
 				DFF3FB831F9006890046413E /* CreateUserViewController.swift */,
 				F806F2B01F8E08B300E11785 /* MapViewController.swift */,
 				F806F2AC1F8DFCD300E11785 /* LoginViewController.swift */,
@@ -201,6 +239,9 @@
 			children = (
 				F806F2A81F8DED0000E11785 /* TripCell.swift */,
 				F806F2F41F8ECADA00E11785 /* BusinessCell.swift */,
+				486E3C2F1F92D6BC003D2FFF /* PhotoCell.swift */,
+				486E3C311F92D88A003D2FFF /* AlbumCell.swift */,
+				486E3C331F92DEAB003D2FFF /* PhotoLayout.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -208,7 +249,9 @@
 		F806F2F61F8ECB1300E11785 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				486E3C251F92B246003D2FFF /* User.swift */,
 				F806F2F71F8ECB2300E11785 /* Business.swift */,
+				486E3C351F93113D003D2FFF /* Album.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -378,6 +421,9 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
@@ -385,6 +431,9 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLEX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
@@ -516,15 +565,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				F806F2AD1F8DFCD300E11785 /* LoginViewController.swift in Sources */,
+				486E3C301F92D6BC003D2FFF /* PhotoCell.swift in Sources */,
 				DFF3FB841F9006890046413E /* CreateUserViewController.swift in Sources */,
+				486E3C341F92DEAB003D2FFF /* PhotoLayout.swift in Sources */,
 				F806F2F51F8ECADA00E11785 /* BusinessCell.swift in Sources */,
+				486E3C361F93113D003D2FFF /* Album.swift in Sources */,
 				F806F2F31F8EBB1900E11785 /* CategoryListViewController.swift in Sources */,
+				486E3C291F92D2D4003D2FFF /* AlbumListViewController.swift in Sources */,
 				F806F2A91F8DED0000E11785 /* TripCell.swift in Sources */,
+				486E3C2E1F92D2F3003D2FFF /* AlbumDetailsViewController.swift in Sources */,
 				F8607B1D1F8FCC8E0029DB02 /* TripDetailsViewController.swift in Sources */,
 				F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */,
 				F806F2B11F8E08B300E11785 /* MapViewController.swift in Sources */,
+				486E3C321F92D88A003D2FFF /* AlbumCell.swift in Sources */,
 				F806F2F81F8ECB2300E11785 /* Business.swift in Sources */,
+				486E3C2C1F92D2E5003D2FFF /* ProfileViewController.swift in Sources */,
 				F806F2AB1F8DEF0200E11785 /* LandingPageViewController.swift in Sources */,
+				486E3C381F9317F6003D2FFF /* PhotoViewController.swift in Sources */,
+				486E3C261F92B246003D2FFF /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
