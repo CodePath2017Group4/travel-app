@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, AddPhotoDelegate {
 
     @IBOutlet weak var tripLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -71,8 +71,18 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
         return cell
     }
     
+    func addPhoto(image: UIImage?) {
+        print("add photo?")
+        if let image = image {
+            print("add photo")
+            self.photos.append(image)
+        }
+        self.photoCollections.reloadData()
+    }
+    
     func cameraTapped(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "photoVC") as! PhotoViewController
+        vc.delegate = self
         self.show(vc, sender: nil)
     }
 }

@@ -12,10 +12,13 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
 
     @IBOutlet weak var imageView: UIImageView!
     
+    var delegate: AddPhotoDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        navigationItem.leftBarButtonItem?.title = "Cancel"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addPhotoTapped))
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,13 +26,28 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         // Dispose of any resources that can be recreated.
     }
     
+    func addPhotoTapped(_ sender: Any) {
+        if let delegate = self.delegate {
+            delegate.addPhoto(image: imageView.image)
+        }
+        navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func takePhotoTapped(_ sender: Any) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        picker.sourceType = .camera
-        
-        self.present(picker, animated: true)
+        if (!UIImagePickerController.isSourceTypeAvailable(.camera)) {
+            let alertController = UIAlertController(title: "Unsupported action", message: "Device has no camera", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                NSLog("The \"OK\" alert occured.")
+            }))
+            
+            self.present(alertController, animated: true)
+        } else {
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.allowsEditing = true
+            picker.sourceType = .camera
+            self.present(picker, animated: true)
+        }
     }
     
     @IBAction func pickPhotoTapped(_ sender: Any) {
@@ -44,6 +62,12 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info["UIImagePickerControllerEditedImage"] as! UIImage
         self.imageView.image = image
+        self.imageView.contentMode = .scaleAspectFit
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
     }
     
 }
