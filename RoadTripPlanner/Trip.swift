@@ -14,7 +14,9 @@ class Trip: PFObject, PFSubclassing {
     @NSManaged var date: Date?
     @NSManaged var startPoint: PFGeoPoint?
     @NSManaged var destinationPoint: PFGeoPoint?
-    @NSManaged var users: [PFUser]
+    @NSManaged var creator: PFUser?
+    @NSManaged var tripMembers: [TripMember]
+    @NSManaged var albums: [Album]?
     
     class func parseClassName() -> String {
         return "Trip"
