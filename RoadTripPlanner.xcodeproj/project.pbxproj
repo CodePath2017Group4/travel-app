@@ -25,6 +25,15 @@
 		F806F2F81F8ECB2300E11785 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806F2F71F8ECB2300E11785 /* Business.swift */; };
 		F8607B1D1F8FCC8E0029DB02 /* TripDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8607B1C1F8FCC8E0029DB02 /* TripDetailsViewController.swift */; };
 		F8607B251F903FC20029DB02 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8607B241F903FC20029DB02 /* User.swift */; };
+		F891E1061F943747006B2DD6 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E1031F943747006B2DD6 /* AlbumCell.swift */; };
+		F891E1071F943747006B2DD6 /* AlbumDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E1041F943747006B2DD6 /* AlbumDetailsViewController.swift */; };
+		F891E1081F943747006B2DD6 /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E1051F943747006B2DD6 /* AlbumListViewController.swift */; };
+		F891E10A1F94374E006B2DD6 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E1091F94374E006B2DD6 /* Album.swift */; };
+		F891E10C1F94375D006B2DD6 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E10B1F94375D006B2DD6 /* CreateUserViewController.swift */; };
+		F891E1111F943788006B2DD6 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E10E1F943788006B2DD6 /* PhotoCell.swift */; };
+		F891E1121F943788006B2DD6 /* PhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E10F1F943788006B2DD6 /* PhotoLayout.swift */; };
+		F891E1131F943788006B2DD6 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E1101F943788006B2DD6 /* PhotoViewController.swift */; };
+		F891E1151F943796006B2DD6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E1141F943796006B2DD6 /* ProfileViewController.swift */; };
 		F8B6A3A11F920D9200942820 /* WeatherGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6A3A01F920D9200942820 /* WeatherGetter.swift */; };
 		F8B6A3A31F920ECF00942820 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6A3A21F920ECF00942820 /* Weather.swift */; };
 		F8B6A3E11F92EDB300942820 /* CreateTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6A3E01F92EDB300942820 /* CreateTripViewController.swift */; };
@@ -81,6 +90,15 @@
 		F806F2F71F8ECB2300E11785 /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		F8607B1C1F8FCC8E0029DB02 /* TripDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsViewController.swift; sourceTree = "<group>"; };
 		F8607B241F903FC20029DB02 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F891E1031F943747006B2DD6 /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
+		F891E1041F943747006B2DD6 /* AlbumDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewController.swift; sourceTree = "<group>"; };
+		F891E1051F943747006B2DD6 /* AlbumListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListViewController.swift; sourceTree = "<group>"; };
+		F891E1091F94374E006B2DD6 /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		F891E10B1F94375D006B2DD6 /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
+		F891E10E1F943788006B2DD6 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		F891E10F1F943788006B2DD6 /* PhotoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLayout.swift; sourceTree = "<group>"; };
+		F891E1101F943788006B2DD6 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		F891E1141F943796006B2DD6 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F8B6A3A01F920D9200942820 /* WeatherGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherGetter.swift; sourceTree = "<group>"; };
 		F8B6A3A21F920ECF00942820 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		F8B6A3E01F92EDB300942820 /* CreateTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTripViewController.swift; sourceTree = "<group>"; };
@@ -167,9 +185,9 @@
 		F806F2791F8DA42A00E11785 /* RoadTripPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				F806F2AE1F8DFCE800E11785 /* View Controllers */,
 				F806F2F61F8ECB1300E11785 /* Models */,
 				F806F2AF1F8DFD0900E11785 /* Views */,
-				F806F2AE1F8DFCE800E11785 /* View Controllers */,
 				F806F27A1F8DA42A00E11785 /* AppDelegate.swift */,
 				F806F27E1F8DA42A00E11785 /* Main.storyboard */,
 				F806F2811F8DA42A00E11785 /* Assets.xcassets */,
@@ -200,6 +218,15 @@
 		F806F2AE1F8DFCE800E11785 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F891E1141F943796006B2DD6 /* ProfileViewController.swift */,
+				F891E10E1F943788006B2DD6 /* PhotoCell.swift */,
+				F891E10F1F943788006B2DD6 /* PhotoLayout.swift */,
+				F891E1101F943788006B2DD6 /* PhotoViewController.swift */,
+				F891E10B1F94375D006B2DD6 /* CreateUserViewController.swift */,
+				F891E1091F94374E006B2DD6 /* Album.swift */,
+				F891E1031F943747006B2DD6 /* AlbumCell.swift */,
+				F891E1041F943747006B2DD6 /* AlbumDetailsViewController.swift */,
+				F891E1051F943747006B2DD6 /* AlbumListViewController.swift */,
 				F8B6A3E01F92EDB300942820 /* CreateTripViewController.swift */,
 				F806F2B01F8E08B300E11785 /* MapViewController.swift */,
 				F806F2AC1F8DFCD300E11785 /* LoginViewController.swift */,
@@ -397,9 +424,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -454,6 +484,7 @@
 				"${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -465,6 +496,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLEX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -548,19 +580,28 @@
 				F8B6A3E31F93207500942820 /* TripDetailsCell.swift in Sources */,
 				F8B6A3E91F93D72A00942820 /* ReviewViewController.swift in Sources */,
 				F806F2AD1F8DFCD300E11785 /* LoginViewController.swift in Sources */,
+				F891E1081F943747006B2DD6 /* AlbumListViewController.swift in Sources */,
+				F891E10A1F94374E006B2DD6 /* Album.swift in Sources */,
 				F806F2F51F8ECADA00E11785 /* BusinessCell.swift in Sources */,
+				F891E1071F943747006B2DD6 /* AlbumDetailsViewController.swift in Sources */,
 				F806F2F31F8EBB1900E11785 /* CategoryListViewController.swift in Sources */,
 				F8B6A3A31F920ECF00942820 /* Weather.swift in Sources */,
+				F891E1151F943796006B2DD6 /* ProfileViewController.swift in Sources */,
 				F806F2A91F8DED0000E11785 /* TripCell.swift in Sources */,
 				F8607B1D1F8FCC8E0029DB02 /* TripDetailsViewController.swift in Sources */,
+				F891E1121F943788006B2DD6 /* PhotoLayout.swift in Sources */,
+				F891E1111F943788006B2DD6 /* PhotoCell.swift in Sources */,
 				F8B6A3E51F932CAE00942820 /* CommentsViewController.swift in Sources */,
 				F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */,
 				F8B6A3A11F920D9200942820 /* WeatherGetter.swift in Sources */,
 				F806F2B11F8E08B300E11785 /* MapViewController.swift in Sources */,
 				F8B6A3E11F92EDB300942820 /* CreateTripViewController.swift in Sources */,
+				F891E10C1F94375D006B2DD6 /* CreateUserViewController.swift in Sources */,
 				F806F2F81F8ECB2300E11785 /* Business.swift in Sources */,
 				F806F2AB1F8DEF0200E11785 /* LandingPageViewController.swift in Sources */,
 				F8B6A3E71F935E9600942820 /* TripSettingsViewController.swift in Sources */,
+				F891E1061F943747006B2DD6 /* AlbumCell.swift in Sources */,
+				F891E1131F943788006B2DD6 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

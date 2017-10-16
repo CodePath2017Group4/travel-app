@@ -21,7 +21,8 @@ class CategoryListViewController: UIViewController {
         tableView.estimatedRowHeight = 120
         tableView.separatorStyle = .none
     }
-    @IBAction func onLogout(_ sender: Any) {
+   
+    /*@IBAction*/ func onLogout(_ sender: Any) {
         let manager = FBSDKLoginManager()
         manager.logOut()
                 

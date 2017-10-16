@@ -89,15 +89,19 @@ class LandingPageViewController: UIViewController {
         weather = WeatherGetter(delegate: self)
 
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.isHidden = true
+        
+    }
 
     func categoryTapped(_ sender: UITapGestureRecognizer) {
-        print("sender/  \(sender.view?.tag)")
         let selectedIndex = sender.view?.tag
         
         
         let selectedImg = sender.view
         
-        if !selectedTypes.isEmpty { // Not empty    // .contains(categoriesList[selectedIndex!]) {
+        if !selectedTypes.isEmpty {
             
             if selectedTypes.contains(categoriesList[selectedIndex!]) {
                 
@@ -212,6 +216,15 @@ class LandingPageViewController: UIViewController {
             animated: true,
             completion: nil
         )
+    }
+    
+    
+    @IBAction func onCreateTrip(_ sender: Any) {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        //let createTripViewController = storyBoard.instantiateViewController(withIdentifier: "CreateTrip") as! UINavigationController
+        
+       // self.navigationController?.pushViewController(createTripViewController.topViewController!, animated: true)
     }
     
 

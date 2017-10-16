@@ -17,9 +17,12 @@ class CreateTripViewController: UIViewController {
     
     @IBOutlet weak var clockImageView: UIImageView!
     
+    @IBOutlet weak var createTripButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        createTripButton.layer.cornerRadius = createTripButton.frame.height / 2
 
         let dateImageTap = UITapGestureRecognizer(target: self, action: #selector(dateTapped))
         dateImageTap.numberOfTapsRequired = 1
@@ -31,6 +34,8 @@ class CreateTripViewController: UIViewController {
         clockImageTap.numberOfTapsRequired = 1
         clockImageView.isUserInteractionEnabled = true
         clockImageView.addGestureRecognizer(clockImageTap)
+        self.navigationController?.navigationBar.isHidden = false
+
     }
 
     func dateTapped(_ sender: AnyObject) {
