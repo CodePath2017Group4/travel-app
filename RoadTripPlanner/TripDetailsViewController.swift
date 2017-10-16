@@ -18,6 +18,7 @@ class TripDetailsViewController: UIViewController {
     
     @IBOutlet weak var tripSettingsImageView: UIImageView!
     
+    @IBOutlet weak var albumImageView: UIImageView!
     let tripStops = ["Mountain View, CA", "Shell, Menlo Park, CA", "San Fancisco, CA"]
     
     override func viewDidLoad() {
@@ -39,6 +40,19 @@ class TripDetailsViewController: UIViewController {
         tripSettingsImageTap.numberOfTapsRequired = 1
         tripSettingsImageView.isUserInteractionEnabled = true
         tripSettingsImageView.addGestureRecognizer(tripSettingsImageTap)
+        
+        let albumImageTap = UITapGestureRecognizer(target: self, action: #selector(albumImageTapped))
+        albumImageTap.numberOfTapsRequired = 1
+        albumImageView.isUserInteractionEnabled = true
+        albumImageView.addGestureRecognizer(albumImageTap)
+        
+
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.isHidden = true
 
     }
     
@@ -47,6 +61,14 @@ class TripDetailsViewController: UIViewController {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let tripSettingsViewController = storyboard.instantiateViewController(withIdentifier: "TripSettings") as! UINavigationController
         self.navigationController?.pushViewController(tripSettingsViewController.topViewController!, animated: true)
+        
+    }
+    
+    func albumImageTapped(_ sender: AnyObject) {
+        
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let albumDetailsViewController = storyboard.instantiateViewController(withIdentifier: "AlbumDetails") as! AlbumDetailsViewController
+        self.navigationController?.pushViewController(albumDetailsViewController, animated: true)
         
     }
     

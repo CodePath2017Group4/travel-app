@@ -50,9 +50,13 @@ class TripSettingsViewController: UIViewController {
         let charactersLeft = 50 - tripTitleTextView.text.characters.count
         counterLabel.text = "\(charactersLeft)"
         titleView.addSubview(counterLabel)
-
+        
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.isHidden = true
+        
+    }
     
     func changeCoverImageTapped(_ sender: AnyObject) {
         

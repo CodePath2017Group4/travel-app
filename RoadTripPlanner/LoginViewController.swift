@@ -24,7 +24,6 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func onFbLogin(_ sender: Any) {
-        
         if FBSDKAccessToken.current() != nil {
 
             User.fetchProfile()
@@ -45,10 +44,8 @@ class LoginViewController: UIViewController {
                 }
             })
         }
+                
         
-        let navPage = (self.storyboard?.instantiateViewController(withIdentifier: "TabController"))!
-        let appDelegate = UIApplication.shared.delegate
-        appDelegate?.window??.rootViewController = navPage
     }
 }
 

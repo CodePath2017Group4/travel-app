@@ -49,7 +49,6 @@ class CommentsViewController: UIViewController {
         userName.isHidden = true
         ScreeName.isHidden = true
         keyboardWillShow()
-        composeTextView.becomeFirstResponder()
     }
     
     func keyboardWillShow() {
@@ -58,6 +57,8 @@ class CommentsViewController: UIViewController {
     }
     
     func setupNavbar() {
+      //  let cancelImageView = UIImageView(image: UIImage(named: "cancel"))
+      //  cancelImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         
         let profileImage = UIImage(named: "profile")
             let profileImageView = UIImageView(image: profileImage)
@@ -70,9 +71,9 @@ class CommentsViewController: UIViewController {
             let leftbarButton = UIBarButtonItem.init(customView: profileImageView)
             self.navigationItem.leftBarButtonItem = leftbarButton
         
-           let cancelImageView = UIImageView(image: UIImage(named: "cancel"))
-            cancelImageView.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         
+            self.navigationController?.navigationBar.isHidden = false
+
     }
     
     
@@ -111,6 +112,7 @@ class CommentsViewController: UIViewController {
     }
     
     @IBAction func onCancelButton(_ sender: Any) {
+
         self.dismiss(animated: true, completion: nil)
         
     }
@@ -118,6 +120,8 @@ class CommentsViewController: UIViewController {
     
     func cancelTapped() {
         composeTextView.resignFirstResponder()
+        self.dismiss(animated: true, completion: nil)
+
     }
     
     
