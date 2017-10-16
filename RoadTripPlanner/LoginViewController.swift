@@ -12,43 +12,40 @@ import FBSDKCoreKit
 import Parse
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         loginButton.layer.cornerRadius = loginButton.frame.height / 2
     }
-
-
+    
+    
     
     @IBAction func onFbLogin(_ sender: Any) {
+        if FBSDKAccessToken.current() != nil {
+            
+            User.fetchProfile()
+            
+        } else {
+            
+            let loginManager = FBSDKLoginManager()
+            
+            loginManager.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self, handler: { (loginResults: FBSDKLoginManagerLoginResult?, error: Error?) -> Void in
+                
+                if !(loginResults?.isCancelled)! {
+                    User.fetchProfile()
+                    
+                } else {    // Sign in request cancelled
+                    // handle error object
+                    print("Error \(error?.localizedDescription)")
+                    
+                }
+            })
+        }
         
-//        if FBSDKAccessToken.current() != nil {
-//
-//            User.fetchProfile()
-//            
-//        } else {
-//
-//            let loginManager = FBSDKLoginManager()
-//
-//            loginManager.logIn(withReadPermissions: ["email","public_profile","user_friends"], from: self, handler: { (loginResults: FBSDKLoginManagerLoginResult?, error: Error?) -> Void in
-//                
-//                if !(loginResults?.isCancelled)! {
-//                    User.fetchProfile()
-//                    
-//                } else {    // Sign in request cancelled
-//                    // handle error object
-//                    print("Error \(error?.localizedDescription)")
-//
-//                }
-//            })
-//        }
         
-        let navPage = (self.storyboard?.instantiateViewController(withIdentifier: "TabController"))!
-        let appDelegate = UIApplication.shared.delegate
-        appDelegate?.window??.rootViewController = navPage
     }
 }
 

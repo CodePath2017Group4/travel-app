@@ -39,6 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        let loginViewController = RTPLoginViewController.storyboardInstance()
+        self.window?.rootViewController = loginViewController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
     

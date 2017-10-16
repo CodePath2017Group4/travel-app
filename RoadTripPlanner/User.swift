@@ -52,8 +52,12 @@ class User: NSObject{
 
             let signedInUser: PFUser? = PFUser()
             
+            guard let email = User.currentUser?.userEmail else {
+                return
+            }
+            
             signedInUser?.setObject(User.currentUser!.userName!, forKey: "username")
-            signedInUser?.setObject(User.currentUser!.userEmail!, forKey: "email")
+            signedInUser?.setObject(email, forKey: "email")
             
             // Get Facebook Profile Picture
             let userProfile = "https://graph.facebook.com/" + (User.currentUser?.userid)! + "/picture?type=large"
