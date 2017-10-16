@@ -18,7 +18,6 @@ let parseApplicationId = "codepath2017group4"
 let parseClientKey = "afguNtaML8FuNSBc"
 let parseServer = "https://roadtripplanner.herokuapp.com/parse"
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -37,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 configuration.server = parseServer
             })
         )
+        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         return true
