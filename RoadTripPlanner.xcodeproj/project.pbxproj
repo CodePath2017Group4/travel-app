@@ -10,6 +10,15 @@
 		0399EEE1F94DD690043F7306 /* Pods_RoadTripPlannerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 357EAF1F849D9F86BCB0DECC /* Pods_RoadTripPlannerUITests.framework */; };
 		2A04FDBE15D76378875B18EE /* Pods_RoadTripPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE6504BFAEDF829CB7707C0 /* Pods_RoadTripPlanner.framework */; };
 		3813C226DA5D1B53E31622D6 /* Pods_RoadTripPlannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE5FA00D8C198D75B481719C /* Pods_RoadTripPlannerTests.framework */; };
+		486E3C3D1F945EC3003D2FFF /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C3B1F945EC3003D2FFF /* AlbumCell.swift */; };
+		486E3C3E1F945EC3003D2FFF /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C3C1F945EC3003D2FFF /* PhotoCell.swift */; };
+		486E3C401F945ED8003D2FFF /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C3F1F945ED8003D2FFF /* Album.swift */; };
+		486E3C451F945EEB003D2FFF /* AlbumDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C411F945EEB003D2FFF /* AlbumDetailsViewController.swift */; };
+		486E3C461F945EEB003D2FFF /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C421F945EEB003D2FFF /* AlbumListViewController.swift */; };
+		486E3C471F945EEB003D2FFF /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C431F945EEB003D2FFF /* CreateUserViewController.swift */; };
+		486E3C481F945EEB003D2FFF /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C441F945EEB003D2FFF /* PhotoViewController.swift */; };
+		486E3C4B1F945F0B003D2FFF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C4A1F945F0B003D2FFF /* ProfileViewController.swift */; };
+		486E3C4D1F945F4E003D2FFF /* AddPhotoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C4C1F945F4E003D2FFF /* AddPhotoDelegate.swift */; };
 		F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806F27A1F8DA42A00E11785 /* AppDelegate.swift */; };
 		F806F2801F8DA42A00E11785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F806F27E1F8DA42A00E11785 /* Main.storyboard */; };
 		F806F2821F8DA42A00E11785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F806F2811F8DA42A00E11785 /* Assets.xcassets */; };
@@ -55,6 +64,15 @@
 		0F02A5D3F2710568F9C5A658 /* Pods-RoadTripPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 		32FA5684804643DC22FE3AB7 /* Pods-RoadTripPlannerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerUITests/Pods-RoadTripPlannerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		357EAF1F849D9F86BCB0DECC /* Pods_RoadTripPlannerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoadTripPlannerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		486E3C3B1F945EC3003D2FFF /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
+		486E3C3C1F945EC3003D2FFF /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		486E3C3F1F945ED8003D2FFF /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		486E3C411F945EEB003D2FFF /* AlbumDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewController.swift; sourceTree = "<group>"; };
+		486E3C421F945EEB003D2FFF /* AlbumListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListViewController.swift; sourceTree = "<group>"; };
+		486E3C431F945EEB003D2FFF /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
+		486E3C441F945EEB003D2FFF /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		486E3C4A1F945F0B003D2FFF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		486E3C4C1F945F4E003D2FFF /* AddPhotoDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoDelegate.swift; sourceTree = "<group>"; };
 		4AEC73E32507F65F4BDEB09A /* Pods-RoadTripPlannerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerTests/Pods-RoadTripPlannerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7EE6504BFAEDF829CB7707C0 /* Pods_RoadTripPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoadTripPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7929C033F24E5EB84AB169 /* Pods-RoadTripPlannerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerUITests/Pods-RoadTripPlannerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +137,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		486E3C491F945EF7003D2FFF /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				486E3C411F945EEB003D2FFF /* AlbumDetailsViewController.swift */,
+				486E3C421F945EEB003D2FFF /* AlbumListViewController.swift */,
+				486E3C441F945EEB003D2FFF /* PhotoViewController.swift */,
+				486E3C4C1F945F4E003D2FFF /* AddPhotoDelegate.swift */,
+			);
+			name = Album;
+			sourceTree = "<group>";
+		};
 		80931DF6394AD655DCFCC17A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +229,9 @@
 		F806F2AE1F8DFCE800E11785 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				486E3C4A1F945F0B003D2FFF /* ProfileViewController.swift */,
+				486E3C431F945EEB003D2FFF /* CreateUserViewController.swift */,
+				486E3C491F945EF7003D2FFF /* Album */,
 				F8B6A3E01F92EDB300942820 /* CreateTripViewController.swift */,
 				F806F2B01F8E08B300E11785 /* MapViewController.swift */,
 				F806F2AC1F8DFCD300E11785 /* LoginViewController.swift */,
@@ -218,6 +250,8 @@
 		F806F2AF1F8DFD0900E11785 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				486E3C3B1F945EC3003D2FFF /* AlbumCell.swift */,
+				486E3C3C1F945EC3003D2FFF /* PhotoCell.swift */,
 				F806F2A81F8DED0000E11785 /* TripCell.swift */,
 				F806F2F41F8ECADA00E11785 /* BusinessCell.swift */,
 				F8B6A3E21F93207500942820 /* TripDetailsCell.swift */,
@@ -228,6 +262,7 @@
 		F806F2F61F8ECB1300E11785 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				486E3C3F1F945ED8003D2FFF /* Album.swift */,
 				F806F2F71F8ECB2300E11785 /* Business.swift */,
 				F8607B241F903FC20029DB02 /* User.swift */,
 			);
@@ -546,8 +581,10 @@
 			files = (
 				F8607B251F903FC20029DB02 /* User.swift in Sources */,
 				F8B6A3E31F93207500942820 /* TripDetailsCell.swift in Sources */,
+				486E3C461F945EEB003D2FFF /* AlbumListViewController.swift in Sources */,
 				F8B6A3E91F93D72A00942820 /* ReviewViewController.swift in Sources */,
 				F806F2AD1F8DFCD300E11785 /* LoginViewController.swift in Sources */,
+				486E3C481F945EEB003D2FFF /* PhotoViewController.swift in Sources */,
 				F806F2F51F8ECADA00E11785 /* BusinessCell.swift in Sources */,
 				F806F2F31F8EBB1900E11785 /* CategoryListViewController.swift in Sources */,
 				F8B6A3A31F920ECF00942820 /* Weather.swift in Sources */,
@@ -555,12 +592,19 @@
 				F8607B1D1F8FCC8E0029DB02 /* TripDetailsViewController.swift in Sources */,
 				F8B6A3E51F932CAE00942820 /* CommentsViewController.swift in Sources */,
 				F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */,
+				486E3C3E1F945EC3003D2FFF /* PhotoCell.swift in Sources */,
 				F8B6A3A11F920D9200942820 /* WeatherGetter.swift in Sources */,
+				486E3C451F945EEB003D2FFF /* AlbumDetailsViewController.swift in Sources */,
 				F806F2B11F8E08B300E11785 /* MapViewController.swift in Sources */,
 				F8B6A3E11F92EDB300942820 /* CreateTripViewController.swift in Sources */,
+				486E3C471F945EEB003D2FFF /* CreateUserViewController.swift in Sources */,
 				F806F2F81F8ECB2300E11785 /* Business.swift in Sources */,
 				F806F2AB1F8DEF0200E11785 /* LandingPageViewController.swift in Sources */,
+				486E3C4D1F945F4E003D2FFF /* AddPhotoDelegate.swift in Sources */,
 				F8B6A3E71F935E9600942820 /* TripSettingsViewController.swift in Sources */,
+				486E3C4B1F945F0B003D2FFF /* ProfileViewController.swift in Sources */,
+				486E3C3D1F945EC3003D2FFF /* AlbumCell.swift in Sources */,
+				486E3C401F945ED8003D2FFF /* Album.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
