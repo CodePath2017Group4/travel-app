@@ -11,10 +11,12 @@ import Parse
 
 class Album: PFObject, PFSubclassing {
     @NSManaged var albumName: String?
+    @NSManaged var albumDescription: String?
     @NSManaged var tripName: String?
     @NSManaged var tripDate: String?
-    @NSManaged var owner: String?
-    
+    @NSManaged var owner: String?    
+    @NSManaged var comments: [AlbumComment]?
+    @NSManaged var likes: [PFUser]
     @NSManaged var photos: [PFFile]
     
     init(albumName: String, tripName: String, tripDate: String, owner: String, photos: [PFFile]) {
