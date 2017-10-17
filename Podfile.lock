@@ -21,6 +21,8 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
   - DatePickerDialog (2.0)
+  - Facebook-iOS-SDK (3.24.4):
+    - Bolts (~> 1.2)
   - FBSDKCoreKit (4.27.1):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.27.1):
@@ -28,6 +30,10 @@ PODS:
   - FLEX (2.4.0)
   - Parse (1.15.3):
     - Bolts/Tasks (~> 1.8)
+  - ParseFacebookUtils (1.10.0):
+    - Bolts/Tasks (~> 1.5)
+    - Facebook-iOS-SDK (~> 3.24)
+    - Parse (~> 1.9)
   - SwiftyBeaver (1.4.2)
 
 DEPENDENCIES:
@@ -37,18 +43,21 @@ DEPENDENCIES:
   - FBSDKLoginKit (= 4.27.1)
   - FLEX (~> 2.4)
   - Parse
+  - ParseFacebookUtils
   - SwiftyBeaver
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   DatePickerDialog: 5e1c24d9fe6506cd45dbc573eed7b0a251b1c09d
+  Facebook-iOS-SDK: 5a7c414a084708220b72d5fd016f2cf3eb6deda4
   FBSDKCoreKit: 03365dad5d790249196ffad8be4f6d8a2d98f932
   FBSDKLoginKit: 66ff53b73cffd967ab773e32fac39e90a60e6d46
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   Parse: cdc0f1f975ee8be0409e66f21b05df4ae067047c
+  ParseFacebookUtils: 7030f53c989fda36ad50029d90edec1327424317
   SwiftyBeaver: 91057725648ee4980308f1650af077d04b3654a0
 
-PODFILE CHECKSUM: 6f11622da1804ad269b0717591a251e8fa21219d
+PODFILE CHECKSUM: 0980cc8d268e6be8bd9c659a64e6c262235be48b
 
 COCOAPODS: 1.3.1

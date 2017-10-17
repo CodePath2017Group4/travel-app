@@ -9,7 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
-
+import ParseFacebookUtils
 
 class RTPLoginViewController: UIViewController {
     
@@ -35,10 +35,29 @@ class RTPLoginViewController: UIViewController {
         // Set the read permissions.
         fbLoginButton.readPermissions = ["email","public_profile","user_friends"]
         
+//        PFFacebookUtils.logIn(withPermissions: ["email","public_profile","user_friends"], block: { (user: PFUser?, error: Error?) in
+//            if user == nil {
+//                if error != nil {
+//                    log.error("Error logging in with Parse: \(String(describing: error))")
+//                }
+//            } else {
+//                if let user = user {
+//                    if user.isNew {
+//                        log.info("Hi there new user!")
+//                    } else {
+//                        log.info("Got a user")
+//                    }
+//                }
+//                
+//            }
+//        })
+        
+        
         // Check if we already have a user logged in.
         if FBSDKAccessToken.current() != nil {
             
             log.verbose("A user is already logged in.")
+            
             checkProfile()
         }
     }
@@ -135,8 +154,26 @@ class RTPLoginViewController: UIViewController {
             let title = "continue as \(name)"
             continueButton.setTitle(title, for: .normal)
             log.verbose(title)
+            
+            loginToParse()
+            
         } else {
             log.verbose("profile was nil")
+        }
+    }
+    
+    fileprivate func loginToParse() {
+        let accessToken = FBSDKAccessToken.current()!
+        let currentProfile = FBSDKProfile.current()
+        let userId = (currentProfile?.userID)!
+        
+
+        PFFacebookUtils.logIn(withFacebookId: userId, accessToken: accessToken.appID, expirationDate: accessToken.expirationDate) { (user: PFUser?, error: Error?) in
+            if user != nil {
+                print("User logged in through Facebook!")
+            } else if error != nil {
+                log.error(error!)
+            }
         }
     }
     
@@ -161,6 +198,7 @@ extension RTPLoginViewController: FBSDKLoginButtonDelegate {
     func loginButtonWillLogin(_ loginButton: FBSDKLoginButton!) -> Bool {
         
         log.verbose("Facebook button will login..")
+        
         return true
     }
     

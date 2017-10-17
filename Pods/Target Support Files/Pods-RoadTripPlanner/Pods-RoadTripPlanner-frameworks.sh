@@ -108,7 +108,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Facebook-iOS-SDK/FacebookSDK.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ParseFacebookUtils/ParseFacebookUtils.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -118,7 +120,9 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Facebook-iOS-SDK/FacebookSDK.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ParseFacebookUtils/ParseFacebookUtils.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
