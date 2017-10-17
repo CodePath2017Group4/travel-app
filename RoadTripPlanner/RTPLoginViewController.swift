@@ -16,8 +16,8 @@ class RTPLoginViewController: UIViewController {
     @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
     @IBOutlet weak var continueButton: UIButton!
     
-    private var viewIsVisible: Bool = false
-    private var viewDidAppear: Bool = false
+    fileprivate var viewIsVisible: Bool = false
+    fileprivate var viewDidAppear: Bool = false
     
     static func storyboardInstance() -> RTPLoginViewController? {
         let storyboard = UIStoryboard(name: "RTPLoginViewController", bundle: nil)
@@ -28,6 +28,8 @@ class RTPLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        fbLoginButton.delegate = self
+        
         registerObservers()
         
         // Set the read permissions.
@@ -114,6 +116,12 @@ class RTPLoginViewController: UIViewController {
         }
     }
     
+    // MARK: - Actions
+    @IBAction func continueButtonPressed(_ sender: Any) {
+        gotoMainViewController()
+    }
+        
+    
     fileprivate func checkProfile() {
         
         FBSDKProfile.loadCurrentProfile { (profile: FBSDKProfile?, error: Error?) in
@@ -132,12 +140,27 @@ class RTPLoginViewController: UIViewController {
         }
     }
     
+    fileprivate func showErrorAlert(title: String, message: String) {
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            // handle response
+        }
+        
+        alertController.addAction(okAction)
+        present(alertController, animated: true) {
+        
+        }
+    }
+    
 }
 
 extension RTPLoginViewController: FBSDKLoginButtonDelegate {
     
     func loginButtonWillLogin(_ loginButton: FBSDKLoginButton!) -> Bool {
         
+        log.verbose("Facebook button will login..")
         return true
     }
     
@@ -154,9 +177,17 @@ extension RTPLoginViewController: FBSDKLoginButtonDelegate {
                      didCompleteWith result: FBSDKLoginManagerLoginResult!,
                      error: Error!) {
         if error != nil {
-            log.error(error)
+            log.error("Unexpected login error: \(error)")
+            
+            // Display an alert message
+            let alertMessage = "There was a problem logging in. Please try again later."
+            showErrorAlert(title: "Oops", message: alertMessage)
+            
         } else {
             log.info("logged in with result: \(result)")
+            if viewIsVisible {
+                gotoMainViewController()
+            }            
         }
     }
     

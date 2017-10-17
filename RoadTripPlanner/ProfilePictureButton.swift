@@ -29,6 +29,8 @@ class ProfilePictureButton: UIButton {
     
     fileprivate func initSubviews() {
         profilePictureView = FBSDKProfilePictureView(frame: self.bounds)
+        profilePictureView?.layer.cornerRadius = self.bounds.size.width / 2
+        profilePictureView?.clipsToBounds = true
         profilePictureView?.isUserInteractionEnabled = false
         insertSubview(profilePictureView!, at: 0)
     }
