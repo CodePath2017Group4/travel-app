@@ -21,22 +21,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10k-st-qcT">
-                                <rect key="frame" x="120" y="448" width="134" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10k-st-qcT">
+                                <rect key="frame" x="120" y="432" width="134" height="30"/>
                                 <state key="normal" title="continue as a guest">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="map" translatesAutoresizingMaskIntoConstraints="NO" id="YBb-L9-kng">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" translatesAutoresizingMaskIntoConstraints="NO" id="YBb-L9-kng">
                                 <rect key="frame" x="59" y="100" width="256" height="256"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6wg-Cd-dgD" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="85.5" y="396" width="204" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6wg-Cd-dgD" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="85.5" y="396" width="204" height="28"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="9Px-CP-ihU"/>
+                                    <constraint firstAttribute="width" constant="204" id="fjQ-JT-xsn"/>
+                                </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_name" translatesAutoresizingMaskIntoConstraints="NO" id="xMM-Wc-6uC">
                                 <rect key="frame" x="88" y="40" width="199" height="35"/>
@@ -48,11 +49,18 @@
                         </subviews>
                         <color key="backgroundColor" red="0.16051313281059265" green="0.63281899690628052" blue="0.61406725645065308" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="YBb-L9-kng" firstAttribute="centerX" secondItem="5Jt-yr-p7z" secondAttribute="centerX" id="6AZ-bg-nic"/>
+                            <constraint firstItem="YBb-L9-kng" firstAttribute="top" secondItem="xMM-Wc-6uC" secondAttribute="bottom" constant="25" id="JRX-ah-J83"/>
                             <constraint firstItem="xMM-Wc-6uC" firstAttribute="top" secondItem="pHt-Ko-gip" secondAttribute="bottom" constant="20" id="QxS-UH-7eI"/>
+                            <constraint firstItem="6wg-Cd-dgD" firstAttribute="top" secondItem="YBb-L9-kng" secondAttribute="bottom" constant="40" id="bAd-0w-Gn8"/>
+                            <constraint firstItem="6wg-Cd-dgD" firstAttribute="centerX" secondItem="5Jt-yr-p7z" secondAttribute="centerX" id="coK-Xu-ZFW"/>
+                            <constraint firstItem="10k-st-qcT" firstAttribute="top" secondItem="6wg-Cd-dgD" secondAttribute="bottom" constant="8" id="vMp-Q9-RFn"/>
                             <constraint firstItem="xMM-Wc-6uC" firstAttribute="centerX" secondItem="5Jt-yr-p7z" secondAttribute="centerX" id="xeS-6g-x4S"/>
+                            <constraint firstItem="10k-st-qcT" firstAttribute="centerX" secondItem="5Jt-yr-p7z" secondAttribute="centerX" id="yhK-xR-MQv"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="continueButton" destination="10k-st-qcT" id="M3y-xE-NOT"/>
                         <outlet property="fbLoginButton" destination="6wg-Cd-dgD" id="1Bv-Kw-Ole"/>
                     </connections>
                 </viewController>
