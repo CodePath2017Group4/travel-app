@@ -39,12 +39,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         
         PFFacebookUtils.initializeFacebook()
-        
-        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        let loginViewController = RTPLoginViewController.storyboardInstance()
-        self.window?.rootViewController = loginViewController
+        // Make CreateUserViewoController the root view controller
+        let viewController = CreateUserViewController.storyboardInstance()
+        self.window?.rootViewController = viewController
         self.window?.makeKeyAndVisible()
         
         return true

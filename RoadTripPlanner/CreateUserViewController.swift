@@ -15,12 +15,25 @@ class CreateUserViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    
+    static func storyboardInstance() -> CreateUserViewController? {
+        let storyboard = UIStoryboard(name: "CreateUserViewController", bundle: nil)
+        
+        return storyboard.instantiateInitialViewController() as? CreateUserViewController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Once the view has appeared we can present the tab bar view controller (if a user is logged in).
+        if PFUser.current() != nil {
+            gotoLoggedInScreen()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,7 +58,7 @@ class CreateUserViewController: UIViewController {
         newUser.email = emailTextField.text ?? ""
         newUser.password = passwordTextField.text ?? ""
         
-        print("\(newUser)")
+        log.verbose("\(newUser)")
         
         newUser.signUpInBackground {(success: Bool, error: Error?) in
             if let error = error {
@@ -54,6 +67,8 @@ class CreateUserViewController: UIViewController {
             } else {
                 log.info("User Registered successfully")
                 // manually segue to logged in view
+                self.gotoLoggedInScreen()
+
             }
         }
     }
@@ -70,6 +85,7 @@ class CreateUserViewController: UIViewController {
             } else {
                 log.info("User logged in successfully")
                 // manually segue to logged in view
+                self.gotoLoggedInScreen()
             }
         }
     }
@@ -89,10 +105,12 @@ class CreateUserViewController: UIViewController {
         
         alertController.addAction(okAction)
         
-        present(alertController, animated: true) {
-            
-        }
+        present(alertController, animated: true, completion: nil)
     }
 
+    fileprivate func gotoLoggedInScreen() {
+        let tabBarViewController = TabBarViewController()
+        self.present(tabBarViewController, animated: true, completion: nil)
+    }
 
 }

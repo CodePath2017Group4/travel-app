@@ -27,6 +27,8 @@
 		DF32B9D01F9570E500594F0B /* RTPLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32B9CF1F9570E500594F0B /* RTPLoginViewController.swift */; };
 		DF32B9D31F95841700594F0B /* RTPMainViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF32B9D21F95841700594F0B /* RTPMainViewController.storyboard */; };
 		DF32B9D51F9585F100594F0B /* RTPMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32B9D41F9585F100594F0B /* RTPMainViewController.swift */; };
+		DFE21B1C1F966A3600129402 /* CreateUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFE21B1B1F966A3600129402 /* CreateUserViewController.storyboard */; };
+		DFE21B1E1F96701000129402 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE21B1D1F96701000129402 /* TabBarViewController.swift */; };
 		F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806F27A1F8DA42A00E11785 /* AppDelegate.swift */; };
 		F806F2801F8DA42A00E11785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F806F27E1F8DA42A00E11785 /* Main.storyboard */; };
 		F806F2821F8DA42A00E11785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F806F2811F8DA42A00E11785 /* Assets.xcassets */; };
@@ -93,6 +95,8 @@
 		DF32B9CF1F9570E500594F0B /* RTPLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTPLoginViewController.swift; sourceTree = "<group>"; };
 		DF32B9D21F95841700594F0B /* RTPMainViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RTPMainViewController.storyboard; sourceTree = "<group>"; };
 		DF32B9D41F9585F100594F0B /* RTPMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTPMainViewController.swift; sourceTree = "<group>"; };
+		DFE21B1B1F966A3600129402 /* CreateUserViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateUserViewController.storyboard; sourceTree = "<group>"; };
+		DFE21B1D1F96701000129402 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		EC80D6B0037AEA0DAC6399F8 /* Pods-RoadTripPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		EDEE6B5A1A92A3171A131D5C /* Pods-RoadTripPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerTests/Pods-RoadTripPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
 		F806F2771F8DA42A00E11785 /* RoadTripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadTripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +205,7 @@
 			children = (
 				DF32B9CD1F956D3700594F0B /* RTPLoginViewController.storyboard */,
 				DF32B9D21F95841700594F0B /* RTPMainViewController.storyboard */,
+				DFE21B1B1F966A3600129402 /* CreateUserViewController.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 				F8B6A3E81F93D72A00942820 /* ReviewViewController.swift */,
 				DF32B9CF1F9570E500594F0B /* RTPLoginViewController.swift */,
 				DF32B9D41F9585F100594F0B /* RTPMainViewController.swift */,
+				DFE21B1D1F96701000129402 /* TabBarViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -437,6 +443,7 @@
 			files = (
 				DF32B9CE1F956D3700594F0B /* RTPLoginViewController.storyboard in Resources */,
 				F806F2851F8DA42A00E11785 /* LaunchScreen.storyboard in Resources */,
+				DFE21B1C1F966A3600129402 /* CreateUserViewController.storyboard in Resources */,
 				F806F2821F8DA42A00E11785 /* Assets.xcassets in Resources */,
 				F806F2801F8DA42A00E11785 /* Main.storyboard in Resources */,
 				DF32B9D31F95841700594F0B /* RTPMainViewController.storyboard in Resources */,
@@ -645,6 +652,7 @@
 				DF32B9C61F946EE000594F0B /* AlbumComment.swift in Sources */,
 				F806F2A91F8DED0000E11785 /* TripCell.swift in Sources */,
 				F8607B1D1F8FCC8E0029DB02 /* TripDetailsViewController.swift in Sources */,
+				DFE21B1E1F96701000129402 /* TabBarViewController.swift in Sources */,
 				F8B6A3E51F932CAE00942820 /* CommentsViewController.swift in Sources */,
 				DF32B9C41F9467F900594F0B /* Trip.swift in Sources */,
 				F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */,
