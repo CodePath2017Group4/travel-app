@@ -24,6 +24,22 @@
 		DFA0E2A11F96D272005D7528 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E2A01F96D272005D7528 /* APIKeys.swift */; };
 		DFA0E2A61F96E973005D7528 /* CreateUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */; };
 		DFA0E2A81F96EB2D005D7528 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */; };
+		DFCC37791F9707E2003BDCA6 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37781F9707E2003BDCA6 /* ProfileViewController.storyboard */; };
+		DFCC377B1F97085C003BDCA6 /* AlbumListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC377A1F97085C003BDCA6 /* AlbumListViewController.storyboard */; };
+		DFCC377D1F9708D4003BDCA6 /* LandingPageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC377C1F9708D4003BDCA6 /* LandingPageViewController.storyboard */; };
+		DFCC377F1F970927003BDCA6 /* CreateTripViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC377E1F970927003BDCA6 /* CreateTripViewController.storyboard */; };
+		DFCC37811F970A30003BDCA6 /* TripSettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37801F970A30003BDCA6 /* TripSettingsViewController.storyboard */; };
+		DFCC37831F970BF8003BDCA6 /* AlbumDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37821F970BF8003BDCA6 /* AlbumDetailsViewController.storyboard */; };
+		DFCC37851F970C3D003BDCA6 /* PhotoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37841F970C3D003BDCA6 /* PhotoViewController.storyboard */; };
+		DFCC37871F970C97003BDCA6 /* ReviewViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37861F970C97003BDCA6 /* ReviewViewController.storyboard */; };
+		DFCC37891F970D00003BDCA6 /* CommentsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37881F970D00003BDCA6 /* CommentsViewController.storyboard */; };
+		DFCC378B1F970D5F003BDCA6 /* CategoryListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC378A1F970D5F003BDCA6 /* CategoryListViewController.storyboard */; };
+		DFCC378D1F970DEC003BDCA6 /* TripDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC378C1F970DEC003BDCA6 /* TripDetailsViewController.storyboard */; };
+		DFCC378F1F970E41003BDCA6 /* MapViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC378E1F970E41003BDCA6 /* MapViewController.storyboard */; };
+		DFCC37911F97C604003BDCA6 /* LoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37901F97C604003BDCA6 /* LoginViewController.storyboard */; };
+		DFCC37931F97C649003BDCA6 /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37921F97C649003BDCA6 /* HomeViewController.storyboard */; };
+		DFCC37951F97CCE2003BDCA6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC37941F97CCE2003BDCA6 /* HomeViewController.swift */; };
+		DFCC37971F9801B1003BDCA6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC37961F9801B1003BDCA6 /* Constants.swift */; };
 		F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806F27A1F8DA42A00E11785 /* AppDelegate.swift */; };
 		F806F2801F8DA42A00E11785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F806F27E1F8DA42A00E11785 /* Main.storyboard */; };
 		F806F2821F8DA42A00E11785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F806F2811F8DA42A00E11785 /* Assets.xcassets */; };
@@ -89,6 +105,22 @@
 		DFA0E2A01F96D272005D7528 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateUserViewController.storyboard; sourceTree = "<group>"; };
 		DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		DFCC37781F9707E2003BDCA6 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
+		DFCC377A1F97085C003BDCA6 /* AlbumListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlbumListViewController.storyboard; sourceTree = "<group>"; };
+		DFCC377C1F9708D4003BDCA6 /* LandingPageViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LandingPageViewController.storyboard; sourceTree = "<group>"; };
+		DFCC377E1F970927003BDCA6 /* CreateTripViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateTripViewController.storyboard; sourceTree = "<group>"; };
+		DFCC37801F970A30003BDCA6 /* TripSettingsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TripSettingsViewController.storyboard; sourceTree = "<group>"; };
+		DFCC37821F970BF8003BDCA6 /* AlbumDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlbumDetailsViewController.storyboard; sourceTree = "<group>"; };
+		DFCC37841F970C3D003BDCA6 /* PhotoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoViewController.storyboard; sourceTree = "<group>"; };
+		DFCC37861F970C97003BDCA6 /* ReviewViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReviewViewController.storyboard; sourceTree = "<group>"; };
+		DFCC37881F970D00003BDCA6 /* CommentsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CommentsViewController.storyboard; sourceTree = "<group>"; };
+		DFCC378A1F970D5F003BDCA6 /* CategoryListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoryListViewController.storyboard; sourceTree = "<group>"; };
+		DFCC378C1F970DEC003BDCA6 /* TripDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TripDetailsViewController.storyboard; sourceTree = "<group>"; };
+		DFCC378E1F970E41003BDCA6 /* MapViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MapViewController.storyboard; sourceTree = "<group>"; };
+		DFCC37901F97C604003BDCA6 /* LoginViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginViewController.storyboard; sourceTree = "<group>"; };
+		DFCC37921F97C649003BDCA6 /* HomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeViewController.storyboard; sourceTree = "<group>"; };
+		DFCC37941F97CCE2003BDCA6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		DFCC37961F9801B1003BDCA6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EC80D6B0037AEA0DAC6399F8 /* Pods-RoadTripPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		EDEE6B5A1A92A3171A131D5C /* Pods-RoadTripPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerTests/Pods-RoadTripPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
 		F806F2771F8DA42A00E11785 /* RoadTripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadTripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,7 +231,21 @@
 		DFA0E2A41F96E938005D7528 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				DFCC37821F970BF8003BDCA6 /* AlbumDetailsViewController.storyboard */,
+				DFCC377A1F97085C003BDCA6 /* AlbumListViewController.storyboard */,
+				DFCC378A1F970D5F003BDCA6 /* CategoryListViewController.storyboard */,
+				DFCC37881F970D00003BDCA6 /* CommentsViewController.storyboard */,
+				DFCC377E1F970927003BDCA6 /* CreateTripViewController.storyboard */,
 				DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */,
+				DFCC37921F97C649003BDCA6 /* HomeViewController.storyboard */,
+				DFCC377C1F9708D4003BDCA6 /* LandingPageViewController.storyboard */,
+				DFCC37901F97C604003BDCA6 /* LoginViewController.storyboard */,
+				DFCC378E1F970E41003BDCA6 /* MapViewController.storyboard */,
+				DFCC37841F970C3D003BDCA6 /* PhotoViewController.storyboard */,
+				DFCC37781F9707E2003BDCA6 /* ProfileViewController.storyboard */,
+				DFCC37861F970C97003BDCA6 /* ReviewViewController.storyboard */,
+				DFCC378C1F970DEC003BDCA6 /* TripDetailsViewController.storyboard */,
+				DFCC37801F970A30003BDCA6 /* TripSettingsViewController.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -229,6 +275,7 @@
 		F806F2791F8DA42A00E11785 /* RoadTripPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				DFCC37961F9801B1003BDCA6 /* Constants.swift */,
 				DFA0E29D1F96D1EE005D7528 /* API */,
 				F806F2AE1F8DFCE800E11785 /* View Controllers */,
 				F806F2F61F8ECB1300E11785 /* Models */,
@@ -268,6 +315,7 @@
 				F8B6A3E01F92EDB300942820 /* CreateTripViewController.swift */,
 				F891E10B1F94375D006B2DD6 /* CreateUserViewController.swift */,
 				F8B6A3E41F932CAE00942820 /* CommentsViewController.swift */,
+				DFCC37941F97CCE2003BDCA6 /* HomeViewController.swift */,
 				F806F2AA1F8DEF0200E11785 /* LandingPageViewController.swift */,
 				F806F2AC1F8DFCD300E11785 /* LoginViewController.swift */,
 				F806F2B01F8E08B300E11785 /* MapViewController.swift */,
@@ -428,10 +476,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFCC378F1F970E41003BDCA6 /* MapViewController.storyboard in Resources */,
+				DFCC37851F970C3D003BDCA6 /* PhotoViewController.storyboard in Resources */,
+				DFCC378B1F970D5F003BDCA6 /* CategoryListViewController.storyboard in Resources */,
+				DFCC37911F97C604003BDCA6 /* LoginViewController.storyboard in Resources */,
+				DFCC378D1F970DEC003BDCA6 /* TripDetailsViewController.storyboard in Resources */,
+				DFCC37811F970A30003BDCA6 /* TripSettingsViewController.storyboard in Resources */,
 				DFA0E2A61F96E973005D7528 /* CreateUserViewController.storyboard in Resources */,
 				F806F2851F8DA42A00E11785 /* LaunchScreen.storyboard in Resources */,
+				DFCC377D1F9708D4003BDCA6 /* LandingPageViewController.storyboard in Resources */,
 				F806F2821F8DA42A00E11785 /* Assets.xcassets in Resources */,
+				DFCC377F1F970927003BDCA6 /* CreateTripViewController.storyboard in Resources */,
+				DFCC37791F9707E2003BDCA6 /* ProfileViewController.storyboard in Resources */,
 				F806F2801F8DA42A00E11785 /* Main.storyboard in Resources */,
+				DFCC37831F970BF8003BDCA6 /* AlbumDetailsViewController.storyboard in Resources */,
+				DFCC37931F97C649003BDCA6 /* HomeViewController.storyboard in Resources */,
+				DFCC377B1F97085C003BDCA6 /* AlbumListViewController.storyboard in Resources */,
+				DFCC37891F970D00003BDCA6 /* CommentsViewController.storyboard in Resources */,
+				DFCC37871F970C97003BDCA6 /* ReviewViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,6 +690,7 @@
 				F8607B251F903FC20029DB02 /* User.swift in Sources */,
 				F8B6A3E31F93207500942820 /* TripDetailsCell.swift in Sources */,
 				486E3C461F945EEB003D2FFF /* AlbumListViewController.swift in Sources */,
+				DFCC37951F97CCE2003BDCA6 /* HomeViewController.swift in Sources */,
 				F8B6A3E91F93D72A00942820 /* ReviewViewController.swift in Sources */,
 				F806F2AD1F8DFCD300E11785 /* LoginViewController.swift in Sources */,
 				486E3C481F945EEB003D2FFF /* PhotoViewController.swift in Sources */,
@@ -641,6 +704,7 @@
 				DFA0E2A81F96EB2D005D7528 /* TabBarViewController.swift in Sources */,
 				F891E1121F943788006B2DD6 /* PhotoLayout.swift in Sources */,
 				F8B6A3E51F932CAE00942820 /* CommentsViewController.swift in Sources */,
+				DFCC37971F9801B1003BDCA6 /* Constants.swift in Sources */,
 				DF32B9C41F9467F900594F0B /* Trip.swift in Sources */,
 				F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */,
 				486E3C3E1F945EC3003D2FFF /* PhotoCell.swift in Sources */,

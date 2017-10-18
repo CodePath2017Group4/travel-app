@@ -14,16 +14,35 @@ import Parse
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+
+    static func storyboardInstance() -> LoginViewController? {
+        let storyboard = UIStoryboard(name: "LoginViewController", bundle: nil)
+        
+        return storyboard.instantiateInitialViewController() as? LoginViewController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loginButton.layer.cornerRadius = loginButton.frame.height / 2
+        // Round the corners of the loginButton
+        loginButton.layer.cornerRadius = 5
+        
     }
 
-
+    // MARK: IBAction
+    @IBAction func loginButtonPressed(_ sender: Any) {
+        loginUser()
+    }
+    
+    @IBAction func forgotPasswordButtonPressed(_ sender: Any) {
+    
+    }
     
     @IBAction func onFbLogin(_ sender: Any) {
+        
+        
         if FBSDKAccessToken.current() != nil {
 
             User.fetchProfile()
@@ -39,7 +58,7 @@ class LoginViewController: UIViewController {
                     
                 } else {    // Sign in request cancelled
                     // handle error object
-                    print("Error \(error?.localizedDescription)")
+                    print("Error \(String(describing: error?.localizedDescription))")
 
                 }
             })
@@ -47,6 +66,50 @@ class LoginViewController: UIViewController {
                 
         
     }
+    
+    // MARK:
+    
+    fileprivate func loginUser() {
+        
+        let username = usernameTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        
+        PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
+            if let error = error {
+                log.error("Error: \(error)")
+                self.showErrorAlert(title: "Login Failed", message: error.localizedDescription)
+            } else {
+                log.info("User logged in successfully")
+                // manually segue to logged in view
+                self.presentLoggedInScreen()
+            }
+        }
+    }
+    
+    fileprivate func showErrorAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            // dismiss the view
+        }
+        
+        alertController.addAction(cancelAction)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            // handle response
+        }
+        
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true) {
+            
+        }
+    }
+    
+    fileprivate func presentLoggedInScreen() {
+        let tabBarViewController = TabBarViewController()
+        self.present(tabBarViewController, animated: true, completion: nil)
+    }    
 }
 
 extension LoginViewController:  FBSDKLoginButtonDelegate {

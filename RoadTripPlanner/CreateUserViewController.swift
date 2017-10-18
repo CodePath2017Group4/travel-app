@@ -14,6 +14,7 @@ class CreateUserViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
     
     static func storyboardInstance() -> CreateUserViewController? {
         let storyboard = UIStoryboard(name: "CreateUserViewController", bundle: nil)
@@ -24,7 +25,9 @@ class CreateUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        signUpButton.layer.cornerRadius = 5
+        
+        navigationItem.title = "Sign Up"
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,10 +40,6 @@ class CreateUserViewController: UIViewController {
         registerUser()
     }
     
-    @IBAction func loginButtonPressed(_ sender: UIButton) {
-        loginUser()
-    }
-    
     fileprivate func registerUser() {
         
         let newUser = PFUser()
@@ -49,7 +48,7 @@ class CreateUserViewController: UIViewController {
         newUser.email = emailTextField.text ?? ""
         newUser.password = passwordTextField.text ?? ""
         
-        print("\(newUser)")
+        log.info("\(newUser)")
         
         newUser.signUpInBackground {(success: Bool, error: Error?) in
             if let error = error {
@@ -62,24 +61,7 @@ class CreateUserViewController: UIViewController {
             }
         }
     }
-    
-    fileprivate func loginUser() {
         
-        let username = usernameTextField.text ?? ""
-        let password = passwordTextField.text ?? ""
-        
-        PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
-            if let error = error {
-                log.error("Error: \(error)")
-                self.showErrorAlert(title: "Sign Up Error", message: error.localizedDescription)
-            } else {
-                log.info("User logged in successfully")
-                // manually segue to logged in view
-                self.gotoLoggedInScreen()
-            }
-        }
-    }
-    
     fileprivate func showErrorAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
