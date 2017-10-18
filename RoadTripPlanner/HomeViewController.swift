@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class HomeViewController: UIViewController {
     
@@ -31,6 +32,15 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
 
         addNotificationObservers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // If we have a logged in user, skip the home screen and go directly to the TabBarViewController        
+        if PFUser.current() != nil {
+            let tabBarViewController = TabBarViewController()
+            self.present(tabBarViewController, animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {

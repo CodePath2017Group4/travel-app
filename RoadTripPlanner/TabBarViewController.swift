@@ -47,12 +47,13 @@ class TabBarViewController: UITabBarController {
     func logoutButtonPressed() {
         
         PFUser.logOut()
+
+        // Return to login screen.
+        dismiss(animated: true, completion: nil)
         
         // Post a notification
         NotificationCenter.default.post(name: Constants.NotificationNames.LogoutPressedNotification, object: nil, userInfo: nil)
         
-        // Return to login screen.
-        dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
