@@ -58,7 +58,9 @@ struct Weather {
         longitude = coordDict["lon"] as! Double
         latitude = coordDict["lat"] as! Double
         
-        let weatherDict = weatherData["weather"]![0] as! [String: AnyObject]
+        let weatherArray = weatherData["weather"] as! [NSDictionary]
+        
+        let weatherDict = weatherArray.first as! [String: AnyObject]
         weatherID = weatherDict["id"] as! Int
         mainWeather = weatherDict["main"] as! String
         weatherDescription = weatherDict["description"] as! String
@@ -103,7 +105,7 @@ struct Weather {
     
     static func getCurrentLocation() -> String {
 
-        return "\(UserDefaults.standard.object(forKey: Weather.currentLocKey))"
+        return "\(UserDefaults.standard.object(forKey: Weather.currentLocKey) ?? "None")"
     }
     
 }
