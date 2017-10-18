@@ -14,6 +14,7 @@ class CreateUserViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
     
     static func storyboardInstance() -> CreateUserViewController? {
         let storyboard = UIStoryboard(name: "CreateUserViewController", bundle: nil)
@@ -24,7 +25,9 @@ class CreateUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        signUpButton.layer.cornerRadius = 5
+        
+        navigationItem.title = "Sign Up"
     }
     
     override func didReceiveMemoryWarning() {
