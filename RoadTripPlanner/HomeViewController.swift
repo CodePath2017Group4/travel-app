@@ -30,11 +30,23 @@ class HomeViewController: UIViewController {
         let textAttributes = [NSForegroundColorAttributeName:UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
 
+        addNotificationObservers()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    fileprivate func addNotificationObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(HomeViewController.logoutButtonPressed),
+                                               name: Constants.NotificationNames.LogoutPressedNotification,
+                                               object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
@@ -54,7 +66,10 @@ class HomeViewController: UIViewController {
             return
         }
         navigationController?.pushViewController(loginViewController, animated: true)
-
     }
 
+    func logoutButtonPressed() {
+        // Pop to the root view controller
+        navigationController?.popToRootViewController(animated: false)
+    }
 }

@@ -39,6 +39,7 @@
 		DFCC37911F97C604003BDCA6 /* LoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37901F97C604003BDCA6 /* LoginViewController.storyboard */; };
 		DFCC37931F97C649003BDCA6 /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37921F97C649003BDCA6 /* HomeViewController.storyboard */; };
 		DFCC37951F97CCE2003BDCA6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC37941F97CCE2003BDCA6 /* HomeViewController.swift */; };
+		DFCC37971F9801B1003BDCA6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC37961F9801B1003BDCA6 /* Constants.swift */; };
 		F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806F27A1F8DA42A00E11785 /* AppDelegate.swift */; };
 		F806F2801F8DA42A00E11785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F806F27E1F8DA42A00E11785 /* Main.storyboard */; };
 		F806F2821F8DA42A00E11785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F806F2811F8DA42A00E11785 /* Assets.xcassets */; };
@@ -119,6 +120,7 @@
 		DFCC37901F97C604003BDCA6 /* LoginViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginViewController.storyboard; sourceTree = "<group>"; };
 		DFCC37921F97C649003BDCA6 /* HomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeViewController.storyboard; sourceTree = "<group>"; };
 		DFCC37941F97CCE2003BDCA6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		DFCC37961F9801B1003BDCA6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EC80D6B0037AEA0DAC6399F8 /* Pods-RoadTripPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		EDEE6B5A1A92A3171A131D5C /* Pods-RoadTripPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerTests/Pods-RoadTripPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
 		F806F2771F8DA42A00E11785 /* RoadTripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadTripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +275,7 @@
 		F806F2791F8DA42A00E11785 /* RoadTripPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				DFCC37961F9801B1003BDCA6 /* Constants.swift */,
 				DFA0E29D1F96D1EE005D7528 /* API */,
 				F806F2AE1F8DFCE800E11785 /* View Controllers */,
 				F806F2F61F8ECB1300E11785 /* Models */,
@@ -701,6 +704,7 @@
 				DFA0E2A81F96EB2D005D7528 /* TabBarViewController.swift in Sources */,
 				F891E1121F943788006B2DD6 /* PhotoLayout.swift in Sources */,
 				F8B6A3E51F932CAE00942820 /* CommentsViewController.swift in Sources */,
+				DFCC37971F9801B1003BDCA6 /* Constants.swift in Sources */,
 				DF32B9C41F9467F900594F0B /* Trip.swift in Sources */,
 				F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */,
 				486E3C3E1F945EC3003D2FFF /* PhotoCell.swift in Sources */,

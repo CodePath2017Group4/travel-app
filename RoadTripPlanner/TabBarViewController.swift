@@ -17,18 +17,18 @@ class TabBarViewController: UITabBarController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         // Create view controllers from storyboard.
-        let tripsNavigtaionController = storyboard.instantiateViewController(withIdentifier: "LandingPage") as! UINavigationController
+        let tripsNavigtaionController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.TripsNavigationController) as! UINavigationController
         tripsNavigtaionController.tabBarItem = UITabBarItem(title: "Trips", image: #imageLiteral(resourceName: "trip-tab"), tag: 0)
         
         // Add the log out button to the view controller navigation item.
         addLogoutButton(to: tripsNavigtaionController)
         
-        let albumsNavigtaionViewController = storyboard.instantiateViewController(withIdentifier: "PhotoGallery") as! UINavigationController
+        let albumsNavigtaionViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.AlbumsNavigationController) as! UINavigationController
         albumsNavigtaionViewController.tabBarItem = UITabBarItem(title: "Albums", image: #imageLiteral(resourceName: "album-tab"), tag: 1)
         
         addLogoutButton(to: albumsNavigtaionViewController)
         
-        let profileNavigtaionController = storyboard.instantiateViewController(withIdentifier: "Profile") as! UINavigationController
+        let profileNavigtaionController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.ProfileNavigationController) as! UINavigationController
         profileNavigtaionController.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "profile-tab"), tag: 2)
         
         addLogoutButton(to: profileNavigtaionController)
@@ -45,8 +45,11 @@ class TabBarViewController: UITabBarController {
     }
     
     func logoutButtonPressed() {
-        log.info("Log out pressed")
+        
         PFUser.logOut()
+        
+        // Post a notification
+        NotificationCenter.default.post(name: Constants.NotificationNames.LogoutPressedNotification, object: nil, userInfo: nil)
         
         // Return to login screen.
         dismiss(animated: true, completion: nil)
@@ -57,15 +60,4 @@ class TabBarViewController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
