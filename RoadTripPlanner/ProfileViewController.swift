@@ -15,6 +15,12 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var numTripsLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     
+    static func storyboardInstance() -> ProfileViewController? {
+        let storyboard = UIStoryboard(name: "ProfileViewController", bundle: nil)
+        
+        return storyboard.instantiateInitialViewController() as? ProfileViewController
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
