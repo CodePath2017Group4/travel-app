@@ -22,6 +22,8 @@
 		DF32B9C81F9470F200594F0B /* TripMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32B9C71F9470F200594F0B /* TripMember.swift */; };
 		DFA0E29F1F96D203005D7528 /* YelpFusionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E29E1F96D203005D7528 /* YelpFusionClient.swift */; };
 		DFA0E2A11F96D272005D7528 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E2A01F96D272005D7528 /* APIKeys.swift */; };
+		DFA0E2A61F96E973005D7528 /* CreateUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */; };
+		DFA0E2A81F96EB2D005D7528 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */; };
 		F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806F27A1F8DA42A00E11785 /* AppDelegate.swift */; };
 		F806F2801F8DA42A00E11785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F806F27E1F8DA42A00E11785 /* Main.storyboard */; };
 		F806F2821F8DA42A00E11785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F806F2811F8DA42A00E11785 /* Assets.xcassets */; };
@@ -85,6 +87,8 @@
 		DF32B9C71F9470F200594F0B /* TripMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripMember.swift; sourceTree = "<group>"; };
 		DFA0E29E1F96D203005D7528 /* YelpFusionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpFusionClient.swift; sourceTree = "<group>"; };
 		DFA0E2A01F96D272005D7528 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateUserViewController.storyboard; sourceTree = "<group>"; };
+		DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		EC80D6B0037AEA0DAC6399F8 /* Pods-RoadTripPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		EDEE6B5A1A92A3171A131D5C /* Pods-RoadTripPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerTests/Pods-RoadTripPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
 		F806F2771F8DA42A00E11785 /* RoadTripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadTripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +196,14 @@
 			name = API;
 			sourceTree = "<group>";
 		};
+		DFA0E2A41F96E938005D7528 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		F806F26E1F8DA42A00E11785 = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +232,7 @@
 				DFA0E29D1F96D1EE005D7528 /* API */,
 				F806F2AE1F8DFCE800E11785 /* View Controllers */,
 				F806F2F61F8ECB1300E11785 /* Models */,
+				DFA0E2A41F96E938005D7528 /* Storyboards */,
 				F806F2AF1F8DFD0900E11785 /* Views */,
 				F806F27A1F8DA42A00E11785 /* AppDelegate.swift */,
 				F806F27E1F8DA42A00E11785 /* Main.storyboard */,
@@ -264,6 +277,7 @@
 				F8B6A3A01F920D9200942820 /* WeatherGetter.swift */,
 				F8B6A3A21F920ECF00942820 /* Weather.swift */,
 				F8B6A3E81F93D72A00942820 /* ReviewViewController.swift */,
+				DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */,
 				F8607B1C1F8FCC8E0029DB02 /* TripDetailsViewController.swift */,
 				F8B6A3E61F935E9600942820 /* TripSettingsViewController.swift */,
 			);
@@ -414,6 +428,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFA0E2A61F96E973005D7528 /* CreateUserViewController.storyboard in Resources */,
 				F806F2851F8DA42A00E11785 /* LaunchScreen.storyboard in Resources */,
 				F806F2821F8DA42A00E11785 /* Assets.xcassets in Resources */,
 				F806F2801F8DA42A00E11785 /* Main.storyboard in Resources */,
@@ -623,6 +638,7 @@
 				DF32B9C61F946EE000594F0B /* AlbumComment.swift in Sources */,
 				F806F2A91F8DED0000E11785 /* TripCell.swift in Sources */,
 				F8607B1D1F8FCC8E0029DB02 /* TripDetailsViewController.swift in Sources */,
+				DFA0E2A81F96EB2D005D7528 /* TabBarViewController.swift in Sources */,
 				F891E1121F943788006B2DD6 /* PhotoLayout.swift in Sources */,
 				F8B6A3E51F932CAE00942820 /* CommentsViewController.swift in Sources */,
 				DF32B9C41F9467F900594F0B /* Trip.swift in Sources */,

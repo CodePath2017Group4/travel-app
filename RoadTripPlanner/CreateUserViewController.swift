@@ -15,14 +15,18 @@ class CreateUserViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    
+    static func storyboardInstance() -> CreateUserViewController? {
+        let storyboard = UIStoryboard(name: "CreateUserViewController", bundle: nil)
+        
+        return storyboard.instantiateInitialViewController() as? CreateUserViewController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,6 +58,7 @@ class CreateUserViewController: UIViewController {
             } else {
                 log.info("User Registered successfully")
                 // manually segue to logged in view
+                self.gotoLoggedInScreen()
             }
         }
     }
@@ -70,6 +75,7 @@ class CreateUserViewController: UIViewController {
             } else {
                 log.info("User logged in successfully")
                 // manually segue to logged in view
+                self.gotoLoggedInScreen()
             }
         }
     }
@@ -94,5 +100,9 @@ class CreateUserViewController: UIViewController {
         }
     }
 
+    fileprivate func gotoLoggedInScreen() {
+        let tabBarViewController = TabBarViewController()
+        self.present(tabBarViewController, animated: true, completion: nil)
+    }
 
 }
