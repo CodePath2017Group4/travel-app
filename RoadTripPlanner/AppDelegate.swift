@@ -14,11 +14,6 @@ import SwiftyBeaver
 
 let log = SwiftyBeaver.self
 
-let parseApplicationId = "codepath2017group4"
-let parseClientKey = "afguNtaML8FuNSBc"
-let parseServer = "https://roadtripplanner.herokuapp.com/parse"
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -33,10 +28,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Initialize Parse
         Parse.initialize(with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) in
-                configuration.applicationId = parseApplicationId
-                configuration.server = parseServer
+                configuration.applicationId = APIKeys.Parse.applicationId
+                configuration.server = APIKeys.Parse.serverUrl
             })
         )
+        
+        YelpFusionClient.sharedInstance.authorize()
+
+        
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         return true

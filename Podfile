@@ -13,6 +13,7 @@ target 'RoadTripPlanner' do
   pod 'FLEX', '~> 2.4'
   pod 'SwiftyBeaver'  
   pod 'DatePickerDialog'
+  pod 'YelpAPI'
 
   target 'RoadTripPlannerTests' do
     inherit! :search_paths
