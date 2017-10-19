@@ -43,7 +43,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9kh-rW-t3W">
                                 <rect key="frame" x="59" y="382" width="256" height="40"/>
-                                <color key="backgroundColor" red="0.9194379448890686" green="0.29798597097396851" blue="0.10848637670278549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.91764705882352937" green="0.29798597097396851" blue="0.10848637670278549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="256" id="wyr-ij-gUo"/>
                                     <constraint firstAttribute="height" constant="40" id="yJt-kd-FKT"/>

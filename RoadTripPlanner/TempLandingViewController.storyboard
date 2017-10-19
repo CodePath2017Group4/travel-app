@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mwi-Ea-chR">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Temp Landing View Controller-->
+        <scene sceneID="SCQ-FO-z8R">
+            <objects>
+                <viewController storyboardIdentifier="TempLandingViewController" id="K6I-XJ-mMJ" customClass="TempLandingViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RX6-8M-qru">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LsR-m5-E5o">
+                                <rect key="frame" x="59" y="393" width="256" height="40"/>
+                                <color key="backgroundColor" red="0.91943794489999997" green="0.29798597100000002" blue="0.1084863767" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="256" id="RKP-r4-HeI"/>
+                                    <constraint firstAttribute="height" constant="40" id="gDc-mq-bBE"/>
+                                </constraints>
+                                <state key="normal" title="Start New Trip">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startTripButtonPressed:" destination="K6I-XJ-mMJ" eventType="touchUpInside" id="RPN-Iy-UYT"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_abstract" translatesAutoresizingMaskIntoConstraints="NO" id="UmD-hX-hxD">
+                                <rect key="frame" x="123.5" y="32" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="7DZ-1L-4BL"/>
+                                    <constraint firstAttribute="width" constant="128" id="FS4-aC-gWF"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What can we help you find?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raJ-eX-DVP">
+                                <rect key="frame" x="98.5" y="180" width="177.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.16051313280000001" green="0.63281899689999999" blue="0.61406725650000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="UmD-hX-hxD" firstAttribute="top" secondItem="9HC-1x-Vuk" secondAttribute="top" constant="32" id="4nD-MO-xPi"/>
+                            <constraint firstItem="raJ-eX-DVP" firstAttribute="centerX" secondItem="RX6-8M-qru" secondAttribute="centerX" id="LL1-0a-Oe4"/>
+                            <constraint firstItem="raJ-eX-DVP" firstAttribute="top" secondItem="UmD-hX-hxD" secondAttribute="bottom" constant="20" id="bdw-Cy-Zh7"/>
+                            <constraint firstItem="UmD-hX-hxD" firstAttribute="centerX" secondItem="RX6-8M-qru" secondAttribute="centerX" id="mUz-Mq-eON"/>
+                            <constraint firstItem="9HC-1x-Vuk" firstAttribute="bottom" secondItem="LsR-m5-E5o" secondAttribute="bottom" constant="170" id="p31-aK-U1H"/>
+                            <constraint firstItem="LsR-m5-E5o" firstAttribute="centerX" secondItem="RX6-8M-qru" secondAttribute="centerX" id="sff-P6-Auo"/>
+                            <constraint firstItem="LsR-m5-E5o" firstAttribute="centerX" secondItem="RX6-8M-qru" secondAttribute="centerX" id="zXl-p9-uLf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9HC-1x-Vuk"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TgI-TJ-XgC"/>
+                    <connections>
+                        <outlet property="startTripButton" destination="LsR-m5-E5o" id="Hza-c1-EKQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SCU-Sb-ebY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="288.80000000000001" y="152.47376311844079"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4Fh-t8-nJe">
+            <objects>
+                <navigationController storyboardIdentifier="TempLandingNavController" automaticallyAdjustsScrollViewInsets="NO" id="mwi-Ea-chR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="hIf-XE-XtG">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.16051313280000001" green="0.63281899689999999" blue="0.61406725650000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="K6I-XJ-mMJ" kind="relationship" relationship="rootViewController" id="DV4-cu-dDS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lvr-Ts-KBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-430" y="152"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="map_abstract" width="128" height="128"/>
+    </resources>
+</document>

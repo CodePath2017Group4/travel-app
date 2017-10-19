@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nN2-Ty-jVB">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Temp Create Trip View Controller-->
+        <scene sceneID="E7E-nX-QWq">
+            <objects>
+                <viewController storyboardIdentifier="TempCreateTripViewController" id="nN2-Ty-jVB" customClass="TempCreateTripViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gtL-fQ-dTD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Current Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1eZ-Kn-qPg">
+                                <rect key="frame" x="37" y="50" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="nWE-ed-5rG"/>
+                                    <constraint firstAttribute="height" constant="30" id="vvy-tt-clP"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Where are you going?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yiC-Zc-Ojb">
+                                <rect key="frame" x="38" y="100" width="300" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xDh-da-4Yg">
+                                <rect key="frame" x="0.0" y="150" width="375" height="517"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" rowHeight="60" id="KDd-oZ-raS" customClass="LocationCell" customModule="RoadTripPlanner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KDd-oZ-raS" id="YyU-QI-6YT">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CMJ-M6-HhS">
+                                                    <rect key="frame" x="8" y="15" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="CdK-nz-6ps"/>
+                                                        <constraint firstAttribute="height" constant="32" id="bUf-dE-5Hn"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thai Basil" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeR-mt-azh">
+                                                    <rect key="frame" x="48" y="15" width="319" height="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="101 S Murphy Ave" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkP-07-Zs7">
+                                                    <rect key="frame" x="48" y="34" width="319" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.43902853260000002" green="0.43902853260000002" blue="0.43902853260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KeR-mt-azh" firstAttribute="leading" secondItem="bkP-07-Zs7" secondAttribute="leading" id="6Kf-fd-nFV"/>
+                                                <constraint firstItem="bkP-07-Zs7" firstAttribute="leading" secondItem="CMJ-M6-HhS" secondAttribute="trailing" constant="8" id="GZY-Wt-GBc"/>
+                                                <constraint firstAttribute="trailing" secondItem="KeR-mt-azh" secondAttribute="trailing" constant="8" id="GeU-dt-9E2"/>
+                                                <constraint firstAttribute="trailing" secondItem="bkP-07-Zs7" secondAttribute="trailing" constant="8" id="KJT-T8-gig"/>
+                                                <constraint firstItem="CMJ-M6-HhS" firstAttribute="top" secondItem="YyU-QI-6YT" secondAttribute="top" constant="15" id="PEY-of-tvc"/>
+                                                <constraint firstItem="KeR-mt-azh" firstAttribute="leading" secondItem="CMJ-M6-HhS" secondAttribute="trailing" constant="8" id="Qiz-pR-G4K"/>
+                                                <constraint firstItem="KeR-mt-azh" firstAttribute="leading" secondItem="CMJ-M6-HhS" secondAttribute="trailing" constant="8" id="f7P-zL-kiF"/>
+                                                <constraint firstItem="KeR-mt-azh" firstAttribute="top" secondItem="YyU-QI-6YT" secondAttribute="top" constant="15" id="jGv-KL-ues"/>
+                                                <constraint firstItem="CMJ-M6-HhS" firstAttribute="leading" secondItem="YyU-QI-6YT" secondAttribute="leading" constant="8" id="pvK-bg-uDO"/>
+                                                <constraint firstItem="bkP-07-Zs7" firstAttribute="top" secondItem="KeR-mt-azh" secondAttribute="bottom" constant="2" id="zbl-yo-mI5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="addressLabel" destination="bkP-07-Zs7" id="fd3-JL-pGH"/>
+                                            <outlet property="categoryImageView" destination="CMJ-M6-HhS" id="8fX-j5-GLJ"/>
+                                            <outlet property="nameLabel" destination="KeR-mt-azh" id="xvx-Gv-O0e"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.16051313280000001" green="0.63281899689999999" blue="0.61406725650000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="xDh-da-4Yg" firstAttribute="top" secondItem="yiC-Zc-Ojb" secondAttribute="bottom" constant="20" id="Itd-Lq-hkl"/>
+                            <constraint firstItem="xDh-da-4Yg" firstAttribute="leading" secondItem="wEB-kR-2zq" secondAttribute="leading" id="Sbo-zf-gQ0"/>
+                            <constraint firstItem="yiC-Zc-Ojb" firstAttribute="width" secondItem="1eZ-Kn-qPg" secondAttribute="width" id="YL5-dl-Lvs"/>
+                            <constraint firstItem="xDh-da-4Yg" firstAttribute="trailing" secondItem="wEB-kR-2zq" secondAttribute="trailing" id="grN-5j-2SI"/>
+                            <constraint firstItem="yiC-Zc-Ojb" firstAttribute="centerX" secondItem="gtL-fQ-dTD" secondAttribute="centerX" id="m1e-Ox-eYW"/>
+                            <constraint firstItem="yiC-Zc-Ojb" firstAttribute="top" secondItem="1eZ-Kn-qPg" secondAttribute="bottom" constant="20" id="n4e-xG-1Cu"/>
+                            <constraint firstItem="xDh-da-4Yg" firstAttribute="bottom" secondItem="wEB-kR-2zq" secondAttribute="bottom" id="r1t-j9-lnR"/>
+                            <constraint firstItem="1eZ-Kn-qPg" firstAttribute="centerX" secondItem="gtL-fQ-dTD" secondAttribute="centerX" id="s6S-5D-Ibl"/>
+                            <constraint firstItem="1eZ-Kn-qPg" firstAttribute="top" secondItem="wEB-kR-2zq" secondAttribute="top" constant="30" id="ygl-qb-p4v"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wEB-kR-2zq"/>
+                    </view>
+                    <connections>
+                        <outlet property="currentLocationTextField" destination="1eZ-Kn-qPg" id="uoV-Tl-EhQ"/>
+                        <outlet property="destinationTextField" destination="yiC-Zc-Ojb" id="wqb-kV-3Lb"/>
+                        <outlet property="locationTableView" destination="xDh-da-4Yg" id="30i-FW-nx2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n7Z-9D-2qr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-255" y="69"/>
+        </scene>
+    </scenes>
+</document>
