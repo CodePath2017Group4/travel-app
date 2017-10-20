@@ -108,6 +108,7 @@ extension MapViewController: MKMapViewDelegate {
 
 extension MKPolyline {
     var coordinates: [CLLocationCoordinate2D] {
+        // Preinitialize the array with default values
         var coords = [CLLocationCoordinate2D] (repeating: kCLLocationCoordinate2DInvalid, count: self.pointCount)
         
         self.getCoordinates(&coords, range: NSRange(location: 0, length: self.pointCount))
