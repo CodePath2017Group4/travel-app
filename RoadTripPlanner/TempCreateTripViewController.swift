@@ -15,6 +15,8 @@ class TempCreateTripViewController: UIViewController {
     @IBOutlet weak var currentLocationTextField: UITextField!
     @IBOutlet weak var destinationTextField: UITextField!
     @IBOutlet weak var locationTableView: UITableView!
+    @IBOutlet weak var categoriesView: UIView!
+    @IBOutlet weak var startTripButton: UIButton!
     
     var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!    
     var places = [MKMapItem]()
@@ -51,6 +53,9 @@ class TempCreateTripViewController: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             locationManager.requestLocation()
         }
+     
+        categoriesView.isHidden = true
+        startTripButton.layer.cornerRadius = 5
         
         destinationTextField.delegate = self
     }
@@ -73,6 +78,9 @@ class TempCreateTripViewController: UIViewController {
         
         return address
         
+    }
+    
+    @IBAction func startTripButtonPressed(_ sender: Any) {
     }
 }
 
@@ -130,6 +138,9 @@ extension TempCreateTripViewController: UITableViewDataSource {
         
         // Update the destination text field
         destinationTextField.text = completion.title
+        // Hide the table view and show the categories view
+        categoriesView.isHidden = false
+        locationTableView.isHidden = true
         
         search.start { (response: MKLocalSearchResponse?, error: Error?) in
             if response != nil {
