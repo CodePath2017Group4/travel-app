@@ -17,13 +17,11 @@ class TabBarViewController: UITabBarController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         // Create view controllers from storyboard.
-//        let tripsNavigtaionController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.TripsNavigationController) as! UINavigationController
-//        tripsNavigtaionController.tabBarItem = UITabBarItem(title: "Trips", image: #imageLiteral(resourceName: "trip-tab"), tag: 0)
-//
-        let tempTripsNavController = TempLandingViewController.storyboardInstance()
-        tempTripsNavController!.tabBarItem = UITabBarItem(title: "Trips", image: #imageLiteral(resourceName: "trip-tab"), tag: 0)
+        let tripsNavigtaionController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.TripsNavigationController) as! UINavigationController
+//        let tripsNavigtaionController = TempLandingViewController.storyboardInstance()
+        tripsNavigtaionController.tabBarItem = UITabBarItem(title: "Trips", image: #imageLiteral(resourceName: "trip-tab"), tag: 0)
         // Add the log out button to the view controller navigation item.
-        addLogoutButton(to: tempTripsNavController!)
+        addLogoutButton(to: tripsNavigtaionController)
         
         let albumsNavigtaionViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.AlbumsNavigationController) as! UINavigationController
         albumsNavigtaionViewController.tabBarItem = UITabBarItem(title: "Albums", image: #imageLiteral(resourceName: "album-tab"), tag: 1)
@@ -36,7 +34,7 @@ class TabBarViewController: UITabBarController {
         
         addLogoutButton(to: profileNavigationController!)
         
-        let viewControllerList = [tempTripsNavController!, albumsNavigtaionViewController, profileNavigationController!]
+        let viewControllerList = [tripsNavigtaionController, albumsNavigtaionViewController, profileNavigationController!]
         
         // Set the viewControllers property of our UITabBarController
         viewControllers = viewControllerList

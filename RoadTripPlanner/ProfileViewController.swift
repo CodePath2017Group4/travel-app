@@ -86,11 +86,14 @@ extension ProfileViewController : UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         // Get the image captured by the UIImagePickerController
-//        let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+
         let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         
-        // Resize image
-        let avatarImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 128, height: 128))        
+        // Resize image to fit the image view
+        let width = profileImage.frame.size.width
+        let height = profileImage.frame.size.height
+        
+        let avatarImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
         avatarImageView.contentMode = .scaleAspectFit
         avatarImageView.image = editedImage
         
