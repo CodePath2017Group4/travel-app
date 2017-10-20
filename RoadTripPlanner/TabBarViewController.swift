@@ -18,8 +18,8 @@ class TabBarViewController: UITabBarController {
         
         // Create view controllers from storyboard.
         let tripsNavigtaionController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.TripsNavigationController) as! UINavigationController
+//        let tripsNavigtaionController = TempLandingViewController.storyboardInstance()
         tripsNavigtaionController.tabBarItem = UITabBarItem(title: "Trips", image: #imageLiteral(resourceName: "trip-tab"), tag: 0)
-        
         // Add the log out button to the view controller navigation item.
         addLogoutButton(to: tripsNavigtaionController)
         
@@ -28,12 +28,13 @@ class TabBarViewController: UITabBarController {
         
         addLogoutButton(to: albumsNavigtaionViewController)
         
-        let profileNavigtaionController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.ProfileNavigationController) as! UINavigationController
-        profileNavigtaionController.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "profile-tab"), tag: 2)
+//        let profileNavigtaionController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.ProfileNavigationController) as! UINavigationController
+        let profileNavigationController = ProfileViewController.storyboardInstance()
+        profileNavigationController!.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "profile-tab"), tag: 2)
         
-        addLogoutButton(to: profileNavigtaionController)
+        addLogoutButton(to: profileNavigationController!)
         
-        let viewControllerList = [tripsNavigtaionController, albumsNavigtaionViewController, profileNavigtaionController]
+        let viewControllerList = [tripsNavigtaionController, albumsNavigtaionViewController, profileNavigationController!]
         
         // Set the viewControllers property of our UITabBarController
         viewControllers = viewControllerList

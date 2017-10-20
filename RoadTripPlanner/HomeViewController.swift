@@ -34,7 +34,9 @@ class HomeViewController: UIViewController {
         addNotificationObservers()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
         
         // If we have a logged in user, skip the home screen and go directly to the TabBarViewController        
         if PFUser.current() != nil {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PcM-Af-Zi4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wec-wp-PGs">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,15 +29,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="wyd-GV-FF4">
-                                <rect key="frame" x="123.5" y="36" width="128" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wyd-GV-FF4">
+                                <rect key="frame" x="123.5" y="80" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="128" id="QlM-6C-BiP"/>
                                     <constraint firstAttribute="height" constant="128" id="ts9-eT-Hcr"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ma3-Ii-zLj">
-                                <rect key="frame" x="161" y="172" width="54.5" height="24"/>
+                                <rect key="frame" x="161" y="216" width="54.5" height="24"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -78,27 +78,34 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCU-nz-R5j">
-                                <rect key="frame" x="69.5" y="285" width="42" height="21"/>
+                                <rect key="frame" x="69.5" y="329" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXY-ZM-PIx">
-                                <rect key="frame" x="214.5" y="221" width="42" height="21"/>
+                                <rect key="frame" x="214.5" y="265" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trip-tab" translatesAutoresizingMaskIntoConstraints="NO" id="phm-gM-sxw">
-                                <rect key="frame" x="123.5" y="279" width="32" height="32"/>
+                                <rect key="frame" x="123.5" y="323" width="32" height="32"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="album-tab" translatesAutoresizingMaskIntoConstraints="NO" id="KLI-3k-RbO">
-                                <rect key="frame" x="268.5" y="279" width="32" height="32"/>
+                                <rect key="frame" x="268.5" y="323" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="mtI-Gj-Bwq"/>
                                     <constraint firstAttribute="height" constant="32" id="yQ8-ov-7h2"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBZ-hV-Wfy">
+                                <rect key="frame" x="274" y="129" width="71" height="30"/>
+                                <state key="normal" title="Edit Photo"/>
+                                <connections>
+                                    <action selector="editPhotoButtonPressed:" destination="PcM-Af-Zi4" eventType="touchUpInside" id="YEi-8e-h0X"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -107,13 +114,16 @@
                             <constraint firstItem="KLI-3k-RbO" firstAttribute="top" secondItem="kKD-X5-hxB" secondAttribute="topMargin" constant="259" id="ADW-5b-h89"/>
                             <constraint firstItem="Ma3-Ii-zLj" firstAttribute="centerX" secondItem="kKD-X5-hxB" secondAttribute="centerX" id="ASd-aO-4NA"/>
                             <constraint firstItem="wyd-GV-FF4" firstAttribute="centerX" secondItem="kKD-X5-hxB" secondAttribute="centerX" id="Bpc-Zo-O0t"/>
+                            <constraint firstItem="Uyc-MQ-SJc" firstAttribute="trailing" secondItem="aBZ-hV-Wfy" secondAttribute="trailing" constant="30" id="C7f-4l-X89"/>
                             <constraint firstItem="phm-gM-sxw" firstAttribute="centerX" secondItem="kKD-X5-hxB" secondAttribute="centerX" constant="-48" id="KJh-vD-8PB"/>
                             <constraint firstItem="KLI-3k-RbO" firstAttribute="leading" secondItem="mXY-ZM-PIx" secondAttribute="trailing" constant="12" id="Lkq-A2-obU"/>
                             <constraint firstItem="wyd-GV-FF4" firstAttribute="top" secondItem="4zj-ze-foj" secondAttribute="bottom" constant="16" id="MRe-QK-jOp"/>
                             <constraint firstItem="Ma3-Ii-zLj" firstAttribute="top" secondItem="wyd-GV-FF4" secondAttribute="bottom" constant="8" id="R73-dF-AjR"/>
+                            <constraint firstItem="aBZ-hV-Wfy" firstAttribute="leading" secondItem="wyd-GV-FF4" secondAttribute="trailing" constant="22.5" id="RjF-h8-ALn"/>
                             <constraint firstItem="phm-gM-sxw" firstAttribute="leading" secondItem="dCU-nz-R5j" secondAttribute="trailing" constant="12" id="Rpv-Ha-cc5"/>
                             <constraint firstItem="dCU-nz-R5j" firstAttribute="top" secondItem="kKD-X5-hxB" secondAttribute="topMargin" constant="265" id="ao9-Qh-WKR"/>
                             <constraint firstItem="mXY-ZM-PIx" firstAttribute="centerX" secondItem="kKD-X5-hxB" secondAttribute="centerX" constant="48" id="qLI-in-DyU"/>
+                            <constraint firstItem="aBZ-hV-Wfy" firstAttribute="centerY" secondItem="wyd-GV-FF4" secondAttribute="centerY" id="tAz-st-Lxx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Uyc-MQ-SJc"/>
                     </view>
@@ -123,16 +133,34 @@
                         <outlet property="numTripsLabel" destination="dCU-nz-R5j" id="0G7-31-g3D"/>
                         <outlet property="profileImage" destination="wyd-GV-FF4" id="Vk9-fw-h2e"/>
                         <outlet property="tripsSummaryTable" destination="5B9-PB-301" id="o7t-jD-Sab"/>
+                        <outlet property="userNameLabel" destination="Ma3-Ii-zLj" id="uT2-ld-0Zo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zn2-6h-wo5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-538" y="1673"/>
+            <point key="canvasLocation" x="-199.19999999999999" y="1672.7136431784108"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0oL-gX-fov">
+            <objects>
+                <navigationController storyboardIdentifier="ProfileNavController" automaticallyAdjustsScrollViewInsets="NO" id="wec-wp-PGs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Cn2-71-LYk">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="PcM-Af-Zi4" kind="relationship" relationship="rootViewController" id="Tzi-qQ-jy6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sI3-5b-eqS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1006" y="1673"/>
         </scene>
     </scenes>
     <resources>
         <image name="album-tab" width="32" height="32"/>
-        <image name="profile1" width="119" height="106"/>
         <image name="trip-tab" width="32" height="32"/>
     </resources>
 </document>
