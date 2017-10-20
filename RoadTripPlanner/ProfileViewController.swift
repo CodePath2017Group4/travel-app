@@ -26,7 +26,9 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        profileImage?.layer.cornerRadius = profileImage!.frame.height / 2
+        profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
+        profileImage.clipsToBounds = true
+        
         numAlbumsLabel.text = "0"
         numTripsLabel.text = "0"
         
@@ -41,6 +43,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
             })
         } else {
             userNameLabel.text = "Anonymous User"
+            profileImage.image = #imageLiteral(resourceName: "user")
         }
         // Do any additional setup after loading the view.
     }
@@ -87,9 +90,7 @@ extension ProfileViewController : UIImagePickerControllerDelegate {
         let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         
         // Resize image
-        let avatarImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 128, height: 128))
-        avatarImageView.layer.borderColor = UIColor.white.cgColor
-        avatarImageView.layer.borderWidth = 3.0
+        let avatarImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 128, height: 128))        
         avatarImageView.contentMode = .scaleAspectFit
         avatarImageView.image = editedImage
         
