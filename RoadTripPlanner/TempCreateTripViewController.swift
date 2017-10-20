@@ -64,7 +64,18 @@ class TempCreateTripViewController: UIViewController {
     }
     
     fileprivate func formatAddressFromPlacemark(placemark: CLPlacemark) -> String {
-        return (placemark.addressDictionary!["FormattedAddressLines"] as! [String]).joined(separator: ", ")
+        
+        let name = placemark.name ?? ""
+        let locality = placemark.locality ?? ""
+        let administrativeArea = placemark.administrativeArea ?? ""  // state
+        let postalCode = placemark.postalCode ?? ""
+        let isoCountryCode = placemark.isoCountryCode ?? ""
+        
+        let address = "\(name), \(locality), \(administrativeArea) \(postalCode), \(isoCountryCode)"
+        log.info(address)
+        
+        return address
+        
     }
 }
 
@@ -111,7 +122,7 @@ extension TempCreateTripViewController : CLLocationManagerDelegate {
         CLGeocoder().reverseGeocodeLocation(userLocation!) { (placemarks: [CLPlacemark]?, error: Error?) in
             if let placemarks = placemarks {
                 let placemark = placemarks.first!
-                let mapPlacemark = MKPlacemark(coordinate: placemark.location!.coordinate, addressDictionary: placemark.addressDictionary as! [String:Any]?)
+                let mapPlacemark = MKPlacemark(coordinate: placemark.location!.coordinate)
                 let mapItem = MKMapItem(placemark: mapPlacemark)
                 
                 self.locationTuples[0].mapItem = mapItem
