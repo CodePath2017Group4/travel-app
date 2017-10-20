@@ -18,7 +18,7 @@ class Trip: PFObject, PFSubclassing {
     @NSManaged var tripMembers: [TripMember]
     @NSManaged var albums: [Album]?
     
-    init(name: String, date: Date, startPoint: PFGeoPoint, destinationPoint: PFGeoPoint, creator: PFUser) {
+    init(name: String, date: Date, startPoint: TripSegmentPoint, destinationPoint: TripSegmentPoint, creator: PFUser) {
         super.init()
         self.name = name
         self.date = date

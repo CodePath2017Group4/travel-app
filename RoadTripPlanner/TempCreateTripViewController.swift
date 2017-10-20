@@ -87,18 +87,13 @@ class TempCreateTripViewController: UIViewController {
         // Create a new trip object and save it to the database
         
         let startLocation = locationTuples[0].mapItem?.placemark.location
-        let startPoint = TripSegmentPoint()
-        startPoint.geoPoint = PFGeoPoint(location: startLocation)
+        let startPoint = TripSegmentPoint(name: "start",geoPoint: PFGeoPoint(location: startLocation))
         
         let destLocation = locationTuples[1].mapItem?.placemark.location
-        let destPoint = TripSegmentPoint()
-        destPoint.geoPoint = PFGeoPoint(location: destLocation)
+        let destPoint = TripSegmentPoint(name: "dest", geoPoint: PFGeoPoint(location: destLocation))
         
-        let trip = Trip()
-        trip.creator = PFUser.current()!
-        trip.startPoint = startPoint
-        trip.destinationPoint = destPoint
-        trip.name = locationTuples[1].textField?.text
+        // init(name: String, date: Date, startPoint: TripSegmentPoint, destinationPoint: TripSegmentPoint, creator: PFUser) {
+        let trip = Trip(name: (locationTuples[1].textField?.text)!, date: Date(), startPoint: startPoint, destinationPoint: destPoint, creator: PFUser.current()!)
         
 //        trip.saveInBackground { (success, error) in
 //            if (success) {

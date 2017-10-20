@@ -13,6 +13,12 @@ class TripSegmentPoint: PFObject, PFSubclassing {
     @NSManaged var name: String?
     @NSManaged var geoPoint: PFGeoPoint?    
     
+    init(name: String, geoPoint: PFGeoPoint) {
+        super.init()
+        self.name = name
+        self.geoPoint = geoPoint
+    }
+    
     class func parseClassName() -> String {
         return "TripSegmentPoint"
     }
