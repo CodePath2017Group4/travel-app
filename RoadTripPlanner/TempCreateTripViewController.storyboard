@@ -45,54 +45,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xDh-da-4Yg">
                                 <rect key="frame" x="0.0" y="150" width="375" height="517"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" rowHeight="60" id="KDd-oZ-raS" customClass="LocationCell" customModule="RoadTripPlanner" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KDd-oZ-raS" id="YyU-QI-6YT">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CMJ-M6-HhS">
-                                                    <rect key="frame" x="8" y="15" width="32" height="32"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="32" id="CdK-nz-6ps"/>
-                                                        <constraint firstAttribute="height" constant="32" id="bUf-dE-5Hn"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thai Basil" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeR-mt-azh">
-                                                    <rect key="frame" x="48" y="15" width="319" height="17"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="101 S Murphy Ave" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkP-07-Zs7">
-                                                    <rect key="frame" x="48" y="34" width="319" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.43902853260000002" green="0.43902853260000002" blue="0.43902853260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="KeR-mt-azh" firstAttribute="leading" secondItem="bkP-07-Zs7" secondAttribute="leading" id="6Kf-fd-nFV"/>
-                                                <constraint firstItem="bkP-07-Zs7" firstAttribute="leading" secondItem="CMJ-M6-HhS" secondAttribute="trailing" constant="8" id="GZY-Wt-GBc"/>
-                                                <constraint firstAttribute="trailing" secondItem="KeR-mt-azh" secondAttribute="trailing" constant="8" id="GeU-dt-9E2"/>
-                                                <constraint firstAttribute="trailing" secondItem="bkP-07-Zs7" secondAttribute="trailing" constant="8" id="KJT-T8-gig"/>
-                                                <constraint firstItem="CMJ-M6-HhS" firstAttribute="top" secondItem="YyU-QI-6YT" secondAttribute="top" constant="15" id="PEY-of-tvc"/>
-                                                <constraint firstItem="KeR-mt-azh" firstAttribute="leading" secondItem="CMJ-M6-HhS" secondAttribute="trailing" constant="8" id="Qiz-pR-G4K"/>
-                                                <constraint firstItem="KeR-mt-azh" firstAttribute="leading" secondItem="CMJ-M6-HhS" secondAttribute="trailing" constant="8" id="f7P-zL-kiF"/>
-                                                <constraint firstItem="KeR-mt-azh" firstAttribute="top" secondItem="YyU-QI-6YT" secondAttribute="top" constant="15" id="jGv-KL-ues"/>
-                                                <constraint firstItem="CMJ-M6-HhS" firstAttribute="leading" secondItem="YyU-QI-6YT" secondAttribute="leading" constant="8" id="pvK-bg-uDO"/>
-                                                <constraint firstItem="bkP-07-Zs7" firstAttribute="top" secondItem="KeR-mt-azh" secondAttribute="bottom" constant="2" id="zbl-yo-mI5"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="addressLabel" destination="bkP-07-Zs7" id="fd3-JL-pGH"/>
-                                            <outlet property="categoryImageView" destination="CMJ-M6-HhS" id="8fX-j5-GLJ"/>
-                                            <outlet property="nameLabel" destination="KeR-mt-azh" id="xvx-Gv-O0e"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Nw-KL-O1N">
                                 <rect key="frame" x="26.5" y="106" width="21" height="18"/>

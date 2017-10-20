@@ -44,7 +44,6 @@
 		DFCC379D1F9935D2003BDCA6 /* TempLandingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC379C1F9935D2003BDCA6 /* TempLandingViewController.storyboard */; };
 		DFCC379F1F9950E5003BDCA6 /* TempCreateTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC379E1F9950E5003BDCA6 /* TempCreateTripViewController.swift */; };
 		DFCC37A11F9950F9003BDCA6 /* TempCreateTripViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37A01F9950F9003BDCA6 /* TempCreateTripViewController.storyboard */; };
-		DFCC37A31F9957AA003BDCA6 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC37A21F9957AA003BDCA6 /* LocationCell.swift */; };
 		F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806F27A1F8DA42A00E11785 /* AppDelegate.swift */; };
 		F806F2801F8DA42A00E11785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F806F27E1F8DA42A00E11785 /* Main.storyboard */; };
 		F806F2821F8DA42A00E11785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F806F2811F8DA42A00E11785 /* Assets.xcassets */; };
@@ -130,7 +129,6 @@
 		DFCC379C1F9935D2003BDCA6 /* TempLandingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TempLandingViewController.storyboard; sourceTree = "<group>"; };
 		DFCC379E1F9950E5003BDCA6 /* TempCreateTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCreateTripViewController.swift; sourceTree = "<group>"; };
 		DFCC37A01F9950F9003BDCA6 /* TempCreateTripViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TempCreateTripViewController.storyboard; sourceTree = "<group>"; };
-		DFCC37A21F9957AA003BDCA6 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		EC80D6B0037AEA0DAC6399F8 /* Pods-RoadTripPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		EDEE6B5A1A92A3171A131D5C /* Pods-RoadTripPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerTests/Pods-RoadTripPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
 		F806F2771F8DA42A00E11785 /* RoadTripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadTripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -354,7 +352,6 @@
 				F806F2A81F8DED0000E11785 /* TripCell.swift */,
 				F806F2F41F8ECADA00E11785 /* BusinessCell.swift */,
 				F8B6A3E21F93207500942820 /* TripDetailsCell.swift */,
-				DFCC37A21F9957AA003BDCA6 /* LocationCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -738,7 +735,6 @@
 				F8B6A3E71F935E9600942820 /* TripSettingsViewController.swift in Sources */,
 				486E3C3D1F945EC3003D2FFF /* AlbumCell.swift in Sources */,
 				DF32B9C81F9470F200594F0B /* TripMember.swift in Sources */,
-				DFCC37A31F9957AA003BDCA6 /* LocationCell.swift in Sources */,
 				DFA0E2A11F96D272005D7528 /* APIKeys.swift in Sources */,
 				DFCC379F1F9950E5003BDCA6 /* TempCreateTripViewController.swift in Sources */,
 				486E3C401F945ED8003D2FFF /* Album.swift in Sources */,

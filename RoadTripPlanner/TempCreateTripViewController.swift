@@ -16,13 +16,14 @@ class TempCreateTripViewController: UIViewController {
     @IBOutlet weak var destinationTextField: UITextField!
     @IBOutlet weak var locationTableView: UITableView!
     
-    var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!
-    
-    var results: NSArray = []
+    var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!    
+    var places = [MKMapItem]()
     
     let locationManager = CLLocationManager()
-    var localSearch: MKLocalSearch?
-    var userCoordinate: CLLocationCoordinate2D!
+    
+    // Search completion
+    var searchCompleter = MKLocalSearchCompleter()
+    var searchResults = [MKLocalSearchCompletion]()
     
     static func storyboardInstance() -> TempCreateTripViewController? {
         let storyboard = UIStoryboard(name: "TempCreateTripViewController", bundle: nil)
@@ -32,6 +33,8 @@ class TempCreateTripViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchCompleter.delegate = self
         
         locationTableView.dataSource = self
         locationTableView.delegate = self
@@ -48,19 +51,13 @@ class TempCreateTripViewController: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             locationManager.requestLocation()
         }
+        
+        destinationTextField.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-
-    func startSearch(searchString: String) {
-        
-        var region = MKCoordinateRegion()
-        region.center.latitude = self.userCoordinate.latitude
-        region.center.longitude = self.userCoordinate.longitude
     }
     
     fileprivate func formatAddressFromPlacemark(placemark: CLPlacemark) -> String {
@@ -79,6 +76,32 @@ class TempCreateTripViewController: UIViewController {
     }
 }
 
+extension TempCreateTripViewController: MKLocalSearchCompleterDelegate {
+    
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        searchResults = completer.results
+        locationTableView.reloadData()
+    }
+    
+    func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
+        log.error(error)
+    }
+}
+
+extension TempCreateTripViewController : UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        log.verbose(textField.text ?? "")
+        searchCompleter.queryFragment = textField.text!
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
 extension TempCreateTripViewController : UITableViewDelegate {
     
 }
@@ -86,27 +109,37 @@ extension TempCreateTripViewController : UITableViewDelegate {
 extension TempCreateTripViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results.count
+        return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell") as! LocationCell
-        cell.location = results[(indexPath as NSIndexPath).row] as! NSDictionary
-        
+        let searchResult = searchResults[indexPath.row]
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        cell.textLabel?.text = searchResult.title
+        cell.detailTextLabel?.text = searchResult.subtitle
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // This is the selected venue
-        let venue = results[(indexPath as NSIndexPath).row] as! NSDictionary
         
-        let lat = venue.value(forKeyPath: "location.lat") as! NSNumber
-        let lng = venue.value(forKeyPath: "location.lng") as! NSNumber
+        let completion = searchResults[indexPath.row]
         
-        let latString = "\(lat)"
-        let lngString = "\(lng)"
+        let searchRequest = MKLocalSearchRequest(completion: completion)
+        let search = MKLocalSearch(request: searchRequest)
         
-        print(latString + " " + lngString)
+        // Update the destination text field
+        destinationTextField.text = completion.title
+        
+        search.start { (response: MKLocalSearchResponse?, error: Error?) in
+            if response != nil {
+                guard let response = response else {
+                    return
+                }
+                let coordinate = response.mapItems.first?.placemark.coordinate
+                log.verbose(String(describing: coordinate))
+            }
+        }
         
     }
 }
@@ -116,9 +149,8 @@ extension TempCreateTripViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let userLocation = locations.last
-        self.userCoordinate = (userLocation?.coordinate)!
         
-        // Reverse geocode the location
+        // Reverse geocode the user's location to obtain the address
         CLGeocoder().reverseGeocodeLocation(userLocation!) { (placemarks: [CLPlacemark]?, error: Error?) in
             if let placemarks = placemarks {
                 let placemark = placemarks.first!
@@ -137,7 +169,6 @@ extension TempCreateTripViewController : CLLocationManagerDelegate {
         // Remove the delegate to prevent updating again.
         manager.delegate = nil
         
-        // We have a location now..
     }
     
     
