@@ -19,7 +19,7 @@
         <!--Trip Details View Controller-->
         <scene sceneID="xPG-1Z-XKN">
             <objects>
-                <viewController storyboardIdentifier="TripDetails" id="hqY-Tb-qs5" customClass="TripDetailsViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TripDetailsViewController" id="hqY-Tb-qs5" customClass="TripDetailsViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s1M-wn-uKP"/>
                         <viewControllerLayoutGuide type="bottom" id="Rki-9m-NAC"/>
@@ -242,8 +242,10 @@
                     <connections>
                         <outlet property="albumImageView" destination="arj-g8-HVj" id="bhs-Rb-nj9"/>
                         <outlet property="emailGroupImageView" destination="FBH-H8-WJ8" id="7FY-aP-wjU"/>
+                        <outlet property="headerImageView" destination="Kqj-Ga-opx" id="lTb-69-Yay"/>
                         <outlet property="profileImage" destination="QaE-ZD-mWd" id="hOj-rO-v14"/>
                         <outlet property="tableView" destination="e5Y-Dr-f4V" id="leq-il-y9T"/>
+                        <outlet property="tripNameLabel" destination="yRa-tl-ihp" id="Gy8-N0-mVY"/>
                         <outlet property="tripSettingsImageView" destination="9d4-Bu-Qg2" id="pTO-tc-p8L"/>
                     </connections>
                 </viewController>

@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Parse
 
 class TempCreateTripViewController: UIViewController {
 
@@ -18,7 +19,8 @@ class TempCreateTripViewController: UIViewController {
     @IBOutlet weak var categoriesView: UIView!
     @IBOutlet weak var startTripButton: UIButton!
     
-    var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!    
+    var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!
+    
     var places = [MKMapItem]()
     
     let locationManager = CLLocationManager()
@@ -81,6 +83,36 @@ class TempCreateTripViewController: UIViewController {
     }
     
     @IBAction func startTripButtonPressed(_ sender: Any) {
+        
+        // Create a new trip object and save it to the database
+        
+        let startLocation = locationTuples[0].mapItem?.placemark.location
+        let startPoint = TripSegmentPoint()
+        startPoint.geoPoint = PFGeoPoint(location: startLocation)
+        
+        let destLocation = locationTuples[1].mapItem?.placemark.location
+        let destPoint = TripSegmentPoint()
+        destPoint.geoPoint = PFGeoPoint(location: destLocation)
+        
+        let trip = Trip()
+        trip.creator = PFUser.current()!
+        trip.startPoint = startPoint
+        trip.destinationPoint = destPoint
+        trip.name = locationTuples[1].textField?.text
+        
+//        trip.saveInBackground { (success, error) in
+//            if (success) {
+//                log.info("trip saved")
+//            } else {
+//                log.error(error?.localizedDescription ?? "Uknown Error")
+//            }
+//        }
+        
+        
+        // Push the TripDetailsViewController onto the nav stack.
+        guard let tripDetailsVC = TripDetailsViewController.storyboardInstance() else { return }
+        tripDetailsVC.trip = trip
+        navigationController?.pushViewController(tripDetailsVC, animated: true)
     }
 }
 
@@ -149,6 +181,9 @@ extension TempCreateTripViewController: UITableViewDataSource {
                 }
                 let coordinate = response.mapItems.first?.placemark.coordinate
                 log.verbose(String(describing: coordinate))
+                let placemark = response.mapItems.first?.placemark
+                let mapItem = MKMapItem(placemark: placemark!)
+                self.locationTuples[1].mapItem = mapItem
             }
         }
         
@@ -165,11 +200,11 @@ extension TempCreateTripViewController : CLLocationManagerDelegate {
         CLGeocoder().reverseGeocodeLocation(userLocation!) { (placemarks: [CLPlacemark]?, error: Error?) in
             if let placemarks = placemarks {
                 let placemark = placemarks.first!
-                let mapPlacemark = MKPlacemark(coordinate: placemark.location!.coordinate)
-                let mapItem = MKMapItem(placemark: mapPlacemark)
+                let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: placemark.location!.coordinate, addressDictionary: placemark.addressDictionary as! [String:Any]?))
+                
+                log.verbose(mapItem)
                 
                 self.locationTuples[0].mapItem = mapItem
-                
                 self.currentLocationTextField.text = self.formatAddressFromPlacemark(placemark: placemark)
             }
         }
