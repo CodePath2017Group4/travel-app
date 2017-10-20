@@ -32,6 +32,13 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         
         if PFUser.current() != nil {
             userNameLabel.text = PFUser.current()?.username
+            let avatarFile = PFUser.current()?.object(forKey: "avatar") as! PFFile
+            avatarFile.getDataInBackground(block: { (imageData, error) in
+                if error == nil {
+                    let avatarImage = UIImage(data: imageData!)
+                    self.profileImage.image = avatarImage
+                }
+            })
         } else {
             userNameLabel.text = "Anonymous User"
         }
@@ -76,14 +83,39 @@ extension ProfileViewController : UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         // Get the image captured by the UIImagePickerController
-        let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+//        let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
         
-//        self.selectedImage = editedImage
+        // Resize image
+        let avatarImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 128, height: 128))
+        avatarImageView.layer.borderColor = UIColor.white.cgColor
+        avatarImageView.layer.borderWidth = 3.0
+        avatarImageView.contentMode = .scaleAspectFit
+        avatarImageView.image = editedImage
+        
+        UIGraphicsBeginImageContext(avatarImageView.frame.size)
+        avatarImageView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        // Save the edited image as the new user avatar.
+        let avatar = PFFile(name: PFUser.current()!.username, data: UIImagePNGRepresentation(resizedImage!)!)
+        PFUser.current()!.setObject(avatar!, forKey: "avatar")
+        PFUser.current()!.saveInBackground { (success, error) in
+            if success {
+                log.info("Avatar updated")
+            } else {
+                guard let error = error else {
+                    log.error("Unknown error occurred saving avatar image")
+                    return
+                }
+                log.error("Error saving avatar image: \(error)")
+            }
+        }
         
         // Dismiss the UIImagePickerController
         dismiss(animated: true) {
-            
+            self.profileImage.image = resizedImage
         }
     }
     
