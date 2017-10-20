@@ -19,6 +19,8 @@ class TempCreateTripViewController: UIViewController {
     @IBOutlet weak var categoriesView: UIView!
     @IBOutlet weak var startTripButton: UIButton!
     
+    var selectedCategory: PlaceCategory?
+    
     var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!
     
     var places = [MKMapItem]()
@@ -91,8 +93,7 @@ class TempCreateTripViewController: UIViewController {
         
         let destLocation = locationTuples[1].mapItem?.placemark.location
         let destPoint = TripSegmentPoint(name: "dest", geoPoint: PFGeoPoint(location: destLocation))
-        
-        // init(name: String, date: Date, startPoint: TripSegmentPoint, destinationPoint: TripSegmentPoint, creator: PFUser) {
+                
         let trip = Trip(name: (locationTuples[1].textField?.text)!, date: Date(), startPoint: startPoint, destinationPoint: destPoint, creator: PFUser.current()!)
         
 //        trip.saveInBackground { (success, error) in
