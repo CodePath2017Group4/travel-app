@@ -12,20 +12,35 @@ import Parse
 class Album: PFObject, PFSubclassing {
     @NSManaged var albumName: String?
     @NSManaged var albumDescription: String?
-    @NSManaged var tripName: String?
-    @NSManaged var tripDate: String?
-    @NSManaged var owner: String?    
+    @NSManaged var owner: PFUser?
+    @NSManaged var trip: Trip?
+    
     @NSManaged var comments: [AlbumComment]?
     @NSManaged var likes: [PFUser]
     @NSManaged var photos: [PFFile]
     
-    init(albumName: String, tripName: String, tripDate: String, owner: String, photos: [PFFile]) {
+    init(albumName: String, albumDescription: String, trip: Trip, owner: PFUser) {
         super.init()
         self.albumName = albumName
-        self.tripName = tripName
-        self.tripDate = tripDate
+        self.albumDescription = albumDescription
+        self.trip = trip
         self.owner = owner
-        self.photos = photos
+        
+        self.photos = []
+        self.likes = []
+        self.comments = []
+    }
+    
+    init(copyFrom: Album) {
+        super.init()
+        self.albumName = copyFrom.albumName
+        self.albumDescription = copyFrom.albumDescription
+        self.trip = copyFrom.trip
+        self.owner = copyFrom.owner
+        
+        self.photos = copyFrom.photos
+        self.likes = copyFrom.likes
+        self.comments = copyFrom.comments
     }
     
     class func parseClassName() -> String {

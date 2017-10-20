@@ -21,13 +21,17 @@ class User: NSObject{
     var dictionary: Dictionary<String, AnyObject>?
     
     init(dictionary: Dictionary<String, AnyObject>) {
-        
         userid = dictionary["id"] as? String
         userName = dictionary["name"] as? String
         userEmail = dictionary["email"] as? String
         
         self.dictionary = dictionary
-
+    }
+    
+    init(userid: String, userName: String, userEmail: String) {
+        self.userid = userid
+        self.userName = userName
+        self.userEmail = userEmail
     }
 
     class func fetchProfile() {
