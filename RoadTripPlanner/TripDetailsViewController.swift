@@ -64,9 +64,9 @@ class TripDetailsViewController: UIViewController {
                     }
                     log.verbose("num landmark results: \(results.count)")
                     
-                    for b in results {
-                        log.info (b.name)                        
-                    }
+//                    for b in results {
+//                        log.info (b.name)                        
+//                    }
                     
                     let randomIndex = Int(arc4random_uniform(UInt32(results.count)))
                     let b = results[randomIndex]

@@ -56,14 +56,14 @@ class YelpFusionClient {
                 let businesses = search?.businesses
                 log.info(businesses?.count ?? 0)
                 
-                for b in businesses! {
-                    log.info (b.name)
-                    log.info (b.location)
-                    let categories = b.categories
-                    for category in categories {
-                        log.info("Category: \(category.name)")
-                    }
-                }
+//                for b in businesses! {
+//                    log.info (b.name)
+//                    log.info (b.location)
+//                    let categories = b.categories
+//                    for category in categories {
+//                        log.info("Category: \(category.name)")
+//                    }
+//                }
             }
         })
     }

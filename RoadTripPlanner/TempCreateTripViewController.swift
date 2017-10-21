@@ -81,7 +81,29 @@ class TempCreateTripViewController: UIViewController {
         log.info(address)
         
         return address
-        
+    }
+    
+    fileprivate func tripSegmentPointFromLocation(location: CLLocation, completion: @escaping (TripSegmentPoint?, Error?) -> Void) {
+    
+        CLGeocoder().reverseGeocodeLocation(location) { (placemarks: [CLPlacemark]?, error: Error?) in
+            if let placemarks = placemarks {
+                let placemark = placemarks.first!
+                let name = placemark.name ?? ""
+                let locality = placemark.locality ?? ""
+                let administrativeArea = placemark.administrativeArea ?? ""  // state
+                let postalCode = placemark.postalCode ?? ""
+                let isoCountryCode = placemark.isoCountryCode ?? ""
+    
+                let address = "\(locality), \(administrativeArea) \(postalCode), \(isoCountryCode)"
+    
+                log.verbose("name: \(name), address: \(address)")
+    
+                let tripSegmentPoint = TripSegmentPoint(name: name, address: address, geoPoint: PFGeoPoint(location: location))
+                completion(tripSegmentPoint, nil)
+            } else {
+                completion(nil, error)
+            }
+        }
     }
     
     @IBAction func startTripButtonPressed(_ sender: Any) {
@@ -89,12 +111,40 @@ class TempCreateTripViewController: UIViewController {
         // Create a new trip object and save it to the database
         
         let startLocation = locationTuples[0].mapItem?.placemark.location
-        let startPoint = TripSegmentPoint(name: "start",geoPoint: PFGeoPoint(location: startLocation))
+        var startSegmentPoint: TripSegmentPoint?
+        var destSegmentPoint: TripSegmentPoint?
+        tripSegmentPointFromLocation(location: startLocation!) { (tripSegmentPoint, error) in
+            if error == nil {
+                startSegmentPoint = tripSegmentPoint!
+            }
+        }
         
         let destLocation = locationTuples[1].mapItem?.placemark.location
-        let destPoint = TripSegmentPoint(name: "dest", geoPoint: PFGeoPoint(location: destLocation))
-                
-        let trip = Trip(name: (locationTuples[1].textField?.text)!, date: Date(), startPoint: startPoint, destinationPoint: destPoint, creator: PFUser.current()!)
+        tripSegmentPointFromLocation(location: destLocation!) { (tripSegmentPoint, error) in
+            if error == nil {
+                destSegmentPoint = tripSegmentPoint!
+            }
+        }
+        
+        //37.21841670,-121.87007890
+        // latitude: 35.373404999999998, longitude: -119.018911  - Bakersfield
+        // latitude: 34.054124700000003, longitude: -118.2433624 - Los Angeles
+        
+        let tempSegment = TripSegmentPoint(name: "Temp", address: "Temp Address", geoPoint: PFGeoPoint(location: startLocation))
+        
+        let trip = Trip(name: (locationTuples[1].textField?.text)!, date: Date(), startPoint: tempSegment, destinationPoint: tempSegment, creator: PFUser.current()!)
+//
+//        let intermediateLocation = CLLocation(latitude: 35.373404999999998, longitude: -119.018911)
+//        var intermediatePoint: TripSegmentPoint?
+//        tripSegmentPointFromLocation(location: intermediateLocation) { (tripSegmentPoint, error) in
+//            if error == nil {
+//                intermediatePoint = tripSegmentPoint!
+//                trip.addSegmentPoint(segmentPoint: intermediatePoint!)
+//            }
+//        }
+        
+        
+        
         
 //        trip.saveInBackground { (success, error) in
 //            if (success) {

@@ -11,11 +11,13 @@ import Parse
 class TripSegmentPoint: PFObject, PFSubclassing {
     
     @NSManaged var name: String?
+    @NSManaged var address: String?    
     @NSManaged var geoPoint: PFGeoPoint?    
     
-    init(name: String, geoPoint: PFGeoPoint) {
+    init(name: String, address: String, geoPoint: PFGeoPoint) {
         super.init()
         self.name = name
+        self.address = address
         self.geoPoint = geoPoint
     }
     

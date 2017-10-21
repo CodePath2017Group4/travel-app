@@ -13,6 +13,7 @@ class Trip: PFObject, PFSubclassing {
     @NSManaged var name: String?
     @NSManaged var date: Date?
     @NSManaged var startPoint: TripSegmentPoint?
+    @NSManaged var segmentPoints: [TripSegmentPoint]?
     @NSManaged var destinationPoint: TripSegmentPoint?
     @NSManaged var creator: PFUser?
     @NSManaged var tripMembers: [TripMember]
@@ -26,8 +27,13 @@ class Trip: PFObject, PFSubclassing {
         self.destinationPoint = destinationPoint
         self.creator = creator
         
+        self.segmentPoints = []
         self.tripMembers = []
         self.albums = []
+    }
+    
+    func addSegmentPoint(segmentPoint: TripSegmentPoint) {
+        self.segmentPoints?.append(segmentPoint)
     }
     
     class func parseClassName() -> String {
