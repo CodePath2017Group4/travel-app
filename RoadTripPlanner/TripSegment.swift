@@ -8,7 +8,7 @@
 
 import Parse
 
-class TripSegmentPoint: PFObject, PFSubclassing {
+class TripSegment: PFObject, PFSubclassing {
     
     @NSManaged var name: String?
     @NSManaged var address: String?    

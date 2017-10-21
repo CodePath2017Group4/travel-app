@@ -26,10 +26,9 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
     private func fakeAlbums() {
         let user = PFUser.current()!
         // SF
-        let point = PFGeoPoint(latitude: 37.773972, longitude: -122.431297)
-        let segmentPoint = TripSegmentPoint(name: "San Francisco", address: "", geoPoint: point)
+        
         let date = Date()
-        let trip = Trip(name: "Bay Area", date: date, startPoint: segmentPoint, destinationPoint: segmentPoint, creator: user)
+        let trip = Trip(name: "Bay Area", date: date, creator: user)
         let album = Album(albumName: "San Francisco", albumDescription: "Tour in San Francisco", trip: trip, owner: user)
         
         var photos: [UIImage] = [
