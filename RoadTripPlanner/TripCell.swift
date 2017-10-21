@@ -16,7 +16,6 @@ class TripCell: UITableViewCell {
     
     @IBOutlet weak var profileImg1: UIImageView!
     
-    
     @IBOutlet weak var profileImg2: UIImageView!
     
     @IBOutlet weak var profileImg3: UIImageView!

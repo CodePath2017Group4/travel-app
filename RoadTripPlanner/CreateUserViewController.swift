@@ -65,8 +65,8 @@ class CreateUserViewController: UIViewController {
     
     fileprivate func loginUser() {
         
-        let username = usernameTextField.text ?? ""
-        let password = passwordTextField.text ?? ""
+        let username = "dr28"//usernameTextField.text ?? "deepthyrk@gmail.com"
+        let password = "123456"//passwordTextField.text ?? "123456"
         
         PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
             if let error = error {

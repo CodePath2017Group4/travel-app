@@ -40,8 +40,15 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>In order to show you your coordinates, this app needs access to this device’s location abilities. This information won’t be shared with anyone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>In order to change the cover photo, this app needs to access to device&apos;s photo library.</string>
+	<string>In order to change the cover photo, this app needs to access to device's photo library.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -63,12 +70,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>In order to show you your coordinates, this app needs access to this device’s location abilities. This information won’t be shared with anyone.</string>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 </dict>
 </plist>
