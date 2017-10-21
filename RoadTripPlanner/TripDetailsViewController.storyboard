@@ -182,6 +182,72 @@
                                             <outlet property="tripStopLabel" destination="P1D-5J-Lmg" id="CQA-a6-as3"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripSegmentCell" rowHeight="68" id="NeQ-wn-Pgt" customClass="TripSegmentCell" customModule="RoadTripPlanner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="169" width="375" height="68"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NeQ-wn-Pgt" id="aC9-jI-DQb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="67.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maps-and-flags" translatesAutoresizingMaskIntoConstraints="NO" id="7fG-7h-rjs">
+                                                    <rect key="frame" x="8" y="2" width="64" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="64" id="C2t-K7-Nkz"/>
+                                                        <constraint firstAttribute="height" constant="64" id="Zy3-QZ-c5L"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="California, United States" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ow-0c-2T0">
+                                                    <rect key="frame" x="80" y="16" width="230" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Menlo Park" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJM-Hs-UbJ">
+                                                    <rect key="frame" x="80" y="36" width="230" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cWa-tv-yZu">
+                                                    <rect key="frame" x="318" y="18.5" width="51" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="31" id="2Fu-z4-0ed"/>
+                                                        <constraint firstAttribute="width" constant="49" id="WTO-f9-ooi"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="onSwitchValueChanged:" destination="NeQ-wn-Pgt" eventType="valueChanged" id="uvo-Vp-un7"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMR-ks-VI0">
+                                                    <rect key="frame" x="282.5" y="0.5" width="44.5" height="13.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5Ow-0c-2T0" firstAttribute="leading" secondItem="7fG-7h-rjs" secondAttribute="trailing" constant="8" id="0EX-av-6JA"/>
+                                                <constraint firstItem="MJM-Hs-UbJ" firstAttribute="top" secondItem="5Ow-0c-2T0" secondAttribute="bottom" constant="4" id="2pq-eL-CLz"/>
+                                                <constraint firstAttribute="bottom" secondItem="7fG-7h-rjs" secondAttribute="bottom" constant="2" id="DmT-ML-0rc"/>
+                                                <constraint firstAttribute="trailing" secondItem="cWa-tv-yZu" secondAttribute="trailing" constant="8" id="Oza-9f-dYM"/>
+                                                <constraint firstItem="MJM-Hs-UbJ" firstAttribute="leading" secondItem="5Ow-0c-2T0" secondAttribute="leading" id="WeO-a1-GvO"/>
+                                                <constraint firstItem="tMR-ks-VI0" firstAttribute="top" secondItem="aC9-jI-DQb" secondAttribute="top" id="Yiv-QT-UzB"/>
+                                                <constraint firstItem="5Ow-0c-2T0" firstAttribute="top" secondItem="aC9-jI-DQb" secondAttribute="top" constant="16" id="ki9-Dg-bWa"/>
+                                                <constraint firstItem="cWa-tv-yZu" firstAttribute="centerY" secondItem="7fG-7h-rjs" secondAttribute="centerY" id="mum-Dd-hjW"/>
+                                                <constraint firstItem="7fG-7h-rjs" firstAttribute="leading" secondItem="aC9-jI-DQb" secondAttribute="leading" constant="8" id="oAv-cv-Lwj"/>
+                                                <constraint firstItem="cWa-tv-yZu" firstAttribute="trailing" secondItem="tMR-ks-VI0" secondAttribute="trailing" constant="40" id="sXi-2u-O0a"/>
+                                                <constraint firstItem="7fG-7h-rjs" firstAttribute="top" secondItem="aC9-jI-DQb" secondAttribute="top" constant="2" id="tuD-2W-Fwf"/>
+                                                <constraint firstItem="5Ow-0c-2T0" firstAttribute="leading" secondItem="7fG-7h-rjs" secondAttribute="trailing" constant="8" id="z6q-I0-t4k"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="distanceLabel" destination="tMR-ks-VI0" id="J9t-nW-j3P"/>
+                                            <outlet property="includeSwitch" destination="cWa-tv-yZu" id="oTl-dj-TJk"/>
+                                            <outlet property="placeAddressLabel" destination="5Ow-0c-2T0" id="zgf-Oo-Y2B"/>
+                                            <outlet property="placeImageView" destination="7fG-7h-rjs" id="Xtl-Vp-iyJ"/>
+                                            <outlet property="placeNameLabel" destination="MJM-Hs-UbJ" id="NdN-bU-668"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="hqY-Tb-qs5" id="quv-Ec-XCo"/>
@@ -264,6 +330,7 @@
         <image name="details" width="50" height="50"/>
         <image name="group" width="40" height="40"/>
         <image name="like" width="64" height="64"/>
+        <image name="maps-and-flags" width="64" height="64"/>
         <image name="pdf" width="50" height="50"/>
         <image name="share" width="52" height="52"/>
         <image name="user" width="128" height="128"/>

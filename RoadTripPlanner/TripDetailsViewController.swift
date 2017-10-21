@@ -26,7 +26,7 @@ class TripDetailsViewController: UIViewController {
     
     var trip: Trip?
     
-    let tripStops = ["Mountain View, CA", "Shell, Menlo Park, CA", "San Fancisco, CA"]
+    var tripSegments: [TripSegment] = []
     
     static func storyboardInstance() -> TripDetailsViewController? {
         let storyboard = UIStoryboard(name: "TripDetailsViewController", bundle: nil)
@@ -58,11 +58,9 @@ class TripDetailsViewController: UIViewController {
             
             setTripCoverPhoto()
             
-            guard let tripSegments = trip.segments else { return }
-            for segment in tripSegments {
-                log.info(segment.name)
-                log.info(segment.address)
-            }
+            guard let segments = trip.segments else { return }
+            self.tripSegments = segments
+            
         }
     }
     
@@ -135,22 +133,18 @@ class TripDetailsViewController: UIViewController {
 extension TripDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tripStops.count
+        return tripSegments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TripDetailsCell") as! TripDetailsCell
-        cell.tripStopLabel.text = tripStops[indexPath.row]
-        cell.tripSeparatorImage.isHidden = indexPath.row + 1 == tripStops.count
-        cell.tripMilesLabel.isHidden = indexPath.row + 1 == tripStops.count
-        cell.delegate = self
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ReuseableCellIdentifiers.TripSegmentCell, for: indexPath) as! TripSegmentCell
+        cell.tripSegment = tripSegments[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130.0
+        return 68
     }
     
     
