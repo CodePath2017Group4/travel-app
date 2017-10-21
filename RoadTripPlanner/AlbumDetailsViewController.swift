@@ -14,6 +14,7 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
 
     @IBOutlet weak var tripLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     @IBOutlet weak var userImage1: UIImageView!
     @IBOutlet weak var userImage2: UIImageView!
@@ -37,9 +38,10 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
             for image in [userImage1, userImage2, userImage3] {
                 image?.layer.cornerRadius = image!.frame.height / 2
             }
+            descriptionLabel.text = album.albumDescription
             if let trip = album.trip {
                 tripLabel.text = trip.name
-                dateLabel.text = "\(trip.date!)"
+                dateLabel.text = Utils.formatDate(date: trip.date!)
             }
         }
         photoCollections.delegate = self

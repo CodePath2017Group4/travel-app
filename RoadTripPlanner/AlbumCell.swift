@@ -36,7 +36,7 @@ class AlbumCell: UITableViewCell {
         if let trip = album.trip {
             tripLabel.text = trip.name
             if let date = trip.date {
-                dateLabel.text = "\(date)"
+                dateLabel.text = Utils.formatDate(date: date)
             } else {
                 dateLabel.text = "unknown"
             }
