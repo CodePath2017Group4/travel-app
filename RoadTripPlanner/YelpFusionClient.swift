@@ -40,11 +40,11 @@ class YelpFusionClient {
         })
     }
     
-    func search(withLocation location: CLLocation, term: String) {
+    func search(withLocation location: CLLocation, term: String, categories: [String]) {
         let ylpCoordinate = YLPCoordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
         let query = YLPQuery(coordinate: ylpCoordinate)
-        query.categoryFilter = ["servicestations", "evchargingstations"]
+        query.categoryFilter = categories
         query.limit = 20
         query.offset = 0
         query.sort = YLPSortType.distance
@@ -66,24 +66,21 @@ class YelpFusionClient {
                 }
             }
         })
+    }
+    
+    func search(withLocation location: CLLocation, term: String, completion: @escaping ([YLPBusiness]?, Error?) -> Void) {
+        let ylpCoordinate = YLPCoordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
-//        yelpClient?.search(with: ylpCoordinate, term: term, limit: 20, offset: 0, sort: YLPSortType.distance, completionHandler: { (search: YLPSearch?, error: Error?) in
-//            if error != nil {
-//                log.error(error ?? "Unknown Error Occurred")
-//            } else {
-//                let businesses = search?.businesses
-//                log.info(businesses?.count ?? 0)
-//
-//                for b in businesses! {
-//                    log.info (b.name)
-//                    log.info (b.location)
-//                    let categories = b.categories
-//                    for category in categories {
-//                        log.info("Category: \(category.name)")
-//                    }
-//                }
-//            }
-//        })
+        yelpClient?.search(with: ylpCoordinate, term: term, limit: 20, offset: 0, sort: YLPSortType.mostReviewed, completionHandler: { (search: YLPSearch?, error: Error?) in
+            if error != nil {
+                log.error(error ?? "Unknown Error Occurred")
+                completion(nil, error)
+            } else {
+                let businesses = search?.businesses
+                log.info(businesses?.count ?? 0)
+                completion(businesses, nil)
+            }
+        })
     }
 }
 

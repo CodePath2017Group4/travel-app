@@ -104,26 +104,27 @@ class TempCreateTripViewController: UIViewController {
 //            }
 //        }
         
-        YelpFusionClient.sharedInstance.search(withLocation: startLocation!, term: "automotive")
+        YelpFusionClient.sharedInstance.search(withLocation: startLocation!, term: "automotive", categories: ["servicestations", "evchargingstations"])
         
-//        YelpFusionClient.sharedInstance.search(withLocation: destLocation!, term: "automotive")
-//        yelpLookupFromPlacemark(placemark: (locationTuples[0].mapItem?.placemark)!, term: "gas station")
         
-        // Push the MapViewController onto the nav stack.
-        guard let mapVC = MapViewController.storyboardInstance() else { return }
-        mapVC.startMapItem = locationTuples[0].mapItem
-        mapVC.destMapItem = locationTuples[1].mapItem
-        navigationController?.pushViewController(mapVC, animated: true)
+//        // Push the MapViewController onto the nav stack.
+//        guard let mapVC = MapViewController.storyboardInstance() else { return }
+//        mapVC.startMapItem = locationTuples[0].mapItem
+//        mapVC.destMapItem = locationTuples[1].mapItem
+//        navigationController?.pushViewController(mapVC, animated: true)
         
-//        // Push the TripDetailsViewController onto the nav stack.
-//        guard let tripDetailsVC = TripDetailsViewController.storyboardInstance() else { return }
-//        tripDetailsVC.trip = trip
-//        navigationController?.pushViewController(tripDetailsVC, animated: true)
+        // Push the TripDetailsViewController onto the nav stack.
+        guard let tripDetailsVC = TripDetailsViewController.storyboardInstance() else { return }
+        tripDetailsVC.trip = trip
+        navigationController?.pushViewController(tripDetailsVC, animated: true)
+        
     }
     
     fileprivate func yelpLookupFromPlacemark(placemark: CLPlacemark, term: String) {
         YelpFusionClient.sharedInstance.search(withLocationName: placemark.name!, term: term)
     }
+    
+    
 }
 
 extension TempCreateTripViewController: MKLocalSearchCompleterDelegate {

@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
+import AFNetworking
 
 class TripDetailsViewController: UIViewController {
         
-    @IBOutlet weak var headerImageView: UIImageView!
+    
+    @IBOutlet weak var tripPhotoImageView: UIImageView!
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var profileImageView: PFImageView!
     
-    @IBOutlet weak var profileImage: UIImageView!
-        
     @IBOutlet weak var emailGroupImageView: UIImageView!
     
     @IBOutlet weak var tripSettingsImageView: UIImageView!
@@ -39,8 +42,63 @@ class TripDetailsViewController: UIViewController {
         tableView.estimatedRowHeight = 120
         tableView.separatorStyle = .none
         
-        profileImage.layer.cornerRadius = profileImage.frame.height / 2
-        navigationController?.navigationBar.isHidden = true
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
+        profileImageView.clipsToBounds = true
+        
+        if trip != nil {
+            let creator = trip?.creator
+            let avatarFile = creator?.object(forKey: "avatar") as! PFFile
+            profileImageView.file = avatarFile
+            profileImageView.loadInBackground()
+            
+            tripNameLabel.text = trip?.name
+            
+            let destination = trip?.destinationPoint
+            
+            let location = CLLocation(latitude: (destination?.geoPoint?.latitude)!, longitude: (destination?.geoPoint?.longitude)!)
+            YelpFusionClient.sharedInstance.search(withLocation: location, term: "landmarks", completion: { (businesses, error) in
+                if error == nil {
+                    guard let results = businesses else {
+                        return
+                    }
+                    log.verbose("num landmark results: \(results.count)")
+                    
+                    for b in results {
+                        log.info (b.name)                        
+                    }
+                    
+                    let randomIndex = Int(arc4random_uniform(UInt32(results.count)))
+                    let b = results[randomIndex]
+                    
+                    if let imageURL = b.imageURL {
+                        log.info(imageURL)
+                        
+                        let imageRequest = URLRequest(url: imageURL)
+                        self.tripPhotoImageView.setImageWith(imageRequest, placeholderImage: nil, success: { (imageRequest, imageResponse, image) in
+                            if imageResponse != nil {
+                                self.tripPhotoImageView.alpha = 0.0
+                                self.tripPhotoImageView.image = image
+                                UIView.animate(withDuration: 0.3, animations: {
+                                    self.tripPhotoImageView.alpha = 1.0
+                                })
+                            }
+                        }, failure: { (request, response, error) in
+                            log.error(error)
+                        })
+                        
+                    }
+                    log.info (b.name)
+                    let categories = b.categories
+                    for category in categories {
+                        log.info("Category: \(category.name)")
+                    }
+                    
+                } else {
+                    log.error(error ?? "unknown error occurred")
+                }
+            })
+        }
+        
         
         let emailGroupImageTap = UITapGestureRecognizer(target: self, action: #selector(emailGroupImageTapped))
         emailGroupImageTap.numberOfTapsRequired = 1

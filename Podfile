@@ -14,6 +14,7 @@ target 'RoadTripPlanner' do
   pod 'SwiftyBeaver'  
   pod 'DatePickerDialog'
   pod 'YelpAPI'
+  pod 'ParseUI'
 
   target 'RoadTripPlannerTests' do
     inherit! :search_paths
