@@ -6,10 +6,12 @@
 //  Copyright © 2017 Deepthy. All rights reserved.
 //
 
+import Parse
 import UIKit
 
 class AlbumListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var albums: [Album] = []
     @IBOutlet weak var albumsTable: UITableView!
     
     override func viewDidLoad() {
@@ -17,6 +19,40 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
 
         albumsTable.delegate = self
         albumsTable.dataSource = self
+        
+        fakeAlbums()
+    }
+    
+    private func fakeAlbums() {
+        let user = PFUser.current()!
+        // SF
+        let point = PFGeoPoint(latitude: 37.773972, longitude: -122.431297)
+        let segmentPoint = TripSegmentPoint(name: "San Francisco", geoPoint: point)
+        let date = Date()
+        let trip = Trip(name: "Bay Area", date: date, startPoint: segmentPoint, destinationPoint: segmentPoint, creator: user)
+        let album = Album(albumName: "San Francisco", albumDescription: "Tour in San Francisco", trip: trip, owner: user)
+        
+        var photos: [UIImage] = [
+            UIImage(named: "sf")!,
+            UIImage(named: "profile1")!,
+            UIImage(named: "profile2")!,
+            UIImage(named: "profile3")!,
+            UIImage(named: "profile1")!,
+            UIImage(named: "profile2")!,
+            UIImage(named: "profile3")!,
+            UIImage(named: "profile1")!,
+            UIImage(named: "profile2")!,
+            UIImage(named: "profile3")!]
+        for image in photos {
+            let data = UIImageJPEGRepresentation(image, 0.7)
+            if let file = PFFile(data: data!) {
+                album.photos.append(file)
+            }
+        }
+
+        for _ in 0...10 {
+            albums.append(album)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,19 +60,22 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return albums.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = albumsTable.dequeueReusableCell(withIdentifier: "albumCell") as! AlbumCell
-        cell.albumImage.image = UIImage(named: "sf")
-        cell.albumLabel.text = "San Francisco"
-        cell.tripLabel.text = "Bay Area"
-        cell.createdByLabel.text = "Nanxi"
-        let fromDate = "05/01/2017"
-        let toDate = "05/07/2017"
-        cell.dateLabel.text = "\(fromDate) - \(toDate)"
+        cell.displayAlbum(album: albums[indexPath.row])
         cell.setSelected(false, animated: true)
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination
+        if vc is AlbumDetailsViewController {
+            let albumDetailsVC = vc as! AlbumDetailsViewController
+            let indexPath = albumsTable.indexPath(for: sender as! AlbumCell)!
+            albumDetailsVC.album = Album(copyFrom: self.albums[indexPath.row])
+        }
     }
 }

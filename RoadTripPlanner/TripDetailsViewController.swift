@@ -9,7 +9,9 @@
 import UIKit
 
 class TripDetailsViewController: UIViewController {
-    
+        
+    @IBOutlet weak var headerImageView: UIImageView!
+    @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var profileImage: UIImageView!
@@ -19,7 +21,16 @@ class TripDetailsViewController: UIViewController {
     @IBOutlet weak var tripSettingsImageView: UIImageView!
     
     @IBOutlet weak var albumImageView: UIImageView!
+    
+    var trip: Trip?
+    
     let tripStops = ["Mountain View, CA", "Shell, Menlo Park, CA", "San Fancisco, CA"]
+    
+    static func storyboardInstance() -> TripDetailsViewController? {
+        let storyboard = UIStoryboard(name: "TripDetailsViewController", bundle: nil)
+        
+        return storyboard.instantiateInitialViewController() as? TripDetailsViewController
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

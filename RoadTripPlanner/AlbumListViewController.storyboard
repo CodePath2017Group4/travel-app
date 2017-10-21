@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qjR-fD-NG3">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Albums-->
+        <scene sceneID="Cti-bO-Ijm">
+            <objects>
+                <viewController storyboardIdentifier="AlbumListViewController" id="qjR-fD-NG3" customClass="AlbumListViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QOL-Ib-ATn"/>
+                        <viewControllerLayoutGuide type="bottom" id="zcv-ai-7AF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mRv-gr-H4x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="152" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d4M-aH-YxJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="albumCell" rowHeight="150" id="V0h-La-fym" customClass="AlbumCell" customModule="RoadTripPlanner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V0h-La-fym" id="pHp-ei-GfY">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XwL-Jj-F3W">
+                                                    <rect key="frame" x="16" y="16" width="160" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="120" id="4YU-QQ-R0v"/>
+                                                        <constraint firstAttribute="width" constant="160" id="G1S-PD-f3c"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cy0-Sd-f5Y">
+                                                    <rect key="frame" x="184" y="77" width="28" height="20"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMb-41-CAg">
+                                                    <rect key="frame" x="184" y="48" width="31.5" height="17.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sg-qb-8tp">
+                                                    <rect key="frame" x="184" y="105" width="74" height="17.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4JQ-tf-dVq">
+                                                    <rect key="frame" x="184" y="16" width="116" height="24"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0Sg-qb-8tp" firstAttribute="leading" secondItem="XwL-Jj-F3W" secondAttribute="trailing" constant="8" id="Dvr-j0-mZX"/>
+                                                <constraint firstItem="4JQ-tf-dVq" firstAttribute="top" secondItem="pHp-ei-GfY" secondAttribute="topMargin" constant="8" id="Jjd-OD-T4X"/>
+                                                <constraint firstItem="WMb-41-CAg" firstAttribute="leading" secondItem="XwL-Jj-F3W" secondAttribute="trailing" constant="8" id="OVu-9i-GcJ"/>
+                                                <constraint firstItem="XwL-Jj-F3W" firstAttribute="leading" secondItem="pHp-ei-GfY" secondAttribute="leadingMargin" constant="8" id="Py6-NS-rcX"/>
+                                                <constraint firstItem="XwL-Jj-F3W" firstAttribute="top" secondItem="pHp-ei-GfY" secondAttribute="topMargin" constant="8" id="Qe2-5f-IRr"/>
+                                                <constraint firstItem="cy0-Sd-f5Y" firstAttribute="leading" secondItem="XwL-Jj-F3W" secondAttribute="trailing" constant="8" id="UN6-CB-UDj"/>
+                                                <constraint firstItem="0Sg-qb-8tp" firstAttribute="top" secondItem="cy0-Sd-f5Y" secondAttribute="bottom" constant="8" id="frA-QF-nfZ"/>
+                                                <constraint firstItem="4JQ-tf-dVq" firstAttribute="leading" secondItem="XwL-Jj-F3W" secondAttribute="trailing" constant="8" id="rvr-ba-HXk"/>
+                                                <constraint firstItem="WMb-41-CAg" firstAttribute="top" secondItem="4JQ-tf-dVq" secondAttribute="bottom" constant="8" id="tVj-oi-vCe"/>
+                                                <constraint firstItem="cy0-Sd-f5Y" firstAttribute="top" secondItem="WMb-41-CAg" secondAttribute="bottom" constant="12" id="yh6-tx-ms1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="AlbumLabel" destination="4JQ-tf-dVq" id="Pzp-hy-oXR"/>
+                                            <outlet property="albumImage" destination="XwL-Jj-F3W" id="Hav-go-3mn"/>
+                                            <outlet property="albumLabel" destination="4JQ-tf-dVq" id="3Yk-UH-Cor"/>
+                                            <outlet property="createdByLabel" destination="0Sg-qb-8tp" id="ySz-fk-pJ5"/>
+                                            <outlet property="dateLabel" destination="WMb-41-CAg" id="Vng-ft-X47"/>
+                                            <outlet property="tripLabel" destination="cy0-Sd-f5Y" id="mbE-4z-pDn"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="d4M-aH-YxJ" firstAttribute="top" secondItem="mRv-gr-H4x" secondAttribute="top" id="CdI-0k-0RF"/>
+                            <constraint firstAttribute="trailing" secondItem="d4M-aH-YxJ" secondAttribute="trailing" id="Osz-t2-cGx"/>
+                            <constraint firstAttribute="bottom" secondItem="d4M-aH-YxJ" secondAttribute="bottom" id="Qc9-vd-E23"/>
+                            <constraint firstItem="d4M-aH-YxJ" firstAttribute="leading" secondItem="mRv-gr-H4x" secondAttribute="leading" id="woQ-4c-h04"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="C0V-bo-NSB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Albums" id="8bz-J9-1Nc">
+                        <barButtonItem key="rightBarButtonItem" image="plus" id="lUF-vD-zmN"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="albumsTable" destination="d4M-aH-YxJ" id="BTK-4H-mUp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F0w-Hd-uhG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1054" y="914"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="plus" width="24" height="24"/>
+    </resources>
+</document>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photo View Controller-->
+        <scene sceneID="pNo-XY-Aa0">
+            <objects>
+                <viewController storyboardIdentifier="photoVC" id="Fp8-xa-Lvk" customClass="PhotoViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cwt-bt-zaX"/>
+                        <viewControllerLayoutGuide type="bottom" id="jXv-N6-wwh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sEO-qu-opS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="fNA-kQ-GJd">
+                                <rect key="frame" x="32" y="133.5" width="311" height="400"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="8UA-vJ-yg6"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zd8-9Y-KmD">
+                                <rect key="frame" x="48" y="565.5" width="76" height="30"/>
+                                <state key="normal" title="Take Photo"/>
+                                <connections>
+                                    <action selector="takePhotoTapped:" destination="Fp8-xa-Lvk" eventType="touchUpInside" id="6LB-oi-R8u"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjI-QK-ZCk">
+                                <rect key="frame" x="210" y="565.5" width="117" height="30"/>
+                                <state key="normal" title="Pick from Photos"/>
+                                <connections>
+                                    <action selector="pickPhotoTapped:" destination="Fp8-xa-Lvk" eventType="touchUpInside" id="QbZ-18-MxU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rjI-QK-ZCk" firstAttribute="top" secondItem="fNA-kQ-GJd" secondAttribute="bottom" constant="32" id="Rhh-xA-41o"/>
+                            <constraint firstItem="zd8-9Y-KmD" firstAttribute="top" secondItem="fNA-kQ-GJd" secondAttribute="bottom" constant="32" id="bvW-N8-K3r"/>
+                            <constraint firstItem="zd8-9Y-KmD" firstAttribute="leading" secondItem="sEO-qu-opS" secondAttribute="leadingMargin" constant="32" id="fbh-tc-Zbt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rjI-QK-ZCk" secondAttribute="trailing" constant="32" id="pAg-lv-q41"/>
+                            <constraint firstItem="fNA-kQ-GJd" firstAttribute="centerY" secondItem="sEO-qu-opS" secondAttribute="centerY" id="pfS-2Q-Wgq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fNA-kQ-GJd" secondAttribute="trailing" constant="16" id="qsD-aR-TLr"/>
+                            <constraint firstItem="fNA-kQ-GJd" firstAttribute="leading" secondItem="sEO-qu-opS" secondAttribute="leadingMargin" constant="16" id="wbn-gR-V8a"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MLc-bb-jvX"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="fNA-kQ-GJd" id="SGH-Bk-sgV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gd2-3w-zLV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1053.5999999999999" y="2338.3808095952027"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="camera" width="240" height="240"/>
+    </resources>
+</document>

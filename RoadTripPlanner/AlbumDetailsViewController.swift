@@ -6,9 +6,11 @@
 //  Copyright © 2017 Deepthy. All rights reserved.
 //
 
+import Parse
 import UIKit
 
 class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, AddPhotoDelegate {
+    var album: Album?
 
     @IBOutlet weak var tripLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -27,18 +29,19 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "BBQ"
+        if let album = album {
+            navigationItem.title = album.albumName
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "camera-icon"), style: .plain, target: self, action: #selector(cameraTapped))
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "camera-icon"), style: .plain, target: self, action: #selector(cameraTapped))
-        
-        for image in [userImage1, userImage2, userImage3] {
-            image?.layer.cornerRadius = image!.frame.height / 2
+            for image in [userImage1, userImage2, userImage3] {
+                image?.layer.cornerRadius = image!.frame.height / 2
+            }
+            if let trip = album.trip {
+                tripLabel.text = trip.name
+                dateLabel.text = "\(trip.date!)"
+            }
         }
-        
-        tripLabel.text = "Bay Area"
-        let fromDate = "05/01/2017"
-        let toDate = "05/07/2017"
-        dateLabel.text = "\(fromDate) - \(toDate)"
         photoCollections.delegate = self
         photoCollections.dataSource = self
         
@@ -48,7 +51,6 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.isHidden = false
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,27 +59,39 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        if let album = album {
+            return album.photos.count
+        } else {
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = self.photoCollections.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
-        cell.photoImage.image = self.photos[indexPath.row]
-        //let originalFrame = cell.photoImage.frame
-        //cell.photoImage.frame = CGRect(x: originalFrame.minX, y: originalFrame.minY, width: originalFrame.width, height: originalFrame.height * image!.size.width / originalFrame.width)
-        //cell.photoImage.frame.size
-        //cell.photoImage.sizeToFit()
+        if let album = album {
+            cell.photoImage.image = UIImage(named: "album-default")
+            album.photos[indexPath.row].getDataInBackground(block: { (data, error) -> Void in
+                if (error == nil) {
+                    if let data = data {
+                        cell.photoImage.image = UIImage(data: data)
+                    }
+                }
+            })
+        }
         return cell
     }
     
     func addPhoto(image: UIImage?) {
         print("add photo?")
         if let image = image {
-            print("add photo")
-            self.photos.append(image)
+            if let album = self.album {
+                print("add photo")
+                let data = UIImageJPEGRepresentation(image, 0.7)
+                album.photos.append(PFFile(data: data!)!)
+                self.photoCollections.reloadData()
+            }
         }
-        self.photoCollections.reloadData()
     }
     
     func cameraTapped(_ sender: Any) {

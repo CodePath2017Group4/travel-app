@@ -35,13 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         YelpFusionClient.sharedInstance.authorize()
 
-        // Make CreateUserViewoController the root view controller
-        let viewController = CreateUserViewController.storyboardInstance()
+        // Make HomeViewController the root view controller
+        let viewController = HomeViewController.storyboardInstance()
         self.window?.rootViewController = viewController
         self.window?.makeKeyAndVisible()
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
+                
         return true
     }
     
