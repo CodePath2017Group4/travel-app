@@ -44,7 +44,7 @@ class TripDetailsViewController: UIViewController {
         profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
         profileImageView.clipsToBounds = true
         profileImageView.layer.borderColor = UIColor.white.cgColor
-        profileImageView.layer.borderWidth = 4.0
+        profileImageView.layer.borderWidth = 3.0
         
         if trip != nil {
             let creator = trip?.creator
@@ -81,7 +81,7 @@ class TripDetailsViewController: UIViewController {
                                 self.tripPhotoImageView.image = image
                                 
                                 UIView.animate(withDuration: 0.3, animations: {
-                                    self.tripPhotoImageView.alpha = 1.0
+                                    self.tripPhotoImageView.alpha = 0.8
                                 })
                             }
                         }, failure: { (request, response, error) in
