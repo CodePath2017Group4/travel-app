@@ -188,66 +188,68 @@
                                     <outlet property="delegate" destination="hqY-Tb-qs5" id="Cq6-HS-neg"/>
                                 </connections>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="album" translatesAutoresizingMaskIntoConstraints="NO" id="arj-g8-HVj">
-                                <rect key="frame" x="329" y="148" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="Kje-gQ-YCU"/>
-                                    <constraint firstAttribute="height" constant="30" id="aeX-Yo-jWb"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="details" translatesAutoresizingMaskIntoConstraints="NO" id="9d4-Bu-Qg2">
-                                <rect key="frame" x="329" y="20" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="2s1-ni-zdw"/>
-                                    <constraint firstAttribute="width" constant="30" id="CAu-Nz-arT"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRa-tl-ihp">
                                 <rect key="frame" x="8" y="121" width="359" height="63"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpb-cL-Rxj">
+                                <rect key="frame" x="317" y="86" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ouF-j7-0kf"/>
+                                    <constraint firstAttribute="width" constant="50" id="vu4-Er-IUg"/>
+                                </constraints>
+                                <state key="normal" image="album"/>
+                                <connections>
+                                    <action selector="albumButtonPressed:" destination="hqY-Tb-qs5" eventType="touchUpInside" id="HdS-KW-j8M"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyt-0v-Erg">
+                                <rect key="frame" x="317" y="28" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="fKm-Vc-6pR"/>
+                                    <constraint firstAttribute="width" constant="50" id="jPr-gT-SD7"/>
+                                </constraints>
+                                <state key="normal" image="details"/>
+                                <connections>
+                                    <action selector="tripSettingButtonPressed:" destination="hqY-Tb-qs5" eventType="touchUpInside" id="d5B-kw-Afg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="arj-g8-HVj" firstAttribute="top" secondItem="9d4-Bu-Qg2" secondAttribute="bottom" constant="98" id="102-KX-JDc"/>
-                            <constraint firstItem="arj-g8-HVj" firstAttribute="leading" secondItem="kd3-cp-tTY" secondAttribute="leading" constant="329" id="6qV-xF-JWp"/>
+                            <constraint firstItem="jyt-0v-Erg" firstAttribute="top" secondItem="kd3-cp-tTY" secondAttribute="top" constant="28" id="2D3-Eg-oWf"/>
                             <constraint firstItem="Rki-9m-NAC" firstAttribute="top" secondItem="e5Y-Dr-f4V" secondAttribute="bottom" id="Bvy-MN-L9o"/>
                             <constraint firstItem="yRa-tl-ihp" firstAttribute="leading" secondItem="LUT-Lz-EEq" secondAttribute="leading" constant="8" id="EnC-KA-FbD"/>
                             <constraint firstItem="e5Y-Dr-f4V" firstAttribute="trailing" secondItem="LUT-Lz-EEq" secondAttribute="trailing" id="F6q-JF-8kl"/>
                             <constraint firstItem="yRa-tl-ihp" firstAttribute="top" secondItem="QaE-ZD-mWd" secondAttribute="bottom" constant="4" id="IWF-AA-dJ6"/>
                             <constraint firstItem="e5Y-Dr-f4V" firstAttribute="centerX" secondItem="kd3-cp-tTY" secondAttribute="centerX" id="KPb-I6-c2N"/>
-                            <constraint firstAttribute="trailing" secondItem="9d4-Bu-Qg2" secondAttribute="trailing" constant="16" id="Nr5-oR-V8y"/>
                             <constraint firstItem="e5Y-Dr-f4V" firstAttribute="top" secondItem="J3B-Zv-z5m" secondAttribute="bottom" id="OMZ-fW-2d2"/>
-                            <constraint firstItem="arj-g8-HVj" firstAttribute="trailing" secondItem="9d4-Bu-Qg2" secondAttribute="trailing" id="P6o-ft-RfI"/>
                             <constraint firstItem="QaE-ZD-mWd" firstAttribute="top" secondItem="s1M-wn-uKP" secondAttribute="bottom" constant="33" id="Q1b-O4-xRP"/>
                             <constraint firstItem="J3B-Zv-z5m" firstAttribute="trailing" secondItem="LUT-Lz-EEq" secondAttribute="trailing" id="QLY-8p-Mqm"/>
                             <constraint firstItem="Kqj-Ga-opx" firstAttribute="leading" secondItem="LUT-Lz-EEq" secondAttribute="leading" id="VQn-QM-s3T"/>
                             <constraint firstItem="e5Y-Dr-f4V" firstAttribute="leading" secondItem="LUT-Lz-EEq" secondAttribute="leading" id="WVA-O3-pYj"/>
+                            <constraint firstItem="hpb-cL-Rxj" firstAttribute="top" secondItem="jyt-0v-Erg" secondAttribute="bottom" constant="8" id="Z9u-ch-kqX"/>
                             <constraint firstItem="Kqj-Ga-opx" firstAttribute="top" secondItem="kd3-cp-tTY" secondAttribute="top" id="bMb-q7-hbP"/>
                             <constraint firstItem="J3B-Zv-z5m" firstAttribute="top" secondItem="yRa-tl-ihp" secondAttribute="bottom" constant="8" id="bWh-U7-wV3"/>
                             <constraint firstItem="J3B-Zv-z5m" firstAttribute="leading" secondItem="LUT-Lz-EEq" secondAttribute="leading" id="dAT-MT-K9f"/>
-                            <constraint firstAttribute="trailing" secondItem="arj-g8-HVj" secondAttribute="trailing" constant="16" id="dhP-Vf-5jG"/>
                             <constraint firstItem="Kqj-Ga-opx" firstAttribute="centerX" secondItem="kd3-cp-tTY" secondAttribute="centerX" id="fkz-Ay-qmJ"/>
                             <constraint firstItem="LUT-Lz-EEq" firstAttribute="trailing" secondItem="yRa-tl-ihp" secondAttribute="trailing" constant="8" id="gXI-TK-9vp"/>
                             <constraint firstItem="J3B-Zv-z5m" firstAttribute="top" secondItem="Kqj-Ga-opx" secondAttribute="bottom" id="gaq-W6-bqS"/>
                             <constraint firstItem="Kqj-Ga-opx" firstAttribute="trailing" secondItem="LUT-Lz-EEq" secondAttribute="trailing" id="jNV-47-1C2"/>
-                            <constraint firstItem="9d4-Bu-Qg2" firstAttribute="leading" secondItem="kd3-cp-tTY" secondAttribute="leading" constant="329" id="jfs-qc-5i6"/>
                             <constraint firstItem="QaE-ZD-mWd" firstAttribute="centerX" secondItem="kd3-cp-tTY" secondAttribute="centerX" id="k1L-Zn-Szm"/>
-                            <constraint firstItem="9d4-Bu-Qg2" firstAttribute="top" secondItem="s1M-wn-uKP" secondAttribute="bottom" id="m9c-By-tYf"/>
-                            <constraint firstItem="arj-g8-HVj" firstAttribute="top" secondItem="s1M-wn-uKP" secondAttribute="bottom" constant="128" id="xnG-6m-7m6"/>
+                            <constraint firstItem="LUT-Lz-EEq" firstAttribute="trailing" secondItem="jyt-0v-Erg" secondAttribute="trailing" constant="8" id="u0D-Co-KzY"/>
+                            <constraint firstItem="LUT-Lz-EEq" firstAttribute="trailing" secondItem="hpb-cL-Rxj" secondAttribute="trailing" constant="8" id="uJe-Dw-bss"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LUT-Lz-EEq"/>
                     </view>
                     <connections>
-                        <outlet property="albumImageView" destination="arj-g8-HVj" id="bhs-Rb-nj9"/>
                         <outlet property="emailGroupImageView" destination="FBH-H8-WJ8" id="7FY-aP-wjU"/>
                         <outlet property="profileImageView" destination="QaE-ZD-mWd" id="ZFM-kh-mks"/>
                         <outlet property="tableView" destination="e5Y-Dr-f4V" id="leq-il-y9T"/>
                         <outlet property="tripNameLabel" destination="yRa-tl-ihp" id="Gy8-N0-mVY"/>
                         <outlet property="tripPhotoImageView" destination="Kqj-Ga-opx" id="KUU-QD-HtL"/>
-                        <outlet property="tripSettingsImageView" destination="9d4-Bu-Qg2" id="pTO-tc-p8L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9hP-GG-Uu4" userLabel="First Responder" sceneMemberID="firstResponder"/>

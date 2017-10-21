@@ -12,7 +12,6 @@ import ParseUI
 import AFNetworking
 
 class TripDetailsViewController: UIViewController {
-        
     
     @IBOutlet weak var tripPhotoImageView: UIImageView!
     @IBOutlet weak var tripNameLabel: UILabel!
@@ -44,6 +43,8 @@ class TripDetailsViewController: UIViewController {
         
         profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2
         profileImageView.clipsToBounds = true
+        profileImageView.layer.borderColor = UIColor.white.cgColor
+        profileImageView.layer.borderWidth = 4.0
         
         if trip != nil {
             let creator = trip?.creator
@@ -78,6 +79,7 @@ class TripDetailsViewController: UIViewController {
                             if imageResponse != nil {
                                 self.tripPhotoImageView.alpha = 0.0
                                 self.tripPhotoImageView.image = image
+                                
                                 UIView.animate(withDuration: 0.3, animations: {
                                     self.tripPhotoImageView.alpha = 1.0
                                 })
@@ -99,30 +101,16 @@ class TripDetailsViewController: UIViewController {
             })
         }
         
-        
-        let emailGroupImageTap = UITapGestureRecognizer(target: self, action: #selector(emailGroupImageTapped))
-        emailGroupImageTap.numberOfTapsRequired = 1
-        emailGroupImageView.isUserInteractionEnabled = true
-        emailGroupImageView.addGestureRecognizer(emailGroupImageTap)
-        
-        let tripSettingsImageTap = UITapGestureRecognizer(target: self, action: #selector(tripSettingsImageTapped))
-        tripSettingsImageTap.numberOfTapsRequired = 1
-        tripSettingsImageView.isUserInteractionEnabled = true
-        tripSettingsImageView.addGestureRecognizer(tripSettingsImageTap)
-        
-        let albumImageTap = UITapGestureRecognizer(target: self, action: #selector(albumImageTapped))
-        albumImageTap.numberOfTapsRequired = 1
-        albumImageView.isUserInteractionEnabled = true
-        albumImageView.addGestureRecognizer(albumImageTap)
-        
-
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.navigationController?.navigationBar.isHidden = true
-
+        super.viewWillAppear(true)        
+    }
+    
+    @IBAction func tripSettingButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func albumButtonPressed(_ sender: Any) {
     }
     
     func tripSettingsImageTapped(_ sender: AnyObject) {
@@ -140,11 +128,7 @@ class TripDetailsViewController: UIViewController {
         self.navigationController?.pushViewController(albumDetailsViewController, animated: true)
         
     }
-    
-    func emailGroupImageTapped(_ sender: AnyObject) {
-        
-        
-    }
+
 }
 
 extension TripDetailsViewController: UITableViewDelegate, UITableViewDataSource {
