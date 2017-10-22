@@ -11,6 +11,7 @@ import UIKit
 
 class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, AddPhotoDelegate {
     var album: Album?
+    var albumIndex: IndexPath?
 
     @IBOutlet weak var tripLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -22,10 +23,7 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
     
     @IBOutlet weak var photoCollections: UICollectionView!
     
-    var photos: [UIImage] = [
-        UIImage(named: "profile1")!, UIImage(named: "profile2")!, UIImage(named: "profile3")!,
-        UIImage(named: "profile1")!, UIImage(named: "profile2")!, UIImage(named: "profile3")!,
-        UIImage(named: "profile1")!, UIImage(named: "profile2")!, UIImage(named: "profile3")!]
+    var delegate: UpdateAlbumDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,12 +90,17 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
                 let data = UIImageJPEGRepresentation(image, 0.7)
                 album.photos.append(PFFile(data: data!)!)
                 self.photoCollections.reloadData()
+                
+                if let delegate = self.delegate {
+                    delegate.updateAlbum(album: album, indexPath: self.albumIndex!)
+                }
             }
         }
     }
     
     func cameraTapped(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "photoVC") as! PhotoViewController
+        let storyboard = UIStoryboard(name: "Photo", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "photoVC") as! PhotoViewController
         vc.delegate = self
         self.show(vc, sender: nil)
     }
