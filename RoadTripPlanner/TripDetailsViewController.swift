@@ -47,10 +47,6 @@ class TripDetailsViewController: UIViewController {
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 3.0
         
-        let emailImageTap = UITapGestureRecognizer(target: self, action: #selector(emailImageTapped))
-        emailImageTap.numberOfTapsRequired = 1
-        emailGroupImageView.isUserInteractionEnabled = true
-        emailGroupImageView.addGestureRecognizer(emailImageTap)
         
         if trip != nil {
             guard let trip = trip else { return }

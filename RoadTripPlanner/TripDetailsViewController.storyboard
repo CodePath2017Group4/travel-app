@@ -44,60 +44,49 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3B-Zv-z5m">
                                 <rect key="frame" x="0.0" y="192" width="375" height="52"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="XV3-kj-M9L">
-                                        <rect key="frame" x="20" y="0.0" width="323" height="52"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="54y-TL-cWL">
-                                                <rect key="frame" x="0.0" y="1" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="JPW-Sh-EUA"/>
-                                                    <constraint firstAttribute="height" constant="50" id="ZMJ-iX-fWK"/>
-                                                </constraints>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="group" translatesAutoresizingMaskIntoConstraints="NO" id="FBH-H8-WJ8">
-                                                <rect key="frame" x="96" y="6" width="40" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="vbw-Q1-0SG"/>
-                                                    <constraint firstAttribute="width" constant="40" id="zZe-7Y-eCw"/>
-                                                </constraints>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share" translatesAutoresizingMaskIntoConstraints="NO" id="4Mh-2s-ZLD">
-                                                <rect key="frame" x="181" y="0.0" width="52" height="52"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="52" id="3ez-2q-INQ"/>
-                                                    <constraint firstAttribute="height" constant="52" id="Oji-OV-QqB"/>
-                                                </constraints>
-                                            </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pdf" translatesAutoresizingMaskIntoConstraints="NO" id="QPt-Ei-l5R">
-                                                <rect key="frame" x="273" y="1" width="50" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="SFh-7M-nZF"/>
-                                                    <constraint firstAttribute="height" constant="50" id="sSH-GY-WK5"/>
-                                                </constraints>
-                                            </imageView>
-                                        </subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsP-wp-0g0">
+                                        <rect key="frame" x="281" y="11" width="76" height="30"/>
                                         <constraints>
-                                            <constraint firstItem="QPt-Ei-l5R" firstAttribute="top" secondItem="XV3-kj-M9L" secondAttribute="top" constant="1" id="79E-rz-7JK"/>
-                                            <constraint firstItem="54y-TL-cWL" firstAttribute="leading" secondItem="XV3-kj-M9L" secondAttribute="leading" id="Epp-Pe-5lc"/>
-                                            <constraint firstItem="4Mh-2s-ZLD" firstAttribute="top" secondItem="XV3-kj-M9L" secondAttribute="top" id="HRj-aw-1my"/>
-                                            <constraint firstItem="54y-TL-cWL" firstAttribute="top" secondItem="XV3-kj-M9L" secondAttribute="top" constant="1" id="IR2-ck-MPc"/>
-                                            <constraint firstAttribute="bottom" secondItem="QPt-Ei-l5R" secondAttribute="bottom" constant="1" id="MAr-8F-yiM"/>
-                                            <constraint firstAttribute="bottom" secondItem="54y-TL-cWL" secondAttribute="bottom" constant="1" id="PU4-Ko-eun"/>
-                                            <constraint firstItem="FBH-H8-WJ8" firstAttribute="top" secondItem="XV3-kj-M9L" secondAttribute="top" constant="6" id="UFN-ME-PwQ"/>
-                                            <constraint firstAttribute="bottom" secondItem="FBH-H8-WJ8" secondAttribute="bottom" constant="6" id="exA-qd-TRS"/>
-                                            <constraint firstAttribute="trailing" secondItem="QPt-Ei-l5R" secondAttribute="trailing" id="iO6-v1-Gw8"/>
-                                            <constraint firstAttribute="bottom" secondItem="4Mh-2s-ZLD" secondAttribute="bottom" id="pwh-ri-Hz2"/>
-                                            <constraint firstAttribute="height" constant="52" id="vkw-44-Wdg"/>
+                                            <constraint firstAttribute="height" constant="30" id="4jk-Dq-RZo"/>
+                                            <constraint firstAttribute="width" constant="76" id="6jT-gP-S2S"/>
                                         </constraints>
-                                    </stackView>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="  Share" image="share-1">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTg-Jw-E7G">
+                                        <rect key="frame" x="6" y="-1" width="126" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="126" id="19F-x1-C0n"/>
+                                            <constraint firstAttribute="height" constant="54" id="seE-LW-R7V"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="  Add Stop" image="add-1">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IL8-8r-mTL">
+                                        <rect key="frame" x="146" y="13" width="119" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="aZF-Ji-1p2"/>
+                                            <constraint firstAttribute="width" constant="119" id="kai-aK-DOD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="  Add Friends" image="users-1">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.98039215690000003" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="XV3-kj-M9L" secondAttribute="trailing" constant="32" id="2TQ-Zq-NMi"/>
-                                    <constraint firstItem="XV3-kj-M9L" firstAttribute="top" secondItem="J3B-Zv-z5m" secondAttribute="top" id="4TU-C2-Tbb"/>
-                                    <constraint firstItem="XV3-kj-M9L" firstAttribute="leading" secondItem="J3B-Zv-z5m" secondAttribute="leading" constant="20" id="ALr-ev-Np6"/>
-                                    <constraint firstAttribute="bottom" secondItem="XV3-kj-M9L" secondAttribute="bottom" id="iej-1s-IW2"/>
+                                    <constraint firstItem="IL8-8r-mTL" firstAttribute="leading" secondItem="qTg-Jw-E7G" secondAttribute="trailing" constant="14" id="DwU-Ey-Fhj"/>
+                                    <constraint firstItem="vsP-wp-0g0" firstAttribute="centerY" secondItem="J3B-Zv-z5m" secondAttribute="centerY" id="P56-XI-6Xb"/>
+                                    <constraint firstItem="qTg-Jw-E7G" firstAttribute="leading" secondItem="J3B-Zv-z5m" secondAttribute="leading" constant="6" id="fyP-sC-9vX"/>
+                                    <constraint firstItem="vsP-wp-0g0" firstAttribute="leading" secondItem="IL8-8r-mTL" secondAttribute="trailing" constant="16" id="h4Z-Ep-Y5q"/>
+                                    <constraint firstItem="IL8-8r-mTL" firstAttribute="centerY" secondItem="J3B-Zv-z5m" secondAttribute="centerY" id="mw4-MT-CLz"/>
                                     <constraint firstAttribute="height" constant="52" id="ugt-gP-Eky"/>
+                                    <constraint firstItem="qTg-Jw-E7G" firstAttribute="centerY" secondItem="J3B-Zv-z5m" secondAttribute="centerY" id="ui2-Yy-6m3"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="141" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e5Y-Dr-f4V">
@@ -196,14 +185,22 @@
                                                         <constraint firstAttribute="height" constant="64" id="Zy3-QZ-c5L"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="California, United States" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ow-0c-2T0">
-                                                    <rect key="frame" x="80" y="16" width="230" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="California, United States" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ow-0c-2T0">
+                                                    <rect key="frame" x="80" y="16" width="147" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="G03-cQ-1Jr"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="220" id="WOm-M8-Xhw"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Menlo Park" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJM-Hs-UbJ">
-                                                    <rect key="frame" x="80" y="36" width="230" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menlo Park" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJM-Hs-UbJ">
+                                                    <rect key="frame" x="80" y="36" width="85.5" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="230" id="6rW-ot-XVm"/>
+                                                        <constraint firstAttribute="height" constant="21" id="YfZ-KI-GQ1"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -311,7 +308,6 @@
                         <viewLayoutGuide key="safeArea" id="LUT-Lz-EEq"/>
                     </view>
                     <connections>
-                        <outlet property="emailGroupImageView" destination="FBH-H8-WJ8" id="7FY-aP-wjU"/>
                         <outlet property="profileImageView" destination="QaE-ZD-mWd" id="ZFM-kh-mks"/>
                         <outlet property="tableView" destination="e5Y-Dr-f4V" id="leq-il-y9T"/>
                         <outlet property="tripNameLabel" destination="yRa-tl-ihp" id="Gy8-N0-mVY"/>
@@ -324,16 +320,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add" width="50" height="50"/>
+        <image name="add-1" width="54" height="54"/>
         <image name="album" width="50" height="50"/>
         <image name="comments" width="50" height="50"/>
         <image name="details" width="50" height="50"/>
-        <image name="group" width="40" height="40"/>
         <image name="like" width="64" height="64"/>
         <image name="maps-and-flags" width="64" height="64"/>
-        <image name="pdf" width="50" height="50"/>
-        <image name="share" width="52" height="52"/>
+        <image name="share-1" width="28" height="30"/>
         <image name="user" width="128" height="128"/>
+        <image name="users-1" width="28" height="26"/>
         <image name="vbar" width="50" height="50"/>
     </resources>
 </document>
