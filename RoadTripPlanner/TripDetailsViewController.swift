@@ -50,9 +50,12 @@ class TripDetailsViewController: UIViewController {
             guard let trip = trip else { return }
             
             let creator = trip.creator
-            let avatarFile = creator?.object(forKey: "avatar") as! PFFile
-            profileImageView.file = avatarFile
-            profileImageView.loadInBackground()
+            
+            let avatarFile = creator?.object(forKey: "avatar") as? PFFile
+            if avatarFile != nil {
+                profileImageView.file = avatarFile
+                profileImageView.loadInBackground()                
+            }
             
             tripNameLabel.text = trip.name
             
