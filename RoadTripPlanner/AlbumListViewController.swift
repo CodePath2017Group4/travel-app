@@ -30,8 +30,7 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         // SF
         
         let date = Date()
-        // let trip = Trip(name: "Bay Area", date: date, creator: user)
-        let trip = Trip(name: "Bay Area", date: date, startPoint: segmentPoint, destinationPoint: segmentPoint, creator: user)
+        let trip = Trip(name: "Bay Area", date: date, creator: user)
         trips.append(trip)
         
         let album = Album(albumName: "San Francisco", albumDescription: "Tour in San Francisco", trip: trip, owner: user)

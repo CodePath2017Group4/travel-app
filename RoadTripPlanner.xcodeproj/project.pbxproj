@@ -17,7 +17,6 @@
 		486E3C461F945EEB003D2FFF /* AlbumListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C421F945EEB003D2FFF /* AlbumListViewController.swift */; };
 		486E3C481F945EEB003D2FFF /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C441F945EEB003D2FFF /* PhotoViewController.swift */; };
 		486E3C4D1F945F4E003D2FFF /* AddPhotoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C4C1F945F4E003D2FFF /* AddPhotoDelegate.swift */; };
-		48CB34471F9BB60900EE268A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CB34461F9BB60900EE268A /* Utils.swift */; };
 		48CB34491F9BBC5900EE268A /* AddAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CB34481F9BBC5900EE268A /* AddAlbumViewController.swift */; };
 		48CB344B1F9BBC9000EE268A /* AddAlbumDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CB344A1F9BBC9000EE268A /* AddAlbumDelegate.swift */; };
 		48CB344D1F9C3E3300EE268A /* Album.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CB344C1F9C3E3300EE268A /* Album.storyboard */; };
@@ -115,7 +114,6 @@
 		486E3C421F945EEB003D2FFF /* AlbumListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListViewController.swift; sourceTree = "<group>"; };
 		486E3C441F945EEB003D2FFF /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		486E3C4C1F945F4E003D2FFF /* AddPhotoDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoDelegate.swift; sourceTree = "<group>"; };
-		48CB34461F9BB60900EE268A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		48CB34481F9BBC5900EE268A /* AddAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlbumViewController.swift; sourceTree = "<group>"; };
 		48CB344A1F9BBC9000EE268A /* AddAlbumDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddAlbumDelegate.swift; path = "/Users/nanxikang/Documents/workspace/travel-app/RoadTripPlanner/AddAlbumDelegate.swift"; sourceTree = "<absolute>"; };
 		48CB344C1F9C3E3300EE268A /* Album.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Album.storyboard; sourceTree = "<group>"; };
@@ -299,7 +297,6 @@
 		DFECC56E1F9C2DAE00F3B63E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				DFCC37961F9801B1003BDCA6 /* Constants.swift */,
 				DFECC56F1F9C2DDD00F3B63E /* TestData.swift */,
 				DFECC5611F9C1CFA00F3B63E /* Utils.swift */,
 			);
@@ -333,7 +330,6 @@
 			children = (
 				DFECC56E1F9C2DAE00F3B63E /* Utils */,
 				DFCC37961F9801B1003BDCA6 /* Constants.swift */,
-				48CB34461F9BB60900EE268A /* Utils.swift */,
 				DFA0E29D1F96D1EE005D7528 /* API */,
 				F806F2AE1F8DFCE800E11785 /* View Controllers */,
 				F806F2F61F8ECB1300E11785 /* Models */,
@@ -781,7 +777,6 @@
 				DFECC56B1F9C1CFB00F3B63E /* RouteMapViewController.swift in Sources */,
 				DF32B9C61F946EE000594F0B /* AlbumComment.swift in Sources */,
 				DFECC5681F9C1CFB00F3B63E /* Utils.swift in Sources */,
-				48CB34471F9BB60900EE268A /* Utils.swift in Sources */,
 				F806F2A91F8DED0000E11785 /* TripCell.swift in Sources */,
 				F8607B1D1F8FCC8E0029DB02 /* TripDetailsViewController.swift in Sources */,
 				DFA0E2A81F96EB2D005D7528 /* TabBarViewController.swift in Sources */,
