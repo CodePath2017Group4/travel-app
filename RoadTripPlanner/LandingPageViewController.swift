@@ -54,9 +54,9 @@ class LandingPageViewController: UIViewController {
     //poi // publicservicesgovt - civiccenter, landmarks,
     //entertainmneet// arts - movietheaters, galleries, theater
     // servicestations
-    let categoriesList = ["servicestations", "food", "publicservicesgovt"/*poi*/,"grocery"/*shopping"*/, "lodging", "things_to_do", "nightlife", "entertainment"]
+    let categoriesList = ["auto", "food, restaurants", "publicservicesgovt"/*poi*/,"shopping"/*shopping"*/, "hotels", "arts, active", "nightlife", "arts"]
     
-    var selectedType = ""
+    var selectedType = [String] ()
     
     var businesses: [YLPBusiness]!
 
@@ -171,7 +171,7 @@ class LandingPageViewController: UIViewController {
         if !selectedType.isEmpty {
             
             //if selectedTypes.contains(categoriesList[selectedIndex!]) {
-            if categoriesList.contains(selectedType) {
+            if categoriesList.contains(selectedType[0]) {
 
                 print("in first if")
                 selectedImg?.transform = CGAffineTransform(scaleX: 1.1,y: 1.1);
@@ -191,8 +191,7 @@ class LandingPageViewController: UIViewController {
                 createTripButton.isHidden = selectedType.isEmpty//false
                 nearMeButton.isHidden = !selectedType.isEmpty//true
                 alongTheRouteButton.isHidden = !selectedType.isEmpty//true
-                //selectedTypes.removeAll()
-                selectedType = ""
+                selectedType.removeAll()
             }
             else {
                 
@@ -218,10 +217,8 @@ class LandingPageViewController: UIViewController {
                 selectedImg?.transform = CGAffineTransform(scaleX: 1,y: 1);
                 selectedImg?.alpha = 1.0
                 UIView.commitAnimations()
-                //selectedTypes.removeAll()
-                //selectedTypes.append(categoriesList[selectedIndex!])
-                selectedType = categoriesList[selectedIndex!]
-
+                selectedType.removeAll()
+                selectedType.append(categoriesList[selectedIndex!])
             }
             
             
@@ -258,8 +255,7 @@ class LandingPageViewController: UIViewController {
             selectedImg?.alpha = 1.0
             UIView.commitAnimations()
             
-            //selectedTypes.append(categoriesList[selectedIndex!])
-            selectedType = categoriesList[selectedIndex!]
+            selectedType.append(categoriesList[selectedIndex!])
         }
         
         print("selectedType  \(selectedType)")
@@ -341,7 +337,9 @@ class LandingPageViewController: UIViewController {
             
         }
         else {
-            
+           
+            let createTripViewController = segue.destination  as! CreateTripViewController
+
            /* if let cell = sender as? BusinessCell {
                 let  indexPath = tableView.indexPath(for: cell)
                 
@@ -374,37 +372,25 @@ class LandingPageViewController: UIViewController {
     @IBAction func onAlongTheRoute(_ sender: Any) {
     }
     
-    final func performSearch(_ term: String) {
-print("term \(term)")
-        if term != nil, term != "" {
-            
-            YelpFusionClient.sharedInstance.search(inCurrent: (locationManager.location?.coordinate)!, term: term, completionHandler:  { (businesses: [YLPBusiness]?, error: Error?) -> Void in
-                
+    final func performSearch(_ term: [String]) {
+
+        if !term.isEmpty {
+
+            YelpFusionClient.sharedInstance.searchWith(location: (locationManager.location?.coordinate)!, term: term[0], completionHandler: {(businesses: [YLPBusiness]?, error: Error?) -> Void in
                 self.businesses = businesses
-                print("self.businesse -----\(self.businesses.count)")
+
+                print("self.businesses  in query search ---\(String(describing: self.businesses?.count))")
 
             })
-            /*YelpFusionClient.sharedInstance.search(withLocation : "san francisco", term: term, completionHandler:  { (businesses: [YLPBusiness]?, error: Error?) -> Void in
-                
-                    self.businesses = businesses
-                    print("self.businesse -----\(self.businesses.count)")
-
-                    //self.tableView.reloadData()
-                
-                })*/
-        }
-        else {
             
-           /* Business.searchWithTerm(term: Constants.restaurants, completion: { (businesses: [Business]?, error: Error?) -> Void in
+            YelpFusionClient.sharedInstance.search(inCurrent: (locationManager.location?.coordinate)!, term: term[0], completionHandler:  { (businesses: [YLPBusiness]?, error: Error?) -> Void in
                 
                 self.businesses = businesses
-                self.tableView.reloadData()
-                
-            })*/
+                print("self.businesse    in current search ---\(self.businesses.count)")
+
+            })
         }
-        
     }
-    
 }
 
 extension LandingPageViewController: UITableViewDataSource, UITableViewDelegate {

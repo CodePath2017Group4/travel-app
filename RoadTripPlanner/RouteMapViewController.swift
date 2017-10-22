@@ -26,6 +26,7 @@ class RouteMapViewController: UIViewController {
 
     var trip: Trip?
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForNotifications()
@@ -251,8 +252,8 @@ class RouteMapViewController: UIViewController {
             directionsArray.append(param)
             //[(startingAddress: firstParamText,endAddress: secParamText, route: routeParam )]
         }
-        displayDirections(directionsArray: directionsArray)
-        printTimeToLabel(time: time)
+        //displayDirections(directionsArray: directionsArray)
+        //printTimeToLabel(time: time)
         print("directionsArray count ===== \(directionsArray.count)")
 
     }

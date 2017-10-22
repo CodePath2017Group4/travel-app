@@ -21,7 +21,7 @@ class MapViewController: UIViewController {
     fileprivate let centerLocation = CLLocation(latitude: 37.7833, longitude: -122.4167)
     lazy var locationManager: CLLocationManager = self.makeLocationManager()
     var businesses: [YLPBusiness]!
-    var searchTerm: String!
+    var searchTerm: [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,7 +133,7 @@ print("<<<<======>>>>>>> \(self?.businesses.count)")
     }
     
     func addBottomSheetView() {
-        let bottomSheetVC = BottomSheetViewController()
+     /*   let bottomSheetVC = BottomSheetViewController()
         
         self.addChildViewController(bottomSheetVC)
         self.view.addSubview(bottomSheetVC.view)
@@ -141,7 +141,7 @@ print("<<<<======>>>>>>> \(self?.businesses.count)")
         
         let height = view.frame.height
         let width  = view.frame.width
-        bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
+        bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)*/
     }
 }
 
@@ -162,9 +162,9 @@ extension MapViewController: MKMapViewDelegate {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseID) // customize the annotion view
             annotationView!.canShowCallout = true
             annotationView!.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure) as UIView
-            if searchTerm == "gas" {
+            //if searchTerm == "gas" {
                 annotationView?.image = UIImage(named: "gas.png")
-            }
+           // }
         }
         return annotationView
     }
