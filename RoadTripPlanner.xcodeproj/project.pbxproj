@@ -46,6 +46,14 @@
 		DFCC37A11F9950F9003BDCA6 /* TempCreateTripViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37A01F9950F9003BDCA6 /* TempCreateTripViewController.storyboard */; };
 		DFCC37A51F99B9FF003BDCA6 /* TripSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC37A41F99B9FF003BDCA6 /* TripSegment.swift */; };
 		DFCC37A91F99C5AC003BDCA6 /* TripSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC37A81F99C5AC003BDCA6 /* TripSegmentCell.swift */; };
+		DFECC5671F9C1CFB00F3B63E /* BusinessCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECC5601F9C1CF900F3B63E /* BusinessCollectionCell.swift */; };
+		DFECC5681F9C1CFB00F3B63E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECC5611F9C1CFA00F3B63E /* Utils.swift */; };
+		DFECC5691F9C1CFB00F3B63E /* DirectionsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECC5621F9C1CFA00F3B63E /* DirectionsTableView.swift */; };
+		DFECC56A1F9C1CFB00F3B63E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECC5631F9C1CFA00F3B63E /* Category.swift */; };
+		DFECC56B1F9C1CFB00F3B63E /* RouteMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECC5641F9C1CFA00F3B63E /* RouteMapViewController.swift */; };
+		DFECC56C1F9C1CFB00F3B63E /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECC5651F9C1CFB00F3B63E /* CategoryRow.swift */; };
+		DFECC56D1F9C1CFB00F3B63E /* AddressTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECC5661F9C1CFB00F3B63E /* AddressTableView.swift */; };
+		DFECC5701F9C2DDD00F3B63E /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECC56F1F9C2DDD00F3B63E /* TestData.swift */; };
 		F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806F27A1F8DA42A00E11785 /* AppDelegate.swift */; };
 		F806F2801F8DA42A00E11785 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F806F27E1F8DA42A00E11785 /* Main.storyboard */; };
 		F806F2821F8DA42A00E11785 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F806F2811F8DA42A00E11785 /* Assets.xcassets */; };
@@ -133,6 +141,14 @@
 		DFCC37A01F9950F9003BDCA6 /* TempCreateTripViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TempCreateTripViewController.storyboard; sourceTree = "<group>"; };
 		DFCC37A41F99B9FF003BDCA6 /* TripSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSegment.swift; sourceTree = "<group>"; };
 		DFCC37A81F99C5AC003BDCA6 /* TripSegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSegmentCell.swift; sourceTree = "<group>"; };
+		DFECC5601F9C1CF900F3B63E /* BusinessCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCollectionCell.swift; sourceTree = "<group>"; };
+		DFECC5611F9C1CFA00F3B63E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		DFECC5621F9C1CFA00F3B63E /* DirectionsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionsTableView.swift; sourceTree = "<group>"; };
+		DFECC5631F9C1CFA00F3B63E /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		DFECC5641F9C1CFA00F3B63E /* RouteMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteMapViewController.swift; sourceTree = "<group>"; };
+		DFECC5651F9C1CFB00F3B63E /* CategoryRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
+		DFECC5661F9C1CFB00F3B63E /* AddressTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableView.swift; sourceTree = "<group>"; };
+		DFECC56F1F9C2DDD00F3B63E /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		EC80D6B0037AEA0DAC6399F8 /* Pods-RoadTripPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		EDEE6B5A1A92A3171A131D5C /* Pods-RoadTripPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerTests/Pods-RoadTripPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
 		F806F2771F8DA42A00E11785 /* RoadTripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadTripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -264,6 +280,16 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		DFECC56E1F9C2DAE00F3B63E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DFCC37961F9801B1003BDCA6 /* Constants.swift */,
+				DFECC56F1F9C2DDD00F3B63E /* TestData.swift */,
+				DFECC5611F9C1CFA00F3B63E /* Utils.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		F806F26E1F8DA42A00E11785 = {
 			isa = PBXGroup;
 			children = (
@@ -289,7 +315,7 @@
 		F806F2791F8DA42A00E11785 /* RoadTripPlanner */ = {
 			isa = PBXGroup;
 			children = (
-				DFCC37961F9801B1003BDCA6 /* Constants.swift */,
+				DFECC56E1F9C2DAE00F3B63E /* Utils */,
 				DFA0E29D1F96D1EE005D7528 /* API */,
 				F806F2AE1F8DFCE800E11785 /* View Controllers */,
 				F806F2F61F8ECB1300E11785 /* Models */,
@@ -339,6 +365,7 @@
 				F8B6A3A01F920D9200942820 /* WeatherGetter.swift */,
 				F8B6A3A21F920ECF00942820 /* Weather.swift */,
 				F8B6A3E81F93D72A00942820 /* ReviewViewController.swift */,
+				DFECC5641F9C1CFA00F3B63E /* RouteMapViewController.swift */,
 				DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */,
 				F8607B1C1F8FCC8E0029DB02 /* TripDetailsViewController.swift */,
 				F8B6A3E61F935E9600942820 /* TripSettingsViewController.swift */,
@@ -351,7 +378,11 @@
 		F806F2AF1F8DFD0900E11785 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DFECC5661F9C1CFB00F3B63E /* AddressTableView.swift */,
 				486E3C3B1F945EC3003D2FFF /* AlbumCell.swift */,
+				DFECC5601F9C1CF900F3B63E /* BusinessCollectionCell.swift */,
+				DFECC5651F9C1CFB00F3B63E /* CategoryRow.swift */,
+				DFECC5621F9C1CFA00F3B63E /* DirectionsTableView.swift */,
 				486E3C3C1F945EC3003D2FFF /* PhotoCell.swift */,
 				F806F2A81F8DED0000E11785 /* TripCell.swift */,
 				F806F2F41F8ECADA00E11785 /* BusinessCell.swift */,
@@ -366,6 +397,7 @@
 			children = (
 				486E3C3F1F945ED8003D2FFF /* Album.swift */,
 				F806F2F71F8ECB2300E11785 /* Business.swift */,
+				DFECC5631F9C1CFA00F3B63E /* Category.swift */,
 				F8607B241F903FC20029DB02 /* User.swift */,
 				DF32B9C31F9467F900594F0B /* Trip.swift */,
 				DF32B9C51F946EE000594F0B /* AlbumComment.swift */,
@@ -714,7 +746,9 @@
 				DFCC37A91F99C5AC003BDCA6 /* TripSegmentCell.swift in Sources */,
 				486E3C461F945EEB003D2FFF /* AlbumListViewController.swift in Sources */,
 				DFCC37951F97CCE2003BDCA6 /* HomeViewController.swift in Sources */,
+				DFECC5691F9C1CFB00F3B63E /* DirectionsTableView.swift in Sources */,
 				DFCC379B1F9935BE003BDCA6 /* TempLandingViewController.swift in Sources */,
+				DFECC56C1F9C1CFB00F3B63E /* CategoryRow.swift in Sources */,
 				F8B6A3E91F93D72A00942820 /* ReviewViewController.swift in Sources */,
 				F806F2AD1F8DFCD300E11785 /* LoginViewController.swift in Sources */,
 				486E3C481F945EEB003D2FFF /* PhotoViewController.swift in Sources */,
@@ -723,7 +757,9 @@
 				F8B6A3A31F920ECF00942820 /* Weather.swift in Sources */,
 				DFCC37A51F99B9FF003BDCA6 /* TripSegment.swift in Sources */,
 				F891E1151F943796006B2DD6 /* ProfileViewController.swift in Sources */,
+				DFECC56B1F9C1CFB00F3B63E /* RouteMapViewController.swift in Sources */,
 				DF32B9C61F946EE000594F0B /* AlbumComment.swift in Sources */,
+				DFECC5681F9C1CFB00F3B63E /* Utils.swift in Sources */,
 				F806F2A91F8DED0000E11785 /* TripCell.swift in Sources */,
 				F8607B1D1F8FCC8E0029DB02 /* TripDetailsViewController.swift in Sources */,
 				DFA0E2A81F96EB2D005D7528 /* TabBarViewController.swift in Sources */,
@@ -737,6 +773,7 @@
 				DFA0E29F1F96D203005D7528 /* YelpFusionClient.swift in Sources */,
 				486E3C451F945EEB003D2FFF /* AlbumDetailsViewController.swift in Sources */,
 				F806F2B11F8E08B300E11785 /* MapViewController.swift in Sources */,
+				DFECC56D1F9C1CFB00F3B63E /* AddressTableView.swift in Sources */,
 				F8B6A3E11F92EDB300942820 /* CreateTripViewController.swift in Sources */,
 				F891E10C1F94375D006B2DD6 /* CreateUserViewController.swift in Sources */,
 				F806F2F81F8ECB2300E11785 /* Business.swift in Sources */,
@@ -747,7 +784,10 @@
 				DF32B9C81F9470F200594F0B /* TripMember.swift in Sources */,
 				DFA0E2A11F96D272005D7528 /* APIKeys.swift in Sources */,
 				DFCC379F1F9950E5003BDCA6 /* TempCreateTripViewController.swift in Sources */,
+				DFECC5701F9C2DDD00F3B63E /* TestData.swift in Sources */,
 				486E3C401F945ED8003D2FFF /* Album.swift in Sources */,
+				DFECC5671F9C1CFB00F3B63E /* BusinessCollectionCell.swift in Sources */,
+				DFECC56A1F9C1CFB00F3B63E /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

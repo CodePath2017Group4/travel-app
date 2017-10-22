@@ -1,5 +1,5 @@
 //
-//  TripSegmentStart.swift
+//  TripSegment.swift
 //  RoadTripPlanner
 //
 //  Created by Diana Fisher on 10/19/17.
@@ -23,8 +23,12 @@ class TripSegment: PFObject, PFSubclassing {
         self.isExcluded = false
     }
     
+    override init() {
+        super.init()
+    }
+    
     class func parseClassName() -> String {
-        return "TripSegmentPoint"
+        return "TripSegment"
     }
     
 }

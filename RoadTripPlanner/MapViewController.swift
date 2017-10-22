@@ -9,74 +9,74 @@
 import UIKit
 import MapKit
 import CoreLocation
-
+import YelpAPI
 
 class MapViewController: UIViewController {
-
-    @IBOutlet weak var mapView: MKMapView!
     
-    var startMapItem: MKMapItem?
-    var destMapItem: MKMapItem?
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var tableView: UITableView!
     
     fileprivate var center: CLLocationCoordinate2D!
     fileprivate var annotations:   [MKPointAnnotation]!
-    
     fileprivate let centerLocation = CLLocation(latitude: 37.7833, longitude: -122.4167)
     lazy var locationManager: CLLocationManager = self.makeLocationManager()
-    
-    fileprivate var route: MKRoute!
-    
-    static func storyboardInstance() -> MapViewController? {
-        let storyboard = UIStoryboard(name: "MapViewController", bundle: nil)
-        
-        return storyboard.instantiateInitialViewController() as? MapViewController
-    }
+    var businesses: [YLPBusiness]!
+    var searchTerm: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerForNotifications()
         
-        mapView.tintColor = UIColor.blue.withAlphaComponent(0.7)
         mapView.delegate = self
+        mapView.tintColor = UIColor.blue.withAlphaComponent(0.7)
         
-        let startPoint = MKPointAnnotation()
-        let destPoint = MKPointAnnotation()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 133
+        tableView.separatorStyle = .none
         
-        startPoint.coordinate = (startMapItem?.placemark.coordinate)!
-        startPoint.title = "Start"
-        mapView.addAnnotation(startPoint)
+        let annotation = MKPointAnnotation()
+        let coordinate = CLLocationCoordinate2D(latitude: centerLocation.coordinate.latitude, longitude: centerLocation.coordinate.longitude)
         
-        destPoint.coordinate = (destMapItem?.placemark.coordinate)!
-        destPoint.title = "End"
-        mapView.addAnnotation(destPoint)
+        annotation.coordinate = coordinate
+        goToLocation(location: centerLocation)
         
-//        let annotation = MKPointAnnotation()
-//        let coordinate = CLLocationCoordinate2D(latitude: centerLocation.coordinate.latitude, longitude: centerLocation.coordinate.longitude)
-//
-//        annotation.coordinate = coordinate
-//        goToLocation(location: centerLocation)
+        /*if(businesses == nil) {
+         YelpFusionClient.sharedInstance.search(withLocation : "san francisco", term: searchTerm, completionHandler:  { (businesses: [YLPBusiness]?, error: Error?) -> Void in
+         
+         self.businesses = businesses
+         print("self.businesse -----\(self.businesses.count)")
+         
+         //self.tableView.reloadData()
+         
+         })
+         }*/
+        //addAnnotationFor(businesses: businesses)
         
-        mapView.centerCoordinate = destPoint.coordinate
-    
-        // Span of the map
-        mapView.setRegion(MKCoordinateRegionMake(destPoint.coordinate, MKCoordinateSpanMake(0.7, 0.7)), animated: true)
-        
-        let directionsRequest = MKDirectionsRequest()
-        directionsRequest.source = startMapItem
-        directionsRequest.destination = destMapItem
-        
-        directionsRequest.transportType = .automobile
-        let directions = MKDirections(request: directionsRequest)
-        directions.calculate { (response, error) in
-            if error == nil {
-                self.route = response!.routes.first
-                self.mapView.add(self.route.polyline)
-                
-                let coordCount = self.route.polyline.coordinates.count
-                log.info("coordinate count: \(coordCount)")
-            }
+        /* print("businesses in mapviewcontroller \(businesses)")
+         if self.businesses?.count == 0 {
+         let center = centerLocation.coordinate
+         
+         let span = MKCoordinateSpanMake(0.05, 0.05)
+         self.mapView.setRegion(MKCoordinateRegion(center: center, span: span), animated: false)
+         }
+         else {
+         
+         ///addAnnotationFor(businesses: businesses!)
+         }*/
+    }
+    func registerForNotifications() {
+        // Register to receive Businesses
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BussinessesDidUpdate"),
+                                               object: nil, queue: OperationQueue.main) {
+                                                [weak self] (notification: Notification) in
+                                                self?.businesses = notification.userInfo!["businesses"] as! [YLPBusiness]
+                                                self?.addAnnotationFor(businesses: (self?.businesses)!)
+                                                print("<<<<======>>>>>>> \(self?.businesses.count)")
+                                                //    print("<<<<======>>>>>>> \(self?.businesses[0].url)")
+                                                self?.tableView.reloadData()
+                                                self?.mapView.reloadInputViews()
         }
     }
-
     func goToLocation(location: CLLocation) {
         let span = MKCoordinateSpanMake(0.1, 0.1)
         let region = MKCoordinateRegionMake(location.coordinate, span)
@@ -86,34 +86,184 @@ class MapViewController: UIViewController {
     private func makeLocationManager() -> CLLocationManager {
         var locationManager = CLLocationManager()
         locationManager = CLLocationManager()
-        //locationManager.delegate = self
+        locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.distanceFilter = 200
         locationManager.requestWhenInUseAuthorization()
         
         return locationManager
     }
+    
+    func makeSpanRegion()
+    {
+        var miles: Double = 5.0
+        
+        /*if let distInMeters = filters[Constants.filterDistance] {
+         var distInMiles = Double.init(distInMeters as! NSNumber) * 0.000621371
+         distInMiles = rounded(no: distInMiles, toPlaces: 1)
+         
+         if distInMiles > miles {
+         miles = distInMiles
+         }
+         }
+         */
+        print("miles \(miles)")
+        
+        let scalingFactor: Double = abs( (cos(2 * M_PI * centerLocation.coordinate.latitude / 360.0) ))
+        
+        var span: MKCoordinateSpan = MKCoordinateSpan.init()
+        
+        span.latitudeDelta = miles/69.0
+        span.longitudeDelta = miles/(scalingFactor * 69.0)
+        
+        var region: MKCoordinateRegion = MKCoordinateRegion.init()
+        region.span = span
+        region.center = centerLocation.coordinate
+        
+        self.mapView.setRegion(region, animated: true)
+    }
+    
+    func rounded(no : Double, toPlaces places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (no * divisor).rounded() / divisor
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //addBottomSheetView()
+    }
+    
+    func addBottomSheetView() {
+        //        let bottomSheetVC = BottomSheetViewController()
+        //
+        //        self.addChildViewController(bottomSheetVC)
+        //        self.view.addSubview(bottomSheetVC.view)
+        //        bottomSheetVC.didMove(toParentViewController: self)
+        //
+        //        let height = view.frame.height
+        //        let width  = view.frame.width
+        //        bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
+    }
 }
+
+
+// MARK: - Map View Delegate methods
 
 extension MapViewController: MKMapViewDelegate {
     
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseID = "myAnnotationView"
         
-        let lineRenderer = MKPolylineRenderer(polyline: route.polyline)
-        lineRenderer.strokeColor = UIColor.red
-        lineRenderer.lineWidth = 2
-        return lineRenderer
+        if !(annotation is MKPointAnnotation) {
+            return nil
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID)
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseID) // customize the annotion view
+            annotationView!.canShowCallout = true
+            annotationView!.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure) as UIView
+            if searchTerm == "gas" {
+                annotationView?.image = UIImage(named: "gas.png")
+            }
+        }
+        return annotationView
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        let index = (self.annotations as NSArray).index(of: view.annotation)
+        
+        if index >= 0 {
+            self.showDetailsFor(self.businesses[index] )
+        }
+    }
+    func showDetailsFor(_ business: YLPBusiness) {
+        
+        /*let storyboard = UIStoryboard(name: Constants.main, bundle: Bundle.main)
+         
+         let controller = storyboard.instantiateViewController(withIdentifier: Constants.detailsReuseIdentifier) as! DetailViewController
+         controller.business = business
+         //controller.filters = filters
+         
+         self.navigationController?.pushViewController(controller, animated: true)*/
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        if self.center == nil {
+            self.center = mapView.region.center
+        } else {
+            let before = CLLocation(latitude: self.center.latitude, longitude: self.center.longitude)
+            let nowCenter = mapView.region.center
+            let now = CLLocation(latitude: nowCenter.latitude, longitude: nowCenter.longitude)
+        }
     }
 }
 
-extension MKPolyline {
-    var coordinates: [CLLocationCoordinate2D] {
-        // Preinitialize the array with default values
-        var coords = [CLLocationCoordinate2D] (repeating: kCLLocationCoordinate2DInvalid, count: self.pointCount)
+// MARK: - Location Manager Delegate methods
+
+extension MapViewController: CLLocationManagerDelegate {
+    
+    func addAnnotationFor(businesses: [YLPBusiness]) {
+        print("addAnnotationFor")
+        makeSpanRegion()
         
-        self.getCoordinates(&coords, range: NSRange(location: 0, length: self.pointCount))
+        self.annotations = []
+        self.mapView.removeAnnotations(self.mapView.annotations)
         
-        return coords
+        if(businesses != nil) {
+            for business in businesses {
+                let annotation = MKPointAnnotation()
+                let coordinate = CLLocationCoordinate2D(latitude: (business.location.coordinate?.latitude)!, longitude: (business.location.coordinate?.longitude)!)
+                annotation.coordinate = coordinate
+                annotation.title = business.name
+                annotation.subtitle = business.identifier
+                self.annotations.append(annotation)
+            }
+            self.mapView.addAnnotations(self.annotations)
+        }
     }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == CLAuthorizationStatus.authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            let span = MKCoordinateSpanMake(0.1, 0.1)
+            let region = MKCoordinateRegionMake(location.coordinate, span)
+            mapView.setRegion(region, animated: false)
+        }
+    }
+    
+    
+}
+
+extension MapViewController : UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CategoryRow
+        print("businesses.countin table cellfor row \(businesses)")
+        cell.businesses = businesses
+        cell.collectionView.reloadData()
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("clicked table cell a indexpath \(indexPath.row)")
+        
+    }
+    
 }
 

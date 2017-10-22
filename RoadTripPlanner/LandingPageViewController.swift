@@ -9,11 +9,15 @@
 import UIKit
 import CoreLocation
 import AFNetworking
+import YelpAPI
 
 class LandingPageViewController: UIViewController {
    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var pagingView: UIView!
+    @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var createTripButton: UIButton!
     
     @IBOutlet weak var nearMeButton: UIButton!
@@ -29,15 +33,34 @@ class LandingPageViewController: UIViewController {
     var weather: WeatherGetter!
     
     @IBOutlet weak var gasImageView: UIImageView!
-    
     @IBOutlet weak var foodImageView: UIImageView!
-    
     @IBOutlet weak var poiImageView: UIImageView!
-    
     @IBOutlet weak var shoppingImageView: UIImageView!
     
-    let categoriesList = ["gas","food","poi","shopping"]
-    var selectedTypes: [String]!
+    @IBOutlet weak var labelOne: UILabel!
+    
+    @IBOutlet weak var labelTwo: UILabel!
+    
+    @IBOutlet weak var labelThree: UILabel!
+    
+    @IBOutlet weak var labelFour: UILabel!
+    //drugstores, deptstores, flowers
+    //food - bakeries, bagels, coffee, donuts, foodtrucks
+    //hotels - bedbreakfast, campgrounds, guesthouses. hostels
+    //thingstodo
+        //arts - arcades, museums
+        // active - aquariums, zoos, parks, amusementparks
+    // nightlife
+    //poi // publicservicesgovt - civiccenter, landmarks,
+    //entertainmneet// arts - movietheaters, galleries, theater
+    // servicestations
+    let categoriesList = ["servicestations", "food", "publicservicesgovt"/*poi*/,"grocery"/*shopping"*/, "lodging", "things_to_do", "nightlife", "entertainment"]
+    
+    var selectedType = ""
+    
+    var businesses: [YLPBusiness]!
+
+    var trips: [Trip]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,38 +78,83 @@ class LandingPageViewController: UIViewController {
         
         nearMeButton.isHidden = true
         alongTheRouteButton.isHidden = true
+
+        getLocation()
+        weather = WeatherGetter(delegate: self)
+       
+        trips = TestData().trips
+        
+        //1
+        //self.scrollView.frame = CGRect(x:0, y:0, width:self.view.frame.width, height:self.view.frame.height)
+        
+        let scrollViewWidth: CGFloat = self.scrollView.frame.width
+        let scrollViewHeight: CGFloat = self.scrollView.frame.height
+        
+        let lodgingImageTap = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
+        lodgingImageTap.numberOfTapsRequired = 1
+        gasImageView.isUserInteractionEnabled = true
+        //gasImageView.tag = 4
+        gasImageView.addGestureRecognizer(lodgingImageTap)
+        labelOne.text = "Lodging"
+        
+        
+        let thingsToDoImageTap = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
+        thingsToDoImageTap.numberOfTapsRequired = 1
+        foodImageView.isUserInteractionEnabled = true
+        //foodImageView.tag = 5
+        foodImageView.addGestureRecognizer(thingsToDoImageTap)
+        labelTwo.text = "Point of Interest"
+        
+        let nightlifeImageTap = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
+        nightlifeImageTap.numberOfTapsRequired = 1
+        poiImageView.isUserInteractionEnabled = true
+        //poiImageView.tag = 6
+        poiImageView.addGestureRecognizer(nightlifeImageTap)
+        labelThree.text = "Nightlife"
+        
+        let entertainmentImageTap = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
+        entertainmentImageTap.numberOfTapsRequired = 1
+        shoppingImageView.isUserInteractionEnabled = true
+        //shoppingImageView.tag = 7
+        shoppingImageView.addGestureRecognizer(entertainmentImageTap)
+        labelFour.text = "Enterntainment"
+        
+
+        self.scrollView.addSubview(pagingView)
         
         let gasImageTap = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
         gasImageTap.numberOfTapsRequired = 1
         gasImageView.isUserInteractionEnabled = true
         gasImageView.tag = 0
         gasImageView.addGestureRecognizer(gasImageTap)
-        
+        labelOne.text = "Automotive"
         
         let foodImageTap = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
         foodImageTap.numberOfTapsRequired = 1
         foodImageView.isUserInteractionEnabled = true
         foodImageView.tag = 1
         foodImageView.addGestureRecognizer(foodImageTap)
+        labelTwo.text = "Food"
         
         let poiImageTap = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
         poiImageTap.numberOfTapsRequired = 1
         poiImageView.isUserInteractionEnabled = true
         poiImageView.tag = 2
         poiImageView.addGestureRecognizer(poiImageTap)
+        labelThree.text = "POI"
         
         let shoppingImageTap = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
         shoppingImageTap.numberOfTapsRequired = 1
         shoppingImageView.isUserInteractionEnabled = true
         shoppingImageView.tag = 3
         shoppingImageView.addGestureRecognizer(shoppingImageTap)
+        labelFour.text = "Shopping"
         
-        if(selectedTypes == nil) {
-            selectedTypes = [String]()
-        }
-        
-        getLocation()
-        weather = WeatherGetter(delegate: self)
+        self.scrollView.addSubview(pagingView)
+
+        self.scrollView.contentSize = CGSize(width:self.scrollView.frame.width * 2, height:self.scrollView.frame.height)
+        self.scrollView.delegate = self
+        self.pageControl.currentPage = 1
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -96,15 +164,19 @@ class LandingPageViewController: UIViewController {
     }
 
     func categoryTapped(_ sender: UITapGestureRecognizer) {
-        let selectedIndex = sender.view?.tag
         
+        let selectedIndex = sender.view?.tag
+        print("selectedIndex ===== >  \(selectedIndex)")
+
         
         let selectedImg = sender.view
         
-        if !selectedTypes.isEmpty {
+        if !selectedType.isEmpty {
             
-            if selectedTypes.contains(categoriesList[selectedIndex!]) {
-                
+            //if selectedTypes.contains(categoriesList[selectedIndex!]) {
+            if categoriesList.contains(selectedType) {
+
+                print("in first if")
                 selectedImg?.transform = CGAffineTransform(scaleX: 1.1,y: 1.1);
                 selectedImg?.alpha = 0.0
                 
@@ -119,12 +191,42 @@ class LandingPageViewController: UIViewController {
                 poiImageView.alpha = 1
                 shoppingImageView.alpha = 1
                 
-                createTripButton.isHidden = selectedTypes.isEmpty//false
-                nearMeButton.isHidden = !selectedTypes.isEmpty//true
-                alongTheRouteButton.isHidden = !selectedTypes.isEmpty//true
-                selectedTypes.removeAll()
-                
+                createTripButton.isHidden = selectedType.isEmpty//false
+                nearMeButton.isHidden = !selectedType.isEmpty//true
+                alongTheRouteButton.isHidden = !selectedType.isEmpty//true
+                //selectedTypes.removeAll()
+                selectedType = ""
             }
+            else {
+                
+                    
+                    gasImageView.alpha = 0.5
+                
+                    
+                    foodImageView.alpha = 0.5
+               
+                    
+                    poiImageView.alpha = 0.5
+                
+                
+                    
+                    shoppingImageView.alpha = 0.5
+                
+                
+                selectedImg?.transform = CGAffineTransform(scaleX: 1.1,y: 1.1);
+                selectedImg?.alpha = 0.0
+                
+                UIView.beginAnimations("button", context:nil)
+                UIView.setAnimationDuration(0.5)
+                selectedImg?.transform = CGAffineTransform(scaleX: 1,y: 1);
+                selectedImg?.alpha = 1.0
+                UIView.commitAnimations()
+                //selectedTypes.removeAll()
+                //selectedTypes.append(categoriesList[selectedIndex!])
+                selectedType = categoriesList[selectedIndex!]
+
+            }
+            
             
         }
         else {
@@ -145,9 +247,9 @@ class LandingPageViewController: UIViewController {
                 shoppingImageView.alpha = 0.5
             }
             
-            createTripButton.isHidden = selectedTypes.isEmpty//false
-            nearMeButton.isHidden = !selectedTypes.isEmpty//true
-            alongTheRouteButton.isHidden = !selectedTypes.isEmpty//true
+            createTripButton.isHidden = selectedType.isEmpty//false
+            nearMeButton.isHidden = !selectedType.isEmpty//true
+            alongTheRouteButton.isHidden = !selectedType.isEmpty//true
             
             
             selectedImg?.transform = CGAffineTransform(scaleX: 1,y: 1);
@@ -159,11 +261,11 @@ class LandingPageViewController: UIViewController {
             selectedImg?.alpha = 1.0
             UIView.commitAnimations()
             
-            selectedTypes.append(categoriesList[selectedIndex!])
-            
+            //selectedTypes.append(categoriesList[selectedIndex!])
+            selectedType = categoriesList[selectedIndex!]
         }
         
-        print("selectedTypes  \(selectedTypes)")
+        print("selectedType  \(selectedType)")
         
     }
     func getLocation() {
@@ -218,6 +320,45 @@ class LandingPageViewController: UIViewController {
         )
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("segue.identifier \(segue.identifier!)")
+
+        if segue.identifier! == "NearMe"{//Constants.segueFilterIdentifier {
+            print("Etered segue.identifier \(segue.identifier)")
+
+            let mapViewController = segue.destination  as! MapViewController
+            mapViewController.businesses = businesses
+            mapViewController.searchTerm = selectedType
+           //// mapViewController.searchBar = searchBar
+           // mapViewController.filters = filters
+            //    mapViewController.filters1 = filters1*/
+            
+        }
+        else if segue.identifier! == "CreateTrip" {
+            
+            let createTripViewController = segue.destination  as! CreateTripViewController
+            //createTripViewController.businesses = businesses
+            //createTripViewController.searchBar = searchBar
+            //mapViewController.filters = filters
+            //    mapViewController.filters1 = filters1*/
+            
+        }
+        else {
+            
+           /* if let cell = sender as? BusinessCell {
+                let  indexPath = tableView.indexPath(for: cell)
+                
+                let selectedBusiness = businesses[(indexPath?.row)!]
+                
+                if let detailViewController = segue.destination as? DetailViewController {
+                    detailViewController.business = selectedBusiness
+                    detailViewController.filters = filters
+                    //       detailViewController.filters1 = filters1
+                    
+                }
+            }*/
+        }
+    }
     
     @IBAction func onCreateTrip(_ sender: Any) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
@@ -227,14 +368,53 @@ class LandingPageViewController: UIViewController {
        // self.navigationController?.pushViewController(createTripViewController.topViewController!, animated: true)
     }
     
+    @IBAction func onNearMe(_ sender: Any) {
 
+        performSearch(selectedType)
+        
+    }
+    
+    @IBAction func onAlongTheRoute(_ sender: Any) {
+    }
+    
+    final func performSearch(_ term: String) {
+print("term \(term)")
+        if term != nil, term != "" {
+            
+            YelpFusionClient.sharedInstance.search(inCurrent: (locationManager.location?.coordinate)!, term: term, completionHandler:  { (businesses: [YLPBusiness]?, error: Error?) -> Void in
+                
+                self.businesses = businesses
+                print("self.businesse -----\(self.businesses.count)")
+
+            })
+            /*YelpFusionClient.sharedInstance.search(withLocation : "san francisco", term: term, completionHandler:  { (businesses: [YLPBusiness]?, error: Error?) -> Void in
+                
+                    self.businesses = businesses
+                    print("self.businesse -----\(self.businesses.count)")
+
+                    //self.tableView.reloadData()
+                
+                })*/
+        }
+        else {
+            
+           /* Business.searchWithTerm(term: Constants.restaurants, completion: { (businesses: [Business]?, error: Error?) -> Void in
+                
+                self.businesses = businesses
+                self.tableView.reloadData()
+                
+            })*/
+        }
+        
+    }
     
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension LandingPageViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return trips.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -258,10 +438,21 @@ extension LandingPageViewController: UITableViewDataSource, UITableViewDelegate 
 
             
         }
-
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Show the trip details view controller.
+        
+        let trip = trips[indexPath.row]
+        log.info("Selected trip \(trip.name ?? "none")")
+        
+        let tripDetailsVC = TripDetailsViewController.storyboardInstance()
+        tripDetailsVC?.trip = trip
+        navigationController?.pushViewController(tripDetailsVC!, animated: true)
     }
 }
 
+// MARK: - CLLocationManagerDelegate
 extension LandingPageViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -280,6 +471,7 @@ extension LandingPageViewController: CLLocationManagerDelegate {
     
 }
 
+// MARK: - WeatherGetterDelegate
 extension LandingPageViewController: WeatherGetterDelegate {
     
     func didGetWeather(weather: Weather) {
@@ -297,7 +489,60 @@ extension LandingPageViewController: WeatherGetterDelegate {
             self.showSimpleAlert(title: "Can't get the weather", message: "The weather service isn't responding.")
         }
     }
-    
-    
 }
 
+// MARK: - UIScrollViewDelegate
+extension LandingPageViewController : UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+ 
+    
+  //  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView){
+        // Test the offset and calculate the current page after scrolling ends
+        let pageWidth:CGFloat = scrollView.frame.width
+        let currentPage:CGFloat = floor((scrollView.contentOffset.x-pageWidth/2)/pageWidth)+1
+        // Change the indicator
+        self.pageControl.currentPage = Int(currentPage)
+        print("self.pageControl.currentPage ---=== \(self.pageControl.currentPage)")
+        // Change the text accordingly
+        if Int(currentPage) == 0{
+            //textView.text = "Sweettutos.com is your blog of choice for Mobile tutorials"
+            gasImageView?.image = UIImage(named: "gasstation")
+            labelOne.text = "Automotive"
+            gasImageView.tag = 0
+
+            foodImageView?.image = UIImage(named: "food")
+            labelTwo.text = "Food"
+            foodImageView.tag = 1
+            poiImageView.tag = 2
+
+
+            poiImageView?.image = UIImage(named: "poi")
+            labelThree.text = "POI"
+            poiImageView.tag = 2
+
+            shoppingImageView?.image = UIImage(named: "shopping")
+            labelFour.text = "Shopping"
+            shoppingImageView.tag = 3
+
+
+        }else if Int(currentPage) == 1{
+            gasImageView?.image = UIImage(named: "lodging")
+            labelOne.text = "Lodging"
+            gasImageView.tag = 4
+
+            foodImageView?.image = UIImage(named: "thingstodo")
+            labelTwo.text = "Things to Do"
+            foodImageView.tag = 5
+
+            poiImageView?.image = UIImage(named: "nightlife")
+            labelThree.text = "Nightlife"
+            poiImageView.tag = 6
+
+            shoppingImageView?.image = UIImage(named: "entertainment")
+            labelFour.text = "Enterntainment"
+            shoppingImageView.tag = 7
+
+
+        }
+    }
+}
