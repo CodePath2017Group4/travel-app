@@ -117,6 +117,9 @@ class TripDetailsViewController: UIViewController {
     @IBAction func albumButtonPressed(_ sender: Any) {
     }
     
+    @IBAction func addStopButtonPressed(_ sender: Any) {
+    }
+    
     func tripSettingsImageTapped(_ sender: AnyObject) {
         
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)

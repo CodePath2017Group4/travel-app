@@ -26,6 +26,7 @@ struct Constants {
     
     struct ReuseableCellIdentifiers {
         static let TripSegmentCell = "TripSegmentCell"
+        static let LocationSearchResultCell = "LocationSearchResultCell"
     }
     
     struct PrefabricatedEmailMessage {

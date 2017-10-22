@@ -25,6 +25,9 @@
 		DF32B9C41F9467F900594F0B /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32B9C31F9467F900594F0B /* Trip.swift */; };
 		DF32B9C61F946EE000594F0B /* AlbumComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32B9C51F946EE000594F0B /* AlbumComment.swift */; };
 		DF32B9C81F9470F200594F0B /* TripMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32B9C71F9470F200594F0B /* TripMember.swift */; };
+		DF7BC0701F9D4ED700B3746B /* AddStopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7BC06F1F9D4ED700B3746B /* AddStopViewController.swift */; };
+		DF7BC0721F9D4EE800B3746B /* AddStopViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF7BC0711F9D4EE800B3746B /* AddStopViewController.storyboard */; };
+		DF7BC0741F9D535E00B3746B /* LocationSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7BC0731F9D535E00B3746B /* LocationSearchResultCell.swift */; };
 		DFA0E29F1F96D203005D7528 /* YelpFusionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E29E1F96D203005D7528 /* YelpFusionClient.swift */; };
 		DFA0E2A11F96D272005D7528 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E2A01F96D272005D7528 /* APIKeys.swift */; };
 		DFA0E2A61F96E973005D7528 /* CreateUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */; };
@@ -125,6 +128,9 @@
 		DF32B9C31F9467F900594F0B /* Trip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		DF32B9C51F946EE000594F0B /* AlbumComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumComment.swift; sourceTree = "<group>"; };
 		DF32B9C71F9470F200594F0B /* TripMember.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripMember.swift; sourceTree = "<group>"; };
+		DF7BC06F1F9D4ED700B3746B /* AddStopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStopViewController.swift; sourceTree = "<group>"; };
+		DF7BC0711F9D4EE800B3746B /* AddStopViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddStopViewController.storyboard; sourceTree = "<group>"; };
+		DF7BC0731F9D535E00B3746B /* LocationSearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultCell.swift; sourceTree = "<group>"; };
 		DFA0E29E1F96D203005D7528 /* YelpFusionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpFusionClient.swift; sourceTree = "<group>"; };
 		DFA0E2A01F96D272005D7528 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateUserViewController.storyboard; sourceTree = "<group>"; };
@@ -273,6 +279,7 @@
 		DFA0E2A41F96E938005D7528 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				DF7BC0711F9D4EE800B3746B /* AddStopViewController.storyboard */,
 				48CB344C1F9C3E3300EE268A /* Album.storyboard */,
 				DFCC37841F970C3D003BDCA6 /* Photo.storyboard */,
 				DFCC377A1F97085C003BDCA6 /* AlbumListViewController.storyboard */,
@@ -365,6 +372,7 @@
 		F806F2AE1F8DFCE800E11785 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DF7BC06F1F9D4ED700B3746B /* AddStopViewController.swift */,
 				F806F2F21F8EBB1900E11785 /* CategoryListViewController.swift */,
 				F8B6A3E01F92EDB300942820 /* CreateTripViewController.swift */,
 				F891E10B1F94375D006B2DD6 /* CreateUserViewController.swift */,
@@ -397,6 +405,7 @@
 				DFECC5661F9C1CFB00F3B63E /* AddressTableView.swift */,
 				486E3C3B1F945EC3003D2FFF /* AlbumCell.swift */,
 				DFECC5601F9C1CF900F3B63E /* BusinessCollectionCell.swift */,
+				DF7BC0731F9D535E00B3746B /* LocationSearchResultCell.swift */,
 				486E3C3C1F945EC3003D2FFF /* PhotoCell.swift */,
 				F806F2A81F8DED0000E11785 /* TripCell.swift */,
 				F806F2F41F8ECADA00E11785 /* BusinessCell.swift */,
@@ -559,6 +568,7 @@
 				F806F2801F8DA42A00E11785 /* Main.storyboard in Resources */,
 				DFCC37931F97C649003BDCA6 /* HomeViewController.storyboard in Resources */,
 				DFCC377B1F97085C003BDCA6 /* AlbumListViewController.storyboard in Resources */,
+				DF7BC0721F9D4EE800B3746B /* AddStopViewController.storyboard in Resources */,
 				DFCC37891F970D00003BDCA6 /* CommentsViewController.storyboard in Resources */,
 				DFCC37871F970C97003BDCA6 /* ReviewViewController.storyboard in Resources */,
 			);
@@ -758,6 +768,7 @@
 			files = (
 				F8607B251F903FC20029DB02 /* User.swift in Sources */,
 				F8B6A3E31F93207500942820 /* TripDetailsCell.swift in Sources */,
+				DF7BC0701F9D4ED700B3746B /* AddStopViewController.swift in Sources */,
 				DFCC37A91F99C5AC003BDCA6 /* TripSegmentCell.swift in Sources */,
 				486E3C461F945EEB003D2FFF /* AlbumListViewController.swift in Sources */,
 				F80559C61F9B5DE100454EB6 /* CategoryRow.swift in Sources */,
@@ -788,6 +799,7 @@
 				F8B6A3A11F920D9200942820 /* WeatherGetter.swift in Sources */,
 				DFA0E29F1F96D203005D7528 /* YelpFusionClient.swift in Sources */,
 				486E3C451F945EEB003D2FFF /* AlbumDetailsViewController.swift in Sources */,
+				DF7BC0741F9D535E00B3746B /* LocationSearchResultCell.swift in Sources */,
 				48CB34491F9BBC5900EE268A /* AddAlbumViewController.swift in Sources */,
 				F806F2B11F8E08B300E11785 /* MapViewController.swift in Sources */,
 				DFECC56D1F9C1CFB00F3B63E /* AddressTableView.swift in Sources */,
