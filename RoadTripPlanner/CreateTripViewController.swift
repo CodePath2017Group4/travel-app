@@ -22,6 +22,7 @@ class CreateTripViewController: UIViewController {
     @IBOutlet weak var createTripButton: UIButton!
     
     @IBOutlet weak var categoryView: UIView!
+    
     @IBOutlet weak var autoImageView: UIImageView!
     
     @IBOutlet weak var autoSubView: UIView!
@@ -30,10 +31,23 @@ class CreateTripViewController: UIViewController {
     @IBOutlet weak var gasImageView : UIImageView!
     @IBOutlet weak var parkingImageView: UIImageView!
     @IBOutlet weak var chargingImageView: UIImageView!
-   
+    
+    @IBOutlet weak var foodImageView: UIImageView!
+    
+    @IBOutlet weak var foodSubView: UIView!
+    @IBOutlet weak var foodBackImageView: UIImageView!
+    @IBOutlet weak var allFoodImageView: UIImageView!
+    @IBOutlet weak var cafeImageView: UIImageView!
+    @IBOutlet weak var restaurantImageView: UIImageView!
+    @IBOutlet weak var breakfastImageView: UIImageView!
+    @IBOutlet weak var quickEatsImageView: UIImageView!
+    @IBOutlet weak var burgerImageView: UIImageView!
+    
     fileprivate var isAutoSubViewOpen = false
     
     let autoCategoriesList = ["back", "all", "servicestations", "autoelectric", "parking"]//"gas", "charging","parking"]
+    let foodCategoriesList = ["back", "all", "cafe", "restaurant", "breakfast", "quickeats", "burger"]
+
     var selectedTypes: [String]!
 
     var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!
@@ -71,7 +85,8 @@ class CreateTripViewController: UIViewController {
 
         createTripButton.layer.cornerRadius = createTripButton.frame.height / 2
         autoSubView.isHidden = true
-        
+        foodSubView.isHidden = true
+
         let dateImageTap = UITapGestureRecognizer(target: self, action: #selector(dateTapped))
         dateImageTap.numberOfTapsRequired = 1
         dateImageView.isUserInteractionEnabled = true
@@ -84,7 +99,8 @@ class CreateTripViewController: UIViewController {
         clockImageView.addGestureRecognizer(clockImageTap)
         self.navigationController?.navigationBar.isHidden = false
         
-        // Main Category
+        //====================================================
+        // Main Auto Category
         let autoImageTap = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
         autoImageTap.numberOfTapsRequired = 1
         autoImageView.isUserInteractionEnabled = true
@@ -121,8 +137,65 @@ class CreateTripViewController: UIViewController {
         parkingImageView.isUserInteractionEnabled = true
         parkingImageView.tag = 4
         parkingImageView.addGestureRecognizer(parkingImageTap)
+        //====================================================
+
+        //====================================================
+        // Main Food Category
+        let foodImageTap = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
+        foodImageTap.numberOfTapsRequired = 1
+        foodImageView.isUserInteractionEnabled = true
+        foodImageView.tag = 1
+        foodImageView.addGestureRecognizer(foodImageTap)
         
-       
+        // Food Subcategory
+        let backFoodImageTap = UITapGestureRecognizer(target: self, action: #selector(foodSubCategoryTapped))
+        backFoodImageTap.numberOfTapsRequired = 1
+        foodBackImageView.isUserInteractionEnabled = true
+        foodBackImageView.tag = 0
+        foodBackImageView.addGestureRecognizer(backFoodImageTap)
+        
+        let allFoodImageTap = UITapGestureRecognizer(target: self, action: #selector(foodSubCategoryTapped))
+        allFoodImageTap.numberOfTapsRequired = 1
+        allFoodImageView.isUserInteractionEnabled = true
+        allFoodImageView.tag = 1
+        allFoodImageView.addGestureRecognizer(allFoodImageTap)
+        
+        let cafeImageTap = UITapGestureRecognizer(target: self, action: #selector(foodSubCategoryTapped))
+        cafeImageTap.numberOfTapsRequired = 1
+        cafeImageView.isUserInteractionEnabled = true
+        cafeImageView.tag = 2
+        cafeImageView.addGestureRecognizer(cafeImageTap)
+        
+        let restaurantImageTap = UITapGestureRecognizer(target: self, action: #selector(foodSubCategoryTapped))
+        restaurantImageTap.numberOfTapsRequired = 1
+        restaurantImageView.isUserInteractionEnabled = true
+        restaurantImageView.tag = 3
+        restaurantImageView.addGestureRecognizer(restaurantImageTap)
+        
+        let breakfastImageTap = UITapGestureRecognizer(target: self, action: #selector(foodSubCategoryTapped))
+        breakfastImageTap.numberOfTapsRequired = 1
+        breakfastImageView.isUserInteractionEnabled = true
+        breakfastImageView.tag = 4
+        breakfastImageView.addGestureRecognizer(breakfastImageTap)
+        
+        let quickImageTap = UITapGestureRecognizer(target: self, action: #selector(foodSubCategoryTapped))
+        quickImageTap.numberOfTapsRequired = 1
+        quickEatsImageView.isUserInteractionEnabled = true
+        quickEatsImageView.tag = 5
+        quickEatsImageView.addGestureRecognizer(quickImageTap)
+        
+        let burgerImageTap = UITapGestureRecognizer(target: self, action: #selector(foodSubCategoryTapped))
+        burgerImageTap.numberOfTapsRequired = 1
+        burgerImageView.isUserInteractionEnabled = true
+        burgerImageView.tag = 6
+        burgerImageView.addGestureRecognizer(burgerImageTap)
+        //====================================================
+
+        
+        
+        
+        
+        
         if(selectedTypes == nil) {
             selectedTypes = [String]()
         }
@@ -136,6 +209,7 @@ class CreateTripViewController: UIViewController {
     func categoryTapped(_ sender: UITapGestureRecognizer) {
         let selectedIndex = sender.view?.tag
 
+        print("categoryTapped \(selectedIndex)")
         if autoImageView.tag == selectedIndex {
             
             self.view.setNeedsUpdateConstraints()
@@ -143,6 +217,17 @@ class CreateTripViewController: UIViewController {
             UIView.animate(withDuration: 1) {
                 self.categoryView.isHidden = true
                 self.autoSubView.isHidden = false
+                self.view.layoutIfNeeded()
+                
+            }
+        }
+        if foodImageView.tag == selectedIndex {
+            
+            self.view.setNeedsUpdateConstraints()
+            isAutoSubViewOpen = !isAutoSubViewOpen
+            UIView.animate(withDuration: 1) {
+                self.categoryView.isHidden = true
+                self.foodSubView.isHidden = false
                 self.view.layoutIfNeeded()
                 
             }
@@ -179,7 +264,38 @@ class CreateTripViewController: UIViewController {
         }
     }
 
+    func foodSubCategoryTapped(_ sender: UITapGestureRecognizer) {
+        let selectedIndex = sender.view?.tag
+        print("selectedIndex  \(selectedIndex)")
+        
+        let selectedImg = sender.view
+        
+        if selectedIndex! != 0 && selectedIndex! != 1 {
+            
+            if !selectedTypes.contains(foodCategoriesList[selectedIndex!]) {
+                selectedTypes.append(foodCategoriesList[selectedIndex!])
+                print("selectedTypes in if ===== >  \(selectedTypes)")
+            }
+        }
+        else {
+            if selectedIndex == 1 {
+                selectedTypes.removeAll()
+                selectedTypes.append(foodCategoriesList[selectedIndex!])
+            }
+            
+            self.view.setNeedsUpdateConstraints()
+            
+            UIView.animate(withDuration: 1) {
+                self.categoryView.isHidden = false
+                self.foodSubView.isHidden = true
+                self.view.layoutIfNeeded()
+                
+            }
+        }
+    }
 
+    
+    
     func dateTapped(_ sender: AnyObject) {
         DatePickerDialog(showCancelButton: false).show("Select Travel Date", doneButtonTitle: "Done", datePickerMode: .date) {
 
@@ -288,6 +404,9 @@ class CreateTripViewController: UIViewController {
                 }
             }
             
+            print("trip -----\(trip.name)")
+            print("trip----- \(trip.date)")
+
             let routeMapViewController = segue.destination  as! RouteMapViewController
             routeMapViewController.locationArray = locationsArray
             routeMapViewController.trip  = trip

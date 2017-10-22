@@ -46,6 +46,12 @@
 		DFCC37A11F9950F9003BDCA6 /* TempCreateTripViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37A01F9950F9003BDCA6 /* TempCreateTripViewController.storyboard */; };
 		DFCC37A51F99B9FF003BDCA6 /* TripSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC37A41F99B9FF003BDCA6 /* TripSegment.swift */; };
 		DFCC37A91F99C5AC003BDCA6 /* TripSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCC37A81F99C5AC003BDCA6 /* TripSegmentCell.swift */; };
+		F80559C21F9B5DB500454EB6 /* AddressTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80559C11F9B5DB500454EB6 /* AddressTableView.swift */; };
+		F80559C41F9B5DD600454EB6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80559C31F9B5DD500454EB6 /* Category.swift */; };
+		F80559C61F9B5DE100454EB6 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80559C51F9B5DE000454EB6 /* CategoryRow.swift */; };
+		F80559C81F9B5DED00454EB6 /* RouteMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80559C71F9B5DED00454EB6 /* RouteMapViewController.swift */; };
+		F80559CA1F9B5DF900454EB6 /* DirectionsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80559C91F9B5DF800454EB6 /* DirectionsTableView.swift */; };
+		F80559CC1F9B5E0300454EB6 /* BusinessCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80559CB1F9B5E0200454EB6 /* BusinessCollectionCell.swift */; };
 		DFECC5671F9C1CFB00F3B63E /* BusinessCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECC5601F9C1CF900F3B63E /* BusinessCollectionCell.swift */; };
 		DFECC5681F9C1CFB00F3B63E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECC5611F9C1CFA00F3B63E /* Utils.swift */; };
 		DFECC5691F9C1CFB00F3B63E /* DirectionsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFECC5621F9C1CFA00F3B63E /* DirectionsTableView.swift */; };
@@ -151,6 +157,12 @@
 		DFECC56F1F9C2DDD00F3B63E /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		EC80D6B0037AEA0DAC6399F8 /* Pods-RoadTripPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		EDEE6B5A1A92A3171A131D5C /* Pods-RoadTripPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerTests/Pods-RoadTripPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
+		F80559C11F9B5DB500454EB6 /* AddressTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableView.swift; sourceTree = "<group>"; };
+		F80559C31F9B5DD500454EB6 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		F80559C51F9B5DE000454EB6 /* CategoryRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
+		F80559C71F9B5DED00454EB6 /* RouteMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteMapViewController.swift; sourceTree = "<group>"; };
+		F80559C91F9B5DF800454EB6 /* DirectionsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionsTableView.swift; sourceTree = "<group>"; };
+		F80559CB1F9B5E0200454EB6 /* BusinessCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCollectionCell.swift; sourceTree = "<group>"; };
 		F806F2771F8DA42A00E11785 /* RoadTripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoadTripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F806F27A1F8DA42A00E11785 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F806F27F1F8DA42A00E11785 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -351,6 +363,7 @@
 		F806F2AE1F8DFCE800E11785 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F80559C71F9B5DED00454EB6 /* RouteMapViewController.swift */,
 				F806F2F21F8EBB1900E11785 /* CategoryListViewController.swift */,
 				F8B6A3E01F92EDB300942820 /* CreateTripViewController.swift */,
 				F891E10B1F94375D006B2DD6 /* CreateUserViewController.swift */,
@@ -378,6 +391,11 @@
 		F806F2AF1F8DFD0900E11785 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F80559C11F9B5DB500454EB6 /* AddressTableView.swift */,
+				486E3C3B1F945EC3003D2FFF /* AlbumCell.swift */,
+				F80559CB1F9B5E0200454EB6 /* BusinessCollectionCell.swift */,
+				F80559C51F9B5DE000454EB6 /* CategoryRow.swift */,
+				F80559C91F9B5DF800454EB6 /* DirectionsTableView.swift */,
 				DFECC5661F9C1CFB00F3B63E /* AddressTableView.swift */,
 				486E3C3B1F945EC3003D2FFF /* AlbumCell.swift */,
 				DFECC5601F9C1CF900F3B63E /* BusinessCollectionCell.swift */,
@@ -395,6 +413,7 @@
 		F806F2F61F8ECB1300E11785 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F80559C31F9B5DD500454EB6 /* Category.swift */,
 				486E3C3F1F945ED8003D2FFF /* Album.swift */,
 				F806F2F71F8ECB2300E11785 /* Business.swift */,
 				DFECC5631F9C1CFA00F3B63E /* Category.swift */,
@@ -484,7 +503,7 @@
 				TargetAttributes = {
 					F806F2761F8DA42A00E11785 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 8F2PWFTJG8;
+						DevelopmentTeam = X3E7C93B2H;
 						ProvisioningStyle = Automatic;
 					};
 					F806F28A1F8DA42B00E11785 = {
@@ -745,13 +764,17 @@
 				F8B6A3E31F93207500942820 /* TripDetailsCell.swift in Sources */,
 				DFCC37A91F99C5AC003BDCA6 /* TripSegmentCell.swift in Sources */,
 				486E3C461F945EEB003D2FFF /* AlbumListViewController.swift in Sources */,
+				F80559C61F9B5DE100454EB6 /* CategoryRow.swift in Sources */,
 				DFCC37951F97CCE2003BDCA6 /* HomeViewController.swift in Sources */,
 				DFECC5691F9C1CFB00F3B63E /* DirectionsTableView.swift in Sources */,
 				DFCC379B1F9935BE003BDCA6 /* TempLandingViewController.swift in Sources */,
+				F80559C81F9B5DED00454EB6 /* RouteMapViewController.swift in Sources */,
 				DFECC56C1F9C1CFB00F3B63E /* CategoryRow.swift in Sources */,
 				F8B6A3E91F93D72A00942820 /* ReviewViewController.swift in Sources */,
 				F806F2AD1F8DFCD300E11785 /* LoginViewController.swift in Sources */,
 				486E3C481F945EEB003D2FFF /* PhotoViewController.swift in Sources */,
+				F80559CA1F9B5DF900454EB6 /* DirectionsTableView.swift in Sources */,
+				F80559C41F9B5DD600454EB6 /* Category.swift in Sources */,
 				F806F2F51F8ECADA00E11785 /* BusinessCell.swift in Sources */,
 				F806F2F31F8EBB1900E11785 /* CategoryListViewController.swift in Sources */,
 				F8B6A3A31F920ECF00942820 /* Weather.swift in Sources */,
@@ -763,6 +786,7 @@
 				F806F2A91F8DED0000E11785 /* TripCell.swift in Sources */,
 				F8607B1D1F8FCC8E0029DB02 /* TripDetailsViewController.swift in Sources */,
 				DFA0E2A81F96EB2D005D7528 /* TabBarViewController.swift in Sources */,
+				F80559C21F9B5DB500454EB6 /* AddressTableView.swift in Sources */,
 				F891E1121F943788006B2DD6 /* PhotoLayout.swift in Sources */,
 				F8B6A3E51F932CAE00942820 /* CommentsViewController.swift in Sources */,
 				DFCC37971F9801B1003BDCA6 /* Constants.swift in Sources */,
@@ -780,6 +804,7 @@
 				F806F2AB1F8DEF0200E11785 /* LandingPageViewController.swift in Sources */,
 				486E3C4D1F945F4E003D2FFF /* AddPhotoDelegate.swift in Sources */,
 				F8B6A3E71F935E9600942820 /* TripSettingsViewController.swift in Sources */,
+				F80559CC1F9B5E0300454EB6 /* BusinessCollectionCell.swift in Sources */,
 				486E3C3D1F945EC3003D2FFF /* AlbumCell.swift in Sources */,
 				DF32B9C81F9470F200594F0B /* TripMember.swift in Sources */,
 				DFA0E2A11F96D272005D7528 /* APIKeys.swift in Sources */,
@@ -943,7 +968,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8F2PWFTJG8;
+				DEVELOPMENT_TEAM = X3E7C93B2H;
 				INFOPLIST_FILE = RoadTripPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -960,7 +985,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8F2PWFTJG8;
+				DEVELOPMENT_TEAM = X3E7C93B2H;
 				INFOPLIST_FILE = RoadTripPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
