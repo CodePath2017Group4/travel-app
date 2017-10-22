@@ -8,8 +8,17 @@
 
 import UIKit
 
+enum PlaceCategory {
+    case None
+    case GasStation
+    case Hotel
+    case Food
+}
+
 class TempLandingViewController: UIViewController {
 
+    var selectedCategory = PlaceCategory.None
+    
     @IBOutlet weak var startTripButton: UIButton!
     
     static func storyboardInstance() -> UINavigationController? {
@@ -39,9 +48,18 @@ class TempLandingViewController: UIViewController {
         guard let createTripVC = TempCreateTripViewController.storyboardInstance() else {
             return
         }
+        createTripVC.selectedCategory = self.selectedCategory
         navigationController?.pushViewController(createTripVC, animated: true)
     }
     
+    @IBAction func hotelsPressed(_ sender: Any) {
+        selectedCategory = PlaceCategory.Hotel
+    }
+    
+    
+    @IBAction func gasStationsPressed(_ sender: Any) {
+        selectedCategory = PlaceCategory.GasStation
+    }
     /*
     // MARK: - Navigation
 

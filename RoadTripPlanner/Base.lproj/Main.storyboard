@@ -890,9 +890,6 @@
                                             <outlet property="profileImg3" destination="cLc-Xz-qZA" id="fvc-dk-OA0"/>
                                             <outlet property="tripImageView" destination="AmA-dp-oUU" id="VB0-Zs-m3v"/>
                                             <outlet property="tripTitleLabel" destination="1Qh-DX-DPy" id="QvR-de-wU6"/>
-                                            <segue destination="3Fs-Bn-QWZ" kind="showDetail" id="tB9-7m-Kh4">
-                                                <nil key="action"/>
-                                            </segue>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1465,13 +1462,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="9CU-1F-JzY">
-                            <connections>
-                                <segue destination="3Fs-Bn-QWZ" kind="show" id="Wka-64-df1">
-                                    <nil key="action"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="9CU-1F-JzY"/>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="5PS-qG-nlC" id="aOC-LH-Pep"/>
@@ -1484,6 +1475,7 @@
         <!--Trip Details View Controller-->
         <scene sceneID="V2i-Cu-sgP">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OmG-4W-cOm" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="TripDetails" id="3Fs-Bn-QWZ" customClass="TripDetailsViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Biq-zN-jOD"/>
@@ -1716,7 +1708,6 @@
                         <segue destination="vbX-f3-FGq" kind="presentation" identifier="" id="XL6-e2-yww"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OmG-4W-cOm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5407" y="-260"/>
         </scene>
@@ -1931,7 +1922,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FuP-p6-AGD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8268" y="-260"/>
+            <point key="canvasLocation" x="7126" y="-125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RP3-Rv-wOE">
@@ -1949,7 +1940,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eue-m2-S1s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6900" y="-260"/>
+            <point key="canvasLocation" x="6404" y="-124"/>
         </scene>
         <!--Trip Settings View Controller-->
         <scene sceneID="lyy-iP-ycT">
@@ -2096,7 +2087,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfP-vI-61f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6988" y="1066"/>
+            <point key="canvasLocation" x="7055" y="627"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DsS-jx-YsC">
@@ -2114,7 +2105,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5H-O7-i2b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5369" y="1067"/>
+            <point key="canvasLocation" x="6313" y="627"/>
         </scene>
         <!--Review View Controller-->
         <scene sceneID="rED-ZB-6vE">
@@ -2157,7 +2148,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7V-aj-hTB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Rh0-bd-UCu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="7452" y="-1361"/>
+            <point key="canvasLocation" x="7127" y="-806"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kLa-Re-Yuh">
@@ -2175,7 +2166,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jy1-5y-8Sg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6334" y="-1374"/>
+            <point key="canvasLocation" x="6404" y="-806"/>
         </scene>
         <!--Trips-->
         <scene sceneID="Vl2-hg-DKR">
@@ -2308,7 +2299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VKT-3m-Kho" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2892" y="206.44677661169416"/>
+            <point key="canvasLocation" x="3001" y="589"/>
         </scene>
         <!--Route Map View Controller-->
         <scene sceneID="YKR-Yz-pqe">
@@ -2392,7 +2383,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TEW-Lj-QBf"/>
-        <segue reference="tB9-7m-Kh4"/>
         <segue reference="ZKY-A7-3VE"/>
     </inferredMetricsTieBreakers>
 </document>

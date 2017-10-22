@@ -248,20 +248,36 @@ class CreateTripViewController: UIViewController {
         view.addSubview(addressTableView)
     }
     
+    fileprivate func tripSegmentFromMapItem(mapItem: MKMapItem) -> TripSegment {
+        
+        let placemark = mapItem.placemark
+        let name = placemark.name ?? mapItem.name ?? ""
+        let locality = placemark.locality ?? ""
+        let administrativeArea = placemark.administrativeArea ?? ""  // state
+        let postalCode = placemark.postalCode ?? ""
+        let isoCountryCode = placemark.isoCountryCode ?? ""
+        let address = "\(name), \(locality), \(administrativeArea) \(postalCode), \(isoCountryCode)"
+        
+        log.info(address)
+        
+        let geoPoint = PFGeoPoint(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude)
+        
+        let tripSegment = TripSegment(name: name, address: address, geoPoint: geoPoint)
+        return tripSegment
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("segue.identifier \(segue.identifier!)")
         
         if segue.identifier! == "StartTrip" {
             
             // Create a new trip object and save it to the database
+            let startSegment = tripSegmentFromMapItem(mapItem: locationTuples[0].mapItem!)
+            let destSegment = tripSegmentFromMapItem(mapItem: locationTuples[1].mapItem!)
             
-            let startLocation = locationTuples[0].mapItem?.placemark.location
-            let startPoint = TripSegmentPoint(name: "start", geoPoint: PFGeoPoint(location: startLocation))
-            
-            let destLocation = locationTuples[1].mapItem?.placemark.location
-            let destPoint = TripSegmentPoint(name: "dest", geoPoint: PFGeoPoint(location: destLocation))
-            
-            let trip = Trip(name: (locationTuples[1].textField?.text)!, date: Date(), startPoint: startPoint, destinationPoint: destPoint, creator: PFUser.current()!)
+            let trip = Trip(name: destSegment.name ?? "Unnamed Trip", date: Date(), creator: PFUser.current()!)
+            trip.addSegment(tripSegment: startSegment)
+            trip.addSegment(tripSegment: destSegment)
             
             trip.saveInBackground {
                 (success, error) in

@@ -18,7 +18,7 @@ class TabBarViewController: UITabBarController {
         
         // Create view controllers from storyboard.
         let tripsNavigtaionController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.TripsNavigationController) as! UINavigationController
-//        let tripsNavigtaionController = TempLandingViewController.storyboardInstance()
+//        let tripsNavigtaionController = TempLandingViewController.storyboardInstance()!
         tripsNavigtaionController.tabBarItem = UITabBarItem(title: "Trips", image: #imageLiteral(resourceName: "trip-tab"), tag: 0)
         // Add the log out button to the view controller navigation item.
         addLogoutButton(to: tripsNavigtaionController)

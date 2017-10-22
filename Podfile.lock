@@ -28,6 +28,9 @@ PODS:
   - FLEX (2.4.0)
   - Parse (1.15.3):
     - Bolts/Tasks (~> 1.8)
+  - ParseUI (1.2.0):
+    - Bolts/Tasks (~> 1.3)
+    - Parse (~> 1.9)
   - SwiftyBeaver (1.4.2)
   - YelpAPI (2.0.0)
 
@@ -38,6 +41,7 @@ DEPENDENCIES:
   - FBSDKLoginKit (= 4.27.1)
   - FLEX (~> 2.4)
   - Parse
+  - ParseUI
   - SwiftyBeaver
   - YelpAPI
 
@@ -49,9 +53,10 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 66ff53b73cffd967ab773e32fac39e90a60e6d46
   FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   Parse: cdc0f1f975ee8be0409e66f21b05df4ae067047c
+  ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SwiftyBeaver: 91057725648ee4980308f1650af077d04b3654a0
   YelpAPI: a0475cf4a7b6f9fe81f1bb7b8a8492770f21e3c7
 
-PODFILE CHECKSUM: a2e0ad1aee396a75398a453683ec3b66c57d221f
+PODFILE CHECKSUM: ae7f57629873c288bef6690e417e1b485dd8e08f
 
 COCOAPODS: 1.3.1

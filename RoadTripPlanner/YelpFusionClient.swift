@@ -7,7 +7,7 @@
 //
 
 import YelpAPI
-import AFNetworking
+//import AFNetworking
 import CoreLocation
 
 class YelpFusionClient {
@@ -30,15 +30,26 @@ class YelpFusionClient {
         }
     }
     
+    func search(withLocationName location: String, term: String) {
+        yelpClient?.search(withLocation: location, term: term, limit: 20, offset: 0, sort: YLPSortType.bestMatched, completionHandler: { (search: YLPSearch?, error: Error?) in
+            let businesses = search?.businesses
+            log.info(businesses?.count ?? 0)
+            
+            for b in businesses! {
+                log.info (b.name)
+            }
+        })
+    }
+    
     func search(withLocation location: String, term: String, completionHandler: @escaping ([YLPBusiness]?, Error?) -> Void) {
         log.info("INSIDE SEARCH")
-            
-         yelpClient?.search(withLocation: location, term: term, limit: 20, offset: 0, sort: YLPSortType.bestMatched, completionHandler: { (search: YLPSearch?, error: Error?) in
-        //success: { (search: YLPSearch, response: Any) -> Void in
+        
+        yelpClient?.search(withLocation: location, term: term, limit: 20, offset: 0, sort: YLPSortType.bestMatched, completionHandler: { (search: YLPSearch?, error: Error?) in
+            //success: { (search: YLPSearch, response: Any) -> Void in
             let businesses = search?.businesses// as! [Business]
             completionHandler(businesses, nil)
             log.info("yelp query \(YLPQuery.dictionaryWithValues(forKeys: ["parking","autoelectric"]))")
-           // log.info(businesses)
+            // log.info(businesses)
             let notificationName = NSNotification.Name(rawValue: "BussinessesDidUpdate")
             NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["businesses": businesses as! [YLPBusiness]])
             
@@ -48,9 +59,9 @@ class YelpFusionClient {
             for b in businesses! {
                 log.info (b.name)
             }
-
-        //YLPQuery(location: "San Francisco, CA")
-   
+            
+            //YLPQuery(location: "San Francisco, CA")
+            
         })
     }
     
@@ -101,6 +112,7 @@ class YelpFusionClient {
             NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["businesses": businesses as! [YLPBusiness]])
             
             //success(newTweet)
+
             log.info(businesses?.count ?? 0)
             
             for b in businesses! {
@@ -111,22 +123,48 @@ class YelpFusionClient {
         })
     }
     
-    
-    func searchWithQuery(query :YLPQuery, completionHandler : YLPSearchCompletionHandler) {
-        var params = [query: "parameters"]
-        //var req = self.searchWithQuery(query: <#T##YLPQuery#>, completionHandler: <#T##(YLPSearch?, Error?) -> Void#>).searchRequestWithParams(params)
-    
-        /*self.queryWithRequest(req, completionHandler: {(responseDict :NSDictionary,  error :Error) in
-            if (error) {
-                completionHandler(nil, error)
+    func search(withLocation location: CLLocation, term: String, categories: [String]) {
+        let ylpCoordinate = YLPCoordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        
+        let query = YLPQuery(coordinate: ylpCoordinate)
+        query.categoryFilter = categories
+        query.limit = 20
+        query.offset = 0
+        query.sort = YLPSortType.distance
+        
+        yelpClient?.search(with: query, completionHandler: { (search: YLPSearch?, error: Error?) in
+            if error != nil {
+                log.error(error ?? "Unknown Error Occurred")
             } else {
-                var search = YLPSearch.initWithDictionary(responseDict)
-                completionHandler(search, nil)
+                let businesses = search?.businesses
+                log.info(businesses?.count ?? 0)
+                
+//                for b in businesses! {
+//                    log.info (b.name)
+//                    log.info (b.location)
+//                    let categories = b.categories
+//                    for category in categories {
+//                        log.info("Category: \(category.name)")
+//                    }
+//                }
             }
-    
-        })*/
+        })
     }
     
-   
+    func search(withLocation location: CLLocation, term: String, completion: @escaping ([YLPBusiness]?, Error?) -> Void) {
+        let ylpCoordinate = YLPCoordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        
+        yelpClient?.search(with: ylpCoordinate, term: term, limit: 20, offset: 0, sort: YLPSortType.mostReviewed, completionHandler: { (search: YLPSearch?, error: Error?) in
+            if error != nil {
+                log.error(error ?? "Unknown Error Occurred")
+                completion(nil, error)
+            } else {
+                let businesses = search?.businesses
+                log.info(businesses?.count ?? 0)
+                completion(businesses, nil)
+            }
+        })
+    }
+        
 }
 

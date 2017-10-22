@@ -10,9 +10,25 @@ import UIKit
 
 class TripSegmentCell: UITableViewCell {
 
+    @IBOutlet weak var placeImageView: UIImageView!
+    @IBOutlet weak var placeAddressLabel: UILabel!
+    @IBOutlet weak var placeNameLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var includeSwitch: UISwitch!
+    
+    var tripSegment: TripSegment! {
+        didSet {
+            placeNameLabel.text = tripSegment.name
+            placeAddressLabel.text = tripSegment.address
+            distanceLabel.text = ""
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        placeNameLabel.preferredMaxLayoutWidth = placeNameLabel.frame.size.width
+        placeAddressLabel.preferredMaxLayoutWidth = placeAddressLabel.frame.size.width
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -21,4 +37,7 @@ class TripSegmentCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func onSwitchValueChanged(_ sender: UISwitch) {
+    
+    }
 }
