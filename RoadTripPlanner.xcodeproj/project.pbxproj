@@ -18,7 +18,6 @@
 		486E3C481F945EEB003D2FFF /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C441F945EEB003D2FFF /* PhotoViewController.swift */; };
 		486E3C4D1F945F4E003D2FFF /* AddPhotoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E3C4C1F945F4E003D2FFF /* AddPhotoDelegate.swift */; };
 		48CB34491F9BBC5900EE268A /* AddAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CB34481F9BBC5900EE268A /* AddAlbumViewController.swift */; };
-		48CB344B1F9BBC9000EE268A /* AddAlbumDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CB344A1F9BBC9000EE268A /* AddAlbumDelegate.swift */; };
 		48CB344D1F9C3E3300EE268A /* Album.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48CB344C1F9C3E3300EE268A /* Album.storyboard */; };
 		48CB34511F9C408000EE268A /* TripSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CB34501F9C408000EE268A /* TripSummaryCell.swift */; };
 		48CCC83F1F9D0A4900050176 /* DeleteAlbumDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCC83E1F9D0A4900050176 /* DeleteAlbumDelegate.swift */; };
@@ -30,6 +29,7 @@
 		DFA0E2A11F96D272005D7528 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E2A01F96D272005D7528 /* APIKeys.swift */; };
 		DFA0E2A61F96E973005D7528 /* CreateUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */; };
 		DFA0E2A81F96EB2D005D7528 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */; };
+		DFC85C201F9D379A00797D92 /* AddAlbumDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC85C1F1F9D379A00797D92 /* AddAlbumDelegate.swift */; };
 		DFCC37791F9707E2003BDCA6 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37781F9707E2003BDCA6 /* ProfileViewController.storyboard */; };
 		DFCC377B1F97085C003BDCA6 /* AlbumListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC377A1F97085C003BDCA6 /* AlbumListViewController.storyboard */; };
 		DFCC377D1F9708D4003BDCA6 /* LandingPageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC377C1F9708D4003BDCA6 /* LandingPageViewController.storyboard */; };
@@ -115,7 +115,6 @@
 		486E3C441F945EEB003D2FFF /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		486E3C4C1F945F4E003D2FFF /* AddPhotoDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhotoDelegate.swift; sourceTree = "<group>"; };
 		48CB34481F9BBC5900EE268A /* AddAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlbumViewController.swift; sourceTree = "<group>"; };
-		48CB344A1F9BBC9000EE268A /* AddAlbumDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddAlbumDelegate.swift; path = "/Users/nanxikang/Documents/workspace/travel-app/RoadTripPlanner/AddAlbumDelegate.swift"; sourceTree = "<absolute>"; };
 		48CB344C1F9C3E3300EE268A /* Album.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Album.storyboard; sourceTree = "<group>"; };
 		48CB34501F9C408000EE268A /* TripSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryCell.swift; sourceTree = "<group>"; };
 		48CCC83E1F9D0A4900050176 /* DeleteAlbumDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAlbumDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +129,7 @@
 		DFA0E2A01F96D272005D7528 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateUserViewController.storyboard; sourceTree = "<group>"; };
 		DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		DFC85C1F1F9D379A00797D92 /* AddAlbumDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlbumDelegate.swift; sourceTree = "<group>"; };
 		DFCC37781F9707E2003BDCA6 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		DFCC377A1F97085C003BDCA6 /* AlbumListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlbumListViewController.storyboard; sourceTree = "<group>"; };
 		DFCC377C1F9708D4003BDCA6 /* LandingPageViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LandingPageViewController.storyboard; sourceTree = "<group>"; };
@@ -226,11 +226,11 @@
 		486E3C491F945EF7003D2FFF /* Album */ = {
 			isa = PBXGroup;
 			children = (
+				DFC85C1F1F9D379A00797D92 /* AddAlbumDelegate.swift */,
 				486E3C411F945EEB003D2FFF /* AlbumDetailsViewController.swift */,
 				486E3C421F945EEB003D2FFF /* AlbumListViewController.swift */,
 				486E3C441F945EEB003D2FFF /* PhotoViewController.swift */,
 				48CB34481F9BBC5900EE268A /* AddAlbumViewController.swift */,
-				48CB344A1F9BBC9000EE268A /* AddAlbumDelegate.swift */,
 				486E3C4C1F945F4E003D2FFF /* AddPhotoDelegate.swift */,
 				48CCC83E1F9D0A4900050176 /* DeleteAlbumDelegate.swift */,
 				48CCC8401F9D14B200050176 /* UpdateAlbumDelegate.swift */,
@@ -499,7 +499,7 @@
 				TargetAttributes = {
 					F806F2761F8DA42A00E11785 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = X3E7C93B2H;
+						DevelopmentTeam = 8F2PWFTJG8;
 						ProvisioningStyle = Automatic;
 					};
 					F806F28A1F8DA42B00E11785 = {
@@ -756,7 +756,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48CB344B1F9BBC9000EE268A /* AddAlbumDelegate.swift in Sources */,
 				F8607B251F903FC20029DB02 /* User.swift in Sources */,
 				F8B6A3E31F93207500942820 /* TripDetailsCell.swift in Sources */,
 				DFCC37A91F99C5AC003BDCA6 /* TripSegmentCell.swift in Sources */,
@@ -804,6 +803,7 @@
 				48CCC8411F9D14B200050176 /* UpdateAlbumDelegate.swift in Sources */,
 				DFA0E2A11F96D272005D7528 /* APIKeys.swift in Sources */,
 				DFCC379F1F9950E5003BDCA6 /* TempCreateTripViewController.swift in Sources */,
+				DFC85C201F9D379A00797D92 /* AddAlbumDelegate.swift in Sources */,
 				DFECC5701F9C2DDD00F3B63E /* TestData.swift in Sources */,
 				486E3C401F945ED8003D2FFF /* Album.swift in Sources */,
 				DFECC5671F9C1CFB00F3B63E /* BusinessCollectionCell.swift in Sources */,
@@ -963,7 +963,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = X3E7C93B2H;
+				DEVELOPMENT_TEAM = 8F2PWFTJG8;
 				INFOPLIST_FILE = RoadTripPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -980,7 +980,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = X3E7C93B2H;
+				DEVELOPMENT_TEAM = 8F2PWFTJG8;
 				INFOPLIST_FILE = RoadTripPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

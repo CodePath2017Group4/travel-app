@@ -39,14 +39,19 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         
         if PFUser.current() != nil {
             userNameLabel.text = PFUser.current()?.username
-            let avatarFile = PFUser.current()?.object(forKey: "avatar") as! PFFile
-            avatarFile.getDataInBackground(block: { (imageData, error) in
-                if error == nil {
-                    let avatarImage = UIImage(data: imageData!)
-                    self.profileImage.image = avatarImage
-                    
-                }
-            })
+            let avatarFile = PFUser.current()?.object(forKey: "avatar") as? PFFile
+            if avatarFile != nil {
+                avatarFile?.getDataInBackground(block: { (imageData, error) in
+                    if error == nil {
+                        let avatarImage = UIImage(data: imageData!)
+                        self.profileImage.image = avatarImage
+                        
+                    }
+                })
+            } else {
+                profileImage.image = #imageLiteral(resourceName: "user")
+            }
+            
         } else {
             userNameLabel.text = "Anonymous User"
             profileImage.image = #imageLiteral(resourceName: "user")
