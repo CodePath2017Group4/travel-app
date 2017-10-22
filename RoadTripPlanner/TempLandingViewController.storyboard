@@ -45,12 +45,40 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uyy-ug-mtC">
+                                <rect key="frame" x="20" y="233" width="151" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="151" id="g2o-Uh-pPH"/>
+                                    <constraint firstAttribute="height" constant="48" id="kul-ud-ONZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Gas Stations" image="gasstation"/>
+                                <connections>
+                                    <action selector="gasStationsPressed:" destination="K6I-XJ-mMJ" eventType="touchUpInside" id="ZAO-ME-Gck"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIg-QL-JAg">
+                                <rect key="frame" x="191" y="225" width="118" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="dbl-xu-dGF"/>
+                                    <constraint firstAttribute="width" constant="118" id="qHD-Ro-UGk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Hotels" image="hotel"/>
+                                <connections>
+                                    <action selector="hotelsPressed:" destination="K6I-XJ-mMJ" eventType="touchUpInside" id="leq-M4-NJb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.16051313280000001" green="0.63281899689999999" blue="0.61406725650000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="fIg-QL-JAg" firstAttribute="centerY" secondItem="Uyy-ug-mtC" secondAttribute="centerY" id="1p8-dS-Vfv"/>
                             <constraint firstItem="UmD-hX-hxD" firstAttribute="top" secondItem="9HC-1x-Vuk" secondAttribute="top" constant="32" id="4nD-MO-xPi"/>
+                            <constraint firstItem="Uyy-ug-mtC" firstAttribute="top" secondItem="raJ-eX-DVP" secondAttribute="bottom" constant="36" id="KoS-KP-6Di"/>
                             <constraint firstItem="raJ-eX-DVP" firstAttribute="centerX" secondItem="RX6-8M-qru" secondAttribute="centerX" id="LL1-0a-Oe4"/>
                             <constraint firstItem="raJ-eX-DVP" firstAttribute="top" secondItem="UmD-hX-hxD" secondAttribute="bottom" constant="20" id="bdw-Cy-Zh7"/>
+                            <constraint firstItem="fIg-QL-JAg" firstAttribute="leading" secondItem="Uyy-ug-mtC" secondAttribute="trailing" constant="20" id="h7E-xE-7lg"/>
+                            <constraint firstItem="Uyy-ug-mtC" firstAttribute="leading" secondItem="9HC-1x-Vuk" secondAttribute="leading" constant="20" id="iLk-nT-J3B"/>
                             <constraint firstItem="UmD-hX-hxD" firstAttribute="centerX" secondItem="RX6-8M-qru" secondAttribute="centerX" id="mUz-Mq-eON"/>
                             <constraint firstItem="9HC-1x-Vuk" firstAttribute="bottom" secondItem="LsR-m5-E5o" secondAttribute="bottom" constant="170" id="p31-aK-U1H"/>
                             <constraint firstItem="LsR-m5-E5o" firstAttribute="centerX" secondItem="RX6-8M-qru" secondAttribute="centerX" id="sff-P6-Auo"/>
@@ -88,6 +116,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gasstation" width="48" height="48"/>
+        <image name="hotel" width="64" height="64"/>
         <image name="map_abstract" width="128" height="128"/>
     </resources>
 </document>

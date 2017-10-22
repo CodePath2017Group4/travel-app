@@ -7,7 +7,7 @@
 //
 
 import YelpAPI
-import AFNetworking
+//import AFNetworking
 import CoreLocation
 
 class YelpFusionClient {
@@ -29,10 +29,8 @@ class YelpFusionClient {
             }
         }
     }
-    
 
     func searchWith(location: CLLocationCoordinate2D, term: String, completionHandler: @escaping ([YLPBusiness]?, Error?) -> Void) {
-
         
         let query = YLPQuery(coordinate: YLPCoordinate(latitude: location.latitude, longitude: location.longitude))
         query.term = term
@@ -61,8 +59,6 @@ class YelpFusionClient {
 
     }
 
-
-    
     func search(inCurrent location: CLLocationCoordinate2D, term: String, completionHandler: @escaping ([YLPBusiness]?, Error?) -> Void) {
         log.info("INSIDE SEARCH")
         

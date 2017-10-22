@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var numTripsLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var editPhotoButton: UIButton!
     
     static func storyboardInstance() -> UINavigationController? {
         let storyboard = UIStoryboard(name: "ProfileViewController", bundle: nil)
@@ -28,6 +29,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
 
         profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
         profileImage.clipsToBounds = true
+        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.borderWidth = 3.0
+        
+        editPhotoButton.layer.cornerRadius = 5
         
         numAlbumsLabel.text = "0"
         numTripsLabel.text = "0"
@@ -39,6 +44,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
                 if error == nil {
                     let avatarImage = UIImage(data: imageData!)
                     self.profileImage.image = avatarImage
+                    
                 }
             })
         } else {

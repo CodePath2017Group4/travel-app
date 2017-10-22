@@ -60,6 +60,7 @@ class LandingPageViewController: UIViewController {
     
     var businesses: [YLPBusiness]!
 
+    var trips: [Trip]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +82,8 @@ class LandingPageViewController: UIViewController {
         getLocation()
         weather = WeatherGetter(delegate: self)
        
+        trips = TestData().trips
+        
         //1
         //self.scrollView.frame = CGRect(x:0, y:0, width:self.view.frame.width, height:self.view.frame.height)
         
@@ -393,10 +396,11 @@ class LandingPageViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension LandingPageViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return trips.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -420,10 +424,21 @@ extension LandingPageViewController: UITableViewDataSource, UITableViewDelegate 
 
             
         }
-
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Show the trip details view controller.
+        
+        let trip = trips[indexPath.row]
+        log.info("Selected trip \(trip.name ?? "none")")
+        
+        let tripDetailsVC = TripDetailsViewController.storyboardInstance()
+        tripDetailsVC?.trip = trip
+        navigationController?.pushViewController(tripDetailsVC!, animated: true)
     }
 }
 
+// MARK: - CLLocationManagerDelegate
 extension LandingPageViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -442,6 +457,7 @@ extension LandingPageViewController: CLLocationManagerDelegate {
     
 }
 
+// MARK: - WeatherGetterDelegate
 extension LandingPageViewController: WeatherGetterDelegate {
     
     func didGetWeather(weather: Weather) {
@@ -461,6 +477,7 @@ extension LandingPageViewController: WeatherGetterDelegate {
     }
 }
 
+// MARK: - UIScrollViewDelegate
 extension LandingPageViewController : UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
  

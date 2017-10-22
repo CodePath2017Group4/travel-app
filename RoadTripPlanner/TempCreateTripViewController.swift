@@ -19,7 +19,11 @@ class TempCreateTripViewController: UIViewController {
     @IBOutlet weak var categoriesView: UIView!
     @IBOutlet weak var startTripButton: UIButton!
     
+    var selectedCategory: PlaceCategory?
+    
     var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!
+    
+    var tripSegments: [TripSegment] = []
     
     var places = [MKMapItem]()
     
@@ -79,21 +83,26 @@ class TempCreateTripViewController: UIViewController {
         log.info(address)
         
         return address
-        
     }
     
     @IBAction func startTripButtonPressed(_ sender: Any) {
         
+        //37.21841670,-121.87007890
+        // latitude: 35.373404999999998, longitude: -119.018911  - Bakersfield
+        // latitude: 34.054124700000003, longitude: -118.2433624 - Los Angeles
+        
+        let tripSegment = self.tripSegmentFromMapItem(mapItem: locationTuples[0].mapItem!)
+        
+        let intermediateLocation = CLLocation(latitude: 35.373404999999998, longitude: -119.018911)
+        let intermediateSegment = TripSegment(name: "Bakersfield", address: "Temp Address", geoPoint: PFGeoPoint(location: intermediateLocation))
+        
+        let destSegment = tripSegmentFromMapItem(mapItem: locationTuples[1].mapItem!)
+        
         // Create a new trip object and save it to the database
-        
-        let startLocation = locationTuples[0].mapItem?.placemark.location
-        let startPoint = TripSegmentPoint(name: "start",geoPoint: PFGeoPoint(location: startLocation))
-        
-        let destLocation = locationTuples[1].mapItem?.placemark.location
-        let destPoint = TripSegmentPoint(name: "dest", geoPoint: PFGeoPoint(location: destLocation))
-        
-        // init(name: String, date: Date, startPoint: TripSegmentPoint, destinationPoint: TripSegmentPoint, creator: PFUser) {
-        let trip = Trip(name: (locationTuples[1].textField?.text)!, date: Date(), startPoint: startPoint, destinationPoint: destPoint, creator: PFUser.current()!)
+        let trip = Trip(name: destSegment.name ?? "Unnamed Trip", date: Date(), creator: PFUser.current()!)
+        trip.addSegment(tripSegment: tripSegment)
+        trip.addSegment(tripSegment: intermediateSegment)
+        trip.addSegment(tripSegment: destSegment)
         
 //        trip.saveInBackground { (success, error) in
 //            if (success) {
@@ -103,11 +112,41 @@ class TempCreateTripViewController: UIViewController {
 //            }
 //        }
         
+//        YelpFusionClient.sharedInstance.search(withLocation: startLocation!, term: "automotive", categories: ["servicestations", "evchargingstations"])
+        
+//        // Push the MapViewController onto the nav stack.
+//        guard let mapVC = MapViewController.storyboardInstance() else { return }
+//        mapVC.startMapItem = locationTuples[0].mapItem
+//        mapVC.destMapItem = locationTuples[1].mapItem
+//        navigationController?.pushViewController(mapVC, animated: true)
         
         // Push the TripDetailsViewController onto the nav stack.
         guard let tripDetailsVC = TripDetailsViewController.storyboardInstance() else { return }
         tripDetailsVC.trip = trip
         navigationController?.pushViewController(tripDetailsVC, animated: true)
+        
+    }
+    
+    fileprivate func yelpLookupFromPlacemark(placemark: CLPlacemark, term: String) {
+        YelpFusionClient.sharedInstance.search(withLocationName: placemark.name!, term: term)
+    }
+    
+    fileprivate func tripSegmentFromMapItem(mapItem: MKMapItem) -> TripSegment {
+        
+        let placemark = mapItem.placemark
+        let name = placemark.name ?? mapItem.name ?? ""
+        let locality = placemark.locality ?? ""
+        let administrativeArea = placemark.administrativeArea ?? ""  // state
+        let postalCode = placemark.postalCode ?? ""
+        let isoCountryCode = placemark.isoCountryCode ?? ""
+        let address = "\(name), \(locality), \(administrativeArea) \(postalCode), \(isoCountryCode)"
+        
+        log.info(address)
+        
+        let geoPoint = PFGeoPoint(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude)
+        
+        let tripSegment = TripSegment(name: name, address: address, geoPoint: geoPoint)
+        return tripSegment
     }
 }
 
@@ -165,6 +204,7 @@ extension TempCreateTripViewController: UITableViewDataSource {
         
         // Update the destination text field
         destinationTextField.text = completion.title
+        
         // Hide the table view and show the categories view
         categoriesView.isHidden = false
         locationTableView.isHidden = true
@@ -178,6 +218,7 @@ extension TempCreateTripViewController: UITableViewDataSource {
                 log.verbose(String(describing: coordinate))
                 let placemark = response.mapItems.first?.placemark
                 let mapItem = MKMapItem(placemark: placemark!)
+                
                 self.locationTuples[1].mapItem = mapItem
             }
         }
@@ -195,9 +236,8 @@ extension TempCreateTripViewController : CLLocationManagerDelegate {
         CLGeocoder().reverseGeocodeLocation(userLocation!) { (placemarks: [CLPlacemark]?, error: Error?) in
             if let placemarks = placemarks {
                 let placemark = placemarks.first!
-                let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: placemark.location!.coordinate, addressDictionary: placemark.addressDictionary as! [String:Any]?))
                 
-                log.verbose(mapItem)
+                let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: placemark.location!.coordinate, addressDictionary: placemark.addressDictionary as! [String:Any]?))
                 
                 self.locationTuples[0].mapItem = mapItem
                 self.currentLocationTextField.text = self.formatAddressFromPlacemark(placemark: placemark)
