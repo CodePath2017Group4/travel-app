@@ -62,7 +62,7 @@
                                             <constraint firstAttribute="height" constant="28" id="seE-LW-R7V"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="  Add Stop" image="plus">
+                                        <state key="normal" title="  Add Stop" image="add-stop">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -323,12 +323,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add-stop" width="28" height="28"/>
         <image name="album" width="50" height="50"/>
         <image name="comments" width="50" height="50"/>
         <image name="details" width="50" height="50"/>
         <image name="like" width="64" height="64"/>
         <image name="maps-and-flags" width="64" height="64"/>
-        <image name="plus" width="28" height="28"/>
         <image name="share-1" width="28" height="30"/>
         <image name="user" width="128" height="128"/>
         <image name="users-1" width="28" height="26"/>

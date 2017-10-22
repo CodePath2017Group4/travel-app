@@ -7,11 +7,20 @@
 //
 
 import UIKit
+import MapKit
 
 class LocationSearchResultCell: UITableViewCell {
     
-    @IBOutlet weak var locationNameLabel: UILabel!
-    @IBOutlet weak var locationSubtitleLabel: UILabel!
+   
+    @IBOutlet weak var resultTitleLabel: UILabel!
+    @IBOutlet weak var resultSubtitleLabel: UILabel!
+    
+    var searchCompletionResult: MKLocalSearchCompletion! {
+        didSet {
+            resultTitleLabel.text = searchCompletionResult.title
+            resultSubtitleLabel.text = searchCompletionResult.subtitle
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

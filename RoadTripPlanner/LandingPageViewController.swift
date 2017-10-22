@@ -155,12 +155,21 @@ class LandingPageViewController: UIViewController {
         self.scrollView.contentSize = CGSize(width:self.scrollView.frame.width * 2, height:self.scrollView.frame.height)
         self.scrollView.delegate = self
         self.pageControl.currentPage = 1
+        
+        navigationController?.navigationBar.tintColor = UIColor.white
+        let textAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
 
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.navigationController?.navigationBar.isHidden = true
+        //self.navigationController?.navigationBar.isHidden = true
         
+        // Make the navigation bar completely transparent.
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+                
     }
 
     func categoryTapped(_ sender: UITapGestureRecognizer) {
