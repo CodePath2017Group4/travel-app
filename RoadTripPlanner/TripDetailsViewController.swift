@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 import AFNetworking
+import MessageUI
 
 class TripDetailsViewController: UIViewController {
     
@@ -45,6 +46,11 @@ class TripDetailsViewController: UIViewController {
         profileImageView.clipsToBounds = true
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 3.0
+        
+        let emailImageTap = UITapGestureRecognizer(target: self, action: #selector(emailImageTapped))
+        emailImageTap.numberOfTapsRequired = 1
+        emailGroupImageView.isUserInteractionEnabled = true
+        emailGroupImageView.addGestureRecognizer(emailImageTap)
         
         if trip != nil {
             guard let trip = trip else { return }
@@ -130,7 +136,55 @@ class TripDetailsViewController: UIViewController {
         self.navigationController?.pushViewController(albumDetailsViewController, animated: true)
         
     }
+    
+    func emailImageTapped(_ sender: AnyObject) {
+        
+        let mailComposeViewController = configuredMailComposeViewController()
+        
+        if MFMailComposeViewController.canSendMail() {
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+        
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        mailComposerVC.setToRecipients([])
+        
+        if #available(iOS 11.0, *) {
+            let fromEmail = trip?.creator?.email != nil ? "\((trip?.creator?.email)!)" : ""
+            mailComposerVC.setPreferredSendingEmailAddress("\(fromEmail)")
+        }
 
+        var emailSubject = User.currentUser?.userName != nil ? "\((User.currentUser?.userName)!)'s" :""
+        emailSubject += trip?.name != nil ? "\((trip?.name)!)" : "My Road Trip"
+        mailComposerVC.setSubject("\(emailSubject) !")
+        mailComposerVC.setMessageBody("\(Constants.PrefabricatedEmailMessage.TripInvitationEmail)", isHTML: true)
+        
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        let alert = UIAlertController(
+            title: "Could Not Send Email",
+            message: "Your device could not send Email. Please check Email configuration and try again.",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(
+            title: "OK",
+            style:  .default,
+            handler: nil
+        )
+        alert.addAction(okAction)
+        present(
+            alert,
+            animated: true,
+            completion: nil
+        )
+    }
 }
 
 extension TripDetailsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -163,6 +217,14 @@ extension TripDetailsViewController: TripDetailsCellDelegate {
         let compmentsViewController = storyboard.instantiateViewController(withIdentifier: "compose") as! CommentsViewController
         
         self.navigationController?.pushViewController(compmentsViewController, animated: true)
+    }
+}
+
+extension TripDetailsViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 
