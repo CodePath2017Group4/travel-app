@@ -2464,11 +2464,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VKT-3m-Kho" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
             <point key="canvasLocation" x="2994" y="192"/>
-=======
-            <point key="canvasLocation" x="3001" y="589"/>
->>>>>>> master
         </scene>
         <!--Route Map View Controller-->
         <scene sceneID="YKR-Yz-pqe">
@@ -2554,11 +2550,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="TEW-Lj-QBf"/>
-<<<<<<< HEAD
         <segue reference="tB9-7m-Kh4"/>
         <segue reference="bXJ-92-7ab"/>
-=======
-        <segue reference="ZKY-A7-3VE"/>
->>>>>>> master
     </inferredMetricsTieBreakers>
 </document>
