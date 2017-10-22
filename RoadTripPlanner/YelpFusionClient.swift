@@ -29,6 +29,17 @@ class YelpFusionClient {
             }
         }
     }
+    
+    func search(withLocationName location: String, term: String) {
+        yelpClient?.search(withLocation: location, term: term, limit: 20, offset: 0, sort: YLPSortType.bestMatched, completionHandler: { (search: YLPSearch?, error: Error?) in
+            let businesses = search?.businesses
+            log.info(businesses?.count ?? 0)
+        
+            for b in businesses! {
+              log.info (b.name)
+            }
+        })
+    }
 
     func searchWith(location: CLLocationCoordinate2D, term: String, completionHandler: @escaping ([YLPBusiness]?, Error?) -> Void) {
         
@@ -79,5 +90,20 @@ class YelpFusionClient {
             }
         })
     }
+    
+    func search(withLocation location: CLLocation, term: String, completion: @escaping ([YLPBusiness]?, Error?) -> Void) {
+        let ylpCoordinate = YLPCoordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        
+        yelpClient?.search(with: ylpCoordinate, term: term, limit: 20, offset: 0, sort: YLPSortType.mostReviewed, completionHandler: { (search: YLPSearch?, error: Error?) in
+                if error != nil {
+                   log.error(error ?? "Unknown Error Occurred")
+                   completion(nil, error)
+                } else {
+                   let businesses = search?.businesses
+                   log.info(businesses?.count ?? 0)
+                    completion(businesses, nil)
+                }
+            })
+   }
 }
 
