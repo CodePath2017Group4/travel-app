@@ -22,7 +22,6 @@ struct Weather {
     let mainWeather: String
     let weatherDescription: String
     let weatherIconID: String
-    let weatherIconImgView: UIImageView = UIImageView()
     static let currentLocKey = "CurrentLocKey"
 
     fileprivate let temp: Double //in Kelvin
@@ -65,18 +64,7 @@ struct Weather {
         mainWeather = weatherDict["main"] as! String
         weatherDescription = weatherDict["description"] as! String
         weatherIconID = weatherDict["icon"] as! String
-
-        if (UIImage(named: weatherIconID) == nil) {
-            let iconUrl = "http://openweathermap.org/img/w/\(weatherIconID).png"
-            let weatherIconUrl = URL(string: iconUrl)!
-            weatherIconImgView.setImageWith(weatherIconUrl)
-
-        }
-        else {
-            weatherIconImgView.image = UIImage(named: weatherIconID)
-        }
-        
-        
+                
         let mainDict = weatherData["main"] as! [String: AnyObject]
         temp = mainDict["temp"] as! Double
         humidity = mainDict["humidity"] as! Int
