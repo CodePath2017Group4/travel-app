@@ -9,5 +9,5 @@
 import Foundation
 
 protocol UpdateAlbumDelegate {
-    func updateAlbum(album: Album, indexPath: IndexPath)
+    func updateAlbum(album: Album, indexPath: IndexPath?)
 }

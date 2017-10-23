@@ -47,8 +47,8 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
             UIImage(named: "profile2")!,
             UIImage(named: "profile3")!]
         for image in photos {
-            let data = UIImageJPEGRepresentation(image, 0.7)
-            if let file = PFFile(data: data!) {
+            let file = Utils.imageToFile(image: image)
+            if let file = file {
                 album.photos.append(file)
             }
         }
@@ -97,17 +97,20 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         self.albumsTable.reloadData()
     }
     
-    func updateAlbum(album: Album, indexPath: IndexPath) {
+    func updateAlbum(album: Album, indexPath: IndexPath?) {
         // TODO: should use @album
-        print("updating albums \(indexPath.row)")
-        self.albums[indexPath.row] = Album(copyFrom: album)
-        self.albumsTable.reloadData()
+        if let indexPath = indexPath {
+            print("updating albums \(indexPath.row)")
+            self.albums[indexPath.row] = Album(copyFrom: album)
+            self.albumsTable.reloadData()
+        }
     }
     
     @IBAction func addAlbumTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Album", bundle: nil)
         let addAlbumVC = storyboard.instantiateViewController(withIdentifier: "AddAlbumVC") as! AddAlbumViewController
-        addAlbumVC.delegate = self
+        addAlbumVC.addAlbumDelegate = self
+        addAlbumVC.shouldAddAlbum = true
         addAlbumVC.trips = self.trips
         show(addAlbumVC, sender: self)
     }

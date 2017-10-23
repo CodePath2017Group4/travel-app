@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,6 +17,39 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Photo Gallery View Controller-->
+        <scene sceneID="cST-8d-hDT">
+            <objects>
+                <viewController storyboardIdentifier="photoGalleryVC" id="JEc-D0-U5E" customClass="PhotoGalleryViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aSW-oG-IKd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yb4-Lt-msa">
+                                <rect key="frame" x="-0.5" y="193" width="375" height="281"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Yb4-Lt-msa" secondAttribute="height" multiplier="4:3" id="jaF-jK-4TI"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Yb4-Lt-msa" firstAttribute="centerX" secondItem="aSW-oG-IKd" secondAttribute="centerX" id="278-lD-4FW"/>
+                            <constraint firstItem="Yb4-Lt-msa" firstAttribute="centerY" secondItem="aSW-oG-IKd" secondAttribute="centerY" id="7pM-Dz-GUK"/>
+                            <constraint firstItem="Yb4-Lt-msa" firstAttribute="width" secondItem="aSW-oG-IKd" secondAttribute="width" id="fx4-hj-Tq5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BhW-Af-Ek5"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="Yb4-Lt-msa" id="OsK-Tf-j7m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ekm-qH-Yxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="996" y="1613"/>
+        </scene>
         <!--Add Album View Controller-->
         <scene sceneID="sEx-Gn-Xsi">
             <objects>
@@ -147,7 +181,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6rZ-dH-g5T">
-                                <rect key="frame" x="0.0" y="163" width="375" height="504"/>
+                                <rect key="frame" x="0.0" y="197" width="375" height="470"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fpV-dI-Qhc">
                                     <size key="itemSize" width="116" height="116"/>
@@ -224,26 +258,66 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 people" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epQ-R4-zW9">
+                                <rect key="frame" x="287" y="126" width="64" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jE-Uf-t6i">
+                                <rect key="frame" x="62.5" y="155" width="90" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="LrK-sh-0oP"/>
+                                    <constraint firstAttribute="width" constant="90" id="MQ9-wL-AX0"/>
+                                </constraints>
+                                <state key="normal" title="Edit Album">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="leftButtonTapped:" destination="r5C-cs-EKZ" eventType="touchUpInside" id="z19-xg-MyL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z8J-8y-QTi">
+                                <rect key="frame" x="222.5" y="155" width="90" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="ln8-uG-5yU"/>
+                                </constraints>
+                                <state key="normal" title="Edit Photos">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="rightButtonTapped:" destination="r5C-cs-EKZ" eventType="touchUpInside" id="uX4-ko-HTl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6P1-JY-V1E" firstAttribute="leading" secondItem="2Bu-3l-j6W" secondAttribute="leadingMargin" constant="16" id="2As-7q-Io8"/>
                             <constraint firstItem="foN-mw-F8A" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hsF-Ma-NPb" secondAttribute="trailing" constant="20" id="6K2-qQ-3gU"/>
                             <constraint firstItem="6oS-kT-8Xq" firstAttribute="leading" secondItem="y0i-7x-XnW" secondAttribute="trailing" constant="8" id="9Lt-8N-AUX"/>
+                            <constraint firstItem="5jE-Uf-t6i" firstAttribute="top" secondItem="y0i-7x-XnW" secondAttribute="bottom" constant="8" id="9rY-jV-Did"/>
                             <constraint firstAttribute="trailingMargin" secondItem="foN-mw-F8A" secondAttribute="trailing" constant="8" id="Aye-gM-rGR"/>
                             <constraint firstItem="6oS-kT-8Xq" firstAttribute="top" secondItem="6P1-JY-V1E" secondAttribute="bottom" constant="16" id="BHQ-L8-m9a"/>
+                            <constraint firstItem="epQ-R4-zW9" firstAttribute="top" secondItem="6P1-JY-V1E" secondAttribute="bottom" constant="45" id="Dkx-a8-4y5"/>
+                            <constraint firstItem="z8J-8y-QTi" firstAttribute="top" secondItem="6oS-kT-8Xq" secondAttribute="bottom" constant="8" id="HeN-wM-rmK"/>
+                            <constraint firstItem="epQ-R4-zW9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6oS-kT-8Xq" secondAttribute="trailing" constant="10" id="M7n-Vj-MvU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="epQ-R4-zW9" secondAttribute="trailing" constant="8" id="OsG-eG-p44"/>
                             <constraint firstItem="mZL-Pb-LJ4" firstAttribute="top" secondItem="6P1-JY-V1E" secondAttribute="bottom" constant="16" id="Oxj-8L-MPq"/>
                             <constraint firstAttribute="trailing" secondItem="6rZ-dH-g5T" secondAttribute="trailing" id="PpO-Gh-eoI"/>
                             <constraint firstItem="6P1-JY-V1E" firstAttribute="top" secondItem="hsF-Ma-NPb" secondAttribute="bottom" constant="12" id="UFR-sk-Vu5"/>
                             <constraint firstItem="6P1-JY-V1E" firstAttribute="trailing" secondItem="2Bu-3l-j6W" secondAttribute="trailingMargin" constant="16" id="WMw-Nn-6gu"/>
                             <constraint firstItem="foN-mw-F8A" firstAttribute="top" secondItem="09F-vG-3Xd" secondAttribute="bottom" constant="10" id="YH0-GE-2Hh"/>
-                            <constraint firstItem="6rZ-dH-g5T" firstAttribute="top" secondItem="y0i-7x-XnW" secondAttribute="bottom" constant="16" id="atr-hJ-9m7"/>
+                            <constraint firstItem="6rZ-dH-g5T" firstAttribute="top" secondItem="y0i-7x-XnW" secondAttribute="bottom" constant="50" id="atr-hJ-9m7"/>
                             <constraint firstItem="6rZ-dH-g5T" firstAttribute="leading" secondItem="2Bu-3l-j6W" secondAttribute="leading" id="bzE-ib-m6y"/>
+                            <constraint firstItem="5jE-Uf-t6i" firstAttribute="centerX" secondItem="2Bu-3l-j6W" secondAttribute="centerX" constant="-80" id="cp6-ZJ-OXC"/>
                             <constraint firstItem="y0i-7x-XnW" firstAttribute="top" secondItem="6P1-JY-V1E" secondAttribute="bottom" constant="16" id="d4y-f4-c2A"/>
                             <constraint firstItem="mZL-Pb-LJ4" firstAttribute="leading" secondItem="2Bu-3l-j6W" secondAttribute="leadingMargin" constant="16" id="daG-gg-4yv"/>
                             <constraint firstItem="y0i-7x-XnW" firstAttribute="leading" secondItem="mZL-Pb-LJ4" secondAttribute="trailing" constant="8" id="h4y-Nr-pKq"/>
                             <constraint firstItem="4Hh-IK-1rx" firstAttribute="top" secondItem="6rZ-dH-g5T" secondAttribute="bottom" id="hGL-kn-kSi"/>
                             <constraint firstItem="hsF-Ma-NPb" firstAttribute="top" secondItem="09F-vG-3Xd" secondAttribute="bottom" constant="8" id="nDq-5g-7rp"/>
+                            <constraint firstItem="z8J-8y-QTi" firstAttribute="centerX" secondItem="2Bu-3l-j6W" secondAttribute="centerX" constant="80" id="qE6-GO-iYG"/>
                             <constraint firstItem="hsF-Ma-NPb" firstAttribute="leading" secondItem="2Bu-3l-j6W" secondAttribute="leadingMargin" constant="16" id="vfE-xA-Q6q"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="hsF-Ma-NPb" secondAttribute="trailing" constant="60" id="y73-Uz-ypv"/>
                         </constraints>
@@ -252,7 +326,9 @@
                     <connections>
                         <outlet property="dateLabel" destination="foN-mw-F8A" id="rYh-g1-QJe"/>
                         <outlet property="descriptionLabel" destination="6P1-JY-V1E" id="P96-Hx-pG2"/>
+                        <outlet property="leftButton" destination="5jE-Uf-t6i" id="mXR-cA-QhZ"/>
                         <outlet property="photoCollections" destination="6rZ-dH-g5T" id="dfG-Ne-TPW"/>
+                        <outlet property="rightButton" destination="z8J-8y-QTi" id="dir-bu-BuC"/>
                         <outlet property="tripLabel" destination="hsF-Ma-NPb" id="L9F-7S-Rbu"/>
                         <outlet property="userImage1" destination="mZL-Pb-LJ4" id="ogO-2T-vxm"/>
                         <outlet property="userImage2" destination="y0i-7x-XnW" id="byG-M9-dRN"/>
@@ -261,7 +337,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SkZ-WV-eid" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="996" y="913"/>
+            <point key="canvasLocation" x="996" y="912.5937031484259"/>
         </scene>
     </scenes>
     <resources>

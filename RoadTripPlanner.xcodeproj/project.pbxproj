@@ -22,6 +22,7 @@
 		48CB34511F9C408000EE268A /* TripSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CB34501F9C408000EE268A /* TripSummaryCell.swift */; };
 		48CCC83F1F9D0A4900050176 /* DeleteAlbumDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCC83E1F9D0A4900050176 /* DeleteAlbumDelegate.swift */; };
 		48CCC8411F9D14B200050176 /* UpdateAlbumDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCC8401F9D14B200050176 /* UpdateAlbumDelegate.swift */; };
+		48CCC8431F9D6BD300050176 /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCC8421F9D6BD300050176 /* PhotoGalleryViewController.swift */; };
 		DF32B9C41F9467F900594F0B /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32B9C31F9467F900594F0B /* Trip.swift */; };
 		DF32B9C61F946EE000594F0B /* AlbumComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32B9C51F946EE000594F0B /* AlbumComment.swift */; };
 		DF32B9C81F9470F200594F0B /* TripMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32B9C71F9470F200594F0B /* TripMember.swift */; };
@@ -122,6 +123,7 @@
 		48CB34501F9C408000EE268A /* TripSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripSummaryCell.swift; sourceTree = "<group>"; };
 		48CCC83E1F9D0A4900050176 /* DeleteAlbumDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAlbumDelegate.swift; sourceTree = "<group>"; };
 		48CCC8401F9D14B200050176 /* UpdateAlbumDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAlbumDelegate.swift; sourceTree = "<group>"; };
+		48CCC8421F9D6BD300050176 /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		4AEC73E32507F65F4BDEB09A /* Pods-RoadTripPlannerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerTests/Pods-RoadTripPlannerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7EE6504BFAEDF829CB7707C0 /* Pods_RoadTripPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoadTripPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7929C033F24E5EB84AB169 /* Pods-RoadTripPlannerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerUITests/Pods-RoadTripPlannerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				486E3C411F945EEB003D2FFF /* AlbumDetailsViewController.swift */,
 				486E3C421F945EEB003D2FFF /* AlbumListViewController.swift */,
 				486E3C441F945EEB003D2FFF /* PhotoViewController.swift */,
+				48CCC8421F9D6BD300050176 /* PhotoGalleryViewController.swift */,
 				48CB34481F9BBC5900EE268A /* AddAlbumViewController.swift */,
 				486E3C4C1F945F4E003D2FFF /* AddPhotoDelegate.swift */,
 				48CCC83E1F9D0A4900050176 /* DeleteAlbumDelegate.swift */,
@@ -811,6 +814,7 @@
 				F8B6A3E71F935E9600942820 /* TripSettingsViewController.swift in Sources */,
 				486E3C3D1F945EC3003D2FFF /* AlbumCell.swift in Sources */,
 				DF32B9C81F9470F200594F0B /* TripMember.swift in Sources */,
+				48CCC8431F9D6BD300050176 /* PhotoGalleryViewController.swift in Sources */,
 				48CB34511F9C408000EE268A /* TripSummaryCell.swift in Sources */,
 				48CCC8411F9D14B200050176 /* UpdateAlbumDelegate.swift in Sources */,
 				DFA0E2A11F96D272005D7528 /* APIKeys.swift in Sources */,

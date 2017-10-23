@@ -7,8 +7,9 @@
 //
 
 import Foundation
-import MapKit
 import Parse
+import UIKit
+import MapKit
 
 class Utils {
     class func formatDate(date: Date) -> String {
@@ -19,6 +20,25 @@ class Utils {
         return "\(month)/\(day)/\(year)"
     }
     
+    class func roundImageCorner(image: UIImageView) {
+        image.layer.cornerRadius = image.frame.height / 2
+    }
+    
+    class func imageToFile(image: UIImage) -> PFFile? {
+        let data = UIImageJPEGRepresentation(image, 0.7)
+        return PFFile(data: data!)
+    }
+    
+    class func fileToImage(file: PFFile, callback: @escaping (UIImage) -> Void) {
+        file.getDataInBackground(block: { (data, error) -> Void in
+            if (error == nil) {
+                if let data = data {
+                    callback(UIImage(data: data)!)
+                }
+            }
+        })
+    }
+
     class func tripSegmentFromMapItem(mapItem: MKMapItem) -> TripSegment {
         
         let placemark = mapItem.placemark
