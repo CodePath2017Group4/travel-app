@@ -474,6 +474,16 @@ extension LandingPageViewController: CLLocationManagerDelegate {
     
 }
 
+//        if (UIImage(named: weatherIconID) == nil) {
+//            let iconUrl = "http://openweathermap.org/img/w/\(weatherIconID).png"
+//            let weatherIconUrl = URL(string: iconUrl)!
+//            weatherIconImgView.setImageWith(weatherIconUrl)
+//
+//        }
+//        else {
+//            weatherIconImgView.image = UIImage(named: weatherIconID)
+//        }
+
 // MARK: - WeatherGetterDelegate
 extension LandingPageViewController: WeatherGetterDelegate {
     
@@ -482,7 +492,14 @@ extension LandingPageViewController: WeatherGetterDelegate {
         DispatchQueue.main.async {
             self.currentCity.text = weather.city
             self.currentTemperature.text = "\(Int(round(weather.tempFahrenheit)))° F"
-            self.temperatureImage.image = weather.weatherIconImgView.image
+            
+            let weatherIconID = weather.weatherIconID
+            if UIImage(named: weatherIconID) == nil {
+                let iconURL = URL(string: "http://openweathermap.org/img/w/\(weatherIconID)")
+                self.temperatureImage.setImageWith(iconURL!)
+            } else {
+                self.temperatureImage.image = UIImage(named: weatherIconID)
+            }
         }
     }
     
