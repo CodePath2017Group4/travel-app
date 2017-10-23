@@ -32,6 +32,10 @@ class Trip: PFObject, PFSubclassing {
         self.segments?.append(tripSegment)
     }
     
+    func insertSegment(tripSegment: TripSegment,  atIndex index: Int) {
+        self.segments?.insert(tripSegment, at: index)
+    }
+    
     class func parseClassName() -> String {
         return "Trip"
     }

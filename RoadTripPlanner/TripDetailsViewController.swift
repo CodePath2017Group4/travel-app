@@ -46,7 +46,9 @@ class TripDetailsViewController: UIViewController {
         profileImageView.clipsToBounds = true
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 3.0
-                
+        
+        registerForNotifications()
+        
         if trip != nil {
             guard let trip = trip else { return }
             
@@ -66,6 +68,25 @@ class TripDetailsViewController: UIViewController {
             self.tripSegments = segments
             
         }
+    }
+    
+    fileprivate func registerForNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(TripDetailsViewController.tripWasModified(notification:)),
+                                               name: Constants.NotificationNames.TripModifiedNotification,
+                                               object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func tripWasModified(notification: NSNotification) {
+        log.info("trip was modified")
+        let info = notification.userInfo
+        let trip = info!["trip"] as! Trip
+        self.trip = trip
+        self.tableView.reloadData()
     }
     
     fileprivate func setTripCoverPhoto() {
@@ -118,9 +139,11 @@ class TripDetailsViewController: UIViewController {
     
     @IBAction func addStopButtonPressed(_ sender: Any) {
         
-        // Push the AddStopViewController onto the nav stack.
+        // Present the AddStopViewController modally.
         guard let addStopVC = AddStopViewController.storyboardInstance() else { return }
-        self.navigationController?.pushViewController(addStopVC, animated: true)
+        addStopVC.trip = trip
+        
+        present(addStopVC, animated: true, completion: nil)
     }
     
     func tripSettingsImageTapped(_ sender: AnyObject) {

@@ -20,6 +20,7 @@ class AddStopViewController: UIViewController {
     var localSearch: MKLocalSearch?
     
     var places: [String]!
+    var trip: Trip?  // The trip we are adding a stop to.
     
     // Search completion
     var searchCompleter = MKLocalSearchCompleter()
@@ -36,25 +37,10 @@ class AddStopViewController: UIViewController {
         
         places = []
         
-//        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-//        self.navigationController?.navigationBar.isTranslucent = true
-
-        
-        
         searchCompleter.delegate = self
         
         tableView.dataSource = self
         tableView.delegate = self
-        
-        locationManager.delegate = self
-        
-        // Ask for authorization to access the user's location.
-        locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.requestLocation()
-        }
                 
         locationSearchBar.delegate = self
     }
@@ -96,13 +82,7 @@ extension AddStopViewController : UISearchBarDelegate {
         searchCompleter.queryFragment = searchText
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        searchBar.resignFirstResponder()
-        
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
-    }
+   
 }
 
 extension AddStopViewController : UITableViewDelegate {
@@ -141,43 +121,52 @@ extension AddStopViewController: UITableViewDataSource {
                 let placemark = response.mapItems.first?.placemark
                 let mapItem = MKMapItem(placemark: placemark!)
                 
+                let tripSegment = Utils.tripSegmentFromMapItem(mapItem: mapItem)
+                tripSegment.name = completion.title
                 
+                // Insert this new segment into the trip.
+                self.trip?.insertSegment(tripSegment: tripSegment, atIndex: 1)
+                
+                self.dismiss(animated: true, completion: {
+                    // Post a notification that the trip has been modified
+                    NotificationCenter.default.post(name: Constants.NotificationNames.TripModifiedNotification, object: nil, userInfo: ["trip": self.trip!])
+                })
             }
         }
         
     }
 }
 
-extension AddStopViewController : CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        let userLocation = locations.last
-        
-        // Reverse geocode the user's location to obtain the address
-        CLGeocoder().reverseGeocodeLocation(userLocation!) { (placemarks: [CLPlacemark]?, error: Error?) in
-            if let placemarks = placemarks {
-                let placemark = placemarks.first!
-                
-                let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: placemark.location!.coordinate, addressDictionary: placemark.addressDictionary as! [String:Any]?))
-                
-            }
-        }
-        
-        // We only want one update
-        manager.stopUpdatingLocation()
-        
-        // Remove the delegate to prevent updating again.
-        manager.delegate = nil
-        
-        
-    }
-    
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        log.error("location manager error: \(error)")
-    }
-}
+//extension AddStopViewController : CLLocationManagerDelegate {
+//
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//
+//        let userLocation = locations.last
+//
+//        // Reverse geocode the user's location to obtain the address
+//        CLGeocoder().reverseGeocodeLocation(userLocation!) { (placemarks: [CLPlacemark]?, error: Error?) in
+//            if let placemarks = placemarks {
+//                let placemark = placemarks.first!
+//
+//                let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: placemark.location!.coordinate, addressDictionary: placemark.addressDictionary as! [String:Any]?))
+//
+//            }
+//        }
+//
+//        // We only want one update
+//        manager.stopUpdatingLocation()
+//
+//        // Remove the delegate to prevent updating again.
+//        manager.delegate = nil
+//
+//
+//    }
+//
+//
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+//        log.error("location manager error: \(error)")
+//    }
+//}
 
 
 
