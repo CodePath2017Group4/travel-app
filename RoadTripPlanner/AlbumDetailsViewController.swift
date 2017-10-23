@@ -31,6 +31,12 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
     var photoSelected: [Bool] = []
     var delegate: UpdateAlbumDelegate?
     
+    static func getVC() -> AlbumDetailsViewController {
+        let storyboard = UIStoryboard(name: "Album", bundle: nil)
+        let albumDetailsVC = storyboard.instantiateViewController(withIdentifier: "AlbumDetailsVC") as! AlbumDetailsViewController
+        return albumDetailsVC
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -102,8 +108,7 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
         
         if (mode == .View) {
             if let album = self.album {
-                let storyboard = UIStoryboard(name: "Album", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "photoGalleryVC") as! PhotoGalleryViewController
+                let vc = PhotoGalleryViewController.getVC()
                 vc.photos = album.photos
                 vc.defaultIndex = indexPath.row
                 self.show(vc, sender: nil)
@@ -120,10 +125,8 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func addPhoto(image: UIImage?) {
-        print("add photo?")
         if let image = image {
             if let album = self.album {
-                print("add photo")
                 let file = Utils.imageToFile(image: image)
                 album.photos.append(file!)
                 self.photoSelected.append(false)
@@ -137,8 +140,7 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func cameraTapped(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Photo", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "photoVC") as! PhotoViewController
+        let vc = PhotoViewController.getVC()
         vc.delegate = self
         self.show(vc, sender: nil)
     }
@@ -170,8 +172,7 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
         if (mode == .View) {
             // Edit Album
             if let album = self.album {
-                let storyboard = UIStoryboard(name: "Album", bundle: nil)
-                let addAlbumVC = storyboard.instantiateViewController(withIdentifier: "AddAlbumVC") as! AddAlbumViewController
+                let addAlbumVC = AddAlbumViewController.getVC()
                 // set the edit mode
                 addAlbumVC.shouldAddAlbum = false
                 addAlbumVC.updateAlbumDelegate = self

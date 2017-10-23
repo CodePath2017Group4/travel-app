@@ -56,13 +56,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MLc-bb-jvX"/>
                     </view>
+                    <navigationItem key="navigationItem" id="A2A-SM-Ze8"/>
                     <connections>
                         <outlet property="imageView" destination="fNA-kQ-GJd" id="SGH-Bk-sgV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gd2-3w-zLV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1053.5999999999999" y="2338.3808095952027"/>
+            <point key="canvasLocation" x="1392.8" y="2338.3808095952027"/>
         </scene>
     </scenes>
     <resources>

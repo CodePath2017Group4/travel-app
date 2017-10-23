@@ -26,6 +26,12 @@ class AddAlbumViewController: UIViewController, UITableViewDelegate, UITableView
     var selectedTrip: Trip?
     var trips: [Trip] = []
     
+    static func getVC() -> AddAlbumViewController {
+        let storyboard = UIStoryboard(name: "Album", bundle: nil)
+        let addAlbumVC = storyboard.instantiateViewController(withIdentifier: "AddAlbumVC") as! AddAlbumViewController
+        return addAlbumVC
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

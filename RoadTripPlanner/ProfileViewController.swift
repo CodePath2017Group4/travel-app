@@ -9,30 +9,25 @@
 import UIKit
 import Parse
 
-class ProfileViewController: UIViewController, UINavigationControllerDelegate {
-
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, AddPhotoDelegate {
+    @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var tripsSummaryTable: UITableView!
+    
     @IBOutlet weak var numAlbumsLabel: UILabel!
     @IBOutlet weak var numTripsLabel: UILabel!
-    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var editPhotoButton: UIButton!
     
-    static func storyboardInstance() -> UINavigationController? {
-        let storyboard = UIStoryboard(name: "ProfileViewController", bundle: nil)
-        
-        return storyboard.instantiateInitialViewController() as? UINavigationController
-    }
+    //@IBOutlet weak var editPhotoButton: UIButton!
+    //@IBOutlet weak var profileImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
-        profileImage.clipsToBounds = true
-        profileImage.layer.borderColor = UIColor.white.cgColor
-        profileImage.layer.borderWidth = 3.0
+        profileButton.layer.cornerRadius = profileButton.frame.size.height / 2
+        profileButton.clipsToBounds = true
+        profileButton.layer.borderColor = UIColor.white.cgColor
+        profileButton.layer.borderWidth = 3.0
         
-        editPhotoButton.layer.cornerRadius = 5
         
         numAlbumsLabel.text = "0"
         numTripsLabel.text = "0"
@@ -41,20 +36,16 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
             userNameLabel.text = PFUser.current()?.username
             let avatarFile = PFUser.current()?.object(forKey: "avatar") as? PFFile
             if avatarFile != nil {
-                avatarFile?.getDataInBackground(block: { (imageData, error) in
-                    if error == nil {
-                        let avatarImage = UIImage(data: imageData!)
-                        self.profileImage.image = avatarImage
-                        
-                    }
+                Utils.fileToImage(file: avatarFile!, callback: { (avatarImage: UIImage) in
+                    self.profileButton.setBackgroundImage(avatarImage, for: .normal)
                 })
             } else {
-                profileImage.image = #imageLiteral(resourceName: "user")
+                self.profileButton.setBackgroundImage(UIImage(named: "user"), for: .normal)
             }
             
         } else {
             userNameLabel.text = "Anonymous User"
-            profileImage.image = #imageLiteral(resourceName: "user")
+            self.profileButton.setBackgroundImage(UIImage(named: "user"), for: .normal)
         }
         // Do any additional setup after loading the view.
     }
@@ -64,7 +55,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func editPhotoButtonPressed(_ sender: Any) {
+    /*
+    @IBAction func onProfileButtonTapped(_ sender: Any) {
         // Instantiate a UIImagePickerController
         let vc = UIImagePickerController()
         vc.delegate = self
@@ -80,19 +72,38 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         
         self.present(vc, animated: true, completion: nil)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
     */
-
+    
+    @IBAction func onProfileButtonTapped(_ sender: Any) {
+        let vc = PhotoViewController.getVC()
+        vc.delegate = self
+        self.show(vc, sender: self)
+    }
+    
+    func addPhoto(image: UIImage?) {
+        print("....?")
+        if let image = image {
+            profileButton.setBackgroundImage(image, for: .normal)
+            
+            let avatar = Utils.imageToFile(image: image)
+            PFUser.current()!.setObject(avatar!, forKey: "avatar")
+            PFUser.current()!.saveInBackground { (success, error) in
+                if success {
+                    log.info("Avatar updated")
+                } else {
+                    guard let error = error else {
+                        log.error("Unknown error occurred saving avatar image")
+                        return
+                    }
+                    log.error("Error saving avatar image: \(error)")
+                }
+            }
+            
+        }
+    }
 }
 
+/*
 extension ProfileViewController : UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -138,3 +149,4 @@ extension ProfileViewController : UIImagePickerControllerDelegate {
         log.verbose("Canceled")
     }
 }
+*/
