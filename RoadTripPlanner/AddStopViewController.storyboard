@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FW7-iT-r3g">
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="FW7-iT-r3g">
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -33,27 +33,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-1" translatesAutoresizingMaskIntoConstraints="NO" id="TUE-N1-cBZ">
-                                                    <rect key="frame" x="8" y="11" width="28" height="28"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="Gak-Q9-pzP"/>
-                                                        <constraint firstAttribute="width" constant="28" id="O2L-ST-cl9"/>
-                                                    </constraints>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-1" translatesAutoresizingMaskIntoConstraints="NO" id="TUE-N1-cBZ">
+                                                    <rect key="frame" x="8" y="18" width="14" height="14"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="California, United States" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2a-zC-7QW">
-                                                    <rect key="frame" x="44" y="27" width="147" height="16"/>
+                                                    <rect key="frame" x="30" y="27" width="147" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Los Angeles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVC-QP-NBr">
-                                                    <rect key="frame" x="44" y="6" width="93.5" height="21"/>
+                                                    <rect key="frame" x="30" y="6" width="93.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="TUE-N1-cBZ" firstAttribute="centerY" secondItem="E0l-Sm-82E" secondAttribute="centerY" id="1w5-s9-xYl"/>
                                                 <constraint firstItem="TUE-N1-cBZ" firstAttribute="centerY" secondItem="E0l-Sm-82E" secondAttribute="centerY" id="3q1-jF-qIa"/>
                                                 <constraint firstItem="ZVC-QP-NBr" firstAttribute="top" secondItem="E0l-Sm-82E" secondAttribute="top" constant="6" id="Gfi-uj-wgN"/>
                                                 <constraint firstItem="N2a-zC-7QW" firstAttribute="leading" secondItem="ZVC-QP-NBr" secondAttribute="leading" id="aew-pv-W6Z"/>
@@ -70,7 +67,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.14834815260000001" green="0.57782524820000003" blue="0.55891251559999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3XY-aa-qoU" firstAttribute="trailing" secondItem="VPU-ke-7Me" secondAttribute="trailing" id="7KX-0s-phF"/>
                             <constraint firstItem="FW7-iT-r3g" firstAttribute="top" secondItem="nPB-b9-MJ3" secondAttribute="top" constant="64" id="HY7-6h-qT3"/>
@@ -95,6 +92,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="placeholder-1" width="28" height="28"/>
+        <image name="placeholder-1" width="14" height="14"/>
     </resources>
 </document>

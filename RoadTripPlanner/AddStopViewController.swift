@@ -17,6 +17,9 @@ class AddStopViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let locationManager = CLLocationManager()
+    var localSearch: MKLocalSearch?
+    
+    var places: [String]!
     
     // Search completion
     var searchCompleter = MKLocalSearchCompleter()
@@ -31,6 +34,13 @@ class AddStopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        places = []
+        
+//        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+//        self.navigationController?.navigationBar.isTranslucent = true
+
+        
+        
         searchCompleter.delegate = self
         
         tableView.dataSource = self
@@ -38,13 +48,22 @@ class AddStopViewController: UIViewController {
         
         locationManager.delegate = self
         
+        // Ask for authorization to access the user's location.
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.requestLocation()
+        }
+                
+        locationSearchBar.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
 
 extension AddStopViewController: MKLocalSearchCompleterDelegate {
@@ -59,17 +78,30 @@ extension AddStopViewController: MKLocalSearchCompleterDelegate {
     }
 }
 
-extension AddStopViewController : UITextFieldDelegate {
+extension AddStopViewController : UISearchBarDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        log.verbose(textField.text ?? "")
-        searchCompleter.queryFragment = textField.text!
-        return true
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchCompleter.queryFragment = searchText
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+        
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
     }
 }
 
@@ -137,6 +169,7 @@ extension AddStopViewController : CLLocationManagerDelegate {
         
         // Remove the delegate to prevent updating again.
         manager.delegate = nil
+        
         
     }
     

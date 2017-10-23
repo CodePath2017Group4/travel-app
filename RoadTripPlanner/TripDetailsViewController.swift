@@ -46,9 +46,7 @@ class TripDetailsViewController: UIViewController {
         profileImageView.clipsToBounds = true
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 3.0
-        
-        navigationController?.setNavigationBarHidden(false, animated: false)
-        
+                
         if trip != nil {
             guard let trip = trip else { return }
             
@@ -121,8 +119,8 @@ class TripDetailsViewController: UIViewController {
     @IBAction func addStopButtonPressed(_ sender: Any) {
         
         // Push the AddStopViewController onto the nav stack.
-        let addStopVC = AddStopViewController.storyboardInstance() as! AddStopViewController
-        navigationController?.pushViewController(addStopVC, animated: true)
+        guard let addStopVC = AddStopViewController.storyboardInstance() else { return }
+        self.navigationController?.pushViewController(addStopVC, animated: true)
     }
     
     func tripSettingsImageTapped(_ sender: AnyObject) {
