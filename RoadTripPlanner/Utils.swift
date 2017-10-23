@@ -9,6 +9,7 @@
 import Foundation
 import Parse
 import UIKit
+import MapKit
 
 class Utils {
     class func formatDate(date: Date) -> String {
@@ -36,5 +37,24 @@ class Utils {
                 }
             }
         })
+    }
+
+    class func tripSegmentFromMapItem(mapItem: MKMapItem) -> TripSegment {
+        
+        let placemark = mapItem.placemark
+        let name = placemark.name ?? mapItem.name ?? ""
+        let locality = placemark.locality ?? ""
+        let administrativeArea = placemark.administrativeArea ?? ""  // state
+        let postalCode = placemark.postalCode ?? ""
+        let isoCountryCode = placemark.isoCountryCode ?? ""
+        let address = "\(name), \(locality), \(administrativeArea) \(postalCode), \(isoCountryCode)"
+        
+        log.info(name)
+        log.info(address)
+        
+        let geoPoint = PFGeoPoint(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude)
+        
+        let tripSegment = TripSegment(name: name, address: address, geoPoint: geoPoint)
+        return tripSegment
     }
 }

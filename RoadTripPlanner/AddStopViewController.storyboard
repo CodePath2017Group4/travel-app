@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eEs-rV-19h">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Add Stop View Controller-->
+        <scene sceneID="tGH-zC-5gv">
+            <objects>
+                <viewController storyboardIdentifier="AddStopViewController" id="eEs-rV-19h" customClass="AddStopViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nPB-b9-MJ3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="FW7-iT-r3g">
+                                <rect key="frame" x="0.0" y="20" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3XY-aa-qoU">
+                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationSearchResultCell" rowHeight="50" id="W4K-LJ-0F8" customClass="LocationSearchResultCell" customModule="RoadTripPlanner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W4K-LJ-0F8" id="E0l-Sm-82E">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-1" translatesAutoresizingMaskIntoConstraints="NO" id="TUE-N1-cBZ">
+                                                    <rect key="frame" x="8" y="18" width="14" height="14"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="California, United States" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2a-zC-7QW">
+                                                    <rect key="frame" x="30" y="27" width="147" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Los Angeles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVC-QP-NBr">
+                                                    <rect key="frame" x="30" y="6" width="93.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TUE-N1-cBZ" firstAttribute="centerY" secondItem="E0l-Sm-82E" secondAttribute="centerY" id="1w5-s9-xYl"/>
+                                                <constraint firstItem="TUE-N1-cBZ" firstAttribute="centerY" secondItem="E0l-Sm-82E" secondAttribute="centerY" id="3q1-jF-qIa"/>
+                                                <constraint firstItem="ZVC-QP-NBr" firstAttribute="top" secondItem="E0l-Sm-82E" secondAttribute="top" constant="6" id="Gfi-uj-wgN"/>
+                                                <constraint firstItem="N2a-zC-7QW" firstAttribute="leading" secondItem="ZVC-QP-NBr" secondAttribute="leading" id="aew-pv-W6Z"/>
+                                                <constraint firstItem="ZVC-QP-NBr" firstAttribute="leading" secondItem="TUE-N1-cBZ" secondAttribute="trailing" constant="8" id="dgX-4C-P0o"/>
+                                                <constraint firstItem="N2a-zC-7QW" firstAttribute="top" secondItem="ZVC-QP-NBr" secondAttribute="bottom" id="har-zG-vS1"/>
+                                                <constraint firstItem="TUE-N1-cBZ" firstAttribute="leading" secondItem="E0l-Sm-82E" secondAttribute="leading" constant="8" id="t2E-5g-EJe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="resultSubtitleLabel" destination="N2a-zC-7QW" id="D46-5m-9EZ"/>
+                                            <outlet property="resultTitleLabel" destination="ZVC-QP-NBr" id="8e5-VB-746"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="3XY-aa-qoU" firstAttribute="trailing" secondItem="VPU-ke-7Me" secondAttribute="trailing" id="7KX-0s-phF"/>
+                            <constraint firstItem="FW7-iT-r3g" firstAttribute="top" secondItem="nPB-b9-MJ3" secondAttribute="top" constant="20" id="HY7-6h-qT3"/>
+                            <constraint firstItem="3XY-aa-qoU" firstAttribute="bottom" secondItem="VPU-ke-7Me" secondAttribute="bottom" id="IRW-vb-B1r"/>
+                            <constraint firstItem="FW7-iT-r3g" firstAttribute="trailing" secondItem="VPU-ke-7Me" secondAttribute="trailing" id="Kz1-fZ-dD8"/>
+                            <constraint firstItem="FW7-iT-r3g" firstAttribute="leading" secondItem="VPU-ke-7Me" secondAttribute="leading" id="aKx-uD-j3V"/>
+                            <constraint firstItem="3XY-aa-qoU" firstAttribute="top" secondItem="FW7-iT-r3g" secondAttribute="bottom" id="fbU-oB-Ej0"/>
+                            <constraint firstItem="3XY-aa-qoU" firstAttribute="top" secondItem="FW7-iT-r3g" secondAttribute="bottom" id="gZH-IY-S85"/>
+                            <constraint firstItem="3XY-aa-qoU" firstAttribute="leading" secondItem="VPU-ke-7Me" secondAttribute="leading" id="q8Z-w1-DFH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VPU-ke-7Me"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4RC-MG-bA5"/>
+                    <connections>
+                        <outlet property="locationSearchBar" destination="FW7-iT-r3g" id="9dO-CR-J2L"/>
+                        <outlet property="tableView" destination="3XY-aa-qoU" id="LZv-fb-jEc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kuM-Eg-4gD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="276" y="169.56521739130437"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="placeholder-1" width="14" height="14"/>
+    </resources>
+</document>

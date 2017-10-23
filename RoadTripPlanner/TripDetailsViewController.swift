@@ -20,6 +20,9 @@ class TripDetailsViewController: UIViewController {
     @IBOutlet weak var profileImageView: PFImageView!
     
     @IBOutlet weak var emailGroupImageView: UIImageView!
+    @IBOutlet weak var editTableButton: UIButton!
+    @IBOutlet weak var addStopButton: UIButton!
+    @IBOutlet weak var addFriendsButton: UIButton!
     
     @IBOutlet weak var tripSettingsImageView: UIImageView!
     
@@ -47,10 +50,7 @@ class TripDetailsViewController: UIViewController {
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 3.0
         
-        let emailImageTap = UITapGestureRecognizer(target: self, action: #selector(emailImageTapped))
-        emailImageTap.numberOfTapsRequired = 1
-        emailGroupImageView.isUserInteractionEnabled = true
-        emailGroupImageView.addGestureRecognizer(emailImageTap)
+        registerForNotifications()
         
         if trip != nil {
             guard let trip = trip else { return }
@@ -71,6 +71,26 @@ class TripDetailsViewController: UIViewController {
             self.tripSegments = segments
             
         }
+    }
+    
+    fileprivate func registerForNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(TripDetailsViewController.tripWasModified(notification:)),
+                                               name: Constants.NotificationNames.TripModifiedNotification,
+                                               object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func tripWasModified(notification: NSNotification) {
+        let info = notification.userInfo
+        let trip = info!["trip"] as! Trip
+        
+        // Update the trip segments and reload the table view
+        self.tripSegments = trip.segments!
+        self.tableView.reloadData()
     }
     
     fileprivate func setTripCoverPhoto() {
@@ -115,10 +135,38 @@ class TripDetailsViewController: UIViewController {
         super.viewWillAppear(true)        
     }
     
+    // MARK: - IBAction methods
+    
+    @IBAction func editButtonPressed(_ sender: Any) {
+        if tableView.isEditing {
+            tableView.setEditing(false, animated: true)
+            editTableButton.setTitle("  Edit", for: .normal)
+            editTableButton.setTitleColor(UIColor.black, for: .normal)
+        } else {
+            tableView.setEditing(true, animated: true)
+            editTableButton.setTitle("  Done", for: .normal)
+            let doneColor = UIColor(red: 234/255.0, green: 76/255.0, blue: 28/255.0, alpha: 1)
+            editTableButton.setTitleColor(doneColor, for: .normal)
+        }
+        
+        // Disable other buttons if we are editing the table.
+        addStopButton.isEnabled = !tableView.isEditing
+        addFriendsButton.isEnabled = !tableView.isEditing
+    }
+    
     @IBAction func tripSettingButtonPressed(_ sender: Any) {
     }
     
     @IBAction func albumButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func addStopButtonPressed(_ sender: Any) {
+        
+        // Present the AddStopViewController modally.
+        guard let addStopVC = AddStopViewController.storyboardInstance() else { return }
+        addStopVC.trip = trip
+        
+        present(addStopVC, animated: true, completion: nil)
     }
     
     func tripSettingsImageTapped(_ sender: AnyObject) {
@@ -187,6 +235,7 @@ class TripDetailsViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension TripDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -204,7 +253,17 @@ extension TripDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         return 68
     }
     
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // Let all cells be reordered.
+        return true
+    }
     
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let tripSegmentToMove = tripSegments[sourceIndexPath.row]
+        
+        tripSegments.remove(at: sourceIndexPath.row)
+        tripSegments.insert(tripSegmentToMove, at: destinationIndexPath.row)
+    }
     
 }
 

@@ -22,10 +22,12 @@ struct Constants {
     
     struct NotificationNames {
         static let LogoutPressedNotification = Notification.Name("LogoutPressedNotification")
+        static let TripModifiedNotification = Notification.Name("TripModifiedNotification")
     }
     
     struct ReuseableCellIdentifiers {
         static let TripSegmentCell = "TripSegmentCell"
+        static let LocationSearchResultCell = "LocationSearchResultCell"
     }
     
     struct PrefabricatedEmailMessage {

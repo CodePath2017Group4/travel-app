@@ -23,6 +23,14 @@ class TripSegment: PFObject, PFSubclassing {
         self.isExcluded = false
     }
     
+    init(name: String, address: String, location: CLLocation) {
+        super.init()
+        self.name = name
+        self.address = address
+        self.geoPoint = PFGeoPoint(location: location)
+        self.isExcluded = false
+    }
+    
     override init() {
         super.init()
     }
