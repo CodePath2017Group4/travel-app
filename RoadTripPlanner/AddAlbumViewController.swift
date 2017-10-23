@@ -14,8 +14,13 @@ class AddAlbumViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var albumNameText: UITextField!
     @IBOutlet weak var albumDescriptionText: UITextView!
     @IBOutlet weak var tripTable: UITableView!
+
+    // if @shouldAddAlbum == false, we will update the album instead
+    var shouldAddAlbum: Bool = true
+    var addAlbumDelegate: AddAlbumDelegate?
     
-    var delegate: AddAlbumDelegate?
+    var album: Album?
+    var updateAlbumDelegate: UpdateAlbumDelegate?
     
     var selectedTripIndex: IndexPath?
     var selectedTrip: Trip?
@@ -24,7 +29,14 @@ class AddAlbumViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addAlbumTapped))
+        if (!shouldAddAlbum) {
+            if let album = album {
+                albumNameText.text = album.albumName
+                albumDescriptionText.text = album.albumDescription
+            }
+        }
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(addAlbumTapped))
         
         albumDescriptionText.layer.borderWidth = 1
         albumDescriptionText.layer.borderColor = UIColor.black.cgColor
@@ -58,10 +70,21 @@ class AddAlbumViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func addAlbumTapped(_ sender: Any) {
-        if let selectedTrip = self.selectedTrip {
-            let album = Album(albumName: albumNameText.text!, albumDescription: albumDescriptionText.text!, trip: selectedTrip, owner: PFUser.current()!)
-            if let delegate = self.delegate {
-                delegate.addAlbum(album: album)
+        if (shouldAddAlbum) {
+            if let selectedTrip = self.selectedTrip {
+                let album = Album(albumName: albumNameText.text!, albumDescription: albumDescriptionText.text!, trip: selectedTrip, owner: PFUser.current()!)
+                if let delegate = self.addAlbumDelegate {
+                    delegate.addAlbum(album: album)
+                }
+                navigationController?.popViewController(animated: true)
+            }
+        } else {
+            if let album = self.album {
+                album.albumName = albumNameText.text!
+                album.albumDescription = albumDescriptionText.text!
+                if let delegate = self.updateAlbumDelegate {
+                    delegate.updateAlbum(album: album, indexPath: nil)
+                }
             }
             navigationController?.popViewController(animated: true)
         }
