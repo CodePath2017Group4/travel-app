@@ -11,7 +11,6 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
             <string>HelveticaNeue-Medium</string>
         </array>
     </customFonts>
@@ -99,86 +98,8 @@
                                 <rect key="frame" x="0.0" y="244" width="375" height="423"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripDetailsCell" rowHeight="141" id="Mnq-58-J7v" customClass="TripDetailsCell" customModule="RoadTripPlanner" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="141"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mnq-58-J7v" id="1ck-ZT-RZM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="140.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments" translatesAutoresizingMaskIntoConstraints="NO" id="uQw-3h-K94">
-                                                    <rect key="frame" x="17" y="105" width="18" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="18" id="AaV-2B-oFB"/>
-                                                        <constraint firstAttribute="height" constant="18" id="hTy-kJ-FBN"/>
-                                                        <constraint firstAttribute="width" constant="18" id="u0D-29-hGA"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mountain View, CA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1D-5J-Lmg">
-                                                    <rect key="frame" x="17" y="13" width="131" height="18"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lCZ-HM-W7F">
-                                                    <rect key="frame" x="308" y="7" width="51" height="31"/>
-                                                </switch>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vbar" translatesAutoresizingMaskIntoConstraints="NO" id="922-nx-pcg">
-                                                    <rect key="frame" x="311" y="46" width="5" height="86"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="86" id="Liv-jd-6uE"/>
-                                                        <constraint firstAttribute="width" constant="5" id="lek-K0-vaY"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="125.3 mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Viz-WH-S70">
-                                                    <rect key="frame" x="263" y="65" width="35" height="11"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="9"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="7Ij-ff-YvW">
-                                                    <rect key="frame" x="54" y="105" width="18" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="18" id="QJf-py-oMh"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="ZLr-Mx-4uR"/>
-                                                        <constraint firstAttribute="height" constant="18" id="c7x-gg-1H2"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="18" id="joN-5J-cMd"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="uQw-3h-K94" firstAttribute="top" secondItem="P1D-5J-Lmg" secondAttribute="bottom" constant="74" id="1wR-ve-ZAz"/>
-                                                <constraint firstAttribute="trailing" secondItem="lCZ-HM-W7F" secondAttribute="trailing" constant="18" id="2AJ-PH-1RK"/>
-                                                <constraint firstItem="7Ij-ff-YvW" firstAttribute="centerY" secondItem="uQw-3h-K94" secondAttribute="centerY" id="6pw-sh-1dS"/>
-                                                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="7Ij-ff-YvW" secondAttribute="bottom" constant="18" id="8iW-87-VA2"/>
-                                                <constraint firstItem="P1D-5J-Lmg" firstAttribute="leading" secondItem="1ck-ZT-RZM" secondAttribute="leading" constant="17" id="8mI-pJ-w1t"/>
-                                                <constraint firstItem="922-nx-pcg" firstAttribute="leading" secondItem="uQw-3h-K94" secondAttribute="trailing" constant="276" id="AGG-89-jhL"/>
-                                                <constraint firstItem="922-nx-pcg" firstAttribute="leading" secondItem="Viz-WH-S70" secondAttribute="trailing" constant="13" id="HAe-1g-VpG"/>
-                                                <constraint firstItem="922-nx-pcg" firstAttribute="top" secondItem="lCZ-HM-W7F" secondAttribute="bottom" constant="8.5" id="JkB-i7-iEx"/>
-                                                <constraint firstItem="uQw-3h-K94" firstAttribute="leading" secondItem="P1D-5J-Lmg" secondAttribute="leading" id="NFg-Cd-ALR"/>
-                                                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Viz-WH-S70" secondAttribute="bottom" constant="65" id="erj-6t-gkR"/>
-                                                <constraint firstItem="922-nx-pcg" firstAttribute="leading" secondItem="7Ij-ff-YvW" secondAttribute="trailing" constant="239" id="fC0-Dl-zIb"/>
-                                                <constraint firstItem="7Ij-ff-YvW" firstAttribute="top" secondItem="P1D-5J-Lmg" secondAttribute="bottom" constant="74" id="j10-2V-g2W"/>
-                                                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="922-nx-pcg" secondAttribute="bottom" constant="9" id="k2V-LB-Qxb"/>
-                                                <constraint firstItem="lCZ-HM-W7F" firstAttribute="top" secondItem="1ck-ZT-RZM" secondAttribute="top" constant="6.5" id="kfm-uU-71S"/>
-                                                <constraint firstItem="uQw-3h-K94" firstAttribute="leading" secondItem="1ck-ZT-RZM" secondAttribute="leading" constant="17" id="kth-4n-Ajr"/>
-                                                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="uQw-3h-K94" secondAttribute="bottom" constant="18" id="uVF-h3-URE"/>
-                                                <constraint firstItem="Viz-WH-S70" firstAttribute="top" secondItem="lCZ-HM-W7F" secondAttribute="bottom" constant="27.5" id="uVL-uQ-Hee"/>
-                                                <constraint firstItem="7Ij-ff-YvW" firstAttribute="leading" secondItem="uQw-3h-K94" secondAttribute="trailing" constant="19" id="zIW-pD-QiA"/>
-                                                <constraint firstItem="Viz-WH-S70" firstAttribute="leading" secondItem="1ck-ZT-RZM" secondAttribute="leading" constant="263" id="zQP-pl-JTT"/>
-                                                <constraint firstItem="lCZ-HM-W7F" firstAttribute="centerY" secondItem="P1D-5J-Lmg" secondAttribute="centerY" id="zs3-Rb-zSm"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="commentImageView" destination="uQw-3h-K94" id="CeG-Rg-02y"/>
-                                            <outlet property="isTripIncluded" destination="lCZ-HM-W7F" id="bMh-l6-bvd"/>
-                                            <outlet property="tripMilesLabel" destination="Viz-WH-S70" id="MZT-Tc-PmZ"/>
-                                            <outlet property="tripSeparatorImage" destination="922-nx-pcg" id="vAU-P3-95N"/>
-                                            <outlet property="tripStopLabel" destination="P1D-5J-Lmg" id="CQA-a6-as3"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripSegmentCell" rowHeight="68" id="NeQ-wn-Pgt" customClass="TripSegmentCell" customModule="RoadTripPlanner" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="169" width="375" height="68"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NeQ-wn-Pgt" id="aC9-jI-DQb">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="67.5"/>
@@ -331,13 +252,10 @@
     <resources>
         <image name="add-stop" width="28" height="28"/>
         <image name="album" width="50" height="50"/>
-        <image name="comments" width="50" height="50"/>
         <image name="details" width="50" height="50"/>
         <image name="edit-1" width="28" height="28"/>
-        <image name="like" width="64" height="64"/>
         <image name="maps-and-flags" width="64" height="64"/>
         <image name="user" width="128" height="128"/>
         <image name="users-1" width="28" height="26"/>
-        <image name="vbar" width="50" height="50"/>
     </resources>
 </document>
