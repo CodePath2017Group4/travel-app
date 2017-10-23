@@ -28,6 +28,11 @@ struct Constants {
     struct ReuseableCellIdentifiers {
         static let TripSegmentCell = "TripSegmentCell"
         static let LocationSearchResultCell = "LocationSearchResultCell"
+        static let TripTableViewCell = "TripTableViewCell"
+    }
+    
+    struct NibNames {
+        static let TripTableViewCell = "TripTableViewCell"
     }
     
     struct PrefabricatedEmailMessage {
