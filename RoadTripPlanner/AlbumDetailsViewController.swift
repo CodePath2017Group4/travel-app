@@ -104,7 +104,7 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = photoCollections.cellForItem(at: indexPath) as! PhotoCell
+        let cell = collectionView.cellForItem(at: indexPath) as! PhotoCell
         
         if (mode == .View) {
             if let album = self.album {
@@ -146,7 +146,10 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func updateAlbum(album: Album, indexPath: IndexPath?) {
-        self.album = Album(copyFrom: album)
+        if self.album == nil {
+            self.album = Album()
+        }
+        self.album!.updated(copyFrom: album)
         self.delegate?.updateAlbum(album: album, indexPath: self.albumIndex)
         self.setAlbumMetadata()
     }
@@ -157,8 +160,10 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
             rightButton.setTitle("Edit Photos", for: .normal)
             if let album = album {
                 photoSelected = []
-                for _ in 0 ... album.photos.count - 1 {
-                    photoSelected.append(false)
+                if album.photos.count > 0 {
+                    for _ in 0 ... album.photos.count - 1 {
+                        photoSelected.append(false)
+                    }
                 }
                 self.photoCollections.reloadData()
             }

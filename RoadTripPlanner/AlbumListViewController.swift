@@ -22,13 +22,14 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         albumsTable.delegate = self
         albumsTable.dataSource = self
         
-        fakeAlbums()
+        self.albums = ParseBackend.getAlbums()
+        print("albums are \(albums)")
+        //fakeAlbums()
+        albumsTable.reloadData()
     }
     
     private func fakeAlbums() {
         let user = PFUser.current()!
-        // SF
-        
         let date = Date()
         let trip = Trip(name: "Bay Area", date: date, creator: user)
         trips.append(trip)
@@ -67,25 +68,38 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = albumsTable.dequeueReusableCell(withIdentifier: "albumCell") as! AlbumCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "albumCell") as! AlbumCell
         cell.displayAlbum(album: albums[indexPath.row])
         cell.albumIndex = indexPath
         cell.delegate = self
-        albumsTable.deselectRow(at: indexPath, animated: true)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let albumDetailsVC = AlbumDetailsViewController.getVC()
-        albumDetailsVC.album = Album(copyFrom: self.albums[indexPath.row])
+        albumDetailsVC.album = Album()
+        albumDetailsVC.album!.updated(copyFrom: self.albums[indexPath.row])
         albumDetailsVC.albumIndex = indexPath
         albumDetailsVC.delegate = self
-        albumsTable.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         show(albumDetailsVC, sender: self)
     }
     
     func addAlbum(album: Album) {
-        self.albums.append(Album(copyFrom: album))
+        let newAlbum = Album()
+        newAlbum.updated(copyFrom: album)
+        self.albums.append(newAlbum)
+        newAlbum.saveInBackground { (success, error) in
+            if success {
+                log.info("Album \(album.albumName) added")
+            } else {
+                guard let error = error else {
+                    log.error("Unknown error occurred adding album \(album.albumName)")
+                    return
+                }
+                log.error("Error adding album \(album.albumName): \(error)")
+            }
+        }
         self.albumsTable.reloadData()
     }
     
@@ -93,6 +107,17 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         // TODO: should use @album
         print("delete albums \(indexPath.row)")
         self.albums.remove(at: indexPath.row)
+        album.deleteInBackground { (success, error) in
+            if success {
+                log.info("Album \(album.albumName) deleted")
+            } else {
+                guard let error = error else {
+                    log.error("Unknown error occurred deleting album \(album.albumName)")
+                    return
+                }
+                log.error("Error deleting album \(album.albumName): \(error)")
+            }
+        }
         self.albumsTable.reloadData()
     }
     
@@ -100,7 +125,18 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         // TODO: should use @album
         if let indexPath = indexPath {
             print("updating albums \(indexPath.row)")
-            self.albums[indexPath.row] = Album(copyFrom: album)
+            self.albums[indexPath.row].updated(copyFrom: album)
+            self.albums[indexPath.row].saveInBackground { (success, error) in
+                if success {
+                    log.info("Album \(album.albumName) updated")
+                } else {
+                    guard let error = error else {
+                        log.error("Unknown error occurred updating album \(album.albumName)")
+                        return
+                    }
+                    log.error("Error updating album \(album.albumName): \(error)")
+                }
+            }
             self.albumsTable.reloadData()
         }
     }
@@ -109,7 +145,7 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         let addAlbumVC = AddAlbumViewController.getVC()
         addAlbumVC.addAlbumDelegate = self
         addAlbumVC.shouldAddAlbum = true
-        addAlbumVC.trips = self.trips
+        addAlbumVC.trips = ParseBackend.getTrips()
         show(addAlbumVC, sender: self)
     }
 }

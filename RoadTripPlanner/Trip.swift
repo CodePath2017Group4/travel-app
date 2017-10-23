@@ -17,6 +17,10 @@ class Trip: PFObject, PFSubclassing {
     @NSManaged var tripMembers: [TripMember]
     @NSManaged var albums: [Album]?
     
+    override init() {
+        super.init()
+    }
+    
     init(name: String, date: Date, creator: PFUser) {
         super.init()
         self.name = name

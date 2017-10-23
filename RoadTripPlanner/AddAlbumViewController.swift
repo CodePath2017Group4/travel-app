@@ -70,7 +70,7 @@ class AddAlbumViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tripTable.dequeueReusableCell(withIdentifier: "tripCell") as! TripSummaryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tripCell") as! TripSummaryCell
         cell.setTrip(trip: trips[indexPath.row])
         return cell
     }
