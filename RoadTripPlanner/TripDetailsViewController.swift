@@ -20,6 +20,9 @@ class TripDetailsViewController: UIViewController {
     @IBOutlet weak var profileImageView: PFImageView!
     
     @IBOutlet weak var emailGroupImageView: UIImageView!
+    @IBOutlet weak var editTableButton: UIButton!
+    @IBOutlet weak var addStopButton: UIButton!
+    @IBOutlet weak var addFriendsButton: UIButton!
     
     @IBOutlet weak var tripSettingsImageView: UIImageView!
     
@@ -132,6 +135,25 @@ class TripDetailsViewController: UIViewController {
         super.viewWillAppear(true)        
     }
     
+    // MARK: - IBAction methods
+    
+    @IBAction func editButtonPressed(_ sender: Any) {
+        if tableView.isEditing {
+            tableView.setEditing(false, animated: true)
+            editTableButton.setTitle("  Edit", for: .normal)
+            editTableButton.setTitleColor(UIColor.black, for: .normal)
+        } else {
+            tableView.setEditing(true, animated: true)
+            editTableButton.setTitle("  Done", for: .normal)
+            let doneColor = UIColor(red: 234/255.0, green: 76/255.0, blue: 28/255.0, alpha: 1)
+            editTableButton.setTitleColor(doneColor, for: .normal)
+        }
+        
+        // Disable other buttons if we are editing the table.
+        addStopButton.isEnabled = !tableView.isEditing
+        addFriendsButton.isEnabled = !tableView.isEditing
+    }
+    
     @IBAction func tripSettingButtonPressed(_ sender: Any) {
     }
     
@@ -213,6 +235,7 @@ class TripDetailsViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension TripDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -230,7 +253,17 @@ extension TripDetailsViewController: UITableViewDelegate, UITableViewDataSource 
         return 68
     }
     
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // Let all cells be reordered.
+        return true
+    }
     
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let tripSegmentToMove = tripSegments[sourceIndexPath.row]
+        
+        tripSegments.remove(at: sourceIndexPath.row)
+        tripSegments.insert(tripSegmentToMove, at: destinationIndexPath.row)
+    }
     
 }
 
