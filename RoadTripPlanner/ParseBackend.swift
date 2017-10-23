@@ -30,12 +30,15 @@ class ParseBackend {
         if let user = PFUser.current() {
             let query = PFQuery(className: Trip.parseClassName())
             query.whereKey("creator", equalTo: user)
-            let results = try? query.findObjects() as! [Trip]
-            if results == nil {
-                completionHandler([], nil)
-            } else {
-                completionHandler(results, nil)
-            }
+            
+            query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
+                if error == nil {
+                    let results = objects as! [Trip]
+                    completionHandler(results, nil)
+                } else {
+                    completionHandler(nil, error)
+                }
+            })
         } else {
             completionHandler([], nil)
         }
@@ -45,13 +48,15 @@ class ParseBackend {
         if let user = PFUser.current() {
             let query = PFQuery(className: Album.parseClassName())
             query.whereKey("owner", equalTo: user)
-            let results = try? query.findObjects() as! [Album]
-            if results == nil {
-                completionHandler([], nil)
-            } else {
-                completionHandler(results, nil)
-            }
-        } else {
+            query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
+                if error == nil {
+                    let results = objects as! [Album]
+                    completionHandler(results, nil)
+                } else {
+                    completionHandler(nil, error)
+                }
+            })
+        } else {           
             completionHandler([], nil)
         }
     }

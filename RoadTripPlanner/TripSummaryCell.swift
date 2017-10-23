@@ -15,7 +15,7 @@ class TripSummaryCell: UITableViewCell {
     
     func setTrip(trip: Trip) {
         tripLabel.text = trip.name
-        dateLabel.text = Utils.formatDate(date: trip.date!)
+        dateLabel.text = Utils.formatDate(date: trip.date)
     }
     
     override func awakeFromNib() {

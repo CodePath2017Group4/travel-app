@@ -73,7 +73,7 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
             descriptionLabel.text = album.albumDescription
             if let trip = album.trip {
                 tripLabel.text = trip.name
-                dateLabel.text = Utils.formatDate(date: trip.date!)
+                dateLabel.text = Utils.formatDate(date: trip.date)
             }
         }
     }

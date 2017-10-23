@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class AlbumCell: UITableViewCell {
     
@@ -39,7 +40,9 @@ class AlbumCell: UITableViewCell {
             album.photos[0].getDataInBackground(block: { (data, error) -> Void in
                 if (error == nil) {
                     if let data = data {
-                        self.albumImage.image = UIImage(data: data)
+                        DispatchQueue.main.async {
+                            self.albumImage.image = UIImage(data: data)
+                        }
                     }
                 }
             })
@@ -48,22 +51,35 @@ class AlbumCell: UITableViewCell {
         albumLabel.text = album.albumName
         print("set owner")
         if let owner = album.owner {
-            let realOwner = try? owner.fetch()
-            if realOwner != nil {
-                createdByLabel.text = realOwner!.username
-            }
+            owner.fetchInBackground(block: { (object, error) in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        let realOwner = object as! PFUser
+                        self.createdByLabel.text = realOwner.username
+                    }
+                } else {
+                    log.error("Error fetching album owner: \(error!)")
+                }
+            })
         }
         print("set trip")
         if let trip = album.trip {
-            let realTrip = try? trip.fetch()
-            if realTrip != nil {
-                tripLabel.text = realTrip!.name
-                if let date = realTrip!.date {
-                    dateLabel.text = Utils.formatDate(date: date)
+            
+            trip.fetchInBackground(block: { (object, error) in
+                if error == nil {
+                    DispatchQueue.main.async {
+                        let realTrip = object as! Trip
+                        if let date = realTrip.date {
+                           self.dateLabel.text = Utils.formatDate(date: date)
+                        } else {
+                            self.dateLabel.text = "unknown"
+                        }
+                    }
                 } else {
-                    dateLabel.text = "unknown"
+                    log.error("Error fetching trip: \(error!)")
                 }
-            }
+            })
+            
         }
     }
     

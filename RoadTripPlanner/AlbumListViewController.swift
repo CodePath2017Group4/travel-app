@@ -22,33 +22,31 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         albumsTable.delegate = self
         albumsTable.dataSource = self
         
-//        requestAlbums()
-        fakeAlbums()
+        requestAlbums()
+//        fakeAlbums()
         requestTrips()
     }
     
-    // Make sure this request is not done on the main UI thread.
     private func requestAlbums() {
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            ParseBackend.getAlbums(completionHandler: { (albums, error) in                
-                if albums != nil {
-                    self.albums = albums!
-                    DispatchQueue.main.async {
-                        self.albumsTable.reloadData()
-                    }
+        ParseBackend.getAlbums { (albums, error) in
+            if error == nil {
+                self.albums = albums!
+                DispatchQueue.main.async {
+                    self.albumsTable.reloadData()
                 }
-            })
+            } else {
+                log.error("Error fetching albums: \(error!)")
+            }
         }
     }
     
     private func requestTrips() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            ParseBackend.getTrips(completionHandler: { (trips, error) in
-                if trips != nil {
-                    self.trips = trips!
-                }
-            })
+        ParseBackend.getTrips { (trips, error) in
+            if error == nil {
+                self.trips = trips!
+            } else {
+               log.error("Error fetching trips: \(error!)")
+            }
         }
     }
     

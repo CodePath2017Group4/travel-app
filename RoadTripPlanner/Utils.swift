@@ -12,7 +12,10 @@ import UIKit
 import MapKit
 
 class Utils {
-    class func formatDate(date: Date) -> String {
+    class func formatDate(date: Date?) -> String {
+        
+        guard let date = date else { return "" }
+        
         let calendar = Calendar.current
         let year = calendar.component(.year, from: date)
         let month = calendar.component(.month, from: date)
