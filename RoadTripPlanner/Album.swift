@@ -19,6 +19,10 @@ class Album: PFObject, PFSubclassing {
     @NSManaged var likes: [PFUser]
     @NSManaged var photos: [PFFile]
     
+    override init() {
+        super.init()
+    }
+    
     init(albumName: String, albumDescription: String, trip: Trip, owner: PFUser) {
         super.init()
         self.albumName = albumName
@@ -31,8 +35,7 @@ class Album: PFObject, PFSubclassing {
         self.comments = []
     }
     
-    init(copyFrom: Album) {
-        super.init()
+    func updated(copyFrom: Album) {
         self.albumName = copyFrom.albumName
         self.albumDescription = copyFrom.albumDescription
         self.trip = copyFrom.trip

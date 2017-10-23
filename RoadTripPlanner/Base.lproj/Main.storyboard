@@ -2280,6 +2280,7 @@
                         <outlet property="numAlbumsLabel" destination="NyP-8k-S2W" id="90H-xS-24x"/>
                         <outlet property="numTripsLabel" destination="8dD-jv-7n8" id="mif-hw-AzY"/>
                         <outlet property="profileButton" destination="YRe-vV-JiW" id="VrI-SJ-O1o"/>
+                        <outlet property="tripsSummaryTable" destination="cuh-Cd-qe5" id="W20-dx-n2D"/>
                         <outlet property="userNameLabel" destination="vTU-ZG-DV6" id="AZz-BG-98q"/>
                     </connections>
                 </viewController>
