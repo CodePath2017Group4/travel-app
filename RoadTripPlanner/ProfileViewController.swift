@@ -9,13 +9,15 @@
 import UIKit
 import Parse
 
-class ProfileViewController: UIViewController, UINavigationControllerDelegate, AddPhotoDelegate {
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, AddPhotoDelegate, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var tripsSummaryTable: UITableView!
     
     @IBOutlet weak var numAlbumsLabel: UILabel!
     @IBOutlet weak var numTripsLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
+    
+    var trips: [Trip] = []
     
     //@IBOutlet weak var editPhotoButton: UIButton!
     //@IBOutlet weak var profileImage: UIImageView!
@@ -28,9 +30,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
         profileButton.layer.borderColor = UIColor.white.cgColor
         profileButton.layer.borderWidth = 3.0
         
-        
-        numAlbumsLabel.text = "0"
-        numTripsLabel.text = "0"
+        self.tripsSummaryTable.delegate = self
+        self.tripsSummaryTable.dataSource = self
         
         if PFUser.current() != nil {
             userNameLabel.text = PFUser.current()?.username
@@ -42,37 +43,21 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
             } else {
                 self.profileButton.setBackgroundImage(UIImage(named: "user"), for: .normal)
             }
-            
+            self.trips = ParseBackend.getTrips()
+            self.numTripsLabel.text = "\(self.trips.count)"
+            self.numAlbumsLabel.text = "\(ParseBackend.getAlbums().count)"
         } else {
             userNameLabel.text = "Anonymous User"
             self.profileButton.setBackgroundImage(UIImage(named: "user"), for: .normal)
+            self.numAlbumsLabel.text = "0"
+            self.numTripsLabel.text = "0"
         }
-        // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    @IBAction func onProfileButtonTapped(_ sender: Any) {
-        // Instantiate a UIImagePickerController
-        let vc = UIImagePickerController()
-        vc.delegate = self
-        vc.allowsEditing = true
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            print("Camera is available 📸")
-            vc.sourceType = .camera
-        } else {
-            print("Camera 🚫 available, so we'll use the photo library instead")
-            vc.sourceType = .photoLibrary
-        }
-        
-        self.present(vc, animated: true, completion: nil)
-    }
-    */
     
     @IBAction func onProfileButtonTapped(_ sender: Any) {
         let vc = PhotoViewController.getVC()
@@ -81,7 +66,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
     }
     
     func addPhoto(image: UIImage?) {
-        print("....?")
         if let image = image {
             profileButton.setBackgroundImage(image, for: .normal)
             
@@ -98,55 +82,20 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
                     log.error("Error saving avatar image: \(error)")
                 }
             }
-            
-        }
-    }
-}
-
-/*
-extension ProfileViewController : UIImagePickerControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        // Get the image captured by the UIImagePickerController
-
-        let editedImage = info[UIImagePickerControllerEditedImage] as! UIImage
-        
-        // Resize image to fit the image view
-        let width = profileImage.frame.size.width
-        let height = profileImage.frame.size.height
-        
-        let avatarImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
-        avatarImageView.contentMode = .scaleAspectFit
-        avatarImageView.image = editedImage
-        
-        UIGraphicsBeginImageContext(avatarImageView.frame.size)
-        avatarImageView.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        // Save the edited image as the new user avatar.
-        let avatar = PFFile(name: PFUser.current()!.username, data: UIImagePNGRepresentation(resizedImage!)!)
-        PFUser.current()!.setObject(avatar!, forKey: "avatar")
-        PFUser.current()!.saveInBackground { (success, error) in
-            if success {
-                log.info("Avatar updated")
-            } else {
-                guard let error = error else {
-                    log.error("Unknown error occurred saving avatar image")
-                    return
-                }
-                log.error("Error saving avatar image: \(error)")
-            }
-        }
-        
-        // Dismiss the UIImagePickerController
-        dismiss(animated: true) {
-            self.profileImage.image = resizedImage
         }
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        log.verbose("Canceled")
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return trips.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tripCell") as! TripSummaryCell
+        cell.setTrip(trip: trips[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }
-*/

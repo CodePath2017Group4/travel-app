@@ -1139,14 +1139,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="parking" translatesAutoresizingMaskIntoConstraints="NO" id="iaM-WX-0aX">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parking" translatesAutoresizingMaskIntoConstraints="NO" id="iaM-WX-0aX">
                                         <rect key="frame" x="181" y="75" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="eVc-9K-qe3"/>
                                             <constraint firstAttribute="width" constant="30" id="s7M-WS-xZd"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Burgers &amp; Barbeque" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cy2-Um-Gar">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Burgers &amp; Barbeque" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cy2-Um-Gar">
                                         <rect key="frame" x="149" y="107" width="94" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="Abt-Mc-Fwa"/>
@@ -1155,14 +1155,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="parking" translatesAutoresizingMaskIntoConstraints="NO" id="Vre-A7-fbj">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parking" translatesAutoresizingMaskIntoConstraints="NO" id="Vre-A7-fbj">
                                         <rect key="frame" x="101" y="75" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="gdb-PL-rIA"/>
                                             <constraint firstAttribute="height" constant="30" id="m7i-ej-WFm"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Quick Eats" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Au-Tq-PKI">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick Eats" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Au-Tq-PKI">
                                         <rect key="frame" x="91" y="107" width="50" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="29P-km-kQk"/>
@@ -2369,6 +2369,7 @@
                         <outlet property="numAlbumsLabel" destination="NyP-8k-S2W" id="90H-xS-24x"/>
                         <outlet property="numTripsLabel" destination="8dD-jv-7n8" id="mif-hw-AzY"/>
                         <outlet property="profileButton" destination="YRe-vV-JiW" id="VrI-SJ-O1o"/>
+                        <outlet property="tripsSummaryTable" destination="cuh-Cd-qe5" id="W20-dx-n2D"/>
                         <outlet property="userNameLabel" destination="vTU-ZG-DV6" id="AZz-BG-98q"/>
                     </connections>
                 </viewController>

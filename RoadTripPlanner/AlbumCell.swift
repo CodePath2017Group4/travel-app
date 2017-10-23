@@ -29,7 +29,10 @@ class AlbumCell: UITableViewCell {
     func displayAlbum(album: Album) {
         hideDelete()
         
-        self.album = Album(copyFrom: album)
+        if (self.album == nil) {
+            self.album = Album()
+        }
+        self.album!.updated(copyFrom: album)
         albumImage.image = UIImage(named: "album-default")
         
         if (album.photos.count > 0) {
@@ -43,15 +46,23 @@ class AlbumCell: UITableViewCell {
         }
         
         albumLabel.text = album.albumName
+        print("set owner")
         if let owner = album.owner {
-            createdByLabel.text = owner.username
+            let realOwner = try? owner.fetch()
+            if realOwner != nil {
+                createdByLabel.text = realOwner!.username
+            }
         }
+        print("set trip")
         if let trip = album.trip {
-            tripLabel.text = trip.name
-            if let date = trip.date {
-                dateLabel.text = Utils.formatDate(date: date)
-            } else {
-                dateLabel.text = "unknown"
+            let realTrip = try? trip.fetch()
+            if realTrip != nil {
+                tripLabel.text = realTrip!.name
+                if let date = realTrip!.date {
+                    dateLabel.text = Utils.formatDate(date: date)
+                } else {
+                    dateLabel.text = "unknown"
+                }
             }
         }
     }

@@ -301,6 +301,7 @@
                         <outlet property="numAlbumsLabel" destination="gx0-av-9gg" id="k2x-vE-Gcl"/>
                         <outlet property="numTripsLabel" destination="TwB-Zx-Vck" id="rtR-2a-Jug"/>
                         <outlet property="profileButton" destination="XXA-Vn-vTn" id="yqn-KW-Kyl"/>
+                        <outlet property="tripsSummaryTable" destination="tg1-QN-e6f" id="5M5-Jn-vzl"/>
                         <outlet property="userNameLabel" destination="pjj-4v-Qbx" id="ruc-i8-8cZ"/>
                     </connections>
                 </viewController>
