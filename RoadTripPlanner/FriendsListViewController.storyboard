@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MeT-Yc-UWx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Friends List View Controller-->
+        <scene sceneID="wex-rK-vLA">
+            <objects>
+                <viewController storyboardIdentifier="FriendsListViewController" id="MeT-Yc-UWx" customClass="FriendsListViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Ju-HH-Ld4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3QU-Wk-750">
+                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendUserCell" rowHeight="80" id="Ab7-n9-fpZ" customClass="FriendUserCell" customModule="RoadTripPlanner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ab7-n9-fpZ" id="UEi-aZ-raE">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="Lua-VC-4pj">
+                                                    <rect key="frame" x="16" y="8" width="64" height="64"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="64" id="rec-j9-LFU"/>
+                                                        <constraint firstAttribute="height" constant="64" id="yZP-wy-kfY"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSv-SW-xea">
+                                                    <rect key="frame" x="88" y="30" width="76" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFi-hp-LCi">
+                                                    <rect key="frame" x="329" y="24" width="30" height="30"/>
+                                                    <state key="normal" title="Add"/>
+                                                    <connections>
+                                                        <action selector="addRemoveButtonPressed:" destination="Ab7-n9-fpZ" eventType="touchUpInside" id="x0t-Be-n7k"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fFi-hp-LCi" secondAttribute="trailing" constant="8" id="HHz-So-AJ8"/>
+                                                <constraint firstItem="fFi-hp-LCi" firstAttribute="centerY" secondItem="UEi-aZ-raE" secondAttribute="centerY" id="Mzc-cT-Wl1"/>
+                                                <constraint firstItem="Lua-VC-4pj" firstAttribute="centerY" secondItem="UEi-aZ-raE" secondAttribute="centerY" id="NuC-Xr-FR2"/>
+                                                <constraint firstItem="MSv-SW-xea" firstAttribute="leading" secondItem="Lua-VC-4pj" secondAttribute="trailing" constant="8" id="QM1-yA-mog"/>
+                                                <constraint firstItem="MSv-SW-xea" firstAttribute="centerY" secondItem="UEi-aZ-raE" secondAttribute="centerY" id="rim-bA-gUs"/>
+                                                <constraint firstItem="Lua-VC-4pj" firstAttribute="leading" secondItem="UEi-aZ-raE" secondAttribute="leading" constant="16" id="u0P-KI-qE0"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="addRemoveButton" destination="fFi-hp-LCi" id="28S-LZ-cWZ"/>
+                                            <outlet property="avatarImageView" destination="Lua-VC-4pj" id="6P2-Qk-DfA"/>
+                                            <outlet property="usernameLabel" destination="MSv-SW-xea" id="2OI-Le-eKW"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="yNr-my-HOa">
+                                <rect key="frame" x="0.0" y="20" width="375" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="dKj-Pd-wad"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yNr-my-HOa" firstAttribute="leading" secondItem="9VD-th-zer" secondAttribute="leading" id="41S-yR-OoW"/>
+                            <constraint firstItem="3QU-Wk-750" firstAttribute="leading" secondItem="9VD-th-zer" secondAttribute="leading" id="6G8-Ii-v2j"/>
+                            <constraint firstItem="yNr-my-HOa" firstAttribute="top" secondItem="9VD-th-zer" secondAttribute="top" id="Xm8-63-GSG"/>
+                            <constraint firstItem="3QU-Wk-750" firstAttribute="top" secondItem="yNr-my-HOa" secondAttribute="bottom" id="hsb-vh-Zqb"/>
+                            <constraint firstItem="3QU-Wk-750" firstAttribute="bottom" secondItem="9VD-th-zer" secondAttribute="bottom" id="qOS-zp-sZR"/>
+                            <constraint firstItem="3QU-Wk-750" firstAttribute="trailing" secondItem="9VD-th-zer" secondAttribute="trailing" id="vsA-Gb-h2H"/>
+                            <constraint firstItem="yNr-my-HOa" firstAttribute="trailing" secondItem="9VD-th-zer" secondAttribute="trailing" id="zur-ZZ-kxA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9VD-th-zer"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="yNr-my-HOa" id="sTB-ay-Ge6"/>
+                        <outlet property="searchDisplayController" destination="aoB-OH-roG" id="evK-iI-Xbj"/>
+                        <outlet property="tableView" destination="3QU-Wk-750" id="08F-c2-Z2K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bNX-WG-egu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="aoB-OH-roG">
+                    <connections>
+                        <outlet property="delegate" destination="MeT-Yc-UWx" id="qyx-l4-LeR"/>
+                        <outlet property="searchContentsController" destination="MeT-Yc-UWx" id="VDO-x9-tMz"/>
+                        <outlet property="searchResultsDataSource" destination="MeT-Yc-UWx" id="34t-Pq-tWX"/>
+                        <outlet property="searchResultsDelegate" destination="MeT-Yc-UWx" id="wIb-xk-HMS"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="549.60000000000002" y="41.829085457271368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="user" width="128" height="128"/>
+    </resources>
+</document>

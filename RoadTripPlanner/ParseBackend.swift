@@ -11,20 +11,18 @@ import Parse
 
 class ParseBackend {
     
-//    static func getTrips() -> [Trip] {
-//        if let user = PFUser.current() {
-//            let query = PFQuery(className: Trip.parseClassName())
-//            query.whereKey("creator", equalTo: user)
-//            let results = try? query.findObjects() as! [Trip]
-//            if results == nil {
-//                return []
-//            } else {
-//                return results!
-//            }
-//        } else {
-//            return []
-//        }
-//    }
+    static func getUsers(completionHandler: @escaping ([PFUser]?, Error?) -> Void) {
+
+        let query = PFUser.query()
+        query?.findObjectsInBackground(block: { (objects, error) in
+            if error == nil {
+                let users = objects as! [PFUser]
+                completionHandler(users, nil)
+            } else {
+                completionHandler(nil, error)                
+            }
+        })
+    }
     
     static func getTrips(completionHandler: @escaping ([Trip]?, Error?) -> Void) {
         if let user = PFUser.current() {

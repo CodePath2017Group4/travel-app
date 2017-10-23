@@ -26,6 +26,8 @@ class TestData : NSObject{
         // If we do not have a current user, skip out
         guard let user = PFUser.current() else { return }
         
+        
+        
         let trip = Trip(name: "Road Trip SF", date: Date(), creator: user)
         
         trip.addSegment(tripSegment: TripSegment(name: "Apple Infinite Loop", address: "1 Infinite Loop, Cupertino, CA 95014", geoPoint: appleGeoPoint))

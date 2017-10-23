@@ -72,7 +72,7 @@ class TripDetailsViewController: UIViewController {
             
         }
     }
-    
+        
     fileprivate func registerForNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(TripDetailsViewController.tripWasModified(notification:)),
@@ -159,6 +159,12 @@ class TripDetailsViewController: UIViewController {
     
     @IBAction func albumButtonPressed(_ sender: Any) {
     }
+    
+    @IBAction func addFriendsButtonPressed(_ sender: Any) {
+        let friendsVC = FriendsListViewController.storyboardInstance()
+        navigationController?.pushViewController(friendsVC!, animated: true)
+    }
+    
     
     @IBAction func addStopButtonPressed(_ sender: Any) {
         

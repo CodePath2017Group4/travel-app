@@ -29,6 +29,7 @@ struct Constants {
         static let TripSegmentCell = "TripSegmentCell"
         static let LocationSearchResultCell = "LocationSearchResultCell"
         static let TripTableViewCell = "TripTableViewCell"
+        static let FriendUserCell = "FriendUserCell"
     }
     
     struct NibNames {
