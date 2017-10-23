@@ -14,9 +14,14 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     var delegate: AddPhotoDelegate?
     
+    static func getVC() -> PhotoViewController {
+        let storyboard = UIStoryboard(name: "Photo", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "photoVC") as! PhotoViewController
+        return vc
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         navigationItem.leftBarButtonItem?.title = "Cancel"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addPhotoTapped))
     }

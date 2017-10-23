@@ -76,7 +76,6 @@
 		F8607B1D1F8FCC8E0029DB02 /* TripDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8607B1C1F8FCC8E0029DB02 /* TripDetailsViewController.swift */; };
 		F8607B251F903FC20029DB02 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8607B241F903FC20029DB02 /* User.swift */; };
 		F891E10C1F94375D006B2DD6 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E10B1F94375D006B2DD6 /* CreateUserViewController.swift */; };
-		F891E1121F943788006B2DD6 /* PhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E10F1F943788006B2DD6 /* PhotoLayout.swift */; };
 		F891E1151F943796006B2DD6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E1141F943796006B2DD6 /* ProfileViewController.swift */; };
 		F8B6A3A11F920D9200942820 /* WeatherGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6A3A01F920D9200942820 /* WeatherGetter.swift */; };
 		F8B6A3A31F920ECF00942820 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6A3A21F920ECF00942820 /* Weather.swift */; };
@@ -185,7 +184,6 @@
 		F8607B1C1F8FCC8E0029DB02 /* TripDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsViewController.swift; sourceTree = "<group>"; };
 		F8607B241F903FC20029DB02 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F891E10B1F94375D006B2DD6 /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
-		F891E10F1F943788006B2DD6 /* PhotoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLayout.swift; sourceTree = "<group>"; };
 		F891E1141F943796006B2DD6 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F8B6A3A01F920D9200942820 /* WeatherGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherGetter.swift; sourceTree = "<group>"; };
 		F8B6A3A21F920ECF00942820 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -228,12 +226,12 @@
 		486E3C491F945EF7003D2FFF /* Album */ = {
 			isa = PBXGroup;
 			children = (
-				DFC85C1F1F9D379A00797D92 /* AddAlbumDelegate.swift */,
 				486E3C411F945EEB003D2FFF /* AlbumDetailsViewController.swift */,
 				486E3C421F945EEB003D2FFF /* AlbumListViewController.swift */,
 				486E3C441F945EEB003D2FFF /* PhotoViewController.swift */,
 				48CCC8421F9D6BD300050176 /* PhotoGalleryViewController.swift */,
 				48CB34481F9BBC5900EE268A /* AddAlbumViewController.swift */,
+				DFC85C1F1F9D379A00797D92 /* AddAlbumDelegate.swift */,
 				486E3C4C1F945F4E003D2FFF /* AddPhotoDelegate.swift */,
 				48CCC83E1F9D0A4900050176 /* DeleteAlbumDelegate.swift */,
 				48CCC8401F9D14B200050176 /* UpdateAlbumDelegate.swift */,
@@ -377,7 +375,6 @@
 				F806F2AC1F8DFCD300E11785 /* LoginViewController.swift */,
 				F806F2B01F8E08B300E11785 /* MapViewController.swift */,
 				F891E1141F943796006B2DD6 /* ProfileViewController.swift */,
-				F891E10F1F943788006B2DD6 /* PhotoLayout.swift */,
 				486E3C491F945EF7003D2FFF /* Album */,
 				F8B6A3A01F920D9200942820 /* WeatherGetter.swift */,
 				F8B6A3A21F920ECF00942820 /* Weather.swift */,
@@ -782,7 +779,6 @@
 				F806F2A91F8DED0000E11785 /* TripCell.swift in Sources */,
 				F8607B1D1F8FCC8E0029DB02 /* TripDetailsViewController.swift in Sources */,
 				DFA0E2A81F96EB2D005D7528 /* TabBarViewController.swift in Sources */,
-				F891E1121F943788006B2DD6 /* PhotoLayout.swift in Sources */,
 				F8B6A3E51F932CAE00942820 /* CommentsViewController.swift in Sources */,
 				DFCC37971F9801B1003BDCA6 /* Constants.swift in Sources */,
 				DF32B9C41F9467F900594F0B /* Trip.swift in Sources */,

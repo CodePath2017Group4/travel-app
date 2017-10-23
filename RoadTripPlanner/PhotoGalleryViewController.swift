@@ -16,6 +16,12 @@ class PhotoGalleryViewController: UIViewController {
     var defaultIndex: Int = 0
     var photos: [PFFile] = []
     
+    static func getVC() -> PhotoGalleryViewController {
+        let storyboard = UIStoryboard(name: "Album", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "photoGalleryVC") as! PhotoGalleryViewController
+        return vc
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

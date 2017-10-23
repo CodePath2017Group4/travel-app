@@ -76,8 +76,7 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Album", bundle: nil)
-        let albumDetailsVC = storyboard.instantiateViewController(withIdentifier: "AlbumDetailsVC") as! AlbumDetailsViewController
+        let albumDetailsVC = AlbumDetailsViewController.getVC()
         albumDetailsVC.album = Album(copyFrom: self.albums[indexPath.row])
         albumDetailsVC.albumIndex = indexPath
         albumDetailsVC.delegate = self
@@ -107,8 +106,7 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func addAlbumTapped(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Album", bundle: nil)
-        let addAlbumVC = storyboard.instantiateViewController(withIdentifier: "AddAlbumVC") as! AddAlbumViewController
+        let addAlbumVC = AddAlbumViewController.getVC()
         addAlbumVC.addAlbumDelegate = self
         addAlbumVC.shouldAddAlbum = true
         addAlbumVC.trips = self.trips
