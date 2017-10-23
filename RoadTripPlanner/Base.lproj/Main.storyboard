@@ -536,98 +536,9 @@
                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="currentPageIndicatorTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </pageControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="215" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Uh-TG-Tik">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="201" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Uh-TG-Tik">
                                 <rect key="frame" x="16" y="339" width="343" height="271"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripHeaderCell" rowHeight="36" id="uTc-61-E6F">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="36"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uTc-61-E6F" id="uT1-Gj-AlJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="35.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UPCOMING TRIPS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJy-cB-Rhk">
-                                                    <rect key="frame" x="17" y="6" width="150.5" height="21"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" red="0.61176470589999998" green="0.61176470589999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="dJy-cB-Rhk" secondAttribute="bottom" constant="8.5" id="76s-pQ-gY0"/>
-                                                <constraint firstItem="dJy-cB-Rhk" firstAttribute="leading" secondItem="uT1-Gj-AlJ" secondAttribute="leading" constant="17" id="c2R-He-qzE"/>
-                                                <constraint firstItem="dJy-cB-Rhk" firstAttribute="top" secondItem="uT1-Gj-AlJ" secondAttribute="top" constant="6" id="jaB-Xf-xXk"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dJy-cB-Rhk" secondAttribute="trailing" id="n1S-g8-kLH"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripCell" rowHeight="247" id="JCI-Vt-cEg" customClass="TripCell" customModule="RoadTripPlanner" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="64" width="343" height="247"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JCI-Vt-cEg" id="vKB-65-nKC">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="246.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sf" translatesAutoresizingMaskIntoConstraints="NO" id="AmA-dp-oUU">
-                                                    <rect key="frame" x="8" y="8" width="327" height="162"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Francisco, CA    10/16/2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qh-DX-DPy">
-                                                    <rect key="frame" x="8" y="209" width="320" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="Fql-9v-jnP"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile2" translatesAutoresizingMaskIntoConstraints="NO" id="fQT-Rs-0fG">
-                                                    <rect key="frame" x="69" y="148" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="cfC-fA-8cP"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile3" translatesAutoresizingMaskIntoConstraints="NO" id="cLc-Xz-qZA">
-                                                    <rect key="frame" x="125" y="148" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="0Ga-9f-jWD"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="I3d-UJ-Rq8">
-                                                    <rect key="frame" x="13" y="148" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="GKu-Ab-fXc"/>
-                                                        <constraint firstAttribute="width" constant="50" id="nYN-hN-bfo"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="1Qh-DX-DPy" secondAttribute="bottom" constant="8.5" id="3IL-LJ-gtL"/>
-                                                <constraint firstItem="AmA-dp-oUU" firstAttribute="leading" secondItem="vKB-65-nKC" secondAttribute="leadingMargin" id="Fli-lh-biA"/>
-                                                <constraint firstItem="1Qh-DX-DPy" firstAttribute="top" secondItem="I3d-UJ-Rq8" secondAttribute="bottom" constant="11" id="MeA-Gy-sz0"/>
-                                                <constraint firstItem="I3d-UJ-Rq8" firstAttribute="bottom" secondItem="fQT-Rs-0fG" secondAttribute="bottom" id="Pej-up-erW"/>
-                                                <constraint firstItem="AmA-dp-oUU" firstAttribute="trailing" secondItem="vKB-65-nKC" secondAttribute="trailingMargin" id="QTc-8A-6pP"/>
-                                                <constraint firstItem="1Qh-DX-DPy" firstAttribute="top" secondItem="AmA-dp-oUU" secondAttribute="bottom" constant="39" id="R6i-XY-fXo"/>
-                                                <constraint firstItem="I3d-UJ-Rq8" firstAttribute="leading" secondItem="vKB-65-nKC" secondAttribute="leadingMargin" constant="5" id="SYu-Tc-ScB"/>
-                                                <constraint firstItem="AmA-dp-oUU" firstAttribute="leading" secondItem="1Qh-DX-DPy" secondAttribute="leading" id="bas-xu-p59"/>
-                                                <constraint firstItem="AmA-dp-oUU" firstAttribute="top" secondItem="vKB-65-nKC" secondAttribute="topMargin" id="e2I-Xx-VI0"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="1Qh-DX-DPy" secondAttribute="trailing" constant="7" id="eeY-Ak-FRp"/>
-                                                <constraint firstItem="fQT-Rs-0fG" firstAttribute="bottom" secondItem="cLc-Xz-qZA" secondAttribute="bottom" id="fIy-sj-eUY"/>
-                                                <constraint firstItem="I3d-UJ-Rq8" firstAttribute="top" secondItem="fQT-Rs-0fG" secondAttribute="top" id="hTK-Pu-6oO"/>
-                                                <constraint firstItem="cLc-Xz-qZA" firstAttribute="leading" secondItem="fQT-Rs-0fG" secondAttribute="trailing" constant="6" id="pUK-UV-hbQ"/>
-                                                <constraint firstItem="fQT-Rs-0fG" firstAttribute="top" secondItem="cLc-Xz-qZA" secondAttribute="top" id="rFe-VB-IIV"/>
-                                                <constraint firstItem="fQT-Rs-0fG" firstAttribute="leading" secondItem="I3d-UJ-Rq8" secondAttribute="trailing" constant="6" id="woW-Wf-3EV"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="profileImg1" destination="I3d-UJ-Rq8" id="yTR-zq-Viq"/>
-                                            <outlet property="profileImg2" destination="fQT-Rs-0fG" id="BNh-GQ-U0p"/>
-                                            <outlet property="profileImg3" destination="cLc-Xz-qZA" id="fvc-dk-OA0"/>
-                                            <outlet property="tripImageView" destination="AmA-dp-oUU" id="VB0-Zs-m3v"/>
-                                            <outlet property="tripTitleLabel" destination="1Qh-DX-DPy" id="QvR-de-wU6"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Mjs-y4-h14" id="9DO-Pb-Ern"/>
                                     <outlet property="delegate" destination="Mjs-y4-h14" id="uet-aG-o0Z"/>
@@ -2407,8 +2318,6 @@
         <image name="poi" width="48" height="48"/>
         <image name="profile-bg" width="375" height="250"/>
         <image name="profile-tab" width="24" height="24"/>
-        <image name="profile1" width="119" height="106"/>
-        <image name="profile2" width="91" height="137"/>
         <image name="profile3" width="114" height="110"/>
         <image name="restauranticon" width="50" height="50"/>
         <image name="reststops" width="50" height="50"/>

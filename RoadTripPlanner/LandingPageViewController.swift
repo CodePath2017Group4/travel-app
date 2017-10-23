@@ -73,8 +73,12 @@ class LandingPageViewController: UIViewController {
         alongTheRouteButton.isHidden = true
         
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 120
-        tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 201
+        //tableView.separatorStyle = .none
+        
+        let tripTableViewCellNib = UINib(nibName: Constants.NibNames.TripTableViewCell, bundle: nil)
+        tableView.register(tripTableViewCellNib, forCellReuseIdentifier: Constants.ReuseableCellIdentifiers.TripTableViewCell)
+        
         
         nearMeButton.isHidden = true
         alongTheRouteButton.isHidden = true
@@ -413,26 +417,30 @@ extension LandingPageViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 || indexPath.row == 2  {
-            return 30.0
-        }
-        return 200.0
+//        if indexPath.row == 0 || indexPath.row == 2  {
+//            return 30.0
+//        }
+        return 201.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        switch indexPath.row {
-            case 0, 2 : let headerCell = tableView.dequeueReusableCell(withIdentifier: "TripHeaderCell", for: indexPath) as! UITableViewCell
-                    return headerCell
-
-            case 1, 3 :  let tripCell = tableView.dequeueReusableCell(withIdentifier: "TripCell", for: indexPath) as! TripCell
-                    tripCell.selectionStyle = .none
-
-                    return tripCell
-            default:  return UITableViewCell()
-
-            
-        }
+//        switch indexPath.row {
+//            case 0, 2 : let headerCell = tableView.dequeueReusableCell(withIdentifier: "TripHeaderCell", for: indexPath) as! UITableViewCell
+//                    return headerCell
+//
+//            case 1, 3 :  let tripCell = tableView.dequeueReusableCell(withIdentifier: "TripCell", for: indexPath) as! TripCell
+//                    tripCell.selectionStyle = .none
+//
+//                    return tripCell
+//            default:  return UITableViewCell()
+//
+//
+//        }
+        
+        let tripCell = tableView.dequeueReusableCell(withIdentifier: Constants.ReuseableCellIdentifiers.TripTableViewCell, for: indexPath) as! TripTableViewCell
+        tripCell.trip = trips[indexPath.row]
+        return tripCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -43,14 +43,47 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
             } else {
                 self.profileButton.setBackgroundImage(UIImage(named: "user"), for: .normal)
             }
-            self.trips = ParseBackend.getTrips()
-            self.numTripsLabel.text = "\(self.trips.count)"
-            self.numAlbumsLabel.text = "\(ParseBackend.getAlbums().count)"
+            
+            
+            requestTrips()
+            requestAlbums()
+            
         } else {
             userNameLabel.text = "Anonymous User"
             self.profileButton.setBackgroundImage(UIImage(named: "user"), for: .normal)
             self.numAlbumsLabel.text = "0"
             self.numTripsLabel.text = "0"
+        }
+    }
+    
+    // Make sure this request is not done on the main UI thread.
+    private func requestAlbums() {
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            ParseBackend.getAlbums(completionHandler: { (albums, error) in
+                if albums != nil {
+                    DispatchQueue.main.async {
+                        let count = albums!.count
+                        self.numAlbumsLabel.text = "\(count)"
+                    }
+                }
+            })
+        }
+    }
+    
+    private func requestTrips() {
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            ParseBackend.getTrips(completionHandler: { (trips, error) in
+                if trips != nil {
+                    
+                    self.trips = trips!
+                    
+                    DispatchQueue.main.async {
+                        self.numTripsLabel.text = "\(self.trips.count)"
+                    }
+                }
+            })
         }
     }
     

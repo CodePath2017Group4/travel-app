@@ -22,10 +22,34 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         albumsTable.delegate = self
         albumsTable.dataSource = self
         
-        self.albums = ParseBackend.getAlbums()
-        print("albums are \(albums)")
-        //fakeAlbums()
-        albumsTable.reloadData()
+//        requestAlbums()
+        fakeAlbums()
+        requestTrips()
+    }
+    
+    // Make sure this request is not done on the main UI thread.
+    private func requestAlbums() {
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            ParseBackend.getAlbums(completionHandler: { (albums, error) in                
+                if albums != nil {
+                    self.albums = albums!
+                    DispatchQueue.main.async {
+                        self.albumsTable.reloadData()
+                    }
+                }
+            })
+        }
+    }
+    
+    private func requestTrips() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            ParseBackend.getTrips(completionHandler: { (trips, error) in
+                if trips != nil {
+                    self.trips = trips!
+                }
+            })
+        }
     }
     
     private func fakeAlbums() {
@@ -145,7 +169,7 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         let addAlbumVC = AddAlbumViewController.getVC()
         addAlbumVC.addAlbumDelegate = self
         addAlbumVC.shouldAddAlbum = true
-        addAlbumVC.trips = ParseBackend.getTrips()
+        addAlbumVC.trips = self.trips
         show(addAlbumVC, sender: self)
     }
 }

@@ -50,8 +50,12 @@ class AddStopViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func doneButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
+// MARK: - MKLocalSearchCompleterDelegate
 extension AddStopViewController: MKLocalSearchCompleterDelegate {
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
@@ -64,6 +68,7 @@ extension AddStopViewController: MKLocalSearchCompleterDelegate {
     }
 }
 
+// MARK: - UISearchBarDelegate
 extension AddStopViewController : UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -85,11 +90,8 @@ extension AddStopViewController : UISearchBarDelegate {
    
 }
 
-extension AddStopViewController : UITableViewDelegate {
-    
-}
-
-extension AddStopViewController: UITableViewDataSource {
+// MARK: - UITableViewDataSource, UITableViewDelegate
+extension AddStopViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
