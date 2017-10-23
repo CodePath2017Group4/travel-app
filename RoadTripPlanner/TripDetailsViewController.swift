@@ -82,10 +82,11 @@ class TripDetailsViewController: UIViewController {
     }
     
     func tripWasModified(notification: NSNotification) {
-        log.info("trip was modified")
         let info = notification.userInfo
         let trip = info!["trip"] as! Trip
-        self.trip = trip
+        
+        // Update the trip segments and reload the table view
+        self.tripSegments = trip.segments!
         self.tableView.reloadData()
     }
     
