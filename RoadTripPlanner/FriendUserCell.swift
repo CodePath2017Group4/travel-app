@@ -15,22 +15,22 @@ class FriendUserCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var addRemoveButton: UIButton!
     
-    var avatarFile: PFFile?
-    
     var user: PFUser! {
         didSet {
             usernameLabel.text = user.username
-            avatarFile = user.avatarFile
+            guard let avatarFile = user.avatarFile else { return }
+            
+            Utils.fileToImage(file: avatarFile) { (image) in
+                self.avatarImageView.image = image
+            }
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        guard let avatarFile = self.avatarFile else { return }
-        Utils.fileToImage(file: avatarFile) { (image) in
-            self.avatarImageView.image = image
-        }
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.height / 2
+        avatarImageView.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
