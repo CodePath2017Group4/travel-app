@@ -15,20 +15,19 @@ class Category {
     static let categoriesList = ["servicestations", "food", "publicservicesgovt"/*poi*/,"grocery"/*shopping"*/, "lodging", "things_to_do", "nightlife", "entertainment"]
     
     static let automotiveSubCategory = ["auto" : ["servicestations", "autoelectric", "parking"]] as [String:[String]]
-    static let foodSubCategories = ["food" : ["bakeries", "bagels", "coffee", "donuts", "foodtrucks"], "restaurants" : ["All"]]
+    static let foodSubCategories = ["food" : ["juicebars", "milkshakebars"], "restaurants" : ["cafes", "All", "breakfast_brunch", "burgers"], "nightlife" : ["bars"]]
     static let poiSubCategory = ["publicservicesgovt" : ["landmarks", "civiccenter", "townhall"]]
     static let shoppingSubCategories = ["shopping" : ["drugstores", "deptstores", "flowers"]]
     static let hotelsSubCategories = ["hotels" : ["bedbreakfast", "campgrounds", "guesthouses", "hostels"]]
     static let TDOSubCategory = ["arts" : ["arcades", "museums"], "active" : ["aquariums", "zoos", "parks", "amusementparks"]]
     static let nightlifeSubCategory = ["nightlife" : ["All"]]
-    static let entertainmentSubCategory = ["arts" : ["moviestheaters", "galaries", "theater"]]
+    static let entertainmentSubCategory = ["arts" : ["moviestheaters", "galaries", "theater"], "nightlife" : ["All"]]
     
     init(term: String?) {
         var termArray = [String]()
-        print("term!.contains(,)  ============================ \(term!.contains(","))")
 
         if (term!.contains(",")) {
-            let termCArray = term?.characters.split(separator: ",") //.split(separator: ",") as! [String]
+            let termCArray = term?.characters.split(separator: ",")
 
             for termString in termCArray! {
                 let value = String(termString)
@@ -38,29 +37,21 @@ class Category {
         else {
             termArray.append((term)!)
         }
-        print("termArray  ==========in initi================= \(termArray)")
 
         self.terms = termArray
     }
 
     func getCategoryList() -> [String] {
-        print("term ==========in get list================== \(terms)")
-
         var categorylist = [String]()
-        print("terms  ============================ \(terms)")
-
-        print("terms!.contains(auto)   ============================ \(terms!.contains("auto") )")
-            
+        
         if terms!.contains("auto") {
             let autoList = Category.automotiveSubCategory ["auto"] as! [String]
             categorylist.append(contentsOf: autoList)
-            print("categorylist inside if ============================ \(categorylist)")
         }
 
         if terms!.contains("publicservicesgovt") {
             let poiList = Category.poiSubCategory ["publicservicesgovt"] as! [String]
             categorylist.append(contentsOf: poiList)
-            print("categorylist inside if ============================ \(categorylist)")
             
         }
         
@@ -69,7 +60,6 @@ class Category {
             foodList.append(contentsOf: Category.foodSubCategories ["restaurants"] as! [String])
             
             categorylist.append(contentsOf: foodList)
-            print("categorylist inside if ============================ \(categorylist)")
             
         }
         
@@ -77,7 +67,6 @@ class Category {
             var shoppingList = Category.shoppingSubCategories ["shopping"] as! [String]
             
             categorylist.append(contentsOf: shoppingList)
-            print("categorylist inside if ============================ \(categorylist)")
             
         }
         
@@ -85,7 +74,6 @@ class Category {
             var hotelsList = Category.hotelsSubCategories ["hotels"] as! [String]
             
             categorylist.append(contentsOf: hotelsList)
-            print("categorylist inside if ============================ \(categorylist)")
             
         }
         
@@ -94,7 +82,6 @@ class Category {
             tdoList.append(contentsOf: Category.TDOSubCategory ["active"] as! [String])
             
             categorylist.append(contentsOf: tdoList)
-            print("categorylist inside if ============================ \(categorylist)")
             
         }
         
@@ -102,7 +89,6 @@ class Category {
             var nightlifeList = Category.nightlifeSubCategory ["nightlife"] as! [String]
             
             categorylist.append(contentsOf: nightlifeList)
-            print("categorylist inside if ============================ \(categorylist)")
             
         }
         
@@ -110,7 +96,6 @@ class Category {
             var entertainmentList = Category.entertainmentSubCategory ["arts"] as! [String]
             
             categorylist.append(contentsOf: entertainmentList)
-            print("categorylist inside if ============================ \(categorylist)")
             
         }
         

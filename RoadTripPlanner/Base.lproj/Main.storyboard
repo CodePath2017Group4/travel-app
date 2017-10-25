@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1698,8 +1697,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onStartTrip:" destination="txa-aH-fhl" eventType="touchUpInside" id="zUe-kC-CQx"/>
-                                    <segue destination="2y3-fz-doZ" kind="show" identifier="StartTrip" id="Ru8-dN-TxG"/>
+                                    <segue destination="2y3-fz-doZ" kind="show" identifier="StartTrip" id="h2Z-ly-fdQ"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Current Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LE1-Si-EVr">
@@ -1853,7 +1851,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dzy-KP-GdX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3157.5999999999999" y="-1361.4692653673164"/>
+            <point key="canvasLocation" x="2905" y="-1473"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="lcn-Ia-cuV">
@@ -1885,7 +1883,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zR0-Kh-Z82" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4505" y="-1049"/>
+            <point key="canvasLocation" x="4332" y="-502"/>
         </scene>
         <!--Trip Details View Controller-->
         <scene sceneID="V2i-Cu-sgP">
@@ -2615,7 +2613,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Z6F-aj-LSt">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z6F-aj-LSt">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
                             <tableView clipsSubviews="YES" alpha="0.94999998807907104" contentMode="scaleAspectFill" fixedFrame="YES" bounces="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="133" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="E3b-Os-Pb5">
@@ -2642,17 +2640,13 @@
                                                         <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BCell" id="SvE-mb-Scr" customClass="BusinessCollectionCell" customModule="RoadTripPlanner" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="BCell" id="SvE-mb-Scr" customClass="BusinessCollectionCell" customModule="RoadTripPlanner" customModuleProvider="target">
                                                             <rect key="frame" x="5" y="4.5" width="136" height="103"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="136" height="103"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ge8-F4-qBm">
-                                                                        <rect key="frame" x="0.0" y="1" width="136" height="102"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" fixedFrame="YES" text="Conocco Phillips" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUD-sR-hvf">
                                                                         <rect key="frame" x="2" y="75" width="94" height="15"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2672,7 +2666,6 @@
                                                             </view>
                                                             <connections>
                                                                 <outlet property="businessName" destination="jUD-sR-hvf" id="XOI-uW-SEB"/>
-                                                                <outlet property="imageView" destination="Ge8-F4-qBm" id="qhn-0P-lED"/>
                                                                 <outlet property="ratingsCountLabel" destination="MjU-Iq-li4" id="Fi3-S7-Iu1"/>
                                                             </connections>
                                                         </collectionViewCell>
@@ -2719,7 +2712,7 @@
         <!--Route Map View Controller-->
         <scene sceneID="YKR-Yz-pqe">
             <objects>
-                <viewController id="2y3-fz-doZ" customClass="RouteMapViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RouteMapView" id="2y3-fz-doZ" customClass="RouteMapViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Pm-ax-MFs"/>
                         <viewControllerLayoutGuide type="bottom" id="HW5-Ta-iO6"/>
@@ -2728,7 +2721,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="iDy-uQ-iZ0">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iDy-uQ-iZ0">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
@@ -2745,7 +2738,11 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="BGX-3T-1sz"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="BGX-3T-1sz">
+                            <connections>
+                                <action selector="onSave:" destination="2y3-fz-doZ" id="3Of-Tf-DaF"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="iDy-uQ-iZ0" id="Xyy-aM-jzk"/>
@@ -2753,7 +2750,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HfF-xg-fXv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3860" y="-1844.5277361319343"/>
+            <point key="canvasLocation" x="3852" y="-1492"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="knn-Gn-YXF">
@@ -2891,6 +2888,119 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eSV-6D-Bhi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-538.39999999999998" y="1659.2203898050975"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="r6e-c9-8h7">
+            <objects>
+                <viewController id="W3h-gX-Ghu" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WdQ-dU-9Ot"/>
+                        <viewControllerLayoutGuide type="bottom" id="ifB-RV-mOn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yUt-Lf-MOW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M17-NS-PdN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                            <tableView clipsSubviews="YES" alpha="0.94999998807907104" contentMode="scaleAspectFill" fixedFrame="YES" bounces="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="133" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FYX-Eu-foz">
+                                <rect key="frame" x="0.0" y="497" width="375" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="112" id="isp-gE-6cR" customClass="CategoryRow" customModule="RoadTripPlanner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="22" width="375" height="112"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="isp-gE-6cR" id="IpW-FX-sPX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="111.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ywg-fo-PjP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="5" minimumInteritemSpacing="5" id="cJM-7l-AyX">
+                                                        <size key="itemSize" width="136" height="103"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BCell" id="VPf-vB-uJi" customClass="BusinessCollectionCell" customModule="RoadTripPlanner" customModuleProvider="target">
+                                                            <rect key="frame" x="5" y="4.5" width="136" height="103"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                                <rect key="frame" x="0.0" y="0.0" width="136" height="103"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6sU-i4-JdO">
+                                                                        <rect key="frame" x="0.0" y="1" width="136" height="102"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" fixedFrame="YES" text="Conocco Phillips" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgi-SR-xty">
+                                                                        <rect key="frame" x="2" y="75" width="94" height="15"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSO-zl-Shh">
+                                                                        <rect key="frame" x="2" y="0.0" width="17" height="11"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <color key="backgroundColor" red="0.153770771" green="0.74698893229999996" blue="0.28626646059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="9"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </view>
+                                                            <connections>
+                                                                <outlet property="businessName" destination="Cgi-SR-xty" id="OGn-co-X6Y"/>
+                                                                <outlet property="imageView" destination="6sU-i4-JdO" id="9dP-QH-M5o"/>
+                                                                <outlet property="ratingsCountLabel" destination="SSO-zl-Shh" id="f0e-NS-fro"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="isp-gE-6cR" id="nA5-uf-Kdq"/>
+                                                        <outlet property="delegate" destination="isp-gE-6cR" id="xfS-dv-CFs"/>
+                                                    </connections>
+                                                </collectionView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="collectionView" destination="ywg-fo-PjP" id="xS6-U6-byR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="W3h-gX-Ghu" id="H9R-u5-IA9"/>
+                                    <outlet property="delegate" destination="W3h-gX-Ghu" id="oaU-5l-k9b"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="M17-NS-PdN" firstAttribute="trailing" secondItem="2Ms-CY-5sF" secondAttribute="trailing" id="2kn-rj-zds"/>
+                            <constraint firstAttribute="bottom" secondItem="M17-NS-PdN" secondAttribute="bottom" id="GOB-vE-GWS"/>
+                            <constraint firstItem="M17-NS-PdN" firstAttribute="leading" secondItem="2Ms-CY-5sF" secondAttribute="leading" id="OYk-pj-w61"/>
+                            <constraint firstItem="M17-NS-PdN" firstAttribute="top" secondItem="yUt-Lf-MOW" secondAttribute="top" id="qoQ-zh-OjE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2Ms-CY-5sF"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3qZ-us-Xvf"/>
+                    <connections>
+                        <outlet property="mapView" destination="M17-NS-PdN" id="Pqb-aL-kGE"/>
+                        <outlet property="tableView" destination="FYX-Eu-foz" id="sAl-Ap-azm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DGl-u2-oem" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3526" y="-640"/>
         </scene>
     </scenes>
     <resources>

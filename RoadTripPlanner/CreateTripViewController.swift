@@ -91,13 +91,14 @@ class CreateTripViewController: UIViewController {
     fileprivate var isSubViewOpen = false
     
     let autoCategoriesList = ["back", "all", "servicestations", "autoelectric", "parking"]
-    let foodCategoriesList = ["back", "all", "cafe", "restaurant", "breakfast_brunch", "bars_drinks", "burgers"] //#178426
+    let foodCategoriesList = ["back", "all", "cafe", "restaurant", "breakfast_brunch", "bars", "burgers"] //#178426
     let poiCategoriesList = ["back", "all", "landmarks", "civiccenter", "townhall"]
     let shoppingCategoriesList = ["back", "all", "deptstores", "drugstores", "flowers"]
     let lodgingCategoriesList = ["back", "all", "hotels", "hostels", "bedbreakfast", "campgrounds", "guesthouses"]
     let ttdCategoriesList = ["back", "all", "museums", "aquariums, zoos", "amusementparks", "parks", "arcades",]
     let entertainmentCategoriesList = ["back", "all", "moviestheaters", "galaries", "nightlife", "theater"]
 
+    var termCategory: [String : [String]]!
     var selectedTypes: [String]!
 
     var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!
@@ -162,7 +163,9 @@ class CreateTripViewController: UIViewController {
         clockImageView.addGestureRecognizer(clockImageTap)
         self.navigationController?.navigationBar.isHidden = false
         
-        
+        if(termCategory == nil) {
+            termCategory = [String : [String]]()
+        }
         if(selectedTypes == nil) {
             selectedTypes = [String]()
         }
@@ -264,7 +267,6 @@ class CreateTripViewController: UIViewController {
         burgerImageView.tag = 6
         burgerImageView.addGestureRecognizer(burgerImageTap)
 
-        
     }
     
     func setupPOIView() {
@@ -586,16 +588,23 @@ class CreateTripViewController: UIViewController {
             let selectedImg = sender.view
             buttonClickAnimation(button: selectedImg!)
             
-            if !selectedTypes.contains(autoCategoriesList[selectedIndex!]) {
-                selectedTypes.append(autoCategoriesList[selectedIndex!])
+            if termCategory.keys.contains("auto") {
+                var categoryArray = termCategory["auto"]
+                if !(categoryArray?.contains(autoCategoriesList[selectedIndex!]))! {
+                    categoryArray?.append(autoCategoriesList[selectedIndex!])
+                }
+                termCategory.updateValue(categoryArray!, forKey: "auto")
+
             }
         }
         else {
             if selectedIndex == 1 {
-                selectedTypes.removeAll()
-                selectedTypes.append(autoCategoriesList[selectedIndex!])
+                //selectedTypes.removeAll()
+                //selectedTypes.append(autoCategoriesList[selectedIndex!])
+                //termCategory.removeValue(forKey: "auto")
+                termCategory.updateValue([autoCategoriesList[selectedIndex!]], forKey: "auto")
+
             }
-            
             self.view.setNeedsUpdateConstraints()
             
             UIView.animate(withDuration: 1) {
@@ -615,15 +624,40 @@ class CreateTripViewController: UIViewController {
             
             buttonClickAnimation(button: selectedImg!)
             
-            if !selectedTypes.contains(foodCategoriesList[selectedIndex!]) {
-                selectedTypes.append(foodCategoriesList[selectedIndex!])
-                print("selectedTypes in if ===== >  \(selectedTypes)")
+            if selectedIndex! != 5 {
+                if termCategory.keys.contains("restaurants") {
+                    var categoryArray = termCategory["restaurants"]
+                    if !(categoryArray?.contains(foodCategoriesList[selectedIndex!]))! {
+                        categoryArray?.append(foodCategoriesList[selectedIndex!])
+                        print("categoryArray in if ===== >  \(categoryArray)")
+                    }
+                    termCategory["restaurants"] = categoryArray
+                }
+                else {
+                    termCategory["restaurants"] = [foodCategoriesList[selectedIndex!]]
+                }
             }
+            else {
+                if termCategory.keys.contains("nightlife") {
+                    var categoryArray = termCategory["nightlife"]
+                    if !(categoryArray?.contains("bars"))! {
+                        categoryArray?.append("bars")
+                        print("categoryArray in if ===== >  \(categoryArray)")
+                    }
+                    termCategory.updateValue(categoryArray!, forKey: "nightlife")
+
+                }
+                else {
+                    termCategory.updateValue(["bars"], forKey: "nightlife")
+
+                }
+            }
+            
         }
         else {
             if selectedIndex == 1 {
-                selectedTypes.removeAll()
-                selectedTypes.append(foodCategoriesList[selectedIndex!])
+                termCategory.updateValue([foodCategoriesList[selectedIndex!]], forKey: "restaurants")
+                termCategory.updateValue(["bars"], forKey: "nightlife")
             }
             
             self.view.setNeedsUpdateConstraints()
@@ -645,14 +679,22 @@ class CreateTripViewController: UIViewController {
             
             buttonClickAnimation(button: selectedImg!)
             
-            if !selectedTypes.contains(poiCategoriesList[selectedIndex!]) {
-                selectedTypes.append(poiCategoriesList[selectedIndex!])
+            if termCategory.keys.contains("publicservicesgovt") {
+                var categoryArray = termCategory["publicservicesgovt"]
+                if !(categoryArray?.contains(poiCategoriesList[selectedIndex!]))! {
+                    categoryArray?.append(poiCategoriesList[selectedIndex!])
+                }
+                termCategory.updateValue(categoryArray!, forKey: "publicservicesgovt")
+                
             }
+
+
         }
         else {
             if selectedIndex == 1 {
-                selectedTypes.removeAll()
-                selectedTypes.append(poiCategoriesList[selectedIndex!])
+           
+                termCategory.updateValue(Category.poiSubCategory["publicservicesgovt"]!, forKey: "publicservicesgovt")
+
             }
             
             self.view.setNeedsUpdateConstraints()
@@ -676,14 +718,21 @@ class CreateTripViewController: UIViewController {
             buttonClickAnimation(button: selectedImg!)
             
             UIView.commitAnimations()
-            if !selectedTypes.contains(lodgingCategoriesList[selectedIndex!]) {
-                selectedTypes.append(lodgingCategoriesList[selectedIndex!])
+            
+            if termCategory.keys.contains("hotels") {
+                var categoryArray = termCategory["hotels"]
+                if !(categoryArray?.contains(lodgingCategoriesList[selectedIndex!]))! {
+                    categoryArray?.append(lodgingCategoriesList[selectedIndex!])
+                    print("categoryArray in if ===== >  \(categoryArray)")
+                }
+                termCategory.updateValue(categoryArray!, forKey: "hotels")
+                
             }
         }
         else {
             if selectedIndex == 1 {
-                selectedTypes.removeAll()
-                selectedTypes.append(lodgingCategoriesList[selectedIndex!])
+                termCategory.updateValue(Category.hotelsSubCategories["hotels"]!, forKey: "hotels")
+
             }
             
             self.view.setNeedsUpdateConstraints()
@@ -706,14 +755,38 @@ class CreateTripViewController: UIViewController {
             
             buttonClickAnimation(button: selectedImg!)
             
-            if !selectedTypes.contains(ttdCategoriesList[selectedIndex!]) {
-                selectedTypes.append(ttdCategoriesList[selectedIndex!])
+            if selectedIndex! == 2 || selectedIndex! == 6 {
+                if termCategory.keys.contains("arts") {
+                    var categoryArray = termCategory["arts"]
+                    if !(categoryArray?.contains(ttdCategoriesList[selectedIndex!]))! {
+                        categoryArray?.append(ttdCategoriesList[selectedIndex!])
+                    }
+                    termCategory.updateValue(categoryArray!, forKey: "arts")
+
+                }
+                else {
+                    termCategory.updateValue([ttdCategoriesList[selectedIndex!]], forKey: "arts")
+
+                }
+            }
+            else {
+                if termCategory.keys.contains("active") {
+                    var categoryArray = termCategory["active"]
+                    categoryArray?.append(ttdCategoriesList[selectedIndex!])
+                    termCategory.updateValue(categoryArray!, forKey: "active")
+                    
+                }
+                else {
+                    termCategory.updateValue([ttdCategoriesList[selectedIndex!]], forKey: "active")
+                    
+                }
             }
         }
         else {
             if selectedIndex == 1 {
-                selectedTypes.removeAll()
-                selectedTypes.append(ttdCategoriesList[selectedIndex!])
+                termCategory.updateValue(Category.TDOSubCategory["arts"]!, forKey: "arts")
+                termCategory.updateValue(Category.TDOSubCategory["active"]!, forKey: "active")
+
             }
             
             self.view.setNeedsUpdateConstraints()
@@ -722,7 +795,7 @@ class CreateTripViewController: UIViewController {
                 self.categoryView.isHidden = false
                 self.ttdSubView.isHidden = true
                 self.view.layoutIfNeeded()
-                
+        
             }
         }
     }
@@ -735,14 +808,31 @@ class CreateTripViewController: UIViewController {
         
         if selectedIndex! != 0 && selectedIndex! != 1 {
             
-            if !selectedTypes.contains(entertainmentCategoriesList[selectedIndex!]) {
-                selectedTypes.append(entertainmentCategoriesList[selectedIndex!])
+            selectedTypes.append(entertainmentCategoriesList[selectedIndex!])
+            
+            if selectedIndex! != 4 {
+                if termCategory.keys.contains("arts") {
+                    var categoryArray = termCategory["arts"]
+                    if !(categoryArray?.contains(entertainmentCategoriesList[selectedIndex!]))! {
+                        categoryArray?.append(entertainmentCategoriesList[selectedIndex!])
+                    }
+                    termCategory.updateValue(categoryArray!, forKey: "arts")
+                    
+                }
+                else {
+                    termCategory.updateValue([entertainmentCategoriesList[selectedIndex!]], forKey: "arts")
+                    
+                }
+            }
+            else {
+                termCategory.updateValue(["All"], forKey: "nightlife")
             }
         }
         else {
             if selectedIndex == 1 {
-                selectedTypes.removeAll()
-                selectedTypes.append(entertainmentCategoriesList[selectedIndex!])
+                termCategory.updateValue(["All"], forKey: "nightlife")
+                termCategory.updateValue(Category.entertainmentSubCategory["arts"]!, forKey: "arts")
+
             }
             self.view.setNeedsUpdateConstraints()
             
@@ -787,44 +877,17 @@ class CreateTripViewController: UIViewController {
     func clockTapped(_ sender: UITapGestureRecognizer) {
         
     }
-    
+    var timeVar = 0.0
+    var routevar = [MKRoute] ()
+
     @IBAction func onStartTrip(_ sender: Any) {
-        performSearch(selectedTypes)
+        
+        performSearch(termCategory: termCategory)
+        
     }
     
-    final func performSearch(_ term: [String]?) {
-        print("term --- \(term)")
-        /*if /*term != nil,*/ !(term?.isEmpty)! {
-            
-            
-            var searchTerm = Category().constructSearchTerm("auto", term!)
-            print("searchTerm --- \(searchTerm)")
-
-            YelpFusionClient.sharedInstance.search(inCurrent: (locationManager.location?.coordinate)!, term: searchTerm, completionHandler:  { (businesses: [YLPBusiness]?, error: Error?) -> Void in
-                
-              //  self.businesses = businesses
-                print("self.businesse -----\(businesses?.count)")
-                
-            })
-            /*YelpFusionClient.sharedInstance.search(withLocation : "san francisco", term: term, completionHandler:  { (businesses: [YLPBusiness]?, error: Error?) -> Void in
-             
-             self.businesses = businesses
-             print("self.businesse -----\(self.businesses.count)")
-             
-             //self.tableView.reloadData()
-             
-             })*/
-        }
-        else {
-            
-            /* Business.searchWithTerm(term: Constants.restaurants, completion: { (businesses: [Business]?, error: Error?) -> Void in
-             
-             self.businesses = businesses
-             self.tableView.reloadData()
-             
-             })*/
-        }*/
-        
+    final func performSearch(termCategory: [String : [String]]/*_ term: [String]?*/) {
+       
     }
     
     func showAddressTable(addresses: [String], textField: UITextField, placemarks: [CLPlacemark]) {
@@ -856,12 +919,11 @@ class CreateTripViewController: UIViewController {
         let tripSegment = TripSegment(name: name, address: address, geoPoint: geoPoint)
         return tripSegment
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("segue.identifier \(segue.identifier!)")
         
         if segue.identifier! == "StartTrip" {
-            
+
             // Create a new trip object and save it to the database
             let startSegment = tripSegmentFromMapItem(mapItem: locationTuples[0].mapItem!)
             let destSegment = tripSegmentFromMapItem(mapItem: locationTuples[1].mapItem!)
@@ -870,23 +932,21 @@ class CreateTripViewController: UIViewController {
             trip.addSegment(tripSegment: startSegment)
             trip.addSegment(tripSegment: destSegment)
             
-            trip.saveInBackground {
+           /* trip.saveInBackground {
                 (success, error) in
                 if (success) {
                     log.info("trip saved")
                 } else {
                     log.error(error?.localizedDescription ?? "Uknown Error")
                 }
-            }
+            }*/
             
-            print("trip -----\(trip.name)")
-            print("trip----- \(trip.date)")
-
             let routeMapViewController = segue.destination  as! RouteMapViewController
             routeMapViewController.locationArray = locationsArray
             routeMapViewController.trip  = trip
-        }
+            routeMapViewController.termCategory  = termCategory
 
+        }
        
     }
     
@@ -894,6 +954,7 @@ class CreateTripViewController: UIViewController {
         if locationTuples[0].mapItem == nil || locationTuples[1].mapItem == nil {
             showAlert("Please enter a valid starting point and at least one destination.")
             return false
+            
         } else {
             return true
         }

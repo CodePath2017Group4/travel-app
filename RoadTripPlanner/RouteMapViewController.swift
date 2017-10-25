@@ -10,28 +10,52 @@ import UIKit
 import CoreLocation
 import MapKit
 import YelpAPI
+import Parse
 
 class RouteMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var directionsTableView: DirectionsTableView!
+    
+    let fromLocation:CLLocation = CLLocation(latitude: 24.186965, longitude: 120.633268)
+
     
     var start: String!
     var destination: String!
     var selectedTypes: [String]!
     var locationArray: [(textField: UITextField?, mapItem: MKMapItem?)]!
     var activityIndicator: UIActivityIndicatorView?
-    
+    var termCategory: [String : [String]]!
+
     fileprivate var annotations:   [MKPointAnnotation]!
     var businesses = [YLPBusiness]()
 
     var trip: Trip?
+    var placestops  = [Places]()
+    var startPlace : Places!
+    var timeVar = 0.0
+    var routeVar = [MKRoute]()
+    var routeCoordinatesDB = [String : [CLLocationCoordinate2D]]()
+    var coords: [CLLocationCoordinate2D] = []
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let startCoordinate = locationArray[0].mapItem?.placemark.coordinate
+     startPlace = Places(cllocation: CLLocation.init(latitude: (startCoordinate?.latitude)!, longitude: (startCoordinate?.longitude)!)
+            , distance: 0, coordinate: startCoordinate!)
+        startPlace.calculateDistance(fromLocation: startPlace.cllocation)
+        placestops.append(startPlace)
+
+        let destCoordinate = locationArray[1].mapItem?.placemark.coordinate
+        let destPlace = Places(cllocation: CLLocation.init(latitude: (destCoordinate?.latitude)!, longitude: (destCoordinate?.longitude)!)
+            , distance: 0, coordinate: destCoordinate!)
+        destPlace.calculateDistance(fromLocation: startPlace.cllocation)
+        placestops.append(destPlace)
+        
         registerForNotifications()
         addActivityIndicator()
         calculateSegmentDirections(index: 0, time: 0, routes: [])
+        
         mapView.delegate = self
     }
     
@@ -50,7 +74,28 @@ class RouteMapViewController: UIViewController {
         }
     }
     
-    func calculateSegmentDirections(index: Int, time: TimeInterval, routes: [MKRoute]) {
+    @IBAction func onSave(_ sender: Any) {
+        
+     
+        //trip.saveInBackground { (success, error) in
+            //            if (success) {
+            //                log.info("trip saved")
+            //            } else {
+            //                log.error(error?.localizedDescription ?? "Uknown Error")
+            //            }
+            //        }
+        
+        // Push the TripDetailsViewController onto the nav stack.
+
+        guard let tripDetailsViewController = TripDetailsViewController.storyboardInstance() else { return }
+        tripDetailsViewController.trip  = trip
+        
+        navigationController?.pushViewController(tripDetailsViewController, animated: true)
+        
+        
+    }
+    
+    func calculateSegmentDirections(index: Int, time: TimeInterval, routes: [MKRoute]) /*-> [MKRoute]*/ {
         let request: MKDirectionsRequest = MKDirectionsRequest()
         request.source = locationArray[index].mapItem
         request.destination = locationArray[index+1].mapItem
@@ -59,7 +104,7 @@ class RouteMapViewController: UIViewController {
         request.transportType = .automobile
 
         let directions = MKDirections(request: request)
-        directions.calculate()  {
+        directions.calculate() {
             (response: MKDirectionsResponse?, error: Error?) in
             if let routeResponse = response?.routes {
                 print("routeResponse \(routeResponse)")
@@ -67,16 +112,18 @@ class RouteMapViewController: UIViewController {
                 let quickestRouteForSegment: MKRoute =  routeResponse.sorted(by: {$0.distance < $1.distance})[0] //shortest distance
                     //routeResponse.sorted(by: {$0.expectedTravelTime < $1.expectedTravelTime})[0] //shortest time
 
-                var timeVar = time
-                var routeVar = routes
+                //var
+                self.timeVar = time
+                //var
+                self.routeVar = routes
 
-                routeVar.append(quickestRouteForSegment)
-                timeVar += quickestRouteForSegment.expectedTravelTime
+                self.routeVar.append(quickestRouteForSegment)
+                self.timeVar += quickestRouteForSegment.expectedTravelTime
                 
                 if index+2 < self.locationArray.count {
-                    self.calculateSegmentDirections(index: index+1, time: timeVar, routes: routeVar)
+                    self.calculateSegmentDirections(index: index+1, time: self.timeVar, routes: self.routeVar)
                 } else {
-                    self.showRoute(routes: routeVar, time: timeVar)
+                    self.showRoute(routes: self.routeVar, time: self.timeVar)
                     self.hideActivityIndicator()
                 }
             } else if let _ = error {
@@ -89,26 +136,37 @@ class RouteMapViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
+       // return self.routeVar //change later to return each route separately
     }
     
     
-    func getAllCoordinates(route: MKRoute) {
-        var pointCount = route.polyline.pointCount
+    func getAllCoordinatesForRoutes(/*routeVar: [MKRoute]*/) //-> [String : [CLLocationCoordinate2D]]
+    {
+        if coords.isEmpty {
+            
+            // Calculatete for each route
+            for i in 0..<routeVar.count {
+                
+                var route = routeVar[i]
+                var pointCount = route.polyline.pointCount
         
-        var coordsPointer = UnsafeMutablePointer<CLLocationCoordinate2D>.allocate(capacity: pointCount)
+                var coordsPointer = UnsafeMutablePointer<CLLocationCoordinate2D>.allocate(capacity: pointCount)
 
-        route.polyline.getCoordinates(coordsPointer, range: NSMakeRange(0, pointCount))
+                route.polyline.getCoordinates(coordsPointer, range: NSMakeRange(0, pointCount))
         
-        var coords: [CLLocationCoordinate2D] = []
-        for i in 0..<pointCount {
-            coords.append(coordsPointer[i])
-        }
+                for i in 0..<pointCount {
+                    coords.append(coordsPointer[i])
+                }
         
-        coordsPointer.deallocate(capacity: pointCount)
-        performSearch(coords : coords)
-        
-        for c in 0..<coords.count {
-           print("routeCoordinates \(c) -- \(coords[c].latitude),  \(coords[c].longitude)")
+                coordsPointer.deallocate(capacity: pointCount)
+                performSearch(coords : coords, termCategory: termCategory)
+                routeCoordinatesDB.updateValue(coords, forKey:  route.name)
+                for c in 0..<coords.count {
+                    print("routeCoordinates \(c) -- \(coords[c].latitude),  \(coords[c].longitude)")
+                }
+
+            }
+        //return routeCoordinatesDB
         }
     }
     
@@ -141,11 +199,10 @@ class RouteMapViewController: UIViewController {
         self.mapView.setRegion(region, animated: true)*/
     }
     
-    func performSearch(coords : [CLLocationCoordinate2D]) {
+    func performSearch(coords : [CLLocationCoordinate2D], termCategory: [String : [String]]) {
         
-        var noOfCoordinates = coords.count
-        var noOfSearch = noOfCoordinates/25
-        print("noOfSearch========== \(noOfSearch)")
+        let noOfCoordinates = coords.count
+        let noOfSearch = noOfCoordinates/25
 
         var firstSearchIndex = 0
         var secSearchIndex = 0
@@ -160,72 +217,46 @@ class RouteMapViewController: UIViewController {
             secSearchIndex = coords.count/2
         }
         repeat {
-            print("secSearchIndex b4 if========== \(secSearchIndex)")
 
             if(coords.count-secSearchIndex<0) {
                 secSearchIndex = coords.count
                 searchradius = coords.count - secSearchIndex/2
             }
-            print("secSearchIndex after if========== \(secSearchIndex)")
 
             let locCoordinates = coords[secSearchIndex]
-            
-             YelpFusionClient.sharedInstance.search(inCurrent: locCoordinates, term: "gas", completionHandler:  { (businesses: [YLPBusiness]?, error: Error?) -> Void in
-                
-                print("businesses -----\(businesses?.count)")
+            for key in termCategory.keys {
+                print("key \(key)")
+                print("termCategory[key]! \(termCategory[key]!)")
+               
+                YelpFusionClient.sharedInstance.searchQueryWith(location: locCoordinates, term: key, params: termCategory[key], completionHandler: { (businesses: [YLPBusiness]?, error: Error?) -> Void in
 
-                for bb in businesses! {
-                    
-                    //self.b.append(bb)
-                }
-                print("b -----\(self.businesses.count)")
-
-                
-                
-                    
                 })
+            }
             
             secSearchIndex = (0 + 2*secSearchIndex)
             
-            
         } while secSearchIndex<coords.count
-        
-        
-        
-        
-    
     }
+    
     func registerForNotifications() {
-        // Register to receive new tweet notifications
+        // Register to receive new business notifications
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BussinessesDidUpdate"),
-                                               object: nil, queue: OperationQueue.main) {
-                                                [weak self] (notification: Notification) in
-                                                var businesses = notification.userInfo!["businesses"] as! [YLPBusiness]
-                                                for bb in businesses {
-                                                    self?.businesses.append(bb)
-
-                                                }
-                                                
-                                                self?.addAnnotationFor(businesses: (self?.businesses)!)
-                                                print("<<<<======>>>>>>> \(self?.businesses.count)")
-                                                //    print("<<<<======>>>>>>> \(self?.businesses[0].url)")
-                                                //self?.tableView.reloadData()
-                                                self?.mapView.reloadInputViews()
+                   object: nil, queue: OperationQueue.main) {
+                                    [weak self] (notification: Notification) in
+                                    var businesses = notification.userInfo!["businesses"] as! [YLPBusiness]
+                                    for bb in businesses {
+                                        self?.businesses.append(bb)
+                                    }
+                                    self?.addAnnotationFor(businesses: (self?.businesses)!)
+                                    print("<<<<===Route viewcontriller===>>>>>>> \(self?.businesses.count)")
+                                    self?.mapView.reloadInputViews()
         }
+
     }
     
     func showRoute(routes: [MKRoute], time: TimeInterval) {
         print("routes count ===== \(routes.count)")
 
-        for i in 0..<routes.count {
-            plotPolyline(route: routes[i])
-            print("routes at [\(i)] ===== \(routes[i])")
-            print("=====================================================================")
-
-            
-            getAllCoordinates(route: routes[i])
-
-        }
         var directionsArray = [(startingAddress: String, endingAddress: String, route: MKRoute)]()
         for i in 0..<routes.count {
             plotPolyline(route: routes[i])
@@ -238,14 +269,6 @@ class RouteMapViewController: UIViewController {
             secParam?.spellCheckingType = .no
             secParam?.autocorrectionType = .no
             let routeParam = routes[i]
-            print("firstParamText \(firstParamText)")
-            
-            print("secParamText \(secParamText)")
-            
-            print("routeParam \(routeParam)")
-            print("routeParam \((startingAddress: firstParamText!,endAddress: secParamText!, route: routeParam ))")
-            
-            
             let param = (startingAddress: firstParamText!,
                          endingAddress: secParamText!, route: routeParam )
             
@@ -254,7 +277,6 @@ class RouteMapViewController: UIViewController {
         }
         //displayDirections(directionsArray: directionsArray)
         //printTimeToLabel(time: time)
-        print("directionsArray count ===== \(directionsArray.count)")
 
     }
     
@@ -279,14 +301,11 @@ class RouteMapViewController: UIViewController {
 
         mapView.add(route.polyline)
         if mapView.overlays.count == 1 {
-            print("inside mapview.overlays")
             mapView.setVisibleMapRect(route.polyline.boundingMapRect,
                                       edgePadding: UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0),
                                       animated: false)
         }
         else {
-            print("inside mapview.overlays else")
-
             let polylineBoundingRect =  MKMapRectUnion(mapView.visibleMapRect,
                                                        route.polyline.boundingMapRect)
             mapView.setVisibleMapRect(polylineBoundingRect,
@@ -298,8 +317,8 @@ class RouteMapViewController: UIViewController {
     
 extension RouteMapViewController: CLLocationManagerDelegate {
     
-   /* func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        CLGeocoder().reverseGeocodeLocation(locations.last!,
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        /*CLGeocoder().reverseGeocodeLocation(locations.last!,
                                             completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
                                                 if let placemarks = placemarks {
                                                     let placemark = placemarks[0]
@@ -307,8 +326,8 @@ extension RouteMapViewController: CLLocationManagerDelegate {
                                                 self.locationTuples[0].mapItem = MKMapItem(placemark:
                                                     MKPlacemark(coordinate: placemark.location!.coordinate,
                                                                 addressDictionary: placemark.addressDictionary as! [String:AnyObject]?))
-        })
-    }*/
+        })*/
+    }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         DispatchQueue.main.async() {
@@ -396,14 +415,31 @@ extension RouteMapViewController: MKMapViewDelegate {
             var placemark = MKPlacemark(coordinate: (view.annotation?.coordinate)!)
             mapView.deselectAnnotation(view.annotation, animated: false)
             let addMapItem =  MKMapItem(placemark: placemark)
-         
-            locationArray[locationArray.count-1].mapItem = addMapItem
-            locationArray[locationArray.count-1].textField = UITextField()
-            calculateSegmentDirections(index: 0, time: 0, routes: [])
+            
+            let intermediateLocation = CLLocation.init(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude)
+            let intermediateSegment = TripSegment(name: placemark.title!, address: "Temp Address", geoPoint: PFGeoPoint(location: intermediateLocation))
+            self.trip?.addSegment(tripSegment: intermediateSegment)
+            
+            let selectedPlace = Places(cllocation: CLLocation.init(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude)
+                , distance: 0, coordinate: placemark.coordinate)
+            selectedPlace.calculateDistance(fromLocation: startPlace.cllocation)
+            placestops.append(selectedPlace)
 
-            print("entered callout")
-
+            placestops.sort(by: { ($0.distance?.isLess(than: $1.distance! ))! })
+            
+            var stopIndex = 0
+            for i in 0...placestops.count-1 {
+                if placestops[i].coordinate.latitude == placemark.coordinate.latitude && placestops[i].coordinate.longitude == placemark.coordinate.longitude  {
+                    stopIndex = i
+                    break
+                }
             }
+
+            locationArray.insert((textField: UITextField(), mapItem: addMapItem), at: stopIndex)
+
+            self.mapView.removeOverlays(self.mapView.overlays)
+            calculateSegmentDirections(index: 0, time: 0, routes: [])
         }
-    
+        
+    }
 }
