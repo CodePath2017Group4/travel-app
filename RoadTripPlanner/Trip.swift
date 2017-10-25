@@ -13,7 +13,7 @@ class Trip: PFObject, PFSubclassing {
     @NSManaged var name: String?
     @NSManaged var date: Date?
     @NSManaged var segments: [TripSegment]?
-    
+    @NSManaged var coverPhoto: PFFile?
     @NSManaged var albums: [Album]?
     @NSManaged var creator: PFUser
     
@@ -28,6 +28,10 @@ class Trip: PFObject, PFSubclassing {
         self.creator = creator
         self.segments = []
         self.albums = []
+    }
+    
+    func setCoverPhoto(file: PFFile) {
+        self.coverPhoto = file
     }
     
     func addSegment(tripSegment: TripSegment) {

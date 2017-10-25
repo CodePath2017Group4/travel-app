@@ -74,39 +74,24 @@ class ParseBackend {
     
     static func getUpcomingTripsForUser(user: PFUser, completion: @escaping ([Trip]?, Error?) -> Void) {
         
-//        let relation = user.relation(forKey: "trips")
-//        let query = relation.query()
-////        query.whereKey("date", greaterThan: Date())
-//        query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
-//            if error == nil {
-//                let trips = objects as! [Trip]
-//                completion(trips, nil)
-//            } else {
-//                completion(nil, error)
-//            }
-//        }
-
         let query = PFQuery(className: "TripMember")
         query.whereKey("user", equalTo: user)
+        query.includeKey("trip")
+        query.includeKey("trip.creator")
         query.findObjectsInBackground { (objects, error) in
             if error == nil {
+                var trips: [Trip] = []
                 if let objects = objects {
                     log.info(objects.count)
                     for o in objects {
                         let status = o.object(forKey: "status") as? Int
                         log.info("status: \(status)")
-                        let trip = o.object(forKey: "trip") as? Trip                        
-                        trip?.fetchIfNeededInBackground(block: { (object, error2) in
-                            if error2 == nil {
-                                let trip = object as! Trip
-                                log.info("On trip: \(trip.name!)")
-                            } else {
-                                log.error(error2!)
-                            }
-                        })
+                        let trip = o.object(forKey: "trip") as! Trip
+                        trips.append(trip)                        
                     }
                 }
-                completion([], nil)
+
+                completion(trips, nil)
             } else {
                 completion(nil, error)
             }

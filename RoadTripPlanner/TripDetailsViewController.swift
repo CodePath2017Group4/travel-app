@@ -13,8 +13,8 @@ import AFNetworking
 import MessageUI
 
 class TripDetailsViewController: UIViewController {
-    
-    @IBOutlet weak var tripPhotoImageView: UIImageView!
+        
+    @IBOutlet weak var coverPhotoImageView: PFImageView!
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImageView: PFImageView!
@@ -62,10 +62,16 @@ class TripDetailsViewController: UIViewController {
                 profileImageView.file = avatarFile
                 profileImageView.loadInBackground()                
             }
-                    
+            
             tripNameLabel.text = trip.name
             
-            setTripCoverPhoto()
+            if let coverPhotoFile = trip.coverPhoto {
+                coverPhotoImageView.file = coverPhotoFile
+                coverPhotoImageView.loadInBackground()
+            } else {
+                // grab an image to use as the cover photo from Yelp
+                setTripCoverPhoto()
+            }
             
             guard let segments = trip.segments else { return }
             self.tripSegments = segments
@@ -93,40 +99,52 @@ class TripDetailsViewController: UIViewController {
         self.tableView.reloadData()
     }
     
-    fileprivate func setTripCoverPhoto() {
-        let destination = trip?.segments?.last
-        let location = CLLocation(latitude: (destination?.geoPoint?.latitude)!, longitude: (destination?.geoPoint?.longitude)!)
+    fileprivate func loadLandmarkImageFromDesitination(location: CLLocation) {
         YelpFusionClient.sharedInstance.search(withLocation: location, term: "landmarks", completion: { (businesses, error) in
             if error == nil {
                 guard let results = businesses else {
                     return
                 }
                 log.verbose("num landmark results: \(results.count)")
-                
+
                 let randomIndex = Int(arc4random_uniform(UInt32(results.count)))
                 let b = results[randomIndex]
-                
+
                 if let imageURL = b.imageURL {
                     log.info(imageURL)
-                    
+
                     let imageRequest = URLRequest(url: imageURL)
-                    self.tripPhotoImageView.setImageWith(imageRequest, placeholderImage: nil, success: { (imageRequest, imageResponse, image) in
+                    self.coverPhotoImageView.setImageWith(imageRequest, placeholderImage: nil, success: { (imageRequest, imageResponse, image) in
                         if imageResponse != nil {
-                            self.tripPhotoImageView.alpha = 0.0
-                            self.tripPhotoImageView.image = image
-                            
+                            self.coverPhotoImageView.alpha = 0.0
+                            self.coverPhotoImageView.image = image
+
+                            let coverImageFile = Utils.imageToFile(image: image)!
+                            self.trip?.setCoverPhoto(file: coverImageFile)
+                            self.trip?.saveInBackground()
+
                             UIView.animate(withDuration: 0.3, animations: {
-                                self.tripPhotoImageView.alpha = 0.8
+                                self.coverPhotoImageView.alpha = 0.8
                             })
                         }
                     }, failure: { (request, response, error) in
                         log.error(error)
                     })
-                    
                 }
-                
             } else {
                 log.error(error ?? "unknown error occurred")
+            }
+        })
+    }
+
+    fileprivate func setTripCoverPhoto() {
+        let destination = trip?.segments?.last
+        destination?.fetchInBackground(block: { (object, error) in
+            if error == nil {
+                let location = CLLocation(latitude: (destination?.geoPoint?.latitude)!, longitude: (destination?.geoPoint?.longitude)!)
+                self.loadLandmarkImageFromDesitination(location: location)
+            } else {
+                log.error(error!)
             }
         })
     }

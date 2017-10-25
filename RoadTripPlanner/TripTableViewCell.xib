@@ -13,18 +13,25 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripTableViewCell" rowHeight="201" id="KGk-i7-Jjw" customClass="TripTableViewCell" customModule="RoadTripPlanner" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="343" height="201"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripTableViewCell" rowHeight="220" id="KGk-i7-Jjw" customClass="TripTableViewCell" customModule="RoadTripPlanner" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="346" height="213"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="343" height="200.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="346" height="212.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trip_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-Le-1oG">
-                        <rect key="frame" x="4" y="4" width="335" height="192.5"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trip_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-Le-1oG" customClass="PFImageView">
+                        <rect key="frame" x="4" y="4" width="338" height="205"/>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gku-pI-lE8">
+                        <rect key="frame" x="4" y="4" width="338" height="30"/>
+                        <color key="backgroundColor" red="0.45377934644670048" green="0.45377934644670048" blue="0.45377934644670048" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="85a-ha-xps"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbS-bK-NCl">
-                        <rect key="frame" x="8" y="8" width="319" height="21"/>
+                        <rect key="frame" x="8" y="8" width="322" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="6Ux-8y-quf"/>
                         </constraints>
@@ -33,25 +40,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8c-iJ-48c">
-                        <rect key="frame" x="8" y="37" width="327" height="16"/>
+                        <rect key="frame" x="8" y="37" width="330" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="OGu-fp-TaO" customClass="PFImageView">
-                        <rect key="frame" x="16" y="120.5" width="64" height="64"/>
+                        <rect key="frame" x="16" y="132.5" width="64" height="64"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="64" id="XXv-rA-9l7"/>
                             <constraint firstAttribute="width" constant="64" id="zV4-Ru-BET"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gku-pI-lE8">
-                        <rect key="frame" x="4" y="4" width="335" height="60"/>
-                        <color key="backgroundColor" red="0.45377934644670048" green="0.45377934644670048" blue="0.45377934644670048" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="60" id="85a-ha-xps"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="OGu-fp-TaO" secondAttribute="bottom" constant="16" id="7DB-4s-brF"/>
@@ -74,12 +74,12 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="tripBackgroundImageView" destination="yxO-Le-1oG" id="hNi-7C-1XO"/>
+                <outlet property="tripCoverPhoto" destination="yxO-Le-1oG" id="e6k-Wm-dSC"/>
                 <outlet property="tripCreatorImageView" destination="OGu-fp-TaO" id="ITs-Zo-1ef"/>
                 <outlet property="tripDescriptionLabel" destination="C8c-iJ-48c" id="deE-gT-DDG"/>
                 <outlet property="tripNameLabel" destination="WbS-bK-NCl" id="Xno-5E-vtp"/>
             </connections>
-            <point key="canvasLocation" x="102.5" y="132.5"/>
+            <point key="canvasLocation" x="104" y="138.5"/>
         </tableViewCell>
     </objects>
     <resources>

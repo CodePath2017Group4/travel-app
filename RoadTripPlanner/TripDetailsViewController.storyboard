@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kqj-Ga-opx">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trip_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Kqj-Ga-opx" customClass="PFImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="192" id="Y4c-Xo-S7B"/>
@@ -240,11 +240,11 @@
                     <connections>
                         <outlet property="addFriendsButton" destination="IL8-8r-mTL" id="Cmh-5f-eWz"/>
                         <outlet property="addStopButton" destination="qTg-Jw-E7G" id="wt3-eh-Ioo"/>
+                        <outlet property="coverPhotoImageView" destination="Kqj-Ga-opx" id="sYY-zo-oMo"/>
                         <outlet property="editTableButton" destination="KfE-su-6Xn" id="x8K-Uw-Tk7"/>
                         <outlet property="profileImageView" destination="QaE-ZD-mWd" id="ZFM-kh-mks"/>
                         <outlet property="tableView" destination="e5Y-Dr-f4V" id="leq-il-y9T"/>
                         <outlet property="tripNameLabel" destination="yRa-tl-ihp" id="Gy8-N0-mVY"/>
-                        <outlet property="tripPhotoImageView" destination="Kqj-Ga-opx" id="KUU-QD-HtL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9hP-GG-Uu4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -258,6 +258,7 @@
         <image name="details" width="50" height="50"/>
         <image name="edit-1" width="28" height="28"/>
         <image name="maps-and-flags" width="64" height="64"/>
+        <image name="trip_placeholder" width="327" height="184"/>
         <image name="user" width="128" height="128"/>
         <image name="users-1" width="28" height="26"/>
     </resources>
