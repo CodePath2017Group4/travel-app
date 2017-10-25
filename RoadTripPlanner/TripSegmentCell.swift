@@ -44,6 +44,9 @@ class TripSegmentCell: UITableViewCell {
         
         placeNameLabel.preferredMaxLayoutWidth = placeNameLabel.frame.size.width
         placeAddressLabel.preferredMaxLayoutWidth = placeAddressLabel.frame.size.width
+        
+        includeSwitch.onTintColor = Constants.Colors.ColorPalette3495Color1
+        includeSwitch.tintColor = Constants.Colors.ButtonBackgroundColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
