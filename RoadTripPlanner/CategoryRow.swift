@@ -39,6 +39,8 @@ extension CategoryRow : UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("clicked collection cell indexpath \(indexPath.row)")
+        
+        let mapViewController = MapViewController()
     }
     
 }

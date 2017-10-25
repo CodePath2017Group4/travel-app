@@ -23,9 +23,9 @@
 		48CCC83F1F9D0A4900050176 /* DeleteAlbumDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCC83E1F9D0A4900050176 /* DeleteAlbumDelegate.swift */; };
 		48CCC8411F9D14B200050176 /* UpdateAlbumDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCC8401F9D14B200050176 /* UpdateAlbumDelegate.swift */; };
 		48CCC8431F9D6BD300050176 /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCC8421F9D6BD300050176 /* PhotoGalleryViewController.swift */; };
+		48CCC8451F9DA06C00050176 /* ParseBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCC8441F9DA06C00050176 /* ParseBackend.swift */; };
 		DF14D30A1F9DA9AE00161D5F /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF14D3081F9DA9AE00161D5F /* TripTableViewCell.swift */; };
 		DF14D30B1F9DA9AE00161D5F /* TripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF14D3091F9DA9AE00161D5F /* TripTableViewCell.xib */; };
-		48CCC8451F9DA06C00050176 /* ParseBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48CCC8441F9DA06C00050176 /* ParseBackend.swift */; };
 		DF32B9C41F9467F900594F0B /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32B9C31F9467F900594F0B /* Trip.swift */; };
 		DF32B9C61F946EE000594F0B /* AlbumComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32B9C51F946EE000594F0B /* AlbumComment.swift */; };
 		DF32B9C81F9470F200594F0B /* TripMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32B9C71F9470F200594F0B /* TripMember.swift */; };
@@ -83,6 +83,9 @@
 		F8607B251F903FC20029DB02 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8607B241F903FC20029DB02 /* User.swift */; };
 		F891E10C1F94375D006B2DD6 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E10B1F94375D006B2DD6 /* CreateUserViewController.swift */; };
 		F891E1151F943796006B2DD6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E1141F943796006B2DD6 /* ProfileViewController.swift */; };
+		F898F1FA1FA02AA600EE0293 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = F898F1F91FA02AA600EE0293 /* Places.swift */; };
+		F898F1FC1FA05DD800EE0293 /* BusinessBottomSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F898F1FB1FA05DD800EE0293 /* BusinessBottomSheetViewController.xib */; };
+		F898F1FE1FA05E2A00EE0293 /* BusinessBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F898F1FD1FA05E2A00EE0293 /* BusinessBottomSheetViewController.swift */; };
 		F8B6A3A11F920D9200942820 /* WeatherGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6A3A01F920D9200942820 /* WeatherGetter.swift */; };
 		F8B6A3A31F920ECF00942820 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6A3A21F920ECF00942820 /* Weather.swift */; };
 		F8B6A3E11F92EDB300942820 /* CreateTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6A3E01F92EDB300942820 /* CreateTripViewController.swift */; };
@@ -197,6 +200,9 @@
 		F8607B241F903FC20029DB02 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F891E10B1F94375D006B2DD6 /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		F891E1141F943796006B2DD6 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F898F1F91FA02AA600EE0293 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
+		F898F1FB1FA05DD800EE0293 /* BusinessBottomSheetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessBottomSheetViewController.xib; sourceTree = "<group>"; };
+		F898F1FD1FA05E2A00EE0293 /* BusinessBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessBottomSheetViewController.swift; sourceTree = "<group>"; };
 		F8B6A3A01F920D9200942820 /* WeatherGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherGetter.swift; sourceTree = "<group>"; };
 		F8B6A3A21F920ECF00942820 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		F8B6A3E01F92EDB300942820 /* CreateTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTripViewController.swift; sourceTree = "<group>"; };
@@ -421,6 +427,8 @@
 				48CB34501F9C408000EE268A /* TripSummaryCell.swift */,
 				DF14D3081F9DA9AE00161D5F /* TripTableViewCell.swift */,
 				DF14D3091F9DA9AE00161D5F /* TripTableViewCell.xib */,
+				F898F1FB1FA05DD800EE0293 /* BusinessBottomSheetViewController.xib */,
+				F898F1FD1FA05E2A00EE0293 /* BusinessBottomSheetViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -436,6 +444,7 @@
 				DF32B9C51F946EE000594F0B /* AlbumComment.swift */,
 				DF32B9C71F9470F200594F0B /* TripMember.swift */,
 				DFCC37A41F99B9FF003BDCA6 /* TripSegment.swift */,
+				F898F1F91FA02AA600EE0293 /* Places.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -517,7 +526,7 @@
 				TargetAttributes = {
 					F806F2761F8DA42A00E11785 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 8F2PWFTJG8;
+						DevelopmentTeam = X3E7C93B2H;
 						ProvisioningStyle = Automatic;
 					};
 					F806F28A1F8DA42B00E11785 = {
@@ -578,6 +587,7 @@
 				DFCC37931F97C649003BDCA6 /* HomeViewController.storyboard in Resources */,
 				DFCC377B1F97085C003BDCA6 /* AlbumListViewController.storyboard in Resources */,
 				DF14D30B1F9DA9AE00161D5F /* TripTableViewCell.xib in Resources */,
+				F898F1FC1FA05DD800EE0293 /* BusinessBottomSheetViewController.xib in Resources */,
 				DF7BC0721F9D4EE800B3746B /* AddStopViewController.storyboard in Resources */,
 				DFCC37891F970D00003BDCA6 /* CommentsViewController.storyboard in Resources */,
 				DFCC37871F970C97003BDCA6 /* ReviewViewController.storyboard in Resources */,
@@ -675,6 +685,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/ARSLineProgress/ARSLineProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/DatePickerDialog/DatePickerDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
@@ -688,6 +699,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ARSLineProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DatePickerDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
@@ -805,6 +817,7 @@
 				DF32B9C41F9467F900594F0B /* Trip.swift in Sources */,
 				F806F27B1F8DA42A00E11785 /* AppDelegate.swift in Sources */,
 				486E3C3E1F945EC3003D2FFF /* PhotoCell.swift in Sources */,
+				F898F1FA1FA02AA600EE0293 /* Places.swift in Sources */,
 				F8B6A3A11F920D9200942820 /* WeatherGetter.swift in Sources */,
 				48CCC8451F9DA06C00050176 /* ParseBackend.swift in Sources */,
 				DFA0E29F1F96D203005D7528 /* YelpFusionClient.swift in Sources */,
@@ -824,6 +837,7 @@
 				DF14D30A1F9DA9AE00161D5F /* TripTableViewCell.swift in Sources */,
 				48CCC8431F9D6BD300050176 /* PhotoGalleryViewController.swift in Sources */,
 				48CB34511F9C408000EE268A /* TripSummaryCell.swift in Sources */,
+				F898F1FE1FA05E2A00EE0293 /* BusinessBottomSheetViewController.swift in Sources */,
 				48CCC8411F9D14B200050176 /* UpdateAlbumDelegate.swift in Sources */,
 				DFA0E2A11F96D272005D7528 /* APIKeys.swift in Sources */,
 				DFCC379F1F9950E5003BDCA6 /* TempCreateTripViewController.swift in Sources */,
@@ -986,13 +1000,16 @@
 			baseConfigurationReference = 0F02A5D3F2710568F9C5A658 /* Pods-RoadTripPlanner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8F2PWFTJG8;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X3E7C93B2H;
 				INFOPLIST_FILE = RoadTripPlanner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.roadtripplanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1003,13 +1020,16 @@
 			baseConfigurationReference = EC80D6B0037AEA0DAC6399F8 /* Pods-RoadTripPlanner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8F2PWFTJG8;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X3E7C93B2H;
 				INFOPLIST_FILE = RoadTripPlanner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.demo.roadtripplanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};

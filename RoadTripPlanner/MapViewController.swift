@@ -40,30 +40,12 @@ class MapViewController: UIViewController {
         annotation.coordinate = coordinate
         goToLocation(location: centerLocation)
         
-        /*if(businesses == nil) {
-         YelpFusionClient.sharedInstance.search(withLocation : "san francisco", term: searchTerm, completionHandler:  { (businesses: [YLPBusiness]?, error: Error?) -> Void in
-         
-         self.businesses = businesses
-         print("self.businesse -----\(self.businesses.count)")
-         
-         //self.tableView.reloadData()
-         
-         })
-         }*/
-        //addAnnotationFor(businesses: businesses)
-        
-        /* print("businesses in mapviewcontroller \(businesses)")
-         if self.businesses?.count == 0 {
-         let center = centerLocation.coordinate
-         
-         let span = MKCoordinateSpanMake(0.05, 0.05)
-         self.mapView.setRegion(MKCoordinateRegion(center: center, span: span), animated: false)
-         }
-         else {
-         
-         ///addAnnotationFor(businesses: businesses!)
-         }*/
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     func registerForNotifications() {
         // Register to receive Businesses
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BussinessesDidUpdate"),
@@ -71,8 +53,6 @@ class MapViewController: UIViewController {
                                                 [weak self] (notification: Notification) in
                                                 self?.businesses = notification.userInfo!["businesses"] as! [YLPBusiness]
                                                 self?.addAnnotationFor(businesses: (self?.businesses)!)
-                                                print("<<<<======>>>>>>> \(self?.businesses.count)")
-                                                //    print("<<<<======>>>>>>> \(self?.businesses[0].url)")
                                                 self?.tableView.reloadData()
                                                 self?.mapView.reloadInputViews()
         }
@@ -127,22 +107,9 @@ class MapViewController: UIViewController {
         let divisor = pow(10.0, Double(places))
         return (no * divisor).rounded() / divisor
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        //addBottomSheetView()
-    }
     
-    func addBottomSheetView() {
-     /*   let bottomSheetVC = BottomSheetViewController()
-        
-        self.addChildViewController(bottomSheetVC)
-        self.view.addSubview(bottomSheetVC.view)
-        bottomSheetVC.didMove(toParentViewController: self)
-        
-        let height = view.frame.height
-        let width  = view.frame.width
-        bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)*/
-    }
+    
+    
 }
 
 
@@ -187,6 +154,7 @@ extension MapViewController: MKMapViewDelegate {
          //controller.filters = filters
          
          self.navigationController?.pushViewController(controller, animated: true)*/
+       
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
