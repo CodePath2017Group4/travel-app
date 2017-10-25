@@ -28,6 +28,7 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
     
     var album: Album?
     var albumIndex: IndexPath?
+    var photos: [UIImage] = []
     var photoSelected: [Bool] = []
     var delegate: UpdateAlbumDelegate?
     
@@ -44,11 +45,12 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
         Utils.roundImageCorner(image: leftButton.imageView!)
         Utils.roundImageCorner(image: rightButton.imageView!)
         
-        self.setAlbumMetadata()
         photoCollections.delegate = self
         photoCollections.dataSource = self
         
-        setState()
+        self.setAlbumMetadata()
+        self.setPhotos()
+        self.setState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,27 +80,44 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let album = album {
-            return album.photos.count
-        } else {
-            return 0
+    private func setPhotos() {
+        self.photos = []
+        if let album = self.album {
+            for i in 0 ... (album.photos.count - 1) {
+                let image = UIImage(named: "album-default")
+                self.photos.append(image!)
+                Utils.fileToImage(file: album.photos[i], callback: { (image: UIImage) -> Void in
+                    self.photos[i] = image
+                    self.photoCollections.reloadData()
+                })
+            }
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // Compute the dimension of a cell for an NxN layout with space S between
+        // cells.  Take the collection view's width, subtract (N-1)*S points for
+        // the spaces between the cells, and then divide by N to find the final
+        // dimension for the cell's width and height.
+        
+        let cellsAcross: CGFloat = 3
+        let spaceBetweenCells: CGFloat = 1
+        let dim = (collectionView.bounds.width - (cellsAcross - 1) * spaceBetweenCells) / cellsAcross
+        return CGSize(width: dim, height: dim)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = self.photoCollections.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
-        if let album = album {
-            cell.photoImage.image = UIImage(named: "album-default")
-            Utils.fileToImage(file: album.photos[indexPath.row], callback: { (image: UIImage) -> Void in
-                cell.photoImage.image = image
-                if (self.mode == .PhotoEdit && self.photoSelected[indexPath.row]) {
-                    cell.backgroundView = UIImageView(image: UIImage(named: "frame"))
-                } else {
-                    cell.backgroundView = nil
-                }
-            })
+        cell.photoImage.image = self.photos[indexPath.row]
+        if (self.mode == .PhotoEdit && self.photoSelected[indexPath.row]) {
+            cell.backgroundView = UIImageView(image: UIImage(named: "frame"))
+        } else {
+            cell.backgroundView = nil
         }
         return cell
     }
@@ -107,12 +126,10 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
         let cell = collectionView.cellForItem(at: indexPath) as! PhotoCell
         
         if (mode == .View) {
-            if let album = self.album {
-                let vc = PhotoGalleryViewController.getVC()
-                vc.photos = album.photos
-                vc.defaultIndex = indexPath.row
-                self.show(vc, sender: nil)
-            }
+            let vc = PhotoGalleryViewController.getVC()
+            vc.photos = self.photos
+            vc.defaultIndex = indexPath.row
+            self.show(vc, sender: nil)
         } else if (mode == .PhotoEdit) {
             if (!photoSelected[indexPath.row]) {
                 photoSelected[indexPath.row] = true
