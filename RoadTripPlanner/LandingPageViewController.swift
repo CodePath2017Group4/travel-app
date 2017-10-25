@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import AFNetworking
 import YelpAPI
+import Parse
 
 class LandingPageViewController: UIViewController {
    
@@ -86,7 +87,13 @@ class LandingPageViewController: UIViewController {
         getLocation()
         weather = WeatherGetter(delegate: self)
        
-        trips = TestData().trips
+        let testData = TestData()
+        testData.buildObjects { (trips, error) in
+        
+        }
+        
+        trips = []
+        
         
         //1
         //self.scrollView.frame = CGRect(x:0, y:0, width:self.view.frame.width, height:self.view.frame.height)
@@ -474,15 +481,6 @@ extension LandingPageViewController: CLLocationManagerDelegate {
     
 }
 
-//        if (UIImage(named: weatherIconID) == nil) {
-//            let iconUrl = "http://openweathermap.org/img/w/\(weatherIconID).png"
-//            let weatherIconUrl = URL(string: iconUrl)!
-//            weatherIconImgView.setImageWith(weatherIconUrl)
-//
-//        }
-//        else {
-//            weatherIconImgView.image = UIImage(named: weatherIconID)
-//        }
 
 // MARK: - WeatherGetterDelegate
 extension LandingPageViewController: WeatherGetterDelegate {

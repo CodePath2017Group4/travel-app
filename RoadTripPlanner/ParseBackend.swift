@@ -58,19 +58,64 @@ class ParseBackend {
             completionHandler([], nil)
         }
     }
+
+    static func getTripsCreatedByUser(user: PFUser, completion: @escaping ([Trip]?, Error?) -> Void ) {
+        let tripQuery = PFQuery(className: Trip.parseClassName())
+        tripQuery.whereKey("creator", equalTo: user)
+        tripQuery.findObjectsInBackground(block: { (objects, error) in
+            if error == nil {
+                let trips = objects as! [Trip]
+                completion(trips, nil)
+            } else {
+                completion(nil, error)
+            }
+        })
+    }
     
-//    static func getAlbums() -> [Album] {
-//        if let user = PFUser.current() {
-//            let query = PFQuery(className: Album.parseClassName())
-//            query.whereKey("owner", equalTo: user)
-//            let results = try? query.findObjects() as! [Album]
-//            if results == nil {
-//                return []
+    static func getUpcomingTripsForUser(user: PFUser, completion: @escaping ([Trip]?, Error?) -> Void) {
+        
+//        let relation = user.relation(forKey: "trips")
+//        let query = relation.query()
+////        query.whereKey("date", greaterThan: Date())
+//        query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
+//            if error == nil {
+//                let trips = objects as! [Trip]
+//                completion(trips, nil)
 //            } else {
-//                return results!
+//                completion(nil, error)
 //            }
-//        } else {
-//            return []
 //        }
-//    }
+
+        let query = PFQuery(className: "TripMember")
+        query.whereKey("user", equalTo: user)
+        query.findObjectsInBackground { (objects, error) in
+            if error == nil {
+                if let objects = objects {
+                    log.info(objects.count)
+                    for o in objects {
+                        let status = o.object(forKey: "status") as? Int
+                        log.info("status: \(status)")
+                        let trip = o.object(forKey: "trip") as? Trip                        
+                        trip?.fetchIfNeededInBackground(block: { (object, error2) in
+                            if error2 == nil {
+                                let trip = object as! Trip
+                                log.info("On trip: \(trip.name!)")
+                            } else {
+                                log.error(error2!)
+                            }
+                        })
+                    }
+                }
+                completion([], nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+        
+    }
+    
+    static func getTripsForUser(user: PFUser, completion: @escaping ([Trip]?, Error?) -> Void) {
+        
+    }
+    
 }

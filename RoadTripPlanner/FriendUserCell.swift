@@ -13,16 +13,18 @@ class FriendUserCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var addRemoveButton: UIButton!
+    @IBOutlet weak var invitationStatusImageView: UIImageView!
+    
     
     var user: PFUser! {
         didSet {
             usernameLabel.text = user.username
-            guard let avatarFile = user.avatarFile else { return }
-            
-            Utils.fileToImage(file: avatarFile) { (image) in
-                self.avatarImageView.image = image
-            }
+            let avatarFile = user.object(forKey: "avatar") as? PFFile
+            if avatarFile != nil {
+                Utils.fileToImage(file: avatarFile!) { (image) in
+                    self.avatarImageView.image = image
+                }
+            }            
         }
     }
     
@@ -39,7 +41,5 @@ class FriendUserCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    @IBAction func addRemoveButtonPressed(_ sender: Any) {
-        
-    }
+    
 }

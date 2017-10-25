@@ -20,6 +20,7 @@ class FriendsListViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    var trip: Trip?
     var friends = [PFUser]()
     
     override func viewDidLoad() {
@@ -81,7 +82,55 @@ extension FriendsListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Add selected user to the trip
+        guard let trip = self.trip else {
+            log.info("No trip to add friends to")
+            return
+        }
         
+        let selectedUser = friends[indexPath.row]
+
+        let tripMember = TripMember(user: selectedUser, trip: trip)
+        tripMember.saveInBackground(block: { (success, error) in
+            if (error != nil) {
+                log.error(error!)
+                
+            }
+        })
+        
+//        ParseBackend.getTripsCreatedByUser(user: selectedUser) { (trips, error) in
+//            if (error == nil) {
+//                log.info("\(selectedUser.username ?? "") has created \(trips!.count) trips.")
+//                for trip in trips! {
+//                    log.info(trip.name!)
+//                    
+//                    let members = trip.getTripMembers()
+//                    log.info("There are \(members.count) members on this trip.")
+//                    for m in members {
+//                        m.fetchIfNeededInBackground(block: { (object: PFObject?, error: Error?) in
+//                            let user = m.user
+//                            user.fetchIfNeededInBackground(block: { (object: PFObject?, error: Error?) in
+//                                log.info("\(m.user.username ?? "No name") has status \(m.status)")
+//                            })
+//                        })
+//                        
+//                        
+//                    }
+//                }
+//            }
+//        }
+        
+//        trip.saveInBackground { (success, error) in
+//            if success {
+//                log.info("Trip saved")
+//            } else {
+//                guard let error = error else {
+//                    log.error("Unknown error occurred saving trip \(trip.name)")
+//                    return
+//                }
+//                log.error("Error saving trip: \(error)")
+//            }
+//        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

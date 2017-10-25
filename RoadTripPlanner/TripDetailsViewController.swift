@@ -57,12 +57,12 @@ class TripDetailsViewController: UIViewController {
             
             let creator = trip.creator
             
-            let avatarFile = creator?.object(forKey: "avatar") as? PFFile
+            let avatarFile = creator.object(forKey: "avatar") as? PFFile
             if avatarFile != nil {
                 profileImageView.file = avatarFile
                 profileImageView.loadInBackground()                
             }
-            
+                    
             tripNameLabel.text = trip.name
             
             setTripCoverPhoto()
@@ -162,6 +162,7 @@ class TripDetailsViewController: UIViewController {
     
     @IBAction func addFriendsButtonPressed(_ sender: Any) {
         let friendsVC = FriendsListViewController.storyboardInstance()
+        friendsVC?.trip = trip
         navigationController?.pushViewController(friendsVC!, animated: true)
     }
     
@@ -209,7 +210,7 @@ class TripDetailsViewController: UIViewController {
         mailComposerVC.setToRecipients([])
         
         if #available(iOS 11.0, *) {
-            let fromEmail = trip?.creator?.email != nil ? "\((trip?.creator?.email)!)" : ""
+            let fromEmail = trip?.creator.email != nil ? "\((trip?.creator.email)!)" : ""
             mailComposerVC.setPreferredSendingEmailAddress("\(fromEmail)")
         }
 

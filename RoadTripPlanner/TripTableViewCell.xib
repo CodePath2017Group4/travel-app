@@ -38,7 +38,7 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="OGu-fp-TaO">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="OGu-fp-TaO" customClass="PFImageView">
                         <rect key="frame" x="16" y="120.5" width="64" height="64"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="64" id="XXv-rA-9l7"/>
@@ -75,7 +75,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="tripBackgroundImageView" destination="yxO-Le-1oG" id="hNi-7C-1XO"/>
-                <outlet property="tripCreatorImageView" destination="OGu-fp-TaO" id="Rbi-DT-z5h"/>
+                <outlet property="tripCreatorImageView" destination="OGu-fp-TaO" id="ITs-Zo-1ef"/>
                 <outlet property="tripDescriptionLabel" destination="C8c-iJ-48c" id="deE-gT-DDG"/>
                 <outlet property="tripNameLabel" destination="WbS-bK-NCl" id="Xno-5E-vtp"/>
             </connections>
