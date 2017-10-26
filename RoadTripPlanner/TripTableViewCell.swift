@@ -20,6 +20,7 @@ class TripTableViewCell: UITableViewCell {
     
     var trip: Trip! {
         didSet {
+           
             tripCreatorImageView.image = #imageLiteral(resourceName: "user")
             tripCoverPhoto.image = #imageLiteral(resourceName: "trip_placeholder")
             

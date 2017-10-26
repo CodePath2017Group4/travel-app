@@ -167,9 +167,10 @@ class LandingPageViewController: UIViewController {
         self.scrollView.delegate = self
         self.pageControl.currentPage = 1
         
-        navigationController?.navigationBar.tintColor = UIColor.white
-        let textAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarTextColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+               
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -184,10 +185,11 @@ class LandingPageViewController: UIViewController {
     }
 
     fileprivate func loadUpcomingTrips() {
-        ParseBackend.getUpcomingTripsForUser(user: PFUser.current()!) { (trips, error) in
+        ParseBackend.getTripsForUser(user: PFUser.current()!, areUpcoming: true) { (trips, error) in
             if error == nil {
                 if let t = trips {
                     log.info("Upcoming trip count \(t.count)")
+                                      
                     self.trips = t
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
