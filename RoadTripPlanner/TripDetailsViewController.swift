@@ -18,6 +18,7 @@ class TripDetailsViewController: UIViewController {
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImageView: PFImageView!
+    @IBOutlet weak var tripDateLabel: UILabel!
     
     @IBOutlet weak var emailGroupImageView: UIImageView!
     @IBOutlet weak var editTableButton: UIButton!
@@ -56,6 +57,9 @@ class TripDetailsViewController: UIViewController {
             guard let trip = trip else { return }
             
             let creator = trip.creator
+            
+            let tripDate = trip.date
+            tripDateLabel.text = Utils.formatDate(date: tripDate)
             
             let avatarFile = creator.object(forKey: "avatar") as? PFFile
             if avatarFile != nil {
