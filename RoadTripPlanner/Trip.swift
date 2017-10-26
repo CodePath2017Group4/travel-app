@@ -13,9 +13,9 @@ class Trip: PFObject, PFSubclassing {
     @NSManaged var name: String?
     @NSManaged var date: Date?
     @NSManaged var segments: [TripSegment]?
-    @NSManaged var creator: PFUser?
-    @NSManaged var tripMembers: [TripMember]
+    @NSManaged var coverPhoto: PFFile?
     @NSManaged var albums: [Album]?
+    @NSManaged var creator: PFUser
     
     override init() {
         super.init()
@@ -24,12 +24,14 @@ class Trip: PFObject, PFSubclassing {
     init(name: String, date: Date, creator: PFUser) {
         super.init()
         self.name = name
-        self.date = date        
+        self.date = date                
         self.creator = creator
-        
         self.segments = []
-        self.tripMembers = []
         self.albums = []
+    }
+    
+    func setCoverPhoto(file: PFFile) {
+        self.coverPhoto = file
     }
     
     func addSegment(tripSegment: TripSegment) {

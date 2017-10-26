@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import AFNetworking
 import YelpAPI
+import Parse
 
 class LandingPageViewController: UIViewController {
    
@@ -73,7 +74,7 @@ class LandingPageViewController: UIViewController {
         alongTheRouteButton.isHidden = true
         
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 201
+        tableView.estimatedRowHeight = 220
         //tableView.separatorStyle = .none
         
         let tripTableViewCellNib = UINib(nibName: Constants.NibNames.TripTableViewCell, bundle: nil)
@@ -86,7 +87,13 @@ class LandingPageViewController: UIViewController {
         getLocation()
         weather = WeatherGetter(delegate: self)
        
-        trips = TestData().trips
+        //let testData = TestData()
+        //testData.buildObjects { (trips, error) in
+        //
+        //}
+        
+        trips = []
+        loadUpcomingTrips()
         
         //1
         //self.scrollView.frame = CGRect(x:0, y:0, width:self.view.frame.width, height:self.view.frame.height)
@@ -160,9 +167,10 @@ class LandingPageViewController: UIViewController {
         self.scrollView.delegate = self
         self.pageControl.currentPage = 1
         
-        navigationController?.navigationBar.tintColor = UIColor.white
-        let textAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarTextColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+               
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -176,6 +184,23 @@ class LandingPageViewController: UIViewController {
                 
     }
 
+    fileprivate func loadUpcomingTrips() {
+        ParseBackend.getTripsForUser(user: PFUser.current()!, areUpcoming: true) { (trips, error) in
+            if error == nil {
+                if let t = trips {
+                    log.info("Upcoming trip count \(t.count)")
+                                      
+                    self.trips = t
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            } else {
+                log.error("Error loading upcoming trips: \(error!)")
+            }
+        }
+    }
+    
     func categoryTapped(_ sender: UITapGestureRecognizer) {
         
         let selectedIndex = sender.view?.tag
@@ -426,7 +451,7 @@ extension LandingPageViewController: UITableViewDataSource, UITableViewDelegate 
 //        if indexPath.row == 0 || indexPath.row == 2  {
 //            return 30.0
 //        }
-        return 201.0
+        return 220
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -480,15 +505,6 @@ extension LandingPageViewController: CLLocationManagerDelegate {
     
 }
 
-//        if (UIImage(named: weatherIconID) == nil) {
-//            let iconUrl = "http://openweathermap.org/img/w/\(weatherIconID).png"
-//            let weatherIconUrl = URL(string: iconUrl)!
-//            weatherIconImgView.setImageWith(weatherIconUrl)
-//
-//        }
-//        else {
-//            weatherIconImgView.image = UIImage(named: weatherIconID)
-//        }
 
 // MARK: - WeatherGetterDelegate
 extension LandingPageViewController: WeatherGetterDelegate {

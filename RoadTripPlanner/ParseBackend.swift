@@ -11,20 +11,18 @@ import Parse
 
 class ParseBackend {
     
-//    static func getTrips() -> [Trip] {
-//        if let user = PFUser.current() {
-//            let query = PFQuery(className: Trip.parseClassName())
-//            query.whereKey("creator", equalTo: user)
-//            let results = try? query.findObjects() as! [Trip]
-//            if results == nil {
-//                return []
-//            } else {
-//                return results!
-//            }
-//        } else {
-//            return []
-//        }
-//    }
+    static func getUsers(completionHandler: @escaping ([PFUser]?, Error?) -> Void) {
+
+        let query = PFUser.query()
+        query?.findObjectsInBackground(block: { (objects, error) in
+            if error == nil {
+                let users = objects as! [PFUser]
+                completionHandler(users, nil)
+            } else {
+                completionHandler(nil, error)                
+            }
+        })
+    }
     
     static func getTrips(completionHandler: @escaping ([Trip]?, Error?) -> Void) {
         if let user = PFUser.current() {
@@ -60,19 +58,75 @@ class ParseBackend {
             completionHandler([], nil)
         }
     }
+
+    static func getTripsCreatedByUser(user: PFUser, completion: @escaping ([Trip]?, Error?) -> Void ) {
+        let tripQuery = PFQuery(className: Trip.parseClassName())
+        tripQuery.whereKey("creator", equalTo: user)
+        tripQuery.findObjectsInBackground(block: { (objects, error) in
+            if error == nil {
+                let trips = objects as! [Trip]
+                completion(trips, nil)
+            } else {
+                completion(nil, error)
+            }
+        })
+    }
     
-//    static func getAlbums() -> [Album] {
-//        if let user = PFUser.current() {
-//            let query = PFQuery(className: Album.parseClassName())
-//            query.whereKey("owner", equalTo: user)
-//            let results = try? query.findObjects() as! [Album]
-//            if results == nil {
-//                return []
-//            } else {
-//                return results!
-//            }
-//        } else {
-//            return []
-//        }
-//    }
+    static func getTripsForUser(user: PFUser, areUpcoming: Bool, completion: @escaping ([Trip]?, Error?) -> Void) {
+        
+        let today = Date()
+        
+        let query = PFQuery(className: "TripMember")
+        query.whereKey("user", equalTo: user)
+        if areUpcoming {
+            query.whereKey("date", greaterThanOrEqualTo: today)
+        } else {
+            // look for past trips
+            query.whereKey("date", lessThan: today)
+        }
+                
+        query.includeKey("trip")
+        query.includeKey("trip.creator")
+        query.findObjectsInBackground { (objects, error) in
+            if error == nil {
+                var trips: [Trip] = []
+                if let objects = objects {
+                    log.info(objects.count)
+                    for o in objects {
+                        let status = o.object(forKey: "status") as? Int
+                        log.info("status: \(String(describing: status))")
+                        let trip = o.object(forKey: "trip") as! Trip
+                        trips.append(trip)
+                    }
+                }
+                
+                // Now query trips the user created themselves..
+                let tripQuery = PFQuery(className: Trip.parseClassName())
+                tripQuery.whereKey("creator", equalTo: user)
+                if areUpcoming {
+                    tripQuery.whereKey("date", greaterThanOrEqualTo: today)
+                } else {
+                    // look for past trips
+                    tripQuery.whereKey("date", lessThan: today)
+                }
+                
+                tripQuery.includeKey("creator")
+                tripQuery.findObjectsInBackground(block: { (objects, error) in
+                    if error == nil {
+                        let createdTrips = objects as! [Trip]
+                        trips.append(contentsOf: createdTrips)
+                        completion(trips, nil)
+                    } else {
+                        log.error(error!)
+                        completion(trips, nil)
+                    }
+                })
+                
+                
+            } else {
+                completion(nil, error)
+            }
+        }
+    }
+    
 }

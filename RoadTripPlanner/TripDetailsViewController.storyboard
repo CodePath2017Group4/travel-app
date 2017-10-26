@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kqj-Ga-opx">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kqj-Ga-opx" customClass="PFImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="192" id="Y4c-Xo-S7B"/>
@@ -67,6 +67,9 @@
                                         <state key="normal" title="  Add Friends" image="users-1">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addFriendsButtonPressed:" destination="hqY-Tb-qs5" eventType="touchUpInside" id="91m-k9-wFw"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfE-su-6Xn">
                                         <rect key="frame" x="291" y="12" width="73" height="28"/>
@@ -237,11 +240,11 @@
                     <connections>
                         <outlet property="addFriendsButton" destination="IL8-8r-mTL" id="Cmh-5f-eWz"/>
                         <outlet property="addStopButton" destination="qTg-Jw-E7G" id="wt3-eh-Ioo"/>
+                        <outlet property="coverPhotoImageView" destination="Kqj-Ga-opx" id="sYY-zo-oMo"/>
                         <outlet property="editTableButton" destination="KfE-su-6Xn" id="x8K-Uw-Tk7"/>
                         <outlet property="profileImageView" destination="QaE-ZD-mWd" id="ZFM-kh-mks"/>
                         <outlet property="tableView" destination="e5Y-Dr-f4V" id="leq-il-y9T"/>
                         <outlet property="tripNameLabel" destination="yRa-tl-ihp" id="Gy8-N0-mVY"/>
-                        <outlet property="tripPhotoImageView" destination="Kqj-Ga-opx" id="KUU-QD-HtL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9hP-GG-Uu4" userLabel="First Responder" sceneMemberID="firstResponder"/>

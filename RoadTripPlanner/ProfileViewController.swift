@@ -85,6 +85,15 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
                 }
             })
         }
+        
+        ParseBackend.getTripsForUser(user: PFUser.current()!, areUpcoming: false) { (trips, error) in
+            if error == nil {
+                log.info("past trips count: \(trips!.count)")
+            } else {
+                log.error(error!)
+            }
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
