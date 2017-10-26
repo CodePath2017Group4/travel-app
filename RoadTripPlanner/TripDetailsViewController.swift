@@ -128,11 +128,13 @@ class TripDetailsViewController: UIViewController {
                             })
                         }
                     }, failure: { (request, response, error) in
+                        self.coverPhotoImageView.image = #imageLiteral(resourceName: "trip_placeholder")
                         log.error(error)
                     })
                 }
             } else {
                 log.error(error ?? "unknown error occurred")
+                self.coverPhotoImageView.image = #imageLiteral(resourceName: "trip_placeholder")
             }
         })
     }

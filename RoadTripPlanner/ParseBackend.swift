@@ -85,7 +85,7 @@ class ParseBackend {
                     log.info(objects.count)
                     for o in objects {
                         let status = o.object(forKey: "status") as? Int
-                        log.info("status: \(status)")
+                        log.info("status: \(String(describing: status))")
                         let trip = o.object(forKey: "trip") as! Trip
                         trips.append(trip)                        
                     }

@@ -45,7 +45,9 @@ struct Constants {
         static let ViewBackgroundColor = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)     // ColorPalette3314Color2
         static let ColorPalette3314Color3 = #colorLiteral(red: 0.7980727553, green: 0.8580390811, blue: 0.9163927436, alpha: 1)
         static let ColorPalette3314Color4 = #colorLiteral(red: 0.9686265588, green: 0.9647503495, blue: 0.9645444751, alpha: 1)
-        static let NavigationBarColor = #colorLiteral(red: 0.8603140116, green: 0.5897349119, blue: 0.6455273032, alpha: 1)      // ColorPalette3314Color5
+        static let ColorPalette3314Color5 = #colorLiteral(red: 0.8603140116, green: 0.5897349119, blue: 0.6455273032, alpha: 1)
+        static let NavigationBarTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        static let NavigationBarTextColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         static let TextColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         static let ColorPalette3495Color1 = #colorLiteral(red: 0.4225752056, green: 0.4821543694, blue: 0.1652031243, alpha: 1)
@@ -53,5 +55,6 @@ struct Constants {
         static let ColorPalette3495Color3 = #colorLiteral(red: 0.6396746039, green: 0.7436213493, blue: 0.8436312079, alpha: 1)
         static let ColorPalette3495Color4 = #colorLiteral(red: 0.9606800675, green: 0.9608443379, blue: 0.9606696963, alpha: 1)
         static let ColorPalette3495Color5 = #colorLiteral(red: 0.5059583187, green: 0.4975892305, blue: 0.5223559737, alpha: 1)
+        
     }
 }

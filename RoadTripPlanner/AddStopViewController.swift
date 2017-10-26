@@ -35,6 +35,12 @@ class AddStopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarTextColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
+        navigationItem.title = "Add Stop"
+        
         places = []
         
         searchCompleter.delegate = self

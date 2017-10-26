@@ -26,14 +26,16 @@ class FriendsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Constants.Colors.ViewBackgroundColor
+        
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80
 
-        navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.1605131328, green: 0.6328189969, blue: 0.6140672565, alpha: 1)
-        let textAttributes = [NSForegroundColorAttributeName:#colorLiteral(red: 0.1605131328, green: 0.6328189969, blue: 0.6140672565, alpha: 1)]
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarTextColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
         navigationItem.title = "Friends"

@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="346" height="212.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trip_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-Le-1oG" customClass="PFImageView">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-Le-1oG" customClass="PFImageView">
                         <rect key="frame" x="4" y="4" width="338" height="205"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gku-pI-lE8">
@@ -83,7 +83,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="trip_placeholder" width="327" height="184"/>
         <image name="user" width="128" height="128"/>
     </resources>
 </document>

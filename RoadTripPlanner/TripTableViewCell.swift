@@ -32,7 +32,10 @@ class TripTableViewCell: UITableViewCell {
                 tripCreatorImageView.loadInBackground()
             }
             
-            guard let coverPhoto = trip.coverPhoto else { return }
+            guard let coverPhoto = trip.coverPhoto else {
+                tripCoverPhoto.image = #imageLiteral(resourceName: "trip_placeholder")
+                return
+            }
             tripCoverPhoto.file = coverPhoto
             tripCoverPhoto.loadInBackground()
         }
