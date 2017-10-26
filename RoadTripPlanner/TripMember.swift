@@ -17,6 +17,7 @@ enum InviteStatus {
 class TripMember: PFObject, PFSubclassing {
 
     @NSManaged var user: PFUser
+    @NSManaged var isCreatingUser: Bool
     @NSManaged var trip: Trip
     @NSManaged var status: Int  // 0: Pending, 1: Confirmed, 2: Rejected
     
@@ -24,10 +25,11 @@ class TripMember: PFObject, PFSubclassing {
         super.init()
     }
     
-    init(user: PFUser, trip: Trip) {
+    init(user: PFUser, isCreator: Bool, trip: Trip) {
         super.init()
         self.user = user
         self.trip = trip
+        self.isCreatingUser = isCreator
         self.status = InviteStatus.Pending.hashValue
     }
     

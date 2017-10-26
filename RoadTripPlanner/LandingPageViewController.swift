@@ -89,7 +89,7 @@ class LandingPageViewController: UIViewController {
        
         //let testData = TestData()
         //testData.buildObjects { (trips, error) in
-        //
+       //
         //}
         
         trips = []

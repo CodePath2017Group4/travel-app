@@ -75,18 +75,20 @@ class ParseBackend {
     static func getTripsForUser(user: PFUser, areUpcoming: Bool, completion: @escaping ([Trip]?, Error?) -> Void) {
         
         let today = Date()
-        
-        let query = PFQuery(className: "TripMember")
-        query.whereKey("user", equalTo: user)
+  
+        let dateQuery = PFQuery(className: "Trip")
         if areUpcoming {
-            query.whereKey("date", greaterThanOrEqualTo: today)
+            dateQuery.whereKey("date", greaterThanOrEqualTo: today)
         } else {
-            // look for past trips
-            query.whereKey("date", lessThan: today)
+            dateQuery.whereKey("date", lessThan: today)
         }
                 
+        let query = PFQuery(className: "TripMember")
+        query.whereKey("user", equalTo: user)
+        query.whereKey("trip", matchesQuery: dateQuery)
         query.includeKey("trip")
         query.includeKey("trip.creator")
+        
         query.findObjectsInBackground { (objects, error) in
             if error == nil {
                 var trips: [Trip] = []
@@ -98,30 +100,8 @@ class ParseBackend {
                         let trip = o.object(forKey: "trip") as! Trip
                         trips.append(trip)
                     }
+                    completion(trips, nil)
                 }
-                
-                // Now query trips the user created themselves..
-                let tripQuery = PFQuery(className: Trip.parseClassName())
-                tripQuery.whereKey("creator", equalTo: user)
-                if areUpcoming {
-                    tripQuery.whereKey("date", greaterThanOrEqualTo: today)
-                } else {
-                    // look for past trips
-                    tripQuery.whereKey("date", lessThan: today)
-                }
-                
-                tripQuery.includeKey("creator")
-                tripQuery.findObjectsInBackground(block: { (objects, error) in
-                    if error == nil {
-                        let createdTrips = objects as! [Trip]
-                        trips.append(contentsOf: createdTrips)
-                        completion(trips, nil)
-                    } else {
-                        log.error(error!)
-                        completion(trips, nil)
-                    }
-                })
-                
                 
             } else {
                 completion(nil, error)

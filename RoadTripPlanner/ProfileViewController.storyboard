@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -172,7 +171,7 @@
             </objects>
             <point key="canvasLocation" x="-1006" y="1673"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Profile-->
         <scene sceneID="aYV-eu-9RQ">
             <objects>
                 <viewController id="yUI-Q6-kXD" customClass="ProfileViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
@@ -187,16 +186,16 @@
                             <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-bg" translatesAutoresizingMaskIntoConstraints="NO" id="pd9-EQ-d9p">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjj-4v-Qbx">
-                                <rect key="frame" x="160.5" y="152" width="54.5" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjj-4v-Qbx">
+                                <rect key="frame" x="160.5" y="150.5" width="54.5" height="24"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gx0-av-9gg">
-                                <rect key="frame" x="214.5" y="201" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gx0-av-9gg">
+                                <rect key="frame" x="214.5" y="199.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trip-tab" translatesAutoresizingMaskIntoConstraints="NO" id="8xx-j2-rnb">
@@ -278,6 +277,7 @@
                             <constraint firstItem="pd9-EQ-d9p" firstAttribute="top" secondItem="bOp-fK-Ojc" secondAttribute="top" id="3sT-mi-rrj"/>
                             <constraint firstItem="pd9-EQ-d9p" firstAttribute="leading" secondItem="JVX-cp-aC4" secondAttribute="leading" id="5hO-Pr-NsW"/>
                             <constraint firstItem="XXA-Vn-vTn" firstAttribute="top" secondItem="PBE-Dz-YBM" secondAttribute="bottom" constant="20" id="8E8-t1-LRt"/>
+                            <constraint firstItem="8xx-j2-rnb" firstAttribute="centerY" secondItem="TwB-Zx-Vck" secondAttribute="centerY" id="Drk-Bb-Wch"/>
                             <constraint firstItem="tg1-QN-e6f" firstAttribute="leading" secondItem="JVX-cp-aC4" secondAttribute="leading" id="Hbb-TY-men"/>
                             <constraint firstItem="jWH-6X-JX6" firstAttribute="top" secondItem="tg1-QN-e6f" secondAttribute="bottom" id="R4W-1M-uVg"/>
                             <constraint firstItem="TwB-Zx-Vck" firstAttribute="top" secondItem="PBE-Dz-YBM" secondAttribute="bottom" constant="136" id="Rln-M2-Ctp"/>
@@ -292,11 +292,12 @@
                             <constraint firstItem="TwB-Zx-Vck" firstAttribute="leading" secondItem="JVX-cp-aC4" secondAttribute="leading" constant="67" id="orK-8U-cgy"/>
                             <constraint firstItem="8xx-j2-rnb" firstAttribute="centerX" secondItem="bOp-fK-Ojc" secondAttribute="centerX" constant="-48" id="wmF-Ze-vCq"/>
                             <constraint firstItem="tg1-QN-e6f" firstAttribute="trailing" secondItem="JVX-cp-aC4" secondAttribute="trailing" id="xmM-Ho-O70"/>
+                            <constraint firstItem="8or-FD-9Gj" firstAttribute="centerY" secondItem="gx0-av-9gg" secondAttribute="centerY" id="zDJ-yA-NHO"/>
                             <constraint firstItem="XXA-Vn-vTn" firstAttribute="centerX" secondItem="bOp-fK-Ojc" secondAttribute="centerX" id="zOP-Cw-1zJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JVX-cp-aC4"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Eak-Ls-yAb"/>
+                    <navigationItem key="navigationItem" title="Profile" id="Eak-Ls-yAb"/>
                     <connections>
                         <outlet property="numAlbumsLabel" destination="gx0-av-9gg" id="k2x-vE-Gcl"/>
                         <outlet property="numTripsLabel" destination="TwB-Zx-Vck" id="rtR-2a-Jug"/>

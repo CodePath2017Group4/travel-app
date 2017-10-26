@@ -85,7 +85,7 @@ class TestData : NSObject{
         let currentUser = PFUser.current()!
         let date = generateRandomDate(daysBack: 20)!
         log.info("date selected: \(date)")
-        let trip = Trip(name: "\(currentUser.username!)'s Trip", date: date, creator: currentUser)
+        let trip = Trip.createTrip(name: "\(currentUser.username!)'s Trip", date: date, creator: currentUser)
         
         trip.addSegment(tripSegment: self.randomlySelectedTripSegment())
         trip.addSegment(tripSegment: self.randomlySelectedTripSegment())
@@ -144,14 +144,14 @@ class TestData : NSObject{
                 
                 let randomIndex = Int(arc4random_uniform(UInt32(filtered.count)))
                 let randomUser = filtered[randomIndex]
-                let trip = Trip(name: "\(randomUser.username!)'s Trip", date: Date(), creator: randomUser)
+                let trip = Trip.createTrip(name: "\(randomUser.username!)'s Trip", date: Date(), creator: randomUser)
                 
                 trip.addSegment(tripSegment: self.randomlySelectedTripSegment())
                 trip.addSegment(tripSegment: self.randomlySelectedTripSegment())
                 trip.addSegment(tripSegment: self.randomlySelectedTripSegment())
                 
                 // Add the current user as a trip member
-                let tripMember = TripMember(user: currentUser, trip: trip)
+                let tripMember = TripMember(user: currentUser, isCreator:false, trip: trip)
                 
                 let status = Int(arc4random_uniform(3))
                 if status == 0 {

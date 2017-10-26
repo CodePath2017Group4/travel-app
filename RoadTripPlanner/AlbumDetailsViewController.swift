@@ -83,6 +83,7 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
     private func setPhotos() {
         self.photos = []
         if let album = self.album {
+            
             for i in 0 ... (album.photos.count - 1) {
                 let image = UIImage(named: "album-default")
                 self.photos.append(image!)
