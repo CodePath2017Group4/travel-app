@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - ARSLineProgress (2.1.1)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -36,6 +37,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - ARSLineProgress (~> 2.1.1)
   - DatePickerDialog
   - FBSDKCoreKit (= 4.27.1)
   - FBSDKLoginKit (= 4.27.1)
@@ -47,6 +49,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  ARSLineProgress: 688f3fe810515200186cebee349e06f822575fe6
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   DatePickerDialog: 5e1c24d9fe6506cd45dbc573eed7b0a251b1c09d
   FBSDKCoreKit: 03365dad5d790249196ffad8be4f6d8a2d98f932
@@ -57,6 +60,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 91057725648ee4980308f1650af077d04b3654a0
   YelpAPI: a0475cf4a7b6f9fe81f1bb7b8a8492770f21e3c7
 
-PODFILE CHECKSUM: ae7f57629873c288bef6690e417e1b485dd8e08f
+PODFILE CHECKSUM: 50e0c0c1d5488ece61f4137162b559d6059b52ce
 
 COCOAPODS: 1.3.1

@@ -405,7 +405,7 @@ class LandingPageViewController: UIViewController {
     }
     
     @IBAction func onNearMe(_ sender: Any) {
-
+print("selectedType  \(selectedType)")
         performSearch(selectedType)
         
     }
@@ -416,20 +416,26 @@ class LandingPageViewController: UIViewController {
     final func performSearch(_ term: [String]) {
 
         if !term.isEmpty {
+            YelpFusionClient.sharedInstance.searchQueryWith(location: locationManager.location!, term: term[0], completionHandler: {(businesses: [YLPBusiness]?, error: Error?) -> Void in
+                     self.businesses = businesses
+                
+                   print("self.businesses  in %^%^%Z^Z%^^^^^^^^^$$$$$$$$$$$ search ---\(String(describing: self.businesses?.count))")
+                
+                })
 
-            YelpFusionClient.sharedInstance.searchWith(location: (locationManager.location?.coordinate)!, term: term[0], completionHandler: {(businesses: [YLPBusiness]?, error: Error?) -> Void in
-                self.businesses = businesses
+           // YelpFusionClient.sharedInstance.searchWith(location: (locationManager.location?.coordinate)!, term: term[0], completionHandler: {(businesses: [YLPBusiness]?, error: Error?) -> Void in
+           //     self.businesses = businesses
 
-                print("self.businesses  in query search ---\(String(describing: self.businesses?.count))")
+            //    print("self.businesses  in query search ---\(String(describing: self.businesses?.count))")
 
-            })
+            ///})
             
-            YelpFusionClient.sharedInstance.search(inCurrent: (locationManager.location?.coordinate)!, term: term[0], completionHandler:  { (businesses: [YLPBusiness]?, error: Error?) -> Void in
+            /*YelpFusionClient.sharedInstance.search(inCurrent: (locationManager.location?.coordinate)!, term: term[0], completionHandler:  { (businesses: [YLPBusiness]?, error: Error?) -> Void in
                 
                 self.businesses = businesses
                 print("self.businesse    in current search ---\(self.businesses.count)")
 
-            })
+            })*/
         }
     }
 }

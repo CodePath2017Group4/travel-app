@@ -14,7 +14,7 @@ class PhotoGalleryViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     var defaultIndex: Int = 0
-    var photos: [PFFile] = []
+    var photos: [UIImage] = []
     
     static func getVC() -> PhotoGalleryViewController {
         let storyboard = UIStoryboard(name: "Album", bundle: nil)
@@ -44,16 +44,15 @@ class PhotoGalleryViewController: UIViewController {
     }
     
     private func showImage() {
-        if (defaultIndex >= 0 && defaultIndex + 1 < photos.count) {
-            Utils.fileToImage(file: photos[defaultIndex], callback: { (image: UIImage) -> Void in
-                self.imageView.image = image
-            })
-            navigationItem.title = "\(defaultIndex)/\(photos.count)"
+        if (defaultIndex >= 0 && defaultIndex < photos.count) {
+            self.imageView.image = self.photos[defaultIndex]
+            navigationItem.title = "\(defaultIndex + 1)/\(photos.count)"
         }
     }
     
     @IBAction func onSwipe(_ sender: UISwipeGestureRecognizer) {
         print("on Swipe \(sender.direction)")
+        print("\(defaultIndex) and \(photos.count)")
         let direction = sender.direction
         if (direction == .left && defaultIndex + 1 < photos.count) {
             defaultIndex = defaultIndex + 1

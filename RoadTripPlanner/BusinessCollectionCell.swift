@@ -12,17 +12,21 @@ import AFNetworking
 
 class BusinessCollectionCell: UICollectionViewCell {
    
-    @IBOutlet weak var imageView: UIImageView!
+   // @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var businessName: UILabel!
     @IBOutlet weak var ratingsCountLabel: UILabel!
     
     var business: YLPBusiness! {
         didSet {
             businessName.text = business.name
-            imageView?.clipsToBounds = true
+           // imageView?.clipsToBounds = true
             
             if let businessImageUrl = business.imageURL {
-                imageView?.setImageWith(businessImageUrl)
+           //     imageView?.setImageWith(businessImageUrl)
+                let backgroundImageView = UIImageView()
+                let backgroundImage = UIImage()
+                backgroundImageView.setImageWith(businessImageUrl)
+                self.backgroundView = backgroundImageView//setImageWith(businessImageUrl)
             }
             
             let ratingsCount = business.rating

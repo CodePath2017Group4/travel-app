@@ -212,6 +212,8 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="photoImage" destination="caa-36-Vfd" id="5LH-Fn-zyR"/>
+                                            <outlet property="photoImageHeight" destination="vNp-wN-Hwj" id="333-Ee-toU"/>
+                                            <outlet property="photoImageWidth" destination="nWc-6r-P0l" id="ISW-8Z-dkb"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
