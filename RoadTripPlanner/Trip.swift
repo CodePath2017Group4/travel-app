@@ -30,6 +30,13 @@ class Trip: PFObject, PFSubclassing {
         self.albums = []
     }
     
+    static func createTrip(name: String, date: Date, creator: PFUser) -> Trip {
+        let trip = Trip(name: name, date: date, creator: creator)
+        let tripMember = TripMember(user: creator, isCreator:true, trip: trip)
+        tripMember.saveInBackground()
+        return trip
+    }
+    
     func setCoverPhoto(file: PFFile) {
         self.coverPhoto = file
     }

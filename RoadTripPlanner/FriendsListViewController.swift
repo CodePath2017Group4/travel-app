@@ -92,7 +92,7 @@ extension FriendsListViewController: UITableViewDelegate, UITableViewDataSource 
         
         let selectedUser = friends[indexPath.row]
 
-        let tripMember = TripMember(user: selectedUser, trip: trip)
+        let tripMember = TripMember(user: selectedUser, isCreator: false, trip: trip)
         tripMember.saveInBackground(block: { (success, error) in
             if (error != nil) {
                 log.error(error!)

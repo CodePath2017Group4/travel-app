@@ -33,6 +33,16 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
         self.tripsSummaryTable.delegate = self
         self.tripsSummaryTable.dataSource = self
         
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarTextColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
+        navigationItem.title = "Profile"
+
+        let tripTableViewCellNib = UINib(nibName: Constants.NibNames.TripTableViewCell, bundle: nil)
+        tripsSummaryTable.register(tripTableViewCellNib, forCellReuseIdentifier: Constants.ReuseableCellIdentifiers.TripTableViewCell)
+
+        
         if PFUser.current() != nil {
             userNameLabel.text = PFUser.current()?.username
             let avatarFile = PFUser.current()?.object(forKey: "avatar") as? PFFile
@@ -77,10 +87,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
             ParseBackend.getTrips(completionHandler: { (trips, error) in
                 if trips != nil {
                     
-                    self.trips = trips!
+//                    self.trips = trips!
                     
                     DispatchQueue.main.async {
-                        self.numTripsLabel.text = "\(self.trips.count)"
+                        self.numTripsLabel.text = "\(trips!.count)"
                     }
                 }
             })
@@ -89,6 +99,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
         ParseBackend.getTripsForUser(user: PFUser.current()!, areUpcoming: false) { (trips, error) in
             if error == nil {
                 log.info("past trips count: \(trips!.count)")
+                self.trips = trips!
+                DispatchQueue.main.async {
+                    self.tripsSummaryTable.reloadData()
+                }
             } else {
                 log.error(error!)
             }
@@ -132,9 +146,13 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tripCell") as! TripSummaryCell
-        cell.setTrip(trip: trips[indexPath.row])
-        return cell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "tripCell") as! TripSummaryCell
+//        cell.setTrip(trip: trips[indexPath.row])
+//        return cell
+        
+        let tripCell = tableView.dequeueReusableCell(withIdentifier: Constants.ReuseableCellIdentifiers.TripTableViewCell, for: indexPath) as! TripTableViewCell
+        tripCell.trip = trips[indexPath.row]
+        return tripCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

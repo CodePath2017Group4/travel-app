@@ -928,7 +928,7 @@ class CreateTripViewController: UIViewController {
             let startSegment = tripSegmentFromMapItem(mapItem: locationTuples[0].mapItem!)
             let destSegment = tripSegmentFromMapItem(mapItem: locationTuples[1].mapItem!)
             
-            let trip = Trip(name: destSegment.name ?? "Unnamed Trip", date: Date(), creator: PFUser.current()!)
+            let trip = Trip.createTrip(name: destSegment.name ?? "Unnamed Trip", date: Date(), creator: PFUser.current()!)
             trip.addSegment(tripSegment: startSegment)
             trip.addSegment(tripSegment: destSegment)
             

@@ -3055,7 +3055,7 @@
         <image name="reststops" width="50" height="50"/>
         <image name="sf" width="240" height="160"/>
         <image name="share" width="52" height="52"/>
-        <image name="shopping" width="48" height="48"/>
+        <image name="shopping" width="30" height="30"/>
         <image name="theater" width="50" height="50"/>
         <image name="thingstodo" width="50" height="50"/>
         <image name="trash" width="96" height="96"/>
