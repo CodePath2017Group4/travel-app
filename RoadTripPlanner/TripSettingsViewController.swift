@@ -106,6 +106,10 @@ class TripSettingsViewController: UIViewController {
             if error == nil {
                 log.info("Update trip success: \(success)")
                 if success {
+                    
+                    // Post a notification that the trip has been modified
+                    NotificationCenter.default.post(name: Constants.NotificationNames.TripModifiedNotification, object: nil, userInfo: ["trip": self.trip!])
+                    
                     ARSLineProgress.hideWithCompletionBlock {
                         log.verbose("Hid progress overlay")
                         ARSLineProgress.showSuccess()

@@ -64,31 +64,32 @@ class TripDetailsViewController: UIViewController {
         if trip != nil {
             guard let trip = trip else { return }
             
-            let creator = trip.creator
-            
-            let tripDate = trip.date
-            tripDateLabel.text = Utils.formatDate(date: tripDate)
-            
-            let avatarFile = creator.object(forKey: "avatar") as? PFFile
-            if avatarFile != nil {
-                profileImageView.file = avatarFile
-                profileImageView.loadInBackground()                
-            }
-            
-            tripNameLabel.text = trip.name
-            
-            if let coverPhotoFile = trip.coverPhoto {
-                coverPhotoImageView.file = coverPhotoFile
-                coverPhotoImageView.loadInBackground()
-            } else {
-                // grab an image to use as the cover photo from Yelp
-                setTripCoverPhoto()
-            }
-            
-            guard let segments = trip.segments else { return }
-            self.tripSegments = segments
-            
+            setUserInterfaceValues(trip: trip)
         }
+    }
+    
+    fileprivate func setUserInterfaceValues(trip: Trip) {
+        let creator = trip.creator
+        
+        let tripDate = trip.date
+        tripDateLabel.text = Utils.formatDate(date: tripDate)
+        
+        let avatarFile = creator.object(forKey: "avatar") as? PFFile
+        if avatarFile != nil {
+            profileImageView.file = avatarFile
+            profileImageView.loadInBackground()
+        }
+        
+        tripNameLabel.text = trip.name
+        
+        if let coverPhotoFile = trip.coverPhoto {
+            coverPhotoImageView.file = coverPhotoFile
+            coverPhotoImageView.loadInBackground()
+        }
+        
+        guard let segments = trip.segments else { return }
+        tripSegments = segments
+        tableView.reloadData()
     }
         
     fileprivate func registerForNotifications() {
@@ -106,9 +107,7 @@ class TripDetailsViewController: UIViewController {
         let info = notification.userInfo
         let trip = info!["trip"] as! Trip
         
-        // Update the trip segments and reload the table view
-        self.tripSegments = trip.segments!
-        self.tableView.reloadData()
+        setUserInterfaceValues(trip: trip)
     }
     
     fileprivate func loadLandmarkImageFromDesitination(location: CLLocation) {
