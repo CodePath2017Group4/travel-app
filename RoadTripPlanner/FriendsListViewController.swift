@@ -37,7 +37,7 @@ class FriendsListViewController: UIViewController {
         navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarLightTintColor
         let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarLightTintColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-        navigationItem.title = "Add Friends To Trip"
+        navigationItem.title = "Invite People To Trip"
         
         searchBar.tintColor = Constants.Colors.NavigationBarLightTintColor
         
@@ -57,13 +57,13 @@ class FriendsListViewController: UIViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        navigationController?.navigationBar.tintColor = UIColor.white
-        let textAttributes = [NSForegroundColorAttributeName:UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//
+//        navigationController?.navigationBar.tintColor = UIColor.white
+//        let textAttributes = [NSForegroundColorAttributeName:UIColor.white]
+//        navigationController?.navigationBar.titleTextAttributes = textAttributes
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -97,7 +97,10 @@ extension FriendsListViewController: UITableViewDelegate, UITableViewDataSource 
         tripMember.saveInBackground(block: { (success, error) in
             if (error != nil) {
                 log.error(error!)
-                
+            } else {
+                let username = selectedUser.username ?? "No Name"
+                let tripName = trip.name ?? "No Name"
+                log.info("Saved \(username) as a member to trip \(tripName)")
             }
         })
         
@@ -139,4 +142,6 @@ extension FriendsListViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    
+
 }

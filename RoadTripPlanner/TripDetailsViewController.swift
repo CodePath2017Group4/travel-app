@@ -24,6 +24,7 @@ class TripDetailsViewController: UIViewController {
     @IBOutlet weak var editTableButton: UIButton!
     @IBOutlet weak var addStopButton: UIButton!
     @IBOutlet weak var addFriendsButton: UIButton!
+    @IBOutlet weak var tripSettingsButton: UIButton!
     
     @IBOutlet weak var tripSettingsImageView: UIImageView!
     

@@ -39,6 +39,7 @@
 		DFA0E2A11F96D272005D7528 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E2A01F96D272005D7528 /* APIKeys.swift */; };
 		DFA0E2A61F96E973005D7528 /* CreateUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */; };
 		DFA0E2A81F96EB2D005D7528 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */; };
+		DFB6250B1FA2B34500397933 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6250A1FA2B34500397933 /* LocalNotifications.swift */; };
 		DFC85C201F9D379A00797D92 /* AddAlbumDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC85C1F1F9D379A00797D92 /* AddAlbumDelegate.swift */; };
 		DFCC37791F9707E2003BDCA6 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37781F9707E2003BDCA6 /* ProfileViewController.storyboard */; };
 		DFCC377B1F97085C003BDCA6 /* AlbumListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC377A1F97085C003BDCA6 /* AlbumListViewController.storyboard */; };
@@ -151,6 +152,7 @@
 		DFA0E2A01F96D272005D7528 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateUserViewController.storyboard; sourceTree = "<group>"; };
 		DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		DFB6250A1FA2B34500397933 /* LocalNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifications.swift; sourceTree = "<group>"; };
 		DFC85C1F1F9D379A00797D92 /* AddAlbumDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlbumDelegate.swift; sourceTree = "<group>"; };
 		DFCC37781F9707E2003BDCA6 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		DFCC377A1F97085C003BDCA6 /* AlbumListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlbumListViewController.storyboard; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 			children = (
 				DFECC56F1F9C2DDD00F3B63E /* TestData.swift */,
 				DFECC5611F9C1CFA00F3B63E /* Utils.swift */,
+				DFB6250A1FA2B34500397933 /* LocalNotifications.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -836,6 +839,7 @@
 				486E3C451F945EEB003D2FFF /* AlbumDetailsViewController.swift in Sources */,
 				DF7BC0741F9D535E00B3746B /* LocationSearchResultCell.swift in Sources */,
 				48CB34491F9BBC5900EE268A /* AddAlbumViewController.swift in Sources */,
+				DFB6250B1FA2B34500397933 /* LocalNotifications.swift in Sources */,
 				F806F2B11F8E08B300E11785 /* MapViewController.swift in Sources */,
 				DFECC56D1F9C1CFB00F3B63E /* AddressTableView.swift in Sources */,
 				F8B6A3E11F92EDB300942820 /* CreateTripViewController.swift in Sources */,
