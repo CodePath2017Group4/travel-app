@@ -93,6 +93,8 @@ class TripSettingsViewController: UIViewController {
         guard let trip = trip else { return }
         trip.name = nameTextField.text
         trip.tripDescription = descriptionTextView.text
+        trip.date = tripDatePicker.date
+        
         let coverPhotoImage = coverImageView.image
         if coverPhotoImage != nil {
             trip.coverPhoto = Utils.imageToFile(image: coverPhotoImage!)
