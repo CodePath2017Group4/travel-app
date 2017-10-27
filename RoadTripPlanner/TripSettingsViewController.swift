@@ -13,86 +13,101 @@ protocol HeightForTextView {
 
 class TripSettingsViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var changeCoverImageView: UIImageView!
-    
     @IBOutlet weak var coverImageView: UIImageView!
-    @IBOutlet weak var tripTitleTextView: UITextView!
+    @IBOutlet weak var nameCharacterCountLabel: UILabel!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var descriptionCharacterCountLabel: UILabel!
+    @IBOutlet var toolbar: UIToolbar!
     
-    @IBOutlet weak var titleView: UIView!
-    let picker = UIImagePickerController()
-    var delgate:HeightForTextView?
-
-    var textViewHeight = CGFloat()
-    fileprivate var counterLabel: UILabel!
+    var trip: Trip?
+    var originalDescription: String?
+    
+    static func storyboardInstance() -> TripSettingsViewController? {
+        let storyboard = UIStoryboard(name: "TripSettingsViewController", bundle: nil)
+        
+        return storyboard.instantiateInitialViewController() as? TripSettingsViewController
+    }
+    
+    
+    let imagePicker = UIImagePickerController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let changeCoverImageTap = UITapGestureRecognizer(target: self, action: #selector(changeCoverImageTapped))
-        changeCoverImageTap.numberOfTapsRequired = 1
-        changeCoverImageView.isUserInteractionEnabled = true
-        changeCoverImageView.addGestureRecognizer(changeCoverImageTap)
+        imagePicker.delegate = self
+        descriptionTextView.delegate = self
+        descriptionTextView.inputAccessoryView = toolbar
         
-        tripTitleTextView.textContainer.maximumNumberOfLines = 2
-        tripTitleTextView.textContainer.lineBreakMode = .byWordWrapping
-        tripTitleTextView.isScrollEnabled = false
-        tripTitleTextView.delegate = self
-
-        picker.delegate = self
+        nameTextField.delegate = self
         
+        nameTextField.text = trip?.name
+        originalDescription = trip?.tripDescription
         
-        let screenWidth = UIScreen.main.bounds.width
-        counterLabel = UILabel()
-        counterLabel.frame = CGRect(x: screenWidth - 40, y: 0, width: 30, height: 50)
-        counterLabel.font = UIFont(name: "HelveticaNeue-medium", size: 16)
-        counterLabel.textColor = UIColor.white
-        let charactersLeft = 50 - tripTitleTextView.text.characters.count
-        counterLabel.text = "\(charactersLeft)"
-        titleView.addSubview(counterLabel)
+        checkNameTextLength(text: nameTextField?.text)
         
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.navigationController?.navigationBar.isHidden = true
-        
-    }
-    
-    func changeCoverImageTapped(_ sender: AnyObject) {
-        
-        picker.allowsEditing = false
-        picker.sourceType = .photoLibrary
-        picker.modalPresentationStyle = .popover
-        present(picker, animated: true, completion: nil)
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarLightTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarLightTintColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationItem.title = "Trip Settings"
 
         
     }
     
-}
-extension TripSettingsViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(indexPath.row == 0) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TripSettingsCell1") as! UITableViewCell
-            return cell
+    // MARK: - IBAction Methods
+    @IBAction func changeCoverButtonPressed(_ sender: Any) {
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.modalPresentationStyle = .popover
+        
+        present(imagePicker, animated: true) {
+            
         }
-        else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TripSettingsCell2") as! UITableViewCell
-            return cell        }
+    }
+        
+    @IBAction func doneButtonPressed(_ sender: Any) {
+        descriptionTextView.resignFirstResponder()
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        descriptionTextView.resignFirstResponder()
+        descriptionTextView.text = originalDescription
     }
     
+    fileprivate func checkNameTextLength(text: String?) {
+        guard let text = text else { return }
+        
+        let characterCount = text.characters.count
+        let remainigCount = 60 - characterCount
+        
+        if remainingCount < 0 {
+            nameCharacterCountLabel.textColor = UIColor.red
+        } else {
+            nameCharacterCountLabel.textColor = UIColor.darkGray
+        }
+        
+        nameCharacterCountLabel.text = remainingCount
+    }
+    
+    fileprivate func checkDescriptionTextLength(text: String?) {
+        guard let text = text else { return }
+        
+        let characterCount = text.characters.count
+        let remainingCount = 250 - characterCount
+        
+        if remainingCount < 0 {
+            descriptionCharacterCountLabel.textColor = UIColor.red
+        } else {
+            descriptionCharacterCountLabel.textColor = UIColor.darkGray
+        }
+        
+        descriptionCharacterCountLabel.text = remainingCount
+    }
     
 }
 
-//MARK: Delegates
+
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 extension TripSettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
@@ -108,37 +123,30 @@ extension TripSettingsViewController: UIImagePickerControllerDelegate, UINavigat
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
         
-        
-    }
-
+    }    
 }
 
-extension TripSettingsViewController: HeightForTextView {
-    
-    func heightOfTextView(height: CGFloat) {
-        
-        textViewHeight = height
-        self.titleView.frame.size.height = self.titleView.frame.height + textViewHeight
-        
-    }
-    
-}
-
-// MARK: - Text View delegate methods
-extension TripSettingsViewController : UITextViewDelegate {
+// MARK: - UITextViewDelegate
+extension TripSettingsViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         
-        let currentCount = textView.text.characters.count
-        
-        if (currentCount > 0) {
-            textView.placeholder = ""
-        }
-        
-        let charactersLeft = 50 - currentCount
-        counterLabel.text = "\(charactersLeft)"
-
+        checkDescriptionTextLength(text: textView.text)        
     }
     
 }
 
+// MARK: - UITextFieldDelegate
+extension TripSettingsViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        checkNameTextLength(text: textField.text)
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}

@@ -187,15 +187,18 @@ class TripDetailsViewController: UIViewController {
     }
     
     @IBAction func tripSettingButtonPressed(_ sender: Any) {
+        guard let settingsVC = TripSettingsViewController.storyboardInstance() else { return }
+        settingsVC.trip = trip
+        navigationController?.pushViewController(settingsVC, animated: true)
     }
     
     @IBAction func albumButtonPressed(_ sender: Any) {
     }
     
     @IBAction func addFriendsButtonPressed(_ sender: Any) {
-        let friendsVC = FriendsListViewController.storyboardInstance()
-        friendsVC?.trip = trip
-        navigationController?.pushViewController(friendsVC!, animated: true)
+        guard let friendsVC = FriendsListViewController.storyboardInstance() else { return }
+        friendsVC.trip = trip
+        navigationController?.pushViewController(friendsVC, animated: true)
     }
     
     
@@ -208,21 +211,7 @@ class TripDetailsViewController: UIViewController {
         present(addStopVC, animated: true, completion: nil)
     }
     
-    func tripSettingsImageTapped(_ sender: AnyObject) {
-        
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let tripSettingsViewController = storyboard.instantiateViewController(withIdentifier: "TripSettings") as! UINavigationController
-        self.navigationController?.pushViewController(tripSettingsViewController.topViewController!, animated: true)
-        
-    }
-    
-    func albumImageTapped(_ sender: AnyObject) {
-        
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let albumDetailsViewController = storyboard.instantiateViewController(withIdentifier: "AlbumDetails") as! AlbumDetailsViewController
-        self.navigationController?.pushViewController(albumDetailsViewController, animated: true)
-        
-    }
+       
     
     func emailImageTapped(_ sender: AnyObject) {
         

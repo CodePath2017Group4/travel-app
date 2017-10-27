@@ -11,6 +11,7 @@ import Parse
 class Trip: PFObject, PFSubclassing {
     
     @NSManaged var name: String?
+    @NSManaged var tripDescription: String?
     @NSManaged var date: Date?
     @NSManaged var segments: [TripSegment]?
     @NSManaged var coverPhoto: PFFile?
@@ -24,6 +25,7 @@ class Trip: PFObject, PFSubclassing {
     init(name: String, date: Date, creator: PFUser) {
         super.init()
         self.name = name
+        self.tripDescription = ""
         self.date = date                
         self.creator = creator
         self.segments = []
