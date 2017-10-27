@@ -7,9 +7,7 @@
 //
 
 import UIKit
-protocol HeightForTextView {
-    func heightOfTextView(height: CGFloat)
-}
+import ARSLineProgress
 
 class TripSettingsViewController: UIViewController {
 
@@ -19,6 +17,10 @@ class TripSettingsViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var descriptionCharacterCountLabel: UILabel!
     @IBOutlet var toolbar: UIToolbar!
+    @IBOutlet weak var tripDatePicker: UIDatePicker!
+    
+    let nameMaxCharCount = 50
+    let descriptionMaxCharCount = 250
     
     var trip: Trip?
     var originalDescription: String?
@@ -28,7 +30,6 @@ class TripSettingsViewController: UIViewController {
         
         return storyboard.instantiateInitialViewController() as? TripSettingsViewController
     }
-    
     
     let imagePicker = UIImagePickerController()
 
@@ -43,15 +44,28 @@ class TripSettingsViewController: UIViewController {
         
         nameTextField.text = trip?.name
         originalDescription = trip?.tripDescription
+        descriptionTextView.text = originalDescription
+        
+        // Load the cover image
+        let coverImageFile = trip?.coverPhoto
+        if coverImageFile != nil {
+            Utils.fileToImage(file: coverImageFile!, callback: { (image) in
+                self.coverImageView.image = image
+            })
+        }
+        
+        tripDatePicker.date = trip?.date ?? Date()
         
         checkNameTextLength(text: nameTextField?.text)
+        checkDescriptionTextLength(text: descriptionTextView?.text)
         
         navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarLightTintColor
         let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarLightTintColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         navigationItem.title = "Trip Settings"
 
-        
+        let saveButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveChangesPressed(_:)))
+        navigationItem.rightBarButtonItem = saveButton
     }
     
     // MARK: - IBAction Methods
@@ -74,11 +88,51 @@ class TripSettingsViewController: UIViewController {
         descriptionTextView.text = originalDescription
     }
     
+    @IBAction func saveChangesPressed(_ sender: Any) {
+        
+        guard let trip = trip else { return }
+        trip.name = nameTextField.text
+        trip.tripDescription = descriptionTextView.text
+        let coverPhotoImage = coverImageView.image
+        if coverPhotoImage != nil {
+            trip.coverPhoto = Utils.imageToFile(image: coverPhotoImage!)
+        }
+        
+        ARSLineProgress.showWithPresentCompetionBlock {
+            log.verbose("Showed progress overlay")
+        }
+        
+        trip.saveInBackground { (success, error) in
+            if error == nil {
+                log.info("Update trip success: \(success)")
+                if success {
+                    ARSLineProgress.hideWithCompletionBlock {
+                        log.verbose("Hid progress overlay")
+                        ARSLineProgress.showSuccess()
+                    }
+                }
+            } else {
+                ARSLineProgress.hideWithCompletionBlock {
+                    log.verbose("Hid progress overlay")
+                    ARSLineProgress.showFail()
+                }
+                log.error("Error updating trip: \(error!)")
+            }
+        }
+    }
+    
+    @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
+        let selectedDate = sender.date
+        let formattedDate = Utils.formatDate(date: selectedDate)
+        log.info("selected date: \(formattedDate)")
+    }
+    
+    
     fileprivate func checkNameTextLength(text: String?) {
         guard let text = text else { return }
         
         let characterCount = text.characters.count
-        let remainigCount = 60 - characterCount
+        let remainingCount = nameMaxCharCount - characterCount
         
         if remainingCount < 0 {
             nameCharacterCountLabel.textColor = UIColor.red
@@ -86,14 +140,14 @@ class TripSettingsViewController: UIViewController {
             nameCharacterCountLabel.textColor = UIColor.darkGray
         }
         
-        nameCharacterCountLabel.text = remainingCount
+        nameCharacterCountLabel.text = "\(remainingCount)"
     }
     
     fileprivate func checkDescriptionTextLength(text: String?) {
         guard let text = text else { return }
         
         let characterCount = text.characters.count
-        let remainingCount = 250 - characterCount
+        let remainingCount = descriptionMaxCharCount - characterCount
         
         if remainingCount < 0 {
             descriptionCharacterCountLabel.textColor = UIColor.red
@@ -101,7 +155,7 @@ class TripSettingsViewController: UIViewController {
             descriptionCharacterCountLabel.textColor = UIColor.darkGray
         }
         
-        descriptionCharacterCountLabel.text = remainingCount
+        descriptionCharacterCountLabel.text = "\(remainingCount)"
     }
     
 }

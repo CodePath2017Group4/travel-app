@@ -74,10 +74,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UEp-xX-XAN">
-                                <rect key="frame" x="8" y="303" width="359" height="165"/>
+                                <rect key="frame" x="8" y="303" width="359" height="105"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="165" id="lmZ-9A-cKU"/>
+                                    <constraint firstAttribute="height" constant="105" id="lmZ-9A-cKU"/>
                                 </constraints>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -89,11 +89,34 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw8-7x-LRI">
+                                <rect key="frame" x="10" y="416" width="39" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.3147298992" green="0.55744743350000003" blue="0.74876743560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2CK-b6-DOR">
+                                <rect key="frame" x="0.0" y="445" width="375" height="162"/>
+                                <color key="tintColor" red="0.3147298992" green="0.55744743350000003" blue="0.74876743560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="HYI-pn-vOT"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="530773932.09215301">
+                                    <!--2017-10-27 05:12:12 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="datePickerValueChanged:" destination="XlL-5s-YW0" eventType="valueChanged" id="EfT-jY-faH"/>
+                                </connections>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" red="0.96862655880000004" green="0.96475034950000005" blue="0.96454447509999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="sne-oN-0fK" firstAttribute="centerX" secondItem="RCL-Mk-rFP" secondAttribute="centerX" id="1ZM-Ue-ifU"/>
+                            <constraint firstItem="2CK-b6-DOR" firstAttribute="top" secondItem="Jw8-7x-LRI" secondAttribute="bottom" constant="8" id="2qM-JN-1N6"/>
+                            <constraint firstItem="2CK-b6-DOR" firstAttribute="leading" secondItem="521-bN-BCO" secondAttribute="leading" id="5rS-qs-f7K"/>
+                            <constraint firstItem="2CK-b6-DOR" firstAttribute="trailing" secondItem="521-bN-BCO" secondAttribute="trailing" id="9cf-72-Tb6"/>
                             <constraint firstItem="p23-Zw-qRF" firstAttribute="top" secondItem="sne-oN-0fK" secondAttribute="bottom" constant="16" id="Bpf-t1-1h5"/>
+                            <constraint firstItem="Jw8-7x-LRI" firstAttribute="top" secondItem="UEp-xX-XAN" secondAttribute="bottom" constant="8" id="Cgg-wn-gaW"/>
                             <constraint firstItem="xEZ-Q4-GBv" firstAttribute="top" secondItem="zIR-M7-udt" secondAttribute="bottom" constant="8" id="DK9-O6-V06"/>
                             <constraint firstItem="xEZ-Q4-GBv" firstAttribute="centerX" secondItem="RCL-Mk-rFP" secondAttribute="centerX" id="Del-Xl-xr7"/>
                             <constraint firstItem="521-bN-BCO" firstAttribute="trailing" secondItem="GZq-0V-Sq2" secondAttribute="trailing" constant="8" id="DfA-Dj-D2V"/>
@@ -110,6 +133,7 @@
                             <constraint firstItem="sne-oN-0fK" firstAttribute="top" secondItem="dJ4-zn-SRK" secondAttribute="bottom" constant="8" id="k21-Bq-yJj"/>
                             <constraint firstItem="c6s-mf-wtL" firstAttribute="top" secondItem="RCL-Mk-rFP" secondAttribute="top" id="kWY-Nm-BSK"/>
                             <constraint firstItem="521-bN-BCO" firstAttribute="trailing" secondItem="sne-oN-0fK" secondAttribute="trailing" constant="8" id="l88-vb-rch"/>
+                            <constraint firstItem="Jw8-7x-LRI" firstAttribute="leading" secondItem="521-bN-BCO" secondAttribute="leading" constant="10" id="mOQ-SA-ztA"/>
                             <constraint firstItem="xEZ-Q4-GBv" firstAttribute="centerX" secondItem="RCL-Mk-rFP" secondAttribute="centerX" id="msw-wv-0To"/>
                             <constraint firstItem="dJ4-zn-SRK" firstAttribute="trailing" secondItem="sne-oN-0fK" secondAttribute="trailing" id="r2L-qA-F3S"/>
                             <constraint firstItem="sne-oN-0fK" firstAttribute="top" secondItem="iSY-KH-TOE" secondAttribute="bottom" constant="8" id="sMz-C7-qPI"/>
@@ -127,6 +151,7 @@
                         <outlet property="nameCharacterCountLabel" destination="dJ4-zn-SRK" id="T5N-tc-IOt"/>
                         <outlet property="nameTextField" destination="sne-oN-0fK" id="ga9-Ao-FQM"/>
                         <outlet property="toolbar" destination="M1J-CU-INQ" id="nUT-vV-hOa"/>
+                        <outlet property="tripDatePicker" destination="2CK-b6-DOR" id="Mum-1d-TpH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FiD-Bc-71m" userLabel="First Responder" sceneMemberID="firstResponder"/>
