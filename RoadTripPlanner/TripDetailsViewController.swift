@@ -51,6 +51,13 @@ class TripDetailsViewController: UIViewController {
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 3.0
         
+        view.backgroundColor = Constants.Colors.ViewBackgroundColor        
+        navigationController?.navigationBar.tintColor = Constants.Colors.ColorPalette3314Color4
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.ColorPalette3314Color4]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+
+        
+        
         registerForNotifications()
         
         if trip != nil {

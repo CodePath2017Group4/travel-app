@@ -167,8 +167,8 @@ class LandingPageViewController: UIViewController {
         self.scrollView.delegate = self
         self.pageControl.currentPage = 1
         
-        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarTintColor
-        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarTextColor]
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarLightTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarLightTintColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
                
 

@@ -34,11 +34,12 @@ class FriendsListViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80
 
-        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarTintColor
-        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarTextColor]
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarLightTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarLightTintColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationItem.title = "Add Friends To Trip"
         
-        navigationItem.title = "Friends"
+        searchBar.tintColor = Constants.Colors.NavigationBarLightTintColor
         
         ParseBackend.getUsers { (users, error) in
             if error == nil {

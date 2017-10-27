@@ -41,12 +41,11 @@ struct Constants {
     }
     
     struct Colors {
-        static let ButtonBackgroundColor = #colorLiteral(red: 0.128070116, green: 0.2497186661, blue: 0.3288468122, alpha: 1)   // ColorPalette3314Color1
-        static let ViewBackgroundColor = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)     // ColorPalette3314Color2
-        static let NavigationBarTintColor = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)
-        static let NavigationBarTextColor = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)
+        static let ButtonBackgroundColor = #colorLiteral(red: 0.128070116, green: 0.2497186661, blue: 0.3288468122, alpha: 1)
+        static let ViewBackgroundColor = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)
+        static let NavigationBarDarkTintColor = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)
+        static let NavigationBarLightTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         static let TextColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        
         
         static let ColorPalette3314Color1 = #colorLiteral(red: 0.128070116, green: 0.2497186661, blue: 0.3288468122, alpha: 1)
         static let ColorPalette3314Color2 = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)
