@@ -18,11 +18,13 @@ class TripDetailsViewController: UIViewController {
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImageView: PFImageView!
+    @IBOutlet weak var tripDateLabel: UILabel!
     
     @IBOutlet weak var emailGroupImageView: UIImageView!
     @IBOutlet weak var editTableButton: UIButton!
     @IBOutlet weak var addStopButton: UIButton!
     @IBOutlet weak var addFriendsButton: UIButton!
+    @IBOutlet weak var tripSettingsButton: UIButton!
     
     @IBOutlet weak var tripSettingsImageView: UIImageView!
     
@@ -50,33 +52,44 @@ class TripDetailsViewController: UIViewController {
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 3.0
         
+        view.backgroundColor = Constants.Colors.ViewBackgroundColor        
+        navigationController?.navigationBar.tintColor = Constants.Colors.ColorPalette3314Color4
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.ColorPalette3314Color4]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+
+        
+        
         registerForNotifications()
         
         if trip != nil {
             guard let trip = trip else { return }
             
-            let creator = trip.creator
-            
-            let avatarFile = creator.object(forKey: "avatar") as? PFFile
-            if avatarFile != nil {
-                profileImageView.file = avatarFile
-                profileImageView.loadInBackground()                
-            }
-            
-            tripNameLabel.text = trip.name
-            
-            if let coverPhotoFile = trip.coverPhoto {
-                coverPhotoImageView.file = coverPhotoFile
-                coverPhotoImageView.loadInBackground()
-            } else {
-                // grab an image to use as the cover photo from Yelp
-                setTripCoverPhoto()
-            }
-            
-            guard let segments = trip.segments else { return }
-            self.tripSegments = segments
-            
+            setUserInterfaceValues(trip: trip)
         }
+    }
+    
+    fileprivate func setUserInterfaceValues(trip: Trip) {
+        let creator = trip.creator
+        
+        let tripDate = trip.date
+        tripDateLabel.text = Utils.formatDate(date: tripDate)
+        
+        let avatarFile = creator.object(forKey: "avatar") as? PFFile
+        if avatarFile != nil {
+            profileImageView.file = avatarFile
+            profileImageView.loadInBackground()
+        }
+        
+        tripNameLabel.text = trip.name
+        
+        if let coverPhotoFile = trip.coverPhoto {
+            coverPhotoImageView.file = coverPhotoFile
+            coverPhotoImageView.loadInBackground()
+        }
+        
+        guard let segments = trip.segments else { return }
+        tripSegments = segments
+        tableView.reloadData()
     }
         
     fileprivate func registerForNotifications() {
@@ -94,9 +107,7 @@ class TripDetailsViewController: UIViewController {
         let info = notification.userInfo
         let trip = info!["trip"] as! Trip
         
-        // Update the trip segments and reload the table view
-        self.tripSegments = trip.segments!
-        self.tableView.reloadData()
+        setUserInterfaceValues(trip: trip)
     }
     
     fileprivate func loadLandmarkImageFromDesitination(location: CLLocation) {
@@ -175,15 +186,18 @@ class TripDetailsViewController: UIViewController {
     }
     
     @IBAction func tripSettingButtonPressed(_ sender: Any) {
+        guard let settingsVC = TripSettingsViewController.storyboardInstance() else { return }
+        settingsVC.trip = trip
+        navigationController?.pushViewController(settingsVC, animated: true)
     }
     
     @IBAction func albumButtonPressed(_ sender: Any) {
     }
     
     @IBAction func addFriendsButtonPressed(_ sender: Any) {
-        let friendsVC = FriendsListViewController.storyboardInstance()
-        friendsVC?.trip = trip
-        navigationController?.pushViewController(friendsVC!, animated: true)
+        guard let friendsVC = FriendsListViewController.storyboardInstance() else { return }
+        friendsVC.trip = trip
+        navigationController?.pushViewController(friendsVC, animated: true)
     }
     
     
@@ -196,21 +210,7 @@ class TripDetailsViewController: UIViewController {
         present(addStopVC, animated: true, completion: nil)
     }
     
-    func tripSettingsImageTapped(_ sender: AnyObject) {
-        
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let tripSettingsViewController = storyboard.instantiateViewController(withIdentifier: "TripSettings") as! UINavigationController
-        self.navigationController?.pushViewController(tripSettingsViewController.topViewController!, animated: true)
-        
-    }
-    
-    func albumImageTapped(_ sender: AnyObject) {
-        
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let albumDetailsViewController = storyboard.instantiateViewController(withIdentifier: "AlbumDetails") as! AlbumDetailsViewController
-        self.navigationController?.pushViewController(albumDetailsViewController, animated: true)
-        
-    }
+       
     
     func emailImageTapped(_ sender: AnyObject) {
         

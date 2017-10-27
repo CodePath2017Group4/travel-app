@@ -22,8 +22,8 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         albumsTable.delegate = self
         albumsTable.dataSource = self
         
-        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarTintColor
-        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarTextColor]
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarDarkTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
 
         

@@ -34,11 +34,12 @@ class FriendsListViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80
 
-        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarTintColor
-        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarTextColor]
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarLightTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarLightTintColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationItem.title = "Invite People To Trip"
         
-        navigationItem.title = "Friends"
+        searchBar.tintColor = Constants.Colors.NavigationBarLightTintColor
         
         ParseBackend.getUsers { (users, error) in
             if error == nil {
@@ -56,13 +57,13 @@ class FriendsListViewController: UIViewController {
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        navigationController?.navigationBar.tintColor = UIColor.white
-        let textAttributes = [NSForegroundColorAttributeName:UIColor.white]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//
+//        navigationController?.navigationBar.tintColor = UIColor.white
+//        let textAttributes = [NSForegroundColorAttributeName:UIColor.white]
+//        navigationController?.navigationBar.titleTextAttributes = textAttributes
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -96,7 +97,10 @@ extension FriendsListViewController: UITableViewDelegate, UITableViewDataSource 
         tripMember.saveInBackground(block: { (success, error) in
             if (error != nil) {
                 log.error(error!)
-                
+            } else {
+                let username = selectedUser.username ?? "No Name"
+                let tripName = trip.name ?? "No Name"
+                log.info("Saved \(username) as a member to trip \(tripName)")
             }
         })
         
@@ -138,4 +142,6 @@ extension FriendsListViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
+    
+
 }

@@ -35,8 +35,8 @@ class AddStopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarTintColor
-        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarTextColor]
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarDarkTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
         navigationItem.title = "Add Stop"

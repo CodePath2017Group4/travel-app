@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,7 +27,7 @@
                                     <constraint firstAttribute="height" constant="256" id="ojE-Fk-Row"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_name" translatesAutoresizingMaskIntoConstraints="NO" id="JBu-cr-x30">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_name_white" translatesAutoresizingMaskIntoConstraints="NO" id="JBu-cr-x30">
                                 <rect key="frame" x="88" y="84" width="199" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="199" id="ZAU-JJ-jz4"/>
@@ -51,7 +50,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app_name" width="199" height="32"/>
+        <image name="app_name_white" width="199" height="32"/>
         <image name="map" width="256" height="256"/>
     </resources>
 </document>

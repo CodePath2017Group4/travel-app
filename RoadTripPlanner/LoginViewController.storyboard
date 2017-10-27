@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,7 +26,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_name" translatesAutoresizingMaskIntoConstraints="NO" id="aK9-Jz-7Ko">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_name_white" translatesAutoresizingMaskIntoConstraints="NO" id="aK9-Jz-7Ko">
                                 <rect key="frame" x="88" y="40" width="199" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="836-Mj-zAI"/>
@@ -36,7 +35,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trD-Z8-Odu">
                                 <rect key="frame" x="59" y="245" width="256" height="40"/>
-                                <color key="backgroundColor" red="0.91943794489999997" green="0.29798597100000002" blue="0.1084863767" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.27979743480000002" green="0.35620298979999998" blue="0.4063227177" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="1IQ-ur-7ir"/>
                                     <constraint firstAttribute="width" constant="256" id="q09-oG-7nC"/>
@@ -71,7 +70,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="alphabet" keyboardAppearance="light" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.16051313280000001" green="0.63281899689999999" blue="0.61406725650000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.3147298992" green="0.55744743350000003" blue="0.74876743560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fb4-wr-Hwq" firstAttribute="centerX" secondItem="YvO-NO-bIE" secondAttribute="centerX" id="CtF-in-VJS"/>
                             <constraint firstItem="F6y-57-rz4" firstAttribute="centerX" secondItem="YvO-NO-bIE" secondAttribute="centerX" id="P0H-ka-7Rt"/>
@@ -100,6 +99,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app_name" width="199" height="32"/>
+        <image name="app_name_white" width="199" height="32"/>
     </resources>
 </document>

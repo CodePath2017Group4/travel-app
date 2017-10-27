@@ -18,13 +18,16 @@ class FriendUserCell: UITableViewCell {
     
     var user: PFUser! {
         didSet {
+            avatarImageView.image = #imageLiteral(resourceName: "user")
             usernameLabel.text = user.username
             let avatarFile = user.object(forKey: "avatar") as? PFFile
             if avatarFile != nil {
                 Utils.fileToImage(file: avatarFile!) { (image) in
                     self.avatarImageView.image = image
                 }
-            }            
+            } else {
+                avatarImageView.image = #imageLiteral(resourceName: "user")
+            }
         }
     }
     

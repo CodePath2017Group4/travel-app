@@ -41,14 +41,17 @@ struct Constants {
     }
     
     struct Colors {
-        static let ButtonBackgroundColor = #colorLiteral(red: 0.128070116, green: 0.2497186661, blue: 0.3288468122, alpha: 1)   // ColorPalette3314Color1
-        static let ViewBackgroundColor = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)     // ColorPalette3314Color2
-        static let ColorPalette3314Color3 = #colorLiteral(red: 0.7980727553, green: 0.8580390811, blue: 0.9163927436, alpha: 1)
+        static let ButtonBackgroundColor = #colorLiteral(red: 0.128070116, green: 0.2497186661, blue: 0.3288468122, alpha: 1)
+        static let ViewBackgroundColor = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)
+        static let NavigationBarDarkTintColor = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)
+        static let NavigationBarLightTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        static let TextColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+        static let ColorPalette3314Color1 = #colorLiteral(red: 0.128070116, green: 0.2497186661, blue: 0.3288468122, alpha: 1)
+        static let ColorPalette3314Color2 = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)
+        static let ColorPalette3314Color3 = #colorLiteral(red: 0.8, green: 0.8588235294, blue: 0.9176470588, alpha: 1)
         static let ColorPalette3314Color4 = #colorLiteral(red: 0.9686265588, green: 0.9647503495, blue: 0.9645444751, alpha: 1)
         static let ColorPalette3314Color5 = #colorLiteral(red: 0.8603140116, green: 0.5897349119, blue: 0.6455273032, alpha: 1)
-        static let NavigationBarTintColor = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)
-        static let NavigationBarTextColor = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)
-        static let TextColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         static let ColorPalette3495Color1 = #colorLiteral(red: 0.4225752056, green: 0.4821543694, blue: 0.1652031243, alpha: 1)
         static let ColorPalette3495Color2 = #colorLiteral(red: 0.2797974348, green: 0.3562029898, blue: 0.4063227177, alpha: 1)
