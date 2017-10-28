@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TripCollectionViewCell" customModule="RoadTripPlanner" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="180" height="240"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="180" height="240"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GKF-fo-QBn" customClass="PFImageView">
+                        <rect key="frame" x="0.0" y="0.0" width="180" height="240"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qOd-Rz-JYx">
+                        <rect key="frame" x="0.0" y="194" width="180" height="46"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trip Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knD-OO-GuE">
+                                <rect key="frame" x="4" y="4" width="169" height="15.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="11"/>
+                                <color key="textColor" red="0.96862655880000004" green="0.96475034950000005" blue="0.96454447509999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.124547936" green="0.2379225194" blue="0.31701901560000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.26939815280000001" green="0.47562181949999999" blue="0.63784176110000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="GKF-fo-QBn" secondAttribute="bottom" id="1L2-td-d2P"/>
+                <constraint firstItem="qOd-Rz-JYx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="194" id="5UT-fR-nJL"/>
+                <constraint firstAttribute="trailing" secondItem="GKF-fo-QBn" secondAttribute="trailing" id="A0P-mx-FLF"/>
+                <constraint firstItem="GKF-fo-QBn" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="MZy-EE-RlF"/>
+                <constraint firstAttribute="trailing" secondItem="qOd-Rz-JYx" secondAttribute="trailing" id="cO9-dc-eqj"/>
+                <constraint firstAttribute="bottom" secondItem="qOd-Rz-JYx" secondAttribute="bottom" id="pqn-7J-Ytp"/>
+                <constraint firstItem="qOd-Rz-JYx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="umG-e4-uuI"/>
+                <constraint firstItem="GKF-fo-QBn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uzw-8n-KQR"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="tripCoverPhoto" destination="GKF-fo-QBn" id="KMY-PS-x8i"/>
+                <outlet property="tripNameLabel" destination="knD-OO-GuE" id="Oai-Kc-JH6"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54"/>
+        </collectionViewCell>
+    </objects>
+</document>

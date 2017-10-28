@@ -13,16 +13,18 @@ import AFNetworking
 import MessageUI
 
 class TripDetailsViewController: UIViewController {
-    
-    @IBOutlet weak var tripPhotoImageView: UIImageView!
+        
+    @IBOutlet weak var coverPhotoImageView: PFImageView!
     @IBOutlet weak var tripNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImageView: PFImageView!
+    @IBOutlet weak var tripDateLabel: UILabel!
     
     @IBOutlet weak var emailGroupImageView: UIImageView!
     @IBOutlet weak var editTableButton: UIButton!
     @IBOutlet weak var addStopButton: UIButton!
     @IBOutlet weak var addFriendsButton: UIButton!
+    @IBOutlet weak var tripSettingsButton: UIButton!
     
     @IBOutlet weak var tripSettingsImageView: UIImageView!
     
@@ -50,29 +52,46 @@ class TripDetailsViewController: UIViewController {
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 3.0
         
+        view.backgroundColor = Constants.Colors.ViewBackgroundColor        
+        navigationController?.navigationBar.tintColor = Constants.Colors.ColorPalette3314Color4
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.ColorPalette3314Color4]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+
+        
+        
         registerForNotifications()
         
         if trip != nil {
             guard let trip = trip else { return }
             
-            let creator = trip.creator
-            
-            let avatarFile = creator?.object(forKey: "avatar") as? PFFile
-            if avatarFile != nil {
-                profileImageView.file = avatarFile
-                profileImageView.loadInBackground()                
-            }
-            
-            tripNameLabel.text = trip.name
-            
-            setTripCoverPhoto()
-            
-            guard let segments = trip.segments else { return }
-            self.tripSegments = segments
-            
+            setUserInterfaceValues(trip: trip)
         }
     }
     
+    fileprivate func setUserInterfaceValues(trip: Trip) {
+        let creator = trip.creator
+        
+        let tripDate = trip.date
+        tripDateLabel.text = Utils.formatDate(date: tripDate)
+        
+        let avatarFile = creator.object(forKey: "avatar") as? PFFile
+        if avatarFile != nil {
+            profileImageView.file = avatarFile
+            profileImageView.loadInBackground()
+        }
+        
+        tripNameLabel.text = trip.name
+        
+        if let coverPhotoFile = trip.coverPhoto {
+            coverPhotoImageView.file = coverPhotoFile
+            coverPhotoImageView.loadInBackground()
+        }
+        
+        guard let segments = trip.segments else { return }
+        tripSegments = segments
+        tableView.reloadData()
+    }
+        
     fileprivate func registerForNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(TripDetailsViewController.tripWasModified(notification:)),
@@ -88,45 +107,57 @@ class TripDetailsViewController: UIViewController {
         let info = notification.userInfo
         let trip = info!["trip"] as! Trip
         
-        // Update the trip segments and reload the table view
-        self.tripSegments = trip.segments!
-        self.tableView.reloadData()
+        setUserInterfaceValues(trip: trip)
     }
     
-    fileprivate func setTripCoverPhoto() {
-        let destination = trip?.segments?.last
-        let location = CLLocation(latitude: (destination?.geoPoint?.latitude)!, longitude: (destination?.geoPoint?.longitude)!)
+    fileprivate func loadLandmarkImageFromDesitination(location: CLLocation) {
         YelpFusionClient.sharedInstance.search(withLocation: location, term: "landmarks", completion: { (businesses, error) in
             if error == nil {
                 guard let results = businesses else {
                     return
                 }
                 log.verbose("num landmark results: \(results.count)")
-                
+
                 let randomIndex = Int(arc4random_uniform(UInt32(results.count)))
                 let b = results[randomIndex]
-                
+
                 if let imageURL = b.imageURL {
                     log.info(imageURL)
-                    
+
                     let imageRequest = URLRequest(url: imageURL)
-                    self.tripPhotoImageView.setImageWith(imageRequest, placeholderImage: nil, success: { (imageRequest, imageResponse, image) in
+                    self.coverPhotoImageView.setImageWith(imageRequest, placeholderImage: nil, success: { (imageRequest, imageResponse, image) in
                         if imageResponse != nil {
-                            self.tripPhotoImageView.alpha = 0.0
-                            self.tripPhotoImageView.image = image
-                            
+                            self.coverPhotoImageView.alpha = 0.0
+                            self.coverPhotoImageView.image = image
+
+                            let coverImageFile = Utils.imageToFile(image: image)!
+                            self.trip?.setCoverPhoto(file: coverImageFile)
+                            self.trip?.saveInBackground()
+
                             UIView.animate(withDuration: 0.3, animations: {
-                                self.tripPhotoImageView.alpha = 0.8
+                                self.coverPhotoImageView.alpha = 0.8
                             })
                         }
                     }, failure: { (request, response, error) in
+                        self.coverPhotoImageView.image = #imageLiteral(resourceName: "trip_placeholder")
                         log.error(error)
                     })
-                    
                 }
-                
             } else {
                 log.error(error ?? "unknown error occurred")
+                self.coverPhotoImageView.image = #imageLiteral(resourceName: "trip_placeholder")
+            }
+        })
+    }
+
+    fileprivate func setTripCoverPhoto() {
+        let destination = trip?.segments?.last
+        destination?.fetchInBackground(block: { (object, error) in
+            if error == nil {
+                let location = CLLocation(latitude: (destination?.geoPoint?.latitude)!, longitude: (destination?.geoPoint?.longitude)!)
+                self.loadLandmarkImageFromDesitination(location: location)
+            } else {
+                log.error(error!)
             }
         })
     }
@@ -155,10 +186,20 @@ class TripDetailsViewController: UIViewController {
     }
     
     @IBAction func tripSettingButtonPressed(_ sender: Any) {
+        guard let settingsVC = TripSettingsViewController.storyboardInstance() else { return }
+        settingsVC.trip = trip
+        navigationController?.pushViewController(settingsVC, animated: true)
     }
     
     @IBAction func albumButtonPressed(_ sender: Any) {
     }
+    
+    @IBAction func addFriendsButtonPressed(_ sender: Any) {
+        guard let friendsVC = FriendsListViewController.storyboardInstance() else { return }
+        friendsVC.trip = trip
+        navigationController?.pushViewController(friendsVC, animated: true)
+    }
+    
     
     @IBAction func addStopButtonPressed(_ sender: Any) {
         
@@ -169,21 +210,7 @@ class TripDetailsViewController: UIViewController {
         present(addStopVC, animated: true, completion: nil)
     }
     
-    func tripSettingsImageTapped(_ sender: AnyObject) {
-        
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let tripSettingsViewController = storyboard.instantiateViewController(withIdentifier: "TripSettings") as! UINavigationController
-        self.navigationController?.pushViewController(tripSettingsViewController.topViewController!, animated: true)
-        
-    }
-    
-    func albumImageTapped(_ sender: AnyObject) {
-        
-        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let albumDetailsViewController = storyboard.instantiateViewController(withIdentifier: "AlbumDetails") as! AlbumDetailsViewController
-        self.navigationController?.pushViewController(albumDetailsViewController, animated: true)
-        
-    }
+       
     
     func emailImageTapped(_ sender: AnyObject) {
         
@@ -203,7 +230,7 @@ class TripDetailsViewController: UIViewController {
         mailComposerVC.setToRecipients([])
         
         if #available(iOS 11.0, *) {
-            let fromEmail = trip?.creator?.email != nil ? "\((trip?.creator?.email)!)" : ""
+            let fromEmail = trip?.creator.email != nil ? "\((trip?.creator.email)!)" : ""
             mailComposerVC.setPreferredSendingEmailAddress("\(fromEmail)")
         }
 

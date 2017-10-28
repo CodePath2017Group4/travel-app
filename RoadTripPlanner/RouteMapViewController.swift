@@ -75,15 +75,14 @@ class RouteMapViewController: UIViewController {
     }
     
     @IBAction func onSave(_ sender: Any) {
-        
-     
-        //trip.saveInBackground { (success, error) in
-            //            if (success) {
-            //                log.info("trip saved")
-            //            } else {
-            //                log.error(error?.localizedDescription ?? "Uknown Error")
-            //            }
-            //        }
+             
+        trip?.saveInBackground { (success, error) in
+            if (success) {
+                log.info("trip saved")
+            } else {
+                log.error(error?.localizedDescription ?? "Uknown Error")
+            }
+        }
         
         // Push the TripDetailsViewController onto the nav stack.
 

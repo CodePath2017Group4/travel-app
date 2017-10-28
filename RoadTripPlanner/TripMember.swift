@@ -8,10 +8,34 @@
 
 import Parse
 
-class TripMember: PFObject {
+enum InviteStatus {
+    case Pending
+    case Confirmed
+    case Rejected
+}
+
+class TripMember: PFObject, PFSubclassing {
 
     @NSManaged var user: PFUser
+    @NSManaged var isCreatingUser: Bool
+    @NSManaged var trip: Trip
     @NSManaged var status: Int  // 0: Pending, 1: Confirmed, 2: Rejected
+    
+    override init() {
+        super.init()
+    }
+    
+    init(user: PFUser, isCreator: Bool, trip: Trip) {
+        super.init()
+        self.user = user
+        self.trip = trip
+        self.isCreatingUser = isCreator
+        self.status = InviteStatus.Pending.hashValue
+    }
+    
+    func setStatus(status: InviteStatus) {
+        self.status = status.hashValue
+    }
     
     class func parseClassName() -> String {
         return "TripMember"

@@ -22,6 +22,11 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         albumsTable.delegate = self
         albumsTable.dataSource = self
         
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarDarkTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+
+        
         requestAlbums()
 //        fakeAlbums()
         requestTrips()
@@ -53,7 +58,7 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
     private func fakeAlbums() {
         let user = PFUser.current()!
         let date = Date()
-        let trip = Trip(name: "Bay Area", date: date, creator: user)
+        let trip = Trip.createTrip(name: "Bay Area", date: date, creator: user)
         trips.append(trip)
         
         let album = Album(albumName: "San Francisco", albumDescription: "Tour in San Francisco", trip: trip, owner: user)

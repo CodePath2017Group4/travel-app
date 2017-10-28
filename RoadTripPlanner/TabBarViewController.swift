@@ -29,7 +29,6 @@ class TabBarViewController: UITabBarController {
         addLogoutButton(to: albumsNavigtaionViewController)
         
         let profileNavigationController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.ProfileNavigationController) as! UINavigationController
-//        let profileNavigationController = ProfileViewController.storyboardInstance()
         profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "profile-tab"), tag: 2)
         
         addLogoutButton(to: profileNavigationController)

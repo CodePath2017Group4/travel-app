@@ -22,6 +22,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = Constants.Colors.ViewBackgroundColor
 
         // Round the corners of buttons
         signUpButton.layer.cornerRadius = 5

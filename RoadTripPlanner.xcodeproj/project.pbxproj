@@ -32,10 +32,15 @@
 		DF7BC0701F9D4ED700B3746B /* AddStopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7BC06F1F9D4ED700B3746B /* AddStopViewController.swift */; };
 		DF7BC0721F9D4EE800B3746B /* AddStopViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF7BC0711F9D4EE800B3746B /* AddStopViewController.storyboard */; };
 		DF7BC0741F9D535E00B3746B /* LocationSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7BC0731F9D535E00B3746B /* LocationSearchResultCell.swift */; };
+		DF989F861F9EAB2E00061AFA /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF989F851F9EAB2E00061AFA /* FriendsListViewController.swift */; };
+		DF989F881F9EAB4200061AFA /* FriendsListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF989F871F9EAB4200061AFA /* FriendsListViewController.storyboard */; };
+		DF989F8A1F9EB13500061AFA /* FriendUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF989F891F9EB13500061AFA /* FriendUserCell.swift */; };
 		DFA0E29F1F96D203005D7528 /* YelpFusionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E29E1F96D203005D7528 /* YelpFusionClient.swift */; };
 		DFA0E2A11F96D272005D7528 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E2A01F96D272005D7528 /* APIKeys.swift */; };
 		DFA0E2A61F96E973005D7528 /* CreateUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */; };
 		DFA0E2A81F96EB2D005D7528 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */; };
+		DFB6250E1FA3CC4F00397933 /* TripCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6250C1FA3CC4F00397933 /* TripCollectionViewCell.swift */; };
+		DFB6250F1FA3CC4F00397933 /* TripCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB6250D1FA3CC4F00397933 /* TripCollectionViewCell.xib */; };
 		DFC85C201F9D379A00797D92 /* AddAlbumDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC85C1F1F9D379A00797D92 /* AddAlbumDelegate.swift */; };
 		DFCC37791F9707E2003BDCA6 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37781F9707E2003BDCA6 /* ProfileViewController.storyboard */; };
 		DFCC377B1F97085C003BDCA6 /* AlbumListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC377A1F97085C003BDCA6 /* AlbumListViewController.storyboard */; };
@@ -145,10 +150,15 @@
 		DF7BC06F1F9D4ED700B3746B /* AddStopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStopViewController.swift; sourceTree = "<group>"; };
 		DF7BC0711F9D4EE800B3746B /* AddStopViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddStopViewController.storyboard; sourceTree = "<group>"; };
 		DF7BC0731F9D535E00B3746B /* LocationSearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultCell.swift; sourceTree = "<group>"; };
+		DF989F851F9EAB2E00061AFA /* FriendsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
+		DF989F871F9EAB4200061AFA /* FriendsListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FriendsListViewController.storyboard; sourceTree = "<group>"; };
+		DF989F891F9EB13500061AFA /* FriendUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendUserCell.swift; sourceTree = "<group>"; };
 		DFA0E29E1F96D203005D7528 /* YelpFusionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpFusionClient.swift; sourceTree = "<group>"; };
 		DFA0E2A01F96D272005D7528 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateUserViewController.storyboard; sourceTree = "<group>"; };
 		DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		DFB6250C1FA3CC4F00397933 /* TripCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCollectionViewCell.swift; sourceTree = "<group>"; };
+		DFB6250D1FA3CC4F00397933 /* TripCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripCollectionViewCell.xib; sourceTree = "<group>"; };
 		DFC85C1F1F9D379A00797D92 /* AddAlbumDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlbumDelegate.swift; sourceTree = "<group>"; };
 		DFCC37781F9707E2003BDCA6 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		DFCC377A1F97085C003BDCA6 /* AlbumListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlbumListViewController.storyboard; sourceTree = "<group>"; };
@@ -309,6 +319,7 @@
 				DFCC37881F970D00003BDCA6 /* CommentsViewController.storyboard */,
 				DFCC377E1F970927003BDCA6 /* CreateTripViewController.storyboard */,
 				DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */,
+				DF989F871F9EAB4200061AFA /* FriendsListViewController.storyboard */,
 				DFCC37921F97C649003BDCA6 /* HomeViewController.storyboard */,
 				DFCC377C1F9708D4003BDCA6 /* LandingPageViewController.storyboard */,
 				DFCC37901F97C604003BDCA6 /* LoginViewController.storyboard */,
@@ -399,6 +410,7 @@
 				F8B6A3E01F92EDB300942820 /* CreateTripViewController.swift */,
 				F891E10B1F94375D006B2DD6 /* CreateUserViewController.swift */,
 				F8B6A3E41F932CAE00942820 /* CommentsViewController.swift */,
+				DF989F851F9EAB2E00061AFA /* FriendsListViewController.swift */,
 				DFCC37941F97CCE2003BDCA6 /* HomeViewController.swift */,
 				F806F2AA1F8DEF0200E11785 /* LandingPageViewController.swift */,
 				F806F2AC1F8DFCD300E11785 /* LoginViewController.swift */,
@@ -426,6 +438,7 @@
 				F80559C91F9B5DF800454EB6 /* DirectionsTableView.swift */,
 				DFECC5661F9C1CFB00F3B63E /* AddressTableView.swift */,
 				486E3C3B1F945EC3003D2FFF /* AlbumCell.swift */,
+				DF989F891F9EB13500061AFA /* FriendUserCell.swift */,
 				DFECC5601F9C1CF900F3B63E /* BusinessCollectionCell.swift */,
 				DF7BC0731F9D535E00B3746B /* LocationSearchResultCell.swift */,
 				486E3C3C1F945EC3003D2FFF /* PhotoCell.swift */,
@@ -441,6 +454,8 @@
 				F8F56C6C1FA2ED2A0045C2AD /* BusinessDetailView.swift */,
 				F8F56C661FA2B0B10045C2AD /* DetailView.swift */,
 				F8F56C681FA2B1EF0045C2AD /* BusCell.swift */,
+				DFB6250C1FA3CC4F00397933 /* TripCollectionViewCell.swift */,
+				DFB6250D1FA3CC4F00397933 /* TripCollectionViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -539,6 +554,7 @@
 					F806F2761F8DA42A00E11785 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 8Z5KC369JZ;
+						DevelopmentTeam = 8F2PWFTJG8;
 						ProvisioningStyle = Automatic;
 					};
 					F806F28A1F8DA42B00E11785 = {
@@ -580,9 +596,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF989F881F9EAB4200061AFA /* FriendsListViewController.storyboard in Resources */,
 				DFCC378F1F970E41003BDCA6 /* MapViewController.storyboard in Resources */,
 				DFCC37851F970C3D003BDCA6 /* Photo.storyboard in Resources */,
 				DFCC378B1F970D5F003BDCA6 /* CategoryListViewController.storyboard in Resources */,
+				DFB6250F1FA3CC4F00397933 /* TripCollectionViewCell.xib in Resources */,
 				DFCC37911F97C604003BDCA6 /* LoginViewController.storyboard in Resources */,
 				DFCC378D1F970DEC003BDCA6 /* TripDetailsViewController.storyboard in Resources */,
 				48CB344D1F9C3E3300EE268A /* Album.storyboard in Resources */,
@@ -814,10 +832,12 @@
 				DFCC37A91F99C5AC003BDCA6 /* TripSegmentCell.swift in Sources */,
 				486E3C461F945EEB003D2FFF /* AlbumListViewController.swift in Sources */,
 				F80559C61F9B5DE100454EB6 /* CategoryRow.swift in Sources */,
+				DF989F861F9EAB2E00061AFA /* FriendsListViewController.swift in Sources */,
 				DFCC37951F97CCE2003BDCA6 /* HomeViewController.swift in Sources */,
 				F8F56C6D1FA2ED2B0045C2AD /* BusinessDetailView.swift in Sources */,
 				DFCC379B1F9935BE003BDCA6 /* TempLandingViewController.swift in Sources */,
 				F8B6A3E91F93D72A00942820 /* ReviewViewController.swift in Sources */,
+				DF989F8A1F9EB13500061AFA /* FriendUserCell.swift in Sources */,
 				F806F2AD1F8DFCD300E11785 /* LoginViewController.swift in Sources */,
 				F8F56C691FA2B1EF0045C2AD /* BusCell.swift in Sources */,
 				486E3C481F945EEB003D2FFF /* PhotoViewController.swift in Sources */,
@@ -827,6 +847,7 @@
 				F806F2F31F8EBB1900E11785 /* CategoryListViewController.swift in Sources */,
 				F8B6A3A31F920ECF00942820 /* Weather.swift in Sources */,
 				DFCC37A51F99B9FF003BDCA6 /* TripSegment.swift in Sources */,
+				DFB6250E1FA3CC4F00397933 /* TripCollectionViewCell.swift in Sources */,
 				F891E1151F943796006B2DD6 /* ProfileViewController.swift in Sources */,
 				DFECC56B1F9C1CFB00F3B63E /* RouteMapViewController.swift in Sources */,
 				DF32B9C61F946EE000594F0B /* AlbumComment.swift in Sources */,
@@ -1028,6 +1049,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8Z5KC369JZ;
+				DEVELOPMENT_TEAM = 8F2PWFTJG8;
 				INFOPLIST_FILE = RoadTripPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1048,6 +1070,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8Z5KC369JZ;
+				DEVELOPMENT_TEAM = 8F2PWFTJG8;
 				INFOPLIST_FILE = RoadTripPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

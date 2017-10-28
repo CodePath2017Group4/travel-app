@@ -99,7 +99,7 @@ class TempCreateTripViewController: UIViewController {
         let destSegment = tripSegmentFromMapItem(mapItem: locationTuples[1].mapItem!)
         
         // Create a new trip object and save it to the database
-        let trip = Trip(name: destSegment.name ?? "Unnamed Trip", date: Date(), creator: PFUser.current()!)
+        let trip = Trip.createTrip(name: destSegment.name ?? "Unnamed Trip", date: Date(), creator: PFUser.current()!)
         trip.addSegment(tripSegment: tripSegment)
         trip.addSegment(tripSegment: intermediateSegment)
         trip.addSegment(tripSegment: destSegment)

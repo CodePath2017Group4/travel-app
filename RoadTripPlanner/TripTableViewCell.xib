@@ -12,18 +12,22 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripTableViewCell" rowHeight="201" id="KGk-i7-Jjw" customClass="TripTableViewCell" customModule="RoadTripPlanner" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="343" height="201"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripTableViewCell" rowHeight="192" id="KGk-i7-Jjw" customClass="TripTableViewCell" customModule="RoadTripPlanner" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="343" height="200.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="191.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trip_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-Le-1oG">
-                        <rect key="frame" x="4" y="4" width="335" height="192.5"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yxO-Le-1oG" customClass="PFImageView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="191.5"/>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gku-pI-lE8" userLabel="Overlay View">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
+                        <color key="backgroundColor" red="0.45377934644670048" green="0.45377934644670048" blue="0.45377934644670048" alpha="0.30107555650684931" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WbS-bK-NCl">
-                        <rect key="frame" x="8" y="8" width="319" height="21"/>
+                        <rect key="frame" x="8" y="8" width="359" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="6Ux-8y-quf"/>
                         </constraints>
@@ -31,58 +35,48 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trip Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8c-iJ-48c">
-                        <rect key="frame" x="8" y="37" width="327" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trip Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8c-iJ-48c">
+                        <rect key="frame" x="8" y="37" width="359" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="OGu-fp-TaO">
-                        <rect key="frame" x="16" y="120.5" width="64" height="64"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="OGu-fp-TaO" customClass="PFImageView">
+                        <rect key="frame" x="8" y="119.5" width="64" height="64"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="64" id="XXv-rA-9l7"/>
                             <constraint firstAttribute="width" constant="64" id="zV4-Ru-BET"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gku-pI-lE8">
-                        <rect key="frame" x="4" y="4" width="335" height="60"/>
-                        <color key="backgroundColor" red="0.45377934644670048" green="0.45377934644670048" blue="0.45377934644670048" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="60" id="85a-ha-xps"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="OGu-fp-TaO" secondAttribute="bottom" constant="16" id="7DB-4s-brF"/>
-                    <constraint firstAttribute="trailing" secondItem="C8c-iJ-48c" secondAttribute="trailing" constant="8" id="8lk-js-Yp3"/>
+                    <constraint firstAttribute="bottom" secondItem="OGu-fp-TaO" secondAttribute="bottom" constant="8" id="7DB-4s-brF"/>
                     <constraint firstItem="WbS-bK-NCl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="A8a-td-sEP"/>
-                    <constraint firstItem="Gku-pI-lE8" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="C1W-Ws-lcv"/>
-                    <constraint firstAttribute="bottom" secondItem="yxO-Le-1oG" secondAttribute="bottom" constant="4" id="J0z-h7-try"/>
+                    <constraint firstItem="yxO-Le-1oG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="G8V-Ep-oV1"/>
+                    <constraint firstItem="Gku-pI-lE8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="G9Y-El-JER"/>
+                    <constraint firstItem="yxO-Le-1oG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="KBV-wN-Gzc"/>
                     <constraint firstItem="WbS-bK-NCl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="NGY-bK-0oq"/>
-                    <constraint firstItem="Gku-pI-lE8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="RMk-Ez-8bq"/>
-                    <constraint firstItem="yxO-Le-1oG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="av9-E1-ojC"/>
-                    <constraint firstItem="Gku-pI-lE8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="cDz-7o-hiW"/>
-                    <constraint firstItem="yxO-Le-1oG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="eFs-9u-m1w"/>
-                    <constraint firstAttribute="trailing" secondItem="yxO-Le-1oG" secondAttribute="trailing" constant="4" id="fPb-Ay-0Pl"/>
-                    <constraint firstItem="C8c-iJ-48c" firstAttribute="top" secondItem="WbS-bK-NCl" secondAttribute="bottom" constant="8" id="fpL-xD-TiJ"/>
-                    <constraint firstItem="OGu-fp-TaO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="hem-Oy-kJD"/>
-                    <constraint firstAttribute="trailing" secondItem="Gku-pI-lE8" secondAttribute="trailing" constant="4" id="ktQ-ir-cOp"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="WbS-bK-NCl" secondAttribute="trailing" constant="8" id="nrI-8p-DW4"/>
-                    <constraint firstItem="C8c-iJ-48c" firstAttribute="leading" secondItem="WbS-bK-NCl" secondAttribute="leading" id="siD-Gs-Tx1"/>
+                    <constraint firstAttribute="bottom" secondItem="Gku-pI-lE8" secondAttribute="bottom" id="Tje-Q5-6tC"/>
+                    <constraint firstAttribute="bottom" secondItem="yxO-Le-1oG" secondAttribute="bottom" id="gAi-F5-kaN"/>
+                    <constraint firstItem="OGu-fp-TaO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="hem-Oy-kJD"/>
+                    <constraint firstAttribute="trailing" secondItem="yxO-Le-1oG" secondAttribute="trailing" id="lMs-Es-6jQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="WbS-bK-NCl" secondAttribute="trailing" id="nrI-8p-DW4"/>
+                    <constraint firstItem="Gku-pI-lE8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ryH-rc-MLc"/>
+                    <constraint firstAttribute="trailing" secondItem="Gku-pI-lE8" secondAttribute="trailing" id="ygo-gI-qMt"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="tripBackgroundImageView" destination="yxO-Le-1oG" id="hNi-7C-1XO"/>
-                <outlet property="tripCreatorImageView" destination="OGu-fp-TaO" id="Rbi-DT-z5h"/>
+                <outlet property="tripCoverPhoto" destination="yxO-Le-1oG" id="e6k-Wm-dSC"/>
+                <outlet property="tripCreatorImageView" destination="OGu-fp-TaO" id="ITs-Zo-1ef"/>
                 <outlet property="tripDescriptionLabel" destination="C8c-iJ-48c" id="deE-gT-DDG"/>
                 <outlet property="tripNameLabel" destination="WbS-bK-NCl" id="Xno-5E-vtp"/>
             </connections>
-            <point key="canvasLocation" x="102.5" y="132.5"/>
+            <point key="canvasLocation" x="103.5" y="138"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="trip_placeholder" width="327" height="184"/>
         <image name="user" width="128" height="128"/>
     </resources>
 </document>

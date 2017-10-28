@@ -9,7 +9,7 @@
 import Parse
 import UIKit
 
-class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, AddPhotoDelegate, UpdateAlbumDelegate {
+class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, AddPhotoDelegate, UpdateAlbumDelegate {
     
     @IBOutlet weak var tripLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -42,8 +42,11 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
         super.viewDidLoad()
         
         self.mode = .View
-        Utils.roundImageCorner(image: leftButton.imageView!)
-        Utils.roundImageCorner(image: rightButton.imageView!)
+        leftButton.layer.cornerRadius = leftButton.frame.height / 3
+        rightButton.layer.cornerRadius = leftButton.frame.height / 3
+        Utils.roundImageCorner(image: userImage1)
+        Utils.roundImageCorner(image: userImage2)
+        Utils.roundImageCorner(image: userImage3)
         
         photoCollections.delegate = self
         photoCollections.dataSource = self
@@ -95,15 +98,10 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Compute the dimension of a cell for an NxN layout with space S between
-        // cells.  Take the collection view's width, subtract (N-1)*S points for
-        // the spaces between the cells, and then divide by N to find the final
-        // dimension for the cell's width and height.
         
-        let cellsAcross: CGFloat = 3
-        let spaceBetweenCells: CGFloat = 1
-        let dim = (collectionView.bounds.width - (cellsAcross - 1) * spaceBetweenCells) / cellsAcross
-        return CGSize(width: dim, height: dim)
+        let cellWidth = floor((collectionView.frame.size.width  - 2 * 3) / 2) - 3
+        let cellHeight = cellWidth
+        return CGSize(width: cellWidth, height: cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -146,6 +144,7 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
             if let album = self.album {
                 let file = Utils.imageToFile(image: image)
                 album.photos.append(file!)
+                self.photos.append(image)
                 self.photoSelected.append(false)
                 self.photoCollections.reloadData()
                 
@@ -178,7 +177,7 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
             if let album = album {
                 photoSelected = []
                 if album.photos.count > 0 {
-                    for _ in 0 ... album.photos.count - 1 {
+                    for _ in 0 ... self.photos.count - 1 {
                         photoSelected.append(false)
                     }
                 }

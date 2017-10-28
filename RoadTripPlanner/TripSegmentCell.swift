@@ -18,9 +18,24 @@ class TripSegmentCell: UITableViewCell {
     
     var tripSegment: TripSegment! {
         didSet {
-            placeNameLabel.text = tripSegment.name
-            placeAddressLabel.text = tripSegment.address
-            distanceLabel.text = ""
+            
+            tripSegment.fetchIfNeededInBackground { (object, error) in
+                if error == nil {
+                    let segment = object as! TripSegment
+                    DispatchQueue.main.async {
+                        self.placeNameLabel.text = segment.name
+                        self.placeAddressLabel.text = segment.address
+                        self.distanceLabel.text = ""
+                                                
+                    }
+                } else {
+                    self.placeNameLabel.text = ""
+                    self.placeAddressLabel.text = ""
+                    self.distanceLabel.text = ""
+                    
+                    log.error(error!)
+                }
+            }
         }
     }
     
@@ -29,6 +44,9 @@ class TripSegmentCell: UITableViewCell {
         
         placeNameLabel.preferredMaxLayoutWidth = placeNameLabel.frame.size.width
         placeAddressLabel.preferredMaxLayoutWidth = placeAddressLabel.frame.size.width
+        
+        includeSwitch.onTintColor = Constants.Colors.ColorPalette3495Color1
+        includeSwitch.tintColor = Constants.Colors.ButtonBackgroundColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
