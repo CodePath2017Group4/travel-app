@@ -2604,8 +2604,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z6F-aj-LSt">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="568"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z6F-aj-LSt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
                             <tableView clipsSubviews="YES" alpha="0.94999998807907104" contentMode="scaleAspectFill" fixedFrame="YES" bounces="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="133" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="E3b-Os-Pb5">
                                 <rect key="frame" x="0.0" y="497" width="375" height="133"/>
@@ -2746,7 +2746,6 @@
         <!--Profile View Controller-->
         <scene sceneID="knn-Gn-YXF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eSV-6D-Bhi" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ProfileViewController_bkp" id="Bhl-pM-Y8Z" customClass="ProfileViewController" customModule="RoadTripPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UT4-GT-B3M"/>
@@ -2867,6 +2866,7 @@
                         <outlet property="userNameLabel" destination="vTU-ZG-DV6" id="AZz-BG-98q"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eSV-6D-Bhi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="145" y="1693"/>
         </scene>
@@ -3116,6 +3116,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jZL-9s-gZL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3103" y="865"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="sqc-Oc-CYU">
             <objects>
