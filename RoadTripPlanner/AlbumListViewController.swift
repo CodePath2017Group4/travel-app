@@ -67,12 +67,6 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
             UIImage(named: "sf")!,
             UIImage(named: "profile1")!,
             UIImage(named: "profile2")!,
-            UIImage(named: "profile3")!,
-            UIImage(named: "profile1")!,
-            UIImage(named: "profile2")!,
-            UIImage(named: "profile3")!,
-            UIImage(named: "profile1")!,
-            UIImage(named: "profile2")!,
             UIImage(named: "profile3")!]
         for image in photos {
             let file = Utils.imageToFile(image: image)
