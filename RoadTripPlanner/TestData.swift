@@ -61,19 +61,20 @@ class TestData : NSObject{
         return segments[randomIndex]
     }
     
-    func generateRandomDate(daysBack: Int)-> Date?{
-        let day = arc4random_uniform(UInt32(daysBack))+1
+    func generateRandomDate(days: Int, forward: Bool)-> Date?{
+        let multiplier = forward ? 1 : -1
+        let day = arc4random_uniform(UInt32(days))+1
         let hour = arc4random_uniform(23)
         let minute = arc4random_uniform(59)
         
         let today = Date(timeIntervalSinceNow: 0)
         let gregorian  = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
         var offsetComponents = DateComponents()
-        offsetComponents.day = Int(day - 1)
+        offsetComponents.day = Int(day - 1) * multiplier
         offsetComponents.hour = Int(hour)
         offsetComponents.minute = Int(minute)
         
-        let randomDate = gregorian?.date(byAdding: offsetComponents, to: today, options: .init(rawValue: 0) )
+        let randomDate = gregorian?.date(byAdding: offsetComponents, to: today, options: .init(rawValue: 0))
         return randomDate
     }
     
@@ -81,15 +82,18 @@ class TestData : NSObject{
         var trips: [Trip] = []
         var users: [PFUser] = []
         
-        // Create some trips for this user
+        // Create some past trips for this user
         let currentUser = PFUser.current()!
-        let date = generateRandomDate(daysBack: 20)!
+        let date = generateRandomDate(days: 60, forward: false)!
         log.info("date selected: \(date)")
         let trip = Trip.createTrip(name: "\(currentUser.username!)'s Trip", date: date, creator: currentUser)
         
         trip.addSegment(tripSegment: self.randomlySelectedTripSegment())
         trip.addSegment(tripSegment: self.randomlySelectedTripSegment())
         trip.addSegment(tripSegment: self.randomlySelectedTripSegment())
+        
+        // Create some future trips for this user
+        
         
         // Add this user as a member to another member's trip
         ParseBackend.getUsers { (results, error) in

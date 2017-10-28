@@ -39,6 +39,8 @@
 		DFA0E2A11F96D272005D7528 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E2A01F96D272005D7528 /* APIKeys.swift */; };
 		DFA0E2A61F96E973005D7528 /* CreateUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */; };
 		DFA0E2A81F96EB2D005D7528 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */; };
+		DFB6250E1FA3CC4F00397933 /* TripCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB6250C1FA3CC4F00397933 /* TripCollectionViewCell.swift */; };
+		DFB6250F1FA3CC4F00397933 /* TripCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB6250D1FA3CC4F00397933 /* TripCollectionViewCell.xib */; };
 		DFC85C201F9D379A00797D92 /* AddAlbumDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC85C1F1F9D379A00797D92 /* AddAlbumDelegate.swift */; };
 		DFCC37791F9707E2003BDCA6 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC37781F9707E2003BDCA6 /* ProfileViewController.storyboard */; };
 		DFCC377B1F97085C003BDCA6 /* AlbumListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFCC377A1F97085C003BDCA6 /* AlbumListViewController.storyboard */; };
@@ -151,6 +153,8 @@
 		DFA0E2A01F96D272005D7528 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		DFA0E2A51F96E973005D7528 /* CreateUserViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateUserViewController.storyboard; sourceTree = "<group>"; };
 		DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		DFB6250C1FA3CC4F00397933 /* TripCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCollectionViewCell.swift; sourceTree = "<group>"; };
+		DFB6250D1FA3CC4F00397933 /* TripCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripCollectionViewCell.xib; sourceTree = "<group>"; };
 		DFC85C1F1F9D379A00797D92 /* AddAlbumDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlbumDelegate.swift; sourceTree = "<group>"; };
 		DFCC37781F9707E2003BDCA6 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		DFCC377A1F97085C003BDCA6 /* AlbumListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlbumListViewController.storyboard; sourceTree = "<group>"; };
@@ -438,6 +442,8 @@
 				DF14D3091F9DA9AE00161D5F /* TripTableViewCell.xib */,
 				F898F1FB1FA05DD800EE0293 /* BusinessBottomSheetViewController.xib */,
 				F898F1FD1FA05E2A00EE0293 /* BusinessBottomSheetViewController.swift */,
+				DFB6250C1FA3CC4F00397933 /* TripCollectionViewCell.swift */,
+				DFB6250D1FA3CC4F00397933 /* TripCollectionViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -581,6 +587,7 @@
 				DFCC378F1F970E41003BDCA6 /* MapViewController.storyboard in Resources */,
 				DFCC37851F970C3D003BDCA6 /* Photo.storyboard in Resources */,
 				DFCC378B1F970D5F003BDCA6 /* CategoryListViewController.storyboard in Resources */,
+				DFB6250F1FA3CC4F00397933 /* TripCollectionViewCell.xib in Resources */,
 				DFCC37911F97C604003BDCA6 /* LoginViewController.storyboard in Resources */,
 				DFCC378D1F970DEC003BDCA6 /* TripDetailsViewController.storyboard in Resources */,
 				48CB344D1F9C3E3300EE268A /* Album.storyboard in Resources */,
@@ -817,6 +824,7 @@
 				F806F2F31F8EBB1900E11785 /* CategoryListViewController.swift in Sources */,
 				F8B6A3A31F920ECF00942820 /* Weather.swift in Sources */,
 				DFCC37A51F99B9FF003BDCA6 /* TripSegment.swift in Sources */,
+				DFB6250E1FA3CC4F00397933 /* TripCollectionViewCell.swift in Sources */,
 				F891E1151F943796006B2DD6 /* ProfileViewController.swift in Sources */,
 				DFECC56B1F9C1CFB00F3B63E /* RouteMapViewController.swift in Sources */,
 				DF32B9C61F946EE000594F0B /* AlbumComment.swift in Sources */,

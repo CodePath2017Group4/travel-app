@@ -15,7 +15,8 @@ import Parse
 class LandingPageViewController: UIViewController {
    
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var tableView: UITableView!
+//    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var pagingView: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -62,6 +63,8 @@ class LandingPageViewController: UIViewController {
     var businesses: [YLPBusiness]!
 
     var trips: [Trip]!
+    
+    let testData = TestData()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,24 +76,24 @@ class LandingPageViewController: UIViewController {
         nearMeButton.isHidden = true
         alongTheRouteButton.isHidden = true
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 220
+       // tableView.rowHeight = UITableViewAutomaticDimension
+        //tableView.estimatedRowHeight = 192
         //tableView.separatorStyle = .none
         
-        let tripTableViewCellNib = UINib(nibName: Constants.NibNames.TripTableViewCell, bundle: nil)
-        tableView.register(tripTableViewCellNib, forCellReuseIdentifier: Constants.ReuseableCellIdentifiers.TripTableViewCell)
+       // let tripTableViewCellNib = UINib(nibName: Constants.NibNames.TripTableViewCell, bundle: nil)
+       // tableView.register(tripTableViewCellNib, forCellReuseIdentifier: Constants.ReuseableCellIdentifiers.TripTableViewCell)
         
+        let tripCollectionViewCellNib = UINib(nibName: Constants.NibNames.TripCollectionViewCell, bundle: nil)
+        collectionView.register(tripCollectionViewCellNib, forCellWithReuseIdentifier: Constants.ReuseableCellIdentifiers.TripCollectionViewCell)
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
         nearMeButton.isHidden = true
         alongTheRouteButton.isHidden = true
 
         getLocation()
         weather = WeatherGetter(delegate: self)
-       
-        //let testData = TestData()
-        //testData.buildObjects { (trips, error) in
-       //
-        //}
         
         trips = []
         loadUpcomingTrips()
@@ -171,7 +174,7 @@ class LandingPageViewController: UIViewController {
         let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarLightTintColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
                
-
+        registerForNotifications()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -192,13 +195,53 @@ class LandingPageViewController: UIViewController {
                                       
                     self.trips = t
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                        //self.tableView.reloadData()
+                        self.collectionView.reloadData()
                     }
                 }
             } else {
                 log.error("Error loading upcoming trips: \(error!)")
             }
         }
+    }
+    
+    fileprivate func registerForNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(tripWasModified(notification:)),
+                                               name: Constants.NotificationNames.TripModifiedNotification,
+                                               object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func tripWasModified(notification: NSNotification) {
+        let info = notification.userInfo
+        let trip = info!["trip"] as! Trip
+        let tripId = trip.objectId
+        
+        // Find the trip in the trips array.
+        log.info("Trip with id: \(trip.objectId) has been modified.")
+        
+        let matchingTrips = trips.filter { (trip) -> Bool in
+            return trip.objectId == tripId
+        }
+        
+        if matchingTrips.count > 0 {
+            let match = matchingTrips.first!
+            let index = trips.index(of: match)
+            
+            guard let idx = index else { return }
+            
+            // replace the trip with the new trip
+            trips[idx] = trip
+            
+            // reload the trips
+            collectionView.reloadData()
+        }
+        
+        
     }
     
     func categoryTapped(_ sender: UITapGestureRecognizer) {
@@ -332,6 +375,7 @@ class LandingPageViewController: UIViewController {
         locationManager.startUpdatingLocation()
     }
     
+    
     // MARK: - Utility methods
     // -----------------------
     
@@ -451,7 +495,7 @@ extension LandingPageViewController: UITableViewDataSource, UITableViewDelegate 
 //        if indexPath.row == 0 || indexPath.row == 2  {
 //            return 30.0
 //        }
-        return 220
+        return 192
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -586,5 +630,32 @@ extension LandingPageViewController : UIScrollViewDelegate {
 
 
         }
+    }
+}
+
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+extension LandingPageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.ReuseableCellIdentifiers.TripCollectionViewCell, for: indexPath)  as! TripCollectionViewCell
+        cell.backgroundColor = UIColor.darkGray
+        cell.trip = trips[indexPath.row]
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return trips.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        log.info("Selected cell at \(indexPath)")
+        
+        let trip = trips[indexPath.row]
+        log.info("Selected trip \(trip.name ?? "none")")
+        
+        let tripDetailsVC = TripDetailsViewController.storyboardInstance()
+        tripDetailsVC?.trip = trip
+        navigationController?.pushViewController(tripDetailsVC!, animated: true)
+
     }
 }

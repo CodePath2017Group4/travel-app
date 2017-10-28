@@ -49,6 +49,8 @@ class TripTableViewCell: UITableViewCell {
         tripCreatorImageView.clipsToBounds = true
         tripCreatorImageView.layer.borderColor = UIColor.white.cgColor
         tripCreatorImageView.layer.borderWidth = 2.0
+        
+        tripCoverPhoto.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
