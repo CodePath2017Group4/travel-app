@@ -15,7 +15,8 @@ import Parse
 class LandingPageViewController: UIViewController {
    
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var tableView: UITableView!
+//    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var pagingView: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -62,6 +63,8 @@ class LandingPageViewController: UIViewController {
     var businesses: [YLPBusiness]!
 
     var trips: [Trip]!
+    
+    let testData = TestData()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,24 +76,24 @@ class LandingPageViewController: UIViewController {
         nearMeButton.isHidden = true
         alongTheRouteButton.isHidden = true
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 220
+       // tableView.rowHeight = UITableViewAutomaticDimension
+        //tableView.estimatedRowHeight = 192
         //tableView.separatorStyle = .none
         
-        let tripTableViewCellNib = UINib(nibName: Constants.NibNames.TripTableViewCell, bundle: nil)
-        tableView.register(tripTableViewCellNib, forCellReuseIdentifier: Constants.ReuseableCellIdentifiers.TripTableViewCell)
+       // let tripTableViewCellNib = UINib(nibName: Constants.NibNames.TripTableViewCell, bundle: nil)
+       // tableView.register(tripTableViewCellNib, forCellReuseIdentifier: Constants.ReuseableCellIdentifiers.TripTableViewCell)
         
+        let tripCollectionViewCellNib = UINib(nibName: Constants.NibNames.TripCollectionViewCell, bundle: nil)
+        collectionView.register(tripCollectionViewCellNib, forCellWithReuseIdentifier: Constants.ReuseableCellIdentifiers.TripCollectionViewCell)
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
         nearMeButton.isHidden = true
         alongTheRouteButton.isHidden = true
 
         getLocation()
         weather = WeatherGetter(delegate: self)
-       
-        //let testData = TestData()
-        //testData.buildObjects { (trips, error) in
-       //
-        //}
         
         trips = []
         loadUpcomingTrips()
@@ -192,7 +195,8 @@ class LandingPageViewController: UIViewController {
                                       
                     self.trips = t
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                        //self.tableView.reloadData()
+                        self.collectionView.reloadData()
                     }
                 }
             } else {
@@ -332,6 +336,14 @@ class LandingPageViewController: UIViewController {
         locationManager.startUpdatingLocation()
     }
     
+    // MARK: - TEMP!!
+    @IBAction func buttonPressed(_ sender: Any) {
+        let datePast = testData.generateRandomDate(days: 10, forward: false)
+        let dateStr = Utils.formatDate(date: datePast)
+        log.info(dateStr)
+    }
+    
+    
     // MARK: - Utility methods
     // -----------------------
     
@@ -451,7 +463,7 @@ extension LandingPageViewController: UITableViewDataSource, UITableViewDelegate 
 //        if indexPath.row == 0 || indexPath.row == 2  {
 //            return 30.0
 //        }
-        return 220
+        return 192
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -586,5 +598,20 @@ extension LandingPageViewController : UIScrollViewDelegate {
 
 
         }
+    }
+}
+
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
+extension LandingPageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.ReuseableCellIdentifiers.TripCollectionViewCell, for: indexPath)  as! TripCollectionViewCell
+        cell.backgroundColor = UIColor.darkGray
+        cell.trip = trips[indexPath.row]
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return trips.count
     }
 }

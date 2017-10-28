@@ -100,6 +100,7 @@ class CreateTripViewController: UIViewController {
 
     var termCategory: [String : [String]]!
     var selectedTypes: [String]!
+    var selectedTripDate: Date?
 
     var locationTuples: [(textField: UITextField?, mapItem: MKMapItem?)]!
     let locationManager = CLLocationManager()
@@ -869,6 +870,7 @@ class CreateTripViewController: UIViewController {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "MM/dd/yyyy"
                 self.dateLabel.text = formatter.string(from: dt)
+                self.selectedTripDate = dt
             }
         }
         
@@ -928,7 +930,9 @@ class CreateTripViewController: UIViewController {
             let startSegment = tripSegmentFromMapItem(mapItem: locationTuples[0].mapItem!)
             let destSegment = tripSegmentFromMapItem(mapItem: locationTuples[1].mapItem!)
             
-            let trip = Trip.createTrip(name: destSegment.name ?? "Unnamed Trip", date: Date(), creator: PFUser.current()!)
+            let tripDate = selectedTripDate ?? Date()
+            
+            let trip = Trip.createTrip(name: destSegment.name ?? "Unnamed Trip", date: tripDate, creator: PFUser.current()!)
             trip.addSegment(tripSegment: startSegment)
             trip.addSegment(tripSegment: destSegment)
             
