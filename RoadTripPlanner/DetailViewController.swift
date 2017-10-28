@@ -38,6 +38,7 @@ registerForNotifications()
        // self.myPopupView = popupView(frame: CGRect(x: 10, y: 200, width: 300, height: 200))
         let businessView = BusinessBottomSheetViewController()
         businessView.business = business
+
         detailView.titleLabel.text = business.name
         if let businessImageUrl = business.imageUrl {
             //     imageView?.setImageWith(businessImageUrl)
@@ -62,9 +63,9 @@ registerForNotifications()
         business.url
         business.imageURL
         business.identifier*/
-       // contentView.addSubview(BusinessBottomSheetViewController().view)
+       //contentView.addSubview(businessView.view)
         contentView.addSubview(businessView.view)
-
+       // businessView.didMove(toParentViewController: self)
         let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         view.addGestureRecognizer(pan)
         view.addSubview(contentView)
@@ -82,6 +83,18 @@ registerForNotifications()
                                                 //self?.mapView.reloadInputViews()
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //  addBottomSheetView()
+        let businessView = BusinessBottomSheetViewController()
+        businessView.business = business
+        contentView.addSubview(businessView.view)
+        businessView.didMove(toParentViewController: self)
+
+    }
+    
+    
     @IBAction func onClose(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -133,6 +146,7 @@ registerForNotifications()
         
     }
     
+   
 
     
 

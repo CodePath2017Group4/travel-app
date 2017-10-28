@@ -50,7 +50,6 @@ class BusinessBottomSheetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForNotifications()
-   
         
         if business != nil {
             if business.name != nil {
@@ -402,6 +401,14 @@ class BusinessBottomSheetViewController: UIViewController {
         left.layer.borderWidth = 1
         view.clipsToBounds = true
     }
+    
+    @IBAction func onSavePlace(_ sender: Any) {
+        
+        print("onSavePlace")
+    }
+    
+    
+    
     
     func prepareBackgroundView(){
         let blurEffect = UIBlurEffect.init(style: .dark)

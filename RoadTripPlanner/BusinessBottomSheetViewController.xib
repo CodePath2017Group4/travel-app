@@ -72,9 +72,6 @@
                             <state key="normal" title="Save Place">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
-                            <connections>
-                                <action selector="rightButton:" destination="-1" eventType="touchUpInside" id="s0B-EW-6Dl"/>
-                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hm4-e0-aA6">
                             <rect key="frame" x="8" y="180" width="177" height="40"/>
@@ -84,7 +81,7 @@
                                 <color key="titleColor" red="0.18772074580000001" green="0.51381963490000004" blue="0.98369586470000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
-                                <action selector="onAddRemoveTrip:" destination="-1" eventType="touchUpInside" id="gfN-Ng-2h8"/>
+                                <action selector="onSavePlace:" destination="-1" eventType="touchUpInside" id="n3n-Ix-oDS"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$$$$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOY-JQ-PCq">
