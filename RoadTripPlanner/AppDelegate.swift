@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         
         YelpFusionClient.sharedInstance.authorize()
+        YelpFusionClient.shared.configure()
 
         // Make HomeViewController the root view controller
         let viewController = HomeViewController.storyboardInstance()

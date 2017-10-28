@@ -9,6 +9,7 @@
 import YelpAPI
 //import AFNetworking
 import CoreLocation
+import CDYelpFusionKit
 
 class YelpFusionClient {
     
@@ -17,6 +18,7 @@ class YelpFusionClient {
     static let sharedInstance = YelpFusionClient()
     
     func authorize() {
+        
         
         YLPClient.authorize(withAppId: APIKeys.Yelp.clientId, secret: APIKeys.Yelp.clientSecret) { (client: YLPClient?, error: Error?) in
             
@@ -80,7 +82,7 @@ class YelpFusionClient {
         query.categoryFilter = category.getCategoryList()
         
         yelpClient?.search(with: query, completionHandler : { (search: YLPSearch?, error: Error?) in
-            
+
             let businesses = search?.businesses
             completionHandler(businesses, nil)
             
@@ -96,6 +98,41 @@ class YelpFusionClient {
         })
         
     }
+    
+    
+    func businessDetaillsWith(id: String, completionHandler: @escaping (YLPBusiness, Error?) -> Void) {
+
+        yelpClient?.business(withId: id, completionHandler: { (search: YLPBusiness?, error: Error?) in
+            let business = search
+
+            for y in (business?.categories)! {
+                print("cat \(y.name)")
+            }
+
+           /* let notificationName = NSNotification.Name(rawValue: "BussinessUpdate")
+            NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["business": business as! YLPBusiness?])*/
+
+        })
+        
+        
+    }
+    
+    func businessReviewsWith(id: String, completionHandler: @escaping (YLPBusiness, Error?) -> Void) {
+        
+        yelpClient?.reviewsForBusiness(withId: id, completionHandler: { (yelpReviews: YLPBusinessReviews?, error: Error?) in
+            let reviews =    yelpReviews?.reviews
+            for review in reviews! {
+                print("cat \(review)")
+            }
+            
+            let notificationName = NSNotification.Name(rawValue: "BussinessReview")
+            NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["reviews": reviews as! [YLPReview]])
+            
+        })
+    }
+    
+    
+    
 
     func searchWith(location: CLLocationCoordinate2D, term: String, completionHandler: @escaping ([YLPBusiness]?, Error?) -> Void) {
         
@@ -156,5 +193,103 @@ class YelpFusionClient {
                 }
         })
    }
+    
+    
+    //========================= CDYelpFusionClient ==========
+    
+    static let shared = YelpFusionClient()
+    
+    var apiClient: CDYelpAPIClient!
+    
+    func configure() {
+
+        let client = CDYelpAPIClient(clientId: APIKeys.Yelp.clientId,
+                                         clientSecret: APIKeys.Yelp.clientSecret)
+        
+                                            
+        if client.isAuthenticated() {
+            self.apiClient = client
+            log.verbose("Success!")
+            
+        } else  {
+            log.verbose("Authentication Failure!")
+            
+        }
+    }
+    
+    func businessWith(id: String, completionHandler: @escaping (CDYelpBusiness, Error?) -> Void) {
+       // YelpFusionClient().configure()
+
+        print("id \(id)")
+        var idString = ""
+       /* self.apiClient.searchBusinesses(byTerm: "gasstation", location: "San Francisco", latitude: nil, longitude: nil, radius: nil, categories: nil, locale: nil, limit: 1, offset: 0, sortBy: nil, priceTiers: nil, openNow: true, openAt: nil, attributes: nil) { (resonse: CDYelpSearchResponse?, error: Error?) in
+            var t = resonse?.businesses
+            
+            print("t \(t?.count)")
+            print("t \(t![0])")
+            print("t \(t![0].id)")
+
+            idString = (t![0].id)!
+        }
+        print("idString \(idString)")
+        if (idString).isEmpty {
+            
+            idString = id
+        }*/
+        print("apiClient \(self.apiClient)")
+
+        self.apiClient?.fetchBusiness(byId: "deli-board-san-francisco", locale: nil) { (business: CDYelpBusiness?, error: Error?) in
+            print("inside CDYelpBusiness")
+
+            let business = business
+            print("business?.price \(business?.price)")
+            
+            let notificationName = NSNotification.Name(rawValue: "BussinessUpdate")
+            NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["business": business as! CDYelpBusiness?])
+
+            
+        }
+    }
+    
+    
+    
+    
+
+    
+    func searchQueryWith(location: CLLocation, term: String, completionHandler: @escaping ([CDYelpBusiness]?, Error?) -> Void) {
+        let query = YLPQuery(coordinate: YLPCoordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+        query.term = term
+        query.limit = 20
+        //query.radiusFilter = 25
+        query.sort = YLPSortType.distance
+        var category = Category(term: term)
+        query.categoryFilter = category.getCategoryList()
+        print("apiClient in searchQueryWith \(apiClient)")
+
+        apiClient?.searchBusinesses(byTerm: term, location: nil, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, radius: nil, categories: nil, locale: nil, limit: 5, offset: 0, sortBy: nil, priceTiers: nil, openNow: nil, openAt: nil, attributes: nil) { (response: CDYelpSearchResponse?, error: Error?) in
+            
+            let businesses = response?.businesses
+            completionHandler(businesses, nil)
+            
+            let notificationName = NSNotification.Name(rawValue: "BussinessesDidUpdate")
+            NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["businesses": businesses as! [CDYelpBusiness]?])
+            
+            for b in businesses! {
+                log.info ("====? "+b.name!)
+            }
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 

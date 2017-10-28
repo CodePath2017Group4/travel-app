@@ -42,6 +42,10 @@ struct Constants {
         static let TripInvitationEmail = "Hey!<br><br> I recently started using Roadtripplanner to save my trip itinerary and capture my adventures as beautiful stories! Roadtripplanner allows to plan trips as a group. I have been enjoying the app so far and I would like to invite you to try it. More importantly I would like you to join me from early as trip planning to creating a beautiful memory together. <br><br> Let's hit the road. 🚗"
     }
     
+    struct BusinessLabels {
+        static let reviewLabel = "review"
+        static let reviewsLabel = reviewLabel + "s"
+
     struct Colors {
         static let ButtonBackgroundColor = #colorLiteral(red: 0.128070116, green: 0.2497186661, blue: 0.3288468122, alpha: 1)        
         static let ViewBackgroundColor = #colorLiteral(red: 0.3147298992, green: 0.5574474335, blue: 0.7487674356, alpha: 1)
