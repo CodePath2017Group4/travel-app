@@ -19,9 +19,9 @@ class NotificationControlTableViewCell: UITableViewCell {
     
     func showStatus(more: Bool) {
         if (more) {
-            controlLabel.text = "Show more"
-        } else {
             controlLabel.text = "Show less"
+        } else {
+            controlLabel.text = "Show more"
         }
     }
     
