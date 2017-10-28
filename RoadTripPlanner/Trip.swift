@@ -35,7 +35,7 @@ class Trip: PFObject, PFSubclassing {
     static func createTrip(name: String, date: Date, creator: PFUser) -> Trip {
         let trip = Trip(name: name, date: date, creator: creator)
         let tripMember = TripMember(user: creator, isCreator:true, trip: trip)
-        
+
         trip.saveInBackground { (success, error) in
             if error == nil {
                 tripMember.saveInBackground { (success, error) in
@@ -49,8 +49,7 @@ class Trip: PFObject, PFSubclassing {
                 log.error("Error saving Trip: \(error!)")
             }
         }
-        
-        
+ 
         return trip
     }
     
