@@ -45,6 +45,7 @@ struct Constants {
     struct BusinessLabels {
         static let reviewLabel = "review"
         static let reviewsLabel = reviewLabel + "s"
+    }
 
     struct Colors {
         static let ButtonBackgroundColor = #colorLiteral(red: 0.128070116, green: 0.2497186661, blue: 0.3288468122, alpha: 1)        
