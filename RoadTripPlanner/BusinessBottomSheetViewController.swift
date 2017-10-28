@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import YelpAPI
+import CDYelpFusionKit
+import MapKit
+import Parse
 
 class BusinessBottomSheetViewController: UIViewController {
     // holdView can be UIImageView instead
@@ -14,34 +18,283 @@ class BusinessBottomSheetViewController: UIViewController {
     @IBOutlet weak var left: UIButton!
     @IBOutlet weak var right: UIButton!
     
+    @IBOutlet weak var businessImage: UIImageView!
+    
+    @IBOutlet weak var businessNameLabel: UILabel!
+    
+    @IBOutlet weak var displayAddr1: UILabel!
+    
+    @IBOutlet weak var displayAddr2: UILabel!
+    
+    @IBOutlet weak var reviewImage: UIImageView!
+    
+    @IBOutlet weak var reviewCountLabel: UILabel!
+    @IBOutlet weak var ratingsCountLabel: UILabel!
+
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    @IBOutlet weak var ratingTotalLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    
+    @IBOutlet weak var distanceLabel: UILabel!
     let fullView: CGFloat = 100
+    @IBOutlet weak var phoneLabel: UILabel!
     
-   /* func initSubviews() {
-        // standard initialization logic
-        let nib = UINib(nibName: "BusinessBottomSheetViewController", bundle: nil)
-        nib.instantiate(withOwner: self, options: nil)
-        
-    }*/
-    
-    
-    var partialView: CGFloat {
-        return UIScreen.main.bounds.height - (left.frame.maxY + UIApplication.shared.statusBarFrame.height)
-    }
+    @IBOutlet weak var openNowLabel: UILabel!
+    var business: CDYelpBusiness!
+    var businesses: [CDYelpBusiness]!
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BusinessBottomSheetViewController.panGesture))
-        view.addGestureRecognizer(gesture)
+        registerForNotifications()
+   
         
-       // let gesture1 = UITapGestureRecognizer.init(target: self, action: #selector(BusinessBottomSheetViewController.panGesture))
-       // view.addGestureRecognizer(gesture1)
+        if business != nil {
+            if business.name != nil {
+                businessNameLabel.text = "\((business?.name)!)"
+            }
+            
+            if let reviewCount = business?.reviewCount {
+                
+                if (reviewCount == 1) {
+                    reviewCountLabel.text = "\(reviewCount) \(Constants.BusinessLabels.reviewLabel)"
+                } else {
+                    reviewCountLabel.text = "\(reviewCount) \(Constants.BusinessLabels.reviewsLabel)"
+                }
 
+            }
+            
+            
+            
+            if let businessImageUrl = business.imageUrl {
+                //     imageView?.setImageWith(businessImageUrl)
+                let backgroundImageView = UIImageView()
+                let backgroundImage = UIImage()
+                backgroundImageView.setImageWith(businessImageUrl)
+                businessImage.image = backgroundImageView.image//setImageWith(businessImageUrl)
+                businessImage.contentMode = .scaleAspectFill
+                businessImage.clipsToBounds = true
+            }
+            
+            if let bussinessAddr = business.location?.displayAddress {
+                displayAddr1.text = bussinessAddr[0]
+                displayAddr2.text = bussinessAddr[1]
+            }
+            
+            if let bussinessAddr = business.location?.addressOne {
+                print("bussinessAddr \(bussinessAddr)")
+                print("bussinessAddr2 \(business.location?.addressTwo)")
+                print("bussinessAddr3 \(business.location?.addressThree)")
+                print("bussinessAddr  \(business.location?.displayAddress?.count)")
+                for da in (business.location?.displayAddress)! {
+                    print("da \(da)")
+
+                }
+            }
+            
+            if let phone = business.displayPhone {
+                phoneLabel.text = "\(phone)"
+                print("display phone \(business.displayPhone)")
+
+            }
+            
+            
+            
+            if let price = business.price {
+                priceLabel.text = price
+            }
+            else {
+                priceLabel.isHidden = true
+            }
+            
+            print("business.distance \(business.distance)")
+
+            if let distance = business.distance {
+                var distInMiles = Double.init(distance as! NSNumber) * 0.000621371
+
+                distanceLabel.text = String(format: "%.2f", distInMiles)
+            }
+            
+            if let closed = business.isClosed {
+                ///openNowLabel.textColor = closed ? UIColor.red : UIColor.green
+                openNowLabel.text = closed ? "Closed" : "Open"
+                
+                if !closed {
+                    if let hours = business.hours {
+                        
+
+                }
+            }
+            
+            if let photos = business.photos {
+                for p in photos {
+                    print("photos \(p)")
+                }
+            }
+            
+            if let hours = business.hours {
+
+                let date = Date()
+                let calendar = Calendar.current
+                let dayOfWeek = calendar.component(.weekday, from: date)
+                for hour in hours {
+                    let textLabel = UILabel()
+                    
+                    textLabel.textColor = hour.isOpenNow! ? UIColor.green : UIColor.red
+                    textLabel.text = hour.isOpenNow! ? "Open" : "Closed"
+                    
+                    let hourOpen = hour.open
+                    
+                    let textLabelExt = UILabel()
+                    textLabelExt.text = ""
+                    for  day in hourOpen! {
+                        if (dayOfWeek-1) == day.day! {
+                            print("hours end \(day.end)")
+                            var timeString = day.end as! String
+                            
+                            
+                            timeString.insert(":", at: (timeString.index((timeString.startIndex), offsetBy: 2)))
+                            print("timeString \(timeString)")
+                            
+                         /*   let dateAsString = timeString
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "HH:mm"
+                            let hourClose = dateFormatter.date(from: dateAsString)
+                            print("hourClose \(hourClose)")
+
+                            dateFormatter.dateFormat = "h:mm a"
+                            let date12 = dateFormatter.string(from: date)
+                            
+
+                            //let hourClose = day.end!*/
+                            textLabelExt.text = hour.isOpenNow! ? " untill \(amAppend(str: timeString))" : ""
+ 
+                        }
+                    }
+                    openNowLabel.text = "\(textLabel.text!) \(textLabelExt.text!)"
+                    
+                    print("dayOfWeek\(dayOfWeek)")
+
+                   
+                
+                    if hour.isOpenNow! {
+                   /// if let hours = business.hours {
+                        
+                        
+                    //}
+
+                        for h in hours {
+                            print("hours \(h.hoursType)")
+                            print("hours \(h.isOpenNow)")
+                            print("hours \(h.open)")
+                    
+                            for ho in h.open! {
+                                print("hours \(ho.day)")
+                                print("hours \(ho.end)")
+                                print("hours \(ho.isOvernight)")
+                                print("hours \(ho.toJSONString())")
+
+                            }
+
+
+                        }
+                
+                    }
+                }
+            }
+                
+            
+            if let tran = business.transactions {
+                
+                for t in tran {
+                    print("t \(t)")
+
+                }
+            }
+
+            
+            if let ratingsCount = business.rating {
+            
+                
+                if ratingsCount == 0  {
+                    reviewImage.image = UIImage(named: "0star")
+                }
+                else if ratingsCount > 0 && ratingsCount <= 1 {
+                    reviewImage.image = UIImage(named: "1star")
+                }
+                else if ratingsCount > 1 && ratingsCount <= 1.5 {
+                    reviewImage.image = UIImage(named: "1halfstar")
+                }
+                else if ratingsCount > 1.5 && ratingsCount <= 2 {
+                    reviewImage.image = UIImage(named: "2star")
+                }
+                else if ratingsCount > 2 && ratingsCount <= 2.5 {
+                    reviewImage.image = UIImage(named: "2halfstar")
+                }
+                else if ratingsCount > 2.5 && ratingsCount <= 3 {
+                    reviewImage.image = UIImage(named: "3star")
+                }
+                else if ratingsCount > 3 && ratingsCount <= 3.5 {
+                    reviewImage.image = UIImage(named: "3halfstar")
+                }
+                else if ratingsCount > 3.5 && ratingsCount <= 4 {
+                    reviewImage.image = UIImage(named: "4star")
+                }
+                else if ratingsCount > 4 && ratingsCount <= 4.5 {
+                    reviewImage.image = UIImage(named: "4halfstar")
+                }
+                else {
+                    reviewImage.image = UIImage(named: "5star")
+                }
+
+                if !(ratingsCount.isLess(than: 4.0))  {
+                    ratingsCountLabel.backgroundColor = UIColor(red: 39/255, green: 190/255, blue: 73/255, alpha: 1)
+                    ratingTotalLabel.backgroundColor = UIColor(red: 39/255, green: 190/255, blue: 73/255, alpha: 1)
+            }
+                else if !(ratingsCount.isLess(than: 3.0)) && (ratingsCount.isLess(than: 4.0)) {
+                ratingsCountLabel.backgroundColor = UIColor.green
+                ratingTotalLabel.backgroundColor = UIColor.green
+            }
+            else {
+                ratingsCountLabel.backgroundColor = UIColor.yellow
+                ratingTotalLabel.backgroundColor = UIColor.yellow
+            }
+
+            let labelString = UILabel()
+            labelString.font = UIFont.boldSystemFont(ofSize: 5)
+            labelString.text = "5"
+
+                ratingsCountLabel.text = "\(business.rating!)" + " / " //+ labelString.text!
+                }
+
+        }
+        }
         roundViews()
+    }
+    
+    
+    func amAppend(str:String) -> String{
+        var temp = str
+        var strArr = str.characters.split{$0 == ":"}.map(String.init)
+        var hour = Int(strArr[0])!
+        var min = Int(strArr[1])!
+        if(hour > 12){
+            temp = temp + " PM"
+        }
+        else{
+            temp = temp + " AM"
+        }
+        return temp
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         prepareBackgroundView()
+        self.loadViewIfNeeded()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,68 +302,95 @@ class BusinessBottomSheetViewController: UIViewController {
         
         UIView.animate(withDuration: 0.6, animations: { [weak self] in
             let frame = self?.view.frame
-            let yComponent = self?.partialView
-            self?.view.frame = CGRect(x: 0, y: yComponent!, width: frame!.width, height: frame!.height)
+        //    let yComponent = self?.partialView
+       //     self?.view.frame = CGRect(x: 0, y: yComponent!, width: frame!.width, height: frame!.height)
         })
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func rightButton(_ sender: AnyObject) {
-        print("clicked")
-    }
-    
-    @IBAction func close(_ sender: AnyObject) {
-        UIView.animate(withDuration: 0.3, animations: {
-            let frame = self.view.frame
-            self.view.frame = CGRect(x: 0, y: self.partialView, width: frame.width, height: frame.height)
-        })
-    }
-    
-    func panGesture(_ recognizer: UIPanGestureRecognizer) {
-        print("panGesture")
-        let translation = recognizer.translation(in: self.view)
-        
-        
-        //=---------
-        
-      //  var translation = panGesture.translationInView(view)
-        recognizer.setTranslation(CGPoint.zero, in: view)
-        print(translation)
-        
-        
-        // create a new Label and give it the parameters of the old one
-        var label = recognizer.view as! UIView
-        label.center = CGPoint(x: label.center.x+translation.x, y: label.center.y+translation.y)
-        label.isMultipleTouchEnabled = true
-        label.isUserInteractionEnabled = true
-        ///-====
-        
-        
-        let velocity = recognizer.velocity(in: self.view)
-        let y = self.view.frame.minY
-        if ( y + translation.y >= fullView) && (y + translation.y <= partialView ) {
-            self.view.frame = CGRect(x: 0, y: y + translation.y, width: view.frame.width, height: view.frame.height)
-            recognizer.setTranslation(CGPoint.zero, in: self.view)
+    func registerForNotifications() {
+        // Register to receive Businesses
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BussinessUpdate"),
+                                               object: nil, queue: OperationQueue.main) {
+                                                [weak self] (notification: Notification) in
+                                                self?.business = notification.userInfo!["business"] as! CDYelpBusiness
+                                                //self?.addAnnotationFor(businesses: (self?.businesses)!)
+                                                print("self?.business id in nitofocation \(self?.business.id)")
+                                                print("self?.business photod in nitofocation \(self?.business.photos?.count)")
+
+                                                self?.view.setNeedsDisplay()
+                                                //self?.tableView.reloadData()
+                                                //self?.collectionView.reloadData()
+                                                //self?.mapView.reloadInputViews()
         }
-        
-        if recognizer.state == .ended {
-            var duration =  velocity.y < 0 ? Double((y - fullView) / -velocity.y) : Double((partialView - y) / velocity.y )
+    }
+    
+    @IBAction func onAddRemoveTrip(_ sender: Any) {
+        print("onAddRemoveTrip")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        print("businesses \(businesses)")
+
+        if(businesses == nil) {
             
-            duration = duration > 1.3 ? 1 : duration
+            let createTripViewController = storyboard.instantiateViewController(withIdentifier: "CreateTripViewController") as! CreateTripViewController
+            createTripViewController.startTextField.text = "Current Location"
+            createTripViewController.destinationTextField.text = (self.business.location?.displayAddress![0])! + " " + (self.business.location?.displayAddress![1])!
+            navigationController?.pushViewController(createTripViewController, animated: true)
             
-            UIView.animate(withDuration: duration, delay: 0.0, options: [.allowUserInteraction], animations: {
-                if  velocity.y >= 0 {
-                    self.view.frame = CGRect(x: 0, y: self.partialView, width: self.view.frame.width, height: self.view.frame.height)
-                } else {
-                    self.view.frame = CGRect(x: 0, y: self.fullView, width: self.view.frame.width, height: self.view.frame.height)
+        }
+        else {
+            let routeMapViewController = storyboard.instantiateViewController(withIdentifier: "RouteMapView") as! RouteMapViewController
+            
+            
+                let selectedLoc = self.business.coordinates
+                
+                let currentLocMapItem = MKMapItem.forCurrentLocation()
+            var coord = CLLocationCoordinate2D.init(latitude: (selectedLoc?.latitude)!, longitude: (selectedLoc?.longitude)!)
+                let selectedPlacemark = MKPlacemark(coordinate: coord, addressDictionary: nil)
+                let selectedMapItem = MKMapItem(placemark: selectedPlacemark)
+                
+                let mapItems = [selectedMapItem, currentLocMapItem]
+            
+                var placemark = MKPlacemark(coordinate: coord)
+                let addMapItem =  MKMapItem(placemark: placemark)
+                
+                let intermediateLocation = CLLocation.init(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude)
+                let intermediateSegment = TripSegment(name: placemark.title!, address: "Temp Address", geoPoint: PFGeoPoint(location: intermediateLocation))
+                //self.trip?.addSegment(tripSegment: intermediateSegment)
+                
+                let selectedPlace = Places(cllocation: CLLocation.init(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude)
+                    , distance: 0, coordinate: placemark.coordinate)
+                //selectedPlace.calculateDistance(fromLocation: startPlace.cllocation)
+                routeMapViewController.placestops.append(selectedPlace)
+                
+                routeMapViewController.placestops.sort(by: { ($0.distance?.isLess(than: $1.distance! ))! })
+                
+                var stopIndex = 0
+                for i in 0...routeMapViewController.placestops.count-1 {
+                   // if placestops[i].coordinate.latitude == placemark.coordinate.latitude && placestops[i].coordinate.longitude == placemark.coordinate.longitude  {
+                        stopIndex = i
+                        break
+                    //}
                 }
                 
-            }, completion: nil)
+              //  locationArray.insert((textField: UITextField(), mapItem: addMapItem), at: stopIndex)
+                
+                //self.mapView.removeOverlays(self.mapView.overlays)
+            // routeMapViewController.calculateSegmentDirections(index: 0, time: 0, routes: [])
+            
+           // routeMapViewController.locationArray = locationArray
+          //  routeMapViewController.trip = trip
+
+            navigationController?.pushViewController(routeMapViewController, animated: true)
         }
+        
+        
+        
+        
+    }
+
+
+@IBAction func rightButton(_ sender: AnyObject) {
+        print("clicked")
     }
     
     func roundViews() {

@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import AFNetworking
 import YelpAPI
+import CDYelpFusionKit
 
 class LandingPageViewController: UIViewController {
    
@@ -58,7 +59,7 @@ class LandingPageViewController: UIViewController {
     
     var selectedType = [String] ()
     
-    var businesses: [YLPBusiness]!
+    var businesses: [CDYelpBusiness]!
 
     var trips: [Trip]!
 
@@ -391,12 +392,26 @@ print("selectedType  \(selectedType)")
     final func performSearch(_ term: [String]) {
 
         if !term.isEmpty {
-            YelpFusionClient.sharedInstance.searchQueryWith(location: locationManager.location!, term: term[0], completionHandler: {(businesses: [YLPBusiness]?, error: Error?) -> Void in
+            
+            YelpFusionClient.shared.searchQueryWith(location: locationManager.location!, term: term[0], completionHandler: {(businesses: [CDYelpBusiness]?, error: Error?) -> Void in
+                
+                self.businesses = businesses
+                
+                print("self.businesses  in %^%^%Z^Z%^^^^^^^^$$$$$ search ---\(String(describing: self.businesses?.count))")
+                for bus in businesses! {
+                    print("bus.distance \(bus.distance)")
+                    print("bus.orice \(bus.price)")
+                    print("photos \(bus.photos?.count)")
+
+                }
+            })
+            // working
+            /*YelpFusionClient.sharedInstance.searchQueryWith(location: locationManager.location!, term: term[0], completionHandler: {(businesses: [YLPBusiness]?, error: Error?) -> Void in
                      self.businesses = businesses
                 
                    print("self.businesses  in %^%^%Z^Z%^^^^^^^^^$$$$$$$$$$$ search ---\(String(describing: self.businesses?.count))")
                 
-                })
+                })*/
 
            // YelpFusionClient.sharedInstance.searchWith(location: (locationManager.location?.coordinate)!, term: term[0], completionHandler: {(businesses: [YLPBusiness]?, error: Error?) -> Void in
            //     self.businesses = businesses

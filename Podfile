@@ -15,7 +15,9 @@ target 'RoadTripPlanner' do
   pod 'DatePickerDialog'
   pod 'YelpAPI'
   pod 'ParseUI'
-  pod "ARSLineProgress", "~> 2.1.1"
+  pod 'ARSLineProgress', '~> 2.1.1'
+  pod 'CDYelpFusionKit', '~> 1.0.0'
+
 
   target 'RoadTripPlannerTests' do
     inherit! :search_paths

@@ -93,6 +93,10 @@
 		F8B6A3E51F932CAE00942820 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6A3E41F932CAE00942820 /* CommentsViewController.swift */; };
 		F8B6A3E71F935E9600942820 /* TripSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6A3E61F935E9600942820 /* TripSettingsViewController.swift */; };
 		F8B6A3E91F93D72A00942820 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6A3E81F93D72A00942820 /* ReviewViewController.swift */; };
+		F8F56C671FA2B0B10045C2AD /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F56C661FA2B0B10045C2AD /* DetailView.swift */; };
+		F8F56C691FA2B1EF0045C2AD /* BusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F56C681FA2B1EF0045C2AD /* BusCell.swift */; };
+		F8F56C6B1FA2B2A00045C2AD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F56C6A1FA2B2A00045C2AD /* DetailViewController.swift */; };
+		F8F56C6D1FA2ED2B0045C2AD /* BusinessDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F56C6C1FA2ED2A0045C2AD /* BusinessDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +214,10 @@
 		F8B6A3E41F932CAE00942820 /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		F8B6A3E61F935E9600942820 /* TripSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSettingsViewController.swift; sourceTree = "<group>"; };
 		F8B6A3E81F93D72A00942820 /* ReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		F8F56C661FA2B0B10045C2AD /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		F8F56C681FA2B1EF0045C2AD /* BusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusCell.swift; sourceTree = "<group>"; };
+		F8F56C6A1FA2B2A00045C2AD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F8F56C6C1FA2ED2A0045C2AD /* BusinessDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetailView.swift; sourceTree = "<group>"; };
 		FE5FA00D8C198D75B481719C /* Pods_RoadTripPlannerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoadTripPlannerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -406,6 +414,7 @@
 				F8B6A3E61F935E9600942820 /* TripSettingsViewController.swift */,
 				DFCC379A1F9935BE003BDCA6 /* TempLandingViewController.swift */,
 				DFCC379E1F9950E5003BDCA6 /* TempCreateTripViewController.swift */,
+				F8F56C6A1FA2B2A00045C2AD /* DetailViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -429,6 +438,9 @@
 				DF14D3091F9DA9AE00161D5F /* TripTableViewCell.xib */,
 				F898F1FB1FA05DD800EE0293 /* BusinessBottomSheetViewController.xib */,
 				F898F1FD1FA05E2A00EE0293 /* BusinessBottomSheetViewController.swift */,
+				F8F56C6C1FA2ED2A0045C2AD /* BusinessDetailView.swift */,
+				F8F56C661FA2B0B10045C2AD /* DetailView.swift */,
+				F8F56C681FA2B1EF0045C2AD /* BusCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -526,7 +538,7 @@
 				TargetAttributes = {
 					F806F2761F8DA42A00E11785 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = X3E7C93B2H;
+						DevelopmentTeam = 8Z5KC369JZ;
 						ProvisioningStyle = Automatic;
 					};
 					F806F28A1F8DA42B00E11785 = {
@@ -686,11 +698,15 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/ARSLineProgress/ARSLineProgress.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/CDYelpFusionKit/CDYelpFusionKit.framework",
 				"${BUILT_PRODUCTS_DIR}/DatePickerDialog/DatePickerDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
 				"${BUILT_PRODUCTS_DIR}/ParseUI/ParseUI.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
@@ -700,11 +716,15 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ARSLineProgress.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CDYelpFusionKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DatePickerDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLEX.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParseUI.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
@@ -795,9 +815,11 @@
 				486E3C461F945EEB003D2FFF /* AlbumListViewController.swift in Sources */,
 				F80559C61F9B5DE100454EB6 /* CategoryRow.swift in Sources */,
 				DFCC37951F97CCE2003BDCA6 /* HomeViewController.swift in Sources */,
+				F8F56C6D1FA2ED2B0045C2AD /* BusinessDetailView.swift in Sources */,
 				DFCC379B1F9935BE003BDCA6 /* TempLandingViewController.swift in Sources */,
 				F8B6A3E91F93D72A00942820 /* ReviewViewController.swift in Sources */,
 				F806F2AD1F8DFCD300E11785 /* LoginViewController.swift in Sources */,
+				F8F56C691FA2B1EF0045C2AD /* BusCell.swift in Sources */,
 				486E3C481F945EEB003D2FFF /* PhotoViewController.swift in Sources */,
 				F80559CA1F9B5DF900454EB6 /* DirectionsTableView.swift in Sources */,
 				F80559C41F9B5DD600454EB6 /* Category.swift in Sources */,
@@ -827,11 +849,13 @@
 				F806F2B11F8E08B300E11785 /* MapViewController.swift in Sources */,
 				DFECC56D1F9C1CFB00F3B63E /* AddressTableView.swift in Sources */,
 				F8B6A3E11F92EDB300942820 /* CreateTripViewController.swift in Sources */,
+				F8F56C671FA2B0B10045C2AD /* DetailView.swift in Sources */,
 				F891E10C1F94375D006B2DD6 /* CreateUserViewController.swift in Sources */,
 				F806F2F81F8ECB2300E11785 /* Business.swift in Sources */,
 				F806F2AB1F8DEF0200E11785 /* LandingPageViewController.swift in Sources */,
 				486E3C4D1F945F4E003D2FFF /* AddPhotoDelegate.swift in Sources */,
 				F8B6A3E71F935E9600942820 /* TripSettingsViewController.swift in Sources */,
+				F8F56C6B1FA2B2A00045C2AD /* DetailViewController.swift in Sources */,
 				486E3C3D1F945EC3003D2FFF /* AlbumCell.swift in Sources */,
 				DF32B9C81F9470F200594F0B /* TripMember.swift in Sources */,
 				DF14D30A1F9DA9AE00161D5F /* TripTableViewCell.swift in Sources */,
@@ -1003,11 +1027,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X3E7C93B2H;
+				DEVELOPMENT_TEAM = 8Z5KC369JZ;
 				INFOPLIST_FILE = RoadTripPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.demo.roadtripplanner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.deo.roadtripplanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1023,11 +1047,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X3E7C93B2H;
+				DEVELOPMENT_TEAM = 8Z5KC369JZ;
 				INFOPLIST_FILE = RoadTripPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.demo.roadtripplanner;
+				PRODUCT_BUNDLE_IDENTIFIER = com.deo.roadtripplanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

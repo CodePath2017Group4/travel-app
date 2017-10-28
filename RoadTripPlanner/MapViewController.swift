@@ -10,29 +10,34 @@ import UIKit
 import MapKit
 import CoreLocation
 import YelpAPI
+import CDYelpFusionKit
 
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var tableView: UITableView!
+  //  @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     
     fileprivate var center: CLLocationCoordinate2D!
     fileprivate var annotations:   [MKPointAnnotation]!
     fileprivate let centerLocation = CLLocation(latitude: 37.7833, longitude: -122.4167)
     lazy var locationManager: CLLocationManager = self.makeLocationManager()
-    var businesses: [YLPBusiness]!
+    var businesses: [CDYelpBusiness]!
     var searchTerm: [String]!
-    
+    var business: CDYelpBusiness!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForNotifications()
+        //setupCollectionView()
         
         mapView.delegate = self
         mapView.tintColor = UIColor.blue.withAlphaComponent(0.7)
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 133
-        tableView.separatorStyle = .none
+       // tableView.rowHeight = UITableViewAutomaticDimension
+       // tableView.estimatedRowHeight = 133
+       // tableView.separatorStyle = .none
         
         let annotation = MKPointAnnotation()
         let coordinate = CLLocationCoordinate2D(latitude: centerLocation.coordinate.latitude, longitude: centerLocation.coordinate.longitude)
@@ -44,6 +49,8 @@ class MapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+      //  addBottomSheetView()
+
     }
     
     func registerForNotifications() {
@@ -51,9 +58,11 @@ class MapViewController: UIViewController {
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "BussinessesDidUpdate"),
                                                object: nil, queue: OperationQueue.main) {
                                                 [weak self] (notification: Notification) in
-                                                self?.businesses = notification.userInfo!["businesses"] as! [YLPBusiness]
-                                                self?.addAnnotationFor(businesses: (self?.businesses)!)
-                                                self?.tableView.reloadData()
+                                                self?.businesses = notification.userInfo!["businesses"] as! [CDYelpBusiness]
+                                               // self?.addAnnotationFor(businesses: (self?.businesses)!)
+                                                //print(self?.business[0].isClosed)
+                                                //self?.tableView.reloadData()
+                                                self?.collectionView.reloadData()
                                                 self?.mapView.reloadInputViews()
         }
     }
@@ -108,7 +117,71 @@ class MapViewController: UIViewController {
         return (no * divisor).rounded() / divisor
     }
     
+    func openBottomSheetview(cell: BusinessCollectionCell)
+    {
+        print("openBottomSheetview )")
+        let bottomSheetVC = BusinessBottomSheetViewController()
+      //  bottomSheetVC.businessNameLabel?.text = "\(cell.businessName!)"
+        /*let gesture = UIPanGestureRecognizer.init(target: bottomSheetVC.view, action: #selector(BusinessBottomSheetViewController.panGesture))
+        bottomSheetVC.view.addGestureRecognizer(gesture)
+        
+        let gesture1 = UITapGestureRecognizer.init(target: bottomSheetVC.view, action: #selector(BusinessBottomSheetViewController.moveSheet))
+        bottomSheetVC.view.addGestureRecognizer(gesture1)*/
+       // self.present(bottomSheetVC, animated: true)
+        //bottomSheetVC.moveSheet()//gesture1)
+        
+    }
     
+    func setupCollectionView() {
+        /* let screenSize = UIScreen.main.bounds.size
+         let cellWidth = floor(screenSize.width * kRoomCellScaling)
+         let cellHeight = floor(screenSize.height * kRoomCellScaling)*/
+        
+        let itemsPerRow:CGFloat = 3
+        let hardCodedPadding:CGFloat = 5
+        let cellWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
+        let cellHeight = collectionView.bounds.height - (2 * hardCodedPadding)
+        
+        let insetX = (view.bounds.width-cellWidth) / 4.0
+        let insetY = ( view.bounds.height-cellHeight) / 4.0
+        print("insetX \(insetX)")
+        print("insetY \(insetY)")
+        
+        let layout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+        
+        
+        
+        //collectionView?.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
+        collectionView?.reloadData()
+    }
+    
+    func addBottomSheetView() {
+        print("addBottomSheetView )")
+        /*   let bottomSheetVC = BottomSheetViewController()
+         
+         self.addChildViewController(bottomSheetVC)
+         self.view.addSubview(bottomSheetVC.view)
+         bottomSheetVC.didMove(toParentViewController: self)
+         
+         let height = view.frame.height
+         let width  = view.frame.width
+         bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)*/
+        
+        // 1- Init bottomSheetVC
+        let bottomSheetVC = BusinessBottomSheetViewController()
+        
+        // 2- Add bottomSheetVC as a child view
+        self.addChildViewController(bottomSheetVC)
+        self.view.addSubview(bottomSheetVC.view)
+        bottomSheetVC.didMove(toParentViewController: self)
+        
+        // 3- Adjust bottomSheet frame and initial position.
+        let height = view.frame.height
+        let width  = view.frame.width
+        bottomSheetVC.view.frame = CGRect(x: 0, y: self.view.frame.maxY, width: width, height: height)
+        
+    }
     
 }
 
@@ -142,7 +215,7 @@ extension MapViewController: MKMapViewDelegate {
         let index = (self.annotations as NSArray).index(of: view.annotation)
         
         if index >= 0 {
-            self.showDetailsFor(self.businesses[index] )
+            //self.showDetailsFor(self.businesses[index] )
         }
     }
     func showDetailsFor(_ business: YLPBusiness) {
@@ -209,8 +282,84 @@ extension MapViewController: CLLocationManagerDelegate {
     
     
 }
+extension MapViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+   
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return businesses?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! BusCell
+        cell.business = businesses[indexPath.row]
+        //print("business in cell \(cell.business?.price?)")
+        YelpFusionClient.shared.apiClient?.fetchBusiness(byId: cell.business?.id!, locale: CDYelpLocale.english_unitedStates) { (business: CDYelpBusiness?, error: Error?)  in
+            
+            let notificationName = NSNotification.Name(rawValue: "BussinessUpdate")
+            NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["business": business! ])
+            //.businessWith(id: (businss?.id)!, completionHandler: {(business: CDYelpBusiness, error: Error?) -> Void in
+            //let business = business
+            if business != nil  && business?.distance == nil {
+                business?.distance = cell.business.distance
+                
+            }
+            print("self.business  in collecion cellforat  ---\(business?.photos?.count)")
+            self.businesses[indexPath.row] = business!;            print("After overiritein  in collecion cellforat  ---\(self.businesses[indexPath.row].photos?.count)")
 
-extension MapViewController : UITableViewDataSource, UITableViewDelegate {
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        //selectedIndexPath = indexPath as NSIndexPath
+        var businss = businesses?[indexPath.row]
+        
+        /*print("YelpFusionClient.sharedInstance.apiClient ---\(YelpFusionClient.shared.apiClient)")
+
+        YelpFusionClient.shared.apiClient?.fetchBusiness(byId: businss?.id!, locale: CDYelpLocale.english_unitedStates) { (business: CDYelpBusiness?, error: Error?)  in
+            
+            let notificationName = NSNotification.Name(rawValue: "BussinessUpdate")
+            NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["business": business! ])
+        //.businessWith(id: (businss?.id)!, completionHandler: {(business: CDYelpBusiness, error: Error?) -> Void in
+            let business = business
+            if business != nil {
+                businss = business
+            }
+            print("self.business  id search ---\(business)")
+            
+        }*/
+        
+        controller.business = businss
+        
+       // guard let tripDetailsVC = TripDetailsViewController.storyboardInstance() else { return }
+        //tripDetailsVC.trip = trip
+       // navigationController?.pushViewController(controller, animated: true)
+        
+        present(controller, animated: true, completion: nil)
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        let targetContentOffsetPointer = targetContentOffset
+        let layout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
+        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
+        
+        var offset = targetContentOffsetPointer.pointee
+        
+        let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
+        let roundedIndex = round(index)
+        
+        offset = CGPoint(x: roundedIndex*cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
+        targetContentOffsetPointer.pointee = offset
+    }
+
+}
+
+/*extension MapViewController : UITableViewDataSource, UITableViewDelegate, CategoryRowDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -233,5 +382,11 @@ extension MapViewController : UITableViewDataSource, UITableViewDelegate {
         
     }
     
-}
+    func didClick(cell:BusinessCollectionCell){
+       /* if let index = tableView.indexPath(for:cell){
+            let object = yourArrayForCollectionView[index.row]
+            performSegue(withIdentifier: "Your segue identifier", sender: object)
+        }*/
+    }
+}*/
 
