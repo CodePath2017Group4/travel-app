@@ -174,7 +174,7 @@ class LandingPageViewController: UIViewController {
         let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarLightTintColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
                
-
+        registerForNotifications()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -203,6 +203,45 @@ class LandingPageViewController: UIViewController {
                 log.error("Error loading upcoming trips: \(error!)")
             }
         }
+    }
+    
+    fileprivate func registerForNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(tripWasModified(notification:)),
+                                               name: Constants.NotificationNames.TripModifiedNotification,
+                                               object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func tripWasModified(notification: NSNotification) {
+        let info = notification.userInfo
+        let trip = info!["trip"] as! Trip
+        let tripId = trip.objectId
+        
+        // Find the trip in the trips array.
+        log.info("Trip with id: \(trip.objectId) has been modified.")
+        
+        let matchingTrips = trips.filter { (trip) -> Bool in
+            return trip.objectId == tripId
+        }
+        
+        if matchingTrips.count > 0 {
+            let match = matchingTrips.first!
+            let index = trips.index(of: match)
+            
+            guard let idx = index else { return }
+            
+            // replace the trip with the new trip
+            trips[idx] = trip
+            
+            // reload the trips
+            collectionView.reloadData()
+        }
+        
+        
     }
     
     func categoryTapped(_ sender: UITapGestureRecognizer) {
@@ -334,13 +373,6 @@ class LandingPageViewController: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
-    }
-    
-    // MARK: - TEMP!!
-    @IBAction func buttonPressed(_ sender: Any) {
-        let datePast = testData.generateRandomDate(days: 10, forward: false)
-        let dateStr = Utils.formatDate(date: datePast)
-        log.info(dateStr)
     }
     
     
@@ -613,5 +645,17 @@ extension LandingPageViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return trips.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        log.info("Selected cell at \(indexPath)")
+        
+        let trip = trips[indexPath.row]
+        log.info("Selected trip \(trip.name ?? "none")")
+        
+        let tripDetailsVC = TripDetailsViewController.storyboardInstance()
+        tripDetailsVC?.trip = trip
+        navigationController?.pushViewController(tripDetailsVC!, animated: true)
+
     }
 }
