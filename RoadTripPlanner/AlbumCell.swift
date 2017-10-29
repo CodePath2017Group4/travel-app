@@ -76,6 +76,7 @@ class AlbumCell: UITableViewCell {
                         } else {
                             self.dateLabel.text = "unknown"
                         }
+                        self.tripLabel.text = realTrip.name
                     }
                 } else {
                     log.error("Error fetching trip: \(error!)")
