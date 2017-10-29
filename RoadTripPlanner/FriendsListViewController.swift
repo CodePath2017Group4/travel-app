@@ -102,6 +102,13 @@ class FriendsListViewController: UIViewController {
         if let delegate = self.delegate {
             delegate.addInvitation(tripMember: tripMember)
         }
+        tripMember.saveInBackground(block: { (success, error) in
+            if (error != nil) {
+                log.error("Error inviting trip member: \(error)")
+            } else {
+                log.info("TripMember invited")
+            }
+        })
         self.tableView.reloadData()
     }
 }

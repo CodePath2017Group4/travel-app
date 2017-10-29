@@ -26,17 +26,34 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
+        // Add "Pull to refresh"
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        albumsTable.insertSubview(refreshControl, at: 0)
+        
 //        fakeAlbums()
-        requestTripsAndAlbums()
+        requestTripsAndAlbums(nil)
     }
     
-    private func requestTripsAndAlbums() {
+    func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        print("refresh!")
+        requestTripsAndAlbums(refreshControl)
+    }
+    
+    private func stopRefreshing(_ refreshControl: UIRefreshControl?) {
+        if let refreshControl = refreshControl {
+            refreshControl.endRefreshing()
+        }
+    }
+    
+    private func requestTripsAndAlbums(_ refreshControl: UIRefreshControl?) {
         if let user = PFUser.current() {
             ParseBackend.getTripsForUser(user: user, areUpcoming: false, onlyConfirmed: true) { (trips, error) in
                 if error == nil {
                     self.trips = trips!
                     print("I have \(trips!.count) trips")
                     ParseBackend.getAlbumsOnTrips(trips: trips!) { (albums, error) in
+                        self.stopRefreshing(refreshControl)
                         if error == nil {
                             print("I have \(albums!.count) albums")
                             self.albums = albums!
@@ -48,6 +65,7 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
                         }
                     }
                 } else {
+                    self.stopRefreshing(refreshControl)
                     log.error("Error fetching trips: \(error!)")
                 }
             }
@@ -126,8 +144,7 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func deleteAlbum(album: Album, indexPath: IndexPath) {
-        // TODO: should use @album
-        if (album.owner == nil || album.owner != PFUser.current()) {
+        if (album.owner == nil || PFUser.current() == nil || album.owner!.username != PFUser.current()!.username) {
             let alertController = UIAlertController(title: "Request denied", message: "You don't have permission to remove the album.", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
                 NSLog("The \"OK\" alert occured.")
@@ -136,16 +153,17 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
             self.present(alertController, animated: true)
         } else {
             print("delete albums \(indexPath.row)")
+            let realAlbum = self.albums[indexPath.row]
             self.albums.remove(at: indexPath.row)
-            album.deleteInBackground { (success, error) in
+            realAlbum.deleteInBackground { (success, error) in
                 if success {
-                    log.info("Album \(album.albumName) deleted")
+                    log.info("Album \(realAlbum.albumName) deleted")
                 } else {
                     guard let error = error else {
-                        log.error("Unknown error occurred deleting album \(album.albumName)")
+                        log.error("Unknown error occurred deleting album \(realAlbum.albumName)")
                         return
                     }
-                    log.error("Error deleting album \(album.albumName): \(error)")
+                    log.error("Error deleting album \(realAlbum.albumName): \(error)")
                 }
             }
             self.albumsTable.reloadData()

@@ -34,8 +34,13 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         notificationTable.delegate = self
         notificationTable.dataSource = self
         
+        // Add "Pull to refresh"
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        notificationTable.insertSubview(refreshControl, at: 0)
+        
         // fakeNotifications()
-        requestNotifications()
+        requestNotifications(nil)
         notificationTable.reloadData()
     }
 
@@ -44,10 +49,22 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         // Dispose of any resources that can be recreated.
     }
     
-    private func requestNotifications() {
+    func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        print("refresh!")
+        requestNotifications(refreshControl)
+    }
+    
+    private func stopRefreshing(_ refreshControl: UIRefreshControl?) {
+        if let refreshControl = refreshControl {
+            refreshControl.endRefreshing()
+        }
+    }
+    
+    private func requestNotifications(_ refreshControl: UIRefreshControl?) {
         if let user = PFUser.current() {
             ParseBackend.getInvitedTrips(user: user) {
                 (tripMember, error) in
+                self.stopRefreshing(refreshControl)
                 if let tripMember = tripMember {
                     self.pendingInvitations = tripMember
                     DispatchQueue.main.async {
@@ -64,6 +81,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
                     print("trips created by me: \(trips.count)")
                     ParseBackend.getTripMemberOnTrips(trips: trips) {
                         (tripMember, error) in
+                        self.stopRefreshing(refreshControl)
                         if let tripMember = tripMember {
                             self.pastInvitations = tripMember
                             DispatchQueue.main.async {
@@ -75,6 +93,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
                     }
                     self.notificationTable.reloadData()
                 } else {
+                    self.stopRefreshing(refreshControl)
                     print("Error to get created trips: \(error)")
                 }
             }
@@ -219,13 +238,6 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         DispatchQueue.main.async {
             self.notificationTable.reloadData()
         }
-        tripMember.saveInBackground(block: { (success, error) in
-            if (error != nil) {
-                log.error("Error inviting trip member: \(error)")
-            } else {
-                log.info("TripMember invited")
-            }
-        })
     }
     
     func confirmInvitation(index: Int) {

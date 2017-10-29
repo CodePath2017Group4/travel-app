@@ -40,6 +40,11 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        // Add "Pull to refresh"
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        collectionView.insertSubview(refreshControl, at: 0)
+        
         navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarDarkTintColor
         let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
@@ -49,6 +54,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
 //        let tripTableViewCellNib = UINib(nibName: Constants.NibNames.TripTableViewCell, bundle: nil)
 //        tripsSummaryTable.register(tripTableViewCellNib, forCellReuseIdentifier: Constants.ReuseableCellIdentifiers.TripTableViewCell)
         
+        self.numAlbumsLabel.text = "0"
+        self.numTripsLabel.text = "0"
         
         if PFUser.current() != nil {
             userNameLabel.text = PFUser.current()?.username
@@ -61,17 +68,25 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
                 self.profileButton.setImage(UIImage(named: "user"), for: .normal)
             }
             
-            requestTrips()
-            requestAlbums()
+            requestTripsAndAlbums(nil)
             
         } else {
             userNameLabel.text = "Anonymous User"
             self.profileButton.setBackgroundImage(UIImage(named: "user"), for: .normal)
-            self.numAlbumsLabel.text = "0"
-            self.numTripsLabel.text = "0"
         }
         
         registerForNotifications()
+    }
+    
+    func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        print("refresh!")
+        requestTripsAndAlbums(refreshControl)
+    }
+    
+    private func stopRefreshing(_ refreshControl: UIRefreshControl?) {
+        if let refreshControl = refreshControl {
+            refreshControl.endRefreshing()
+        }
     }
     
     fileprivate func registerForNotifications() {
@@ -113,30 +128,19 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
         
     }
     
-    // Make sure this request is not done on the main UI thread.
-    private func requestAlbums() {
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            ParseBackend.getAlbums(completionHandler: { (albums, error) in
-                if albums != nil {
-                    DispatchQueue.main.async {
-                        let count = albums!.count
-                        self.numAlbumsLabel.text = "\(count)"
-                    }
-                }
-            })
-        }
-    }
-    
-    private func requestTrips() {
+    private func requestTripsAndAlbums(_ refreshControl: UIRefreshControl?) {
         ParseBackend.getTripsForUser(user: PFUser.current()!, areUpcoming: false, onlyConfirmed: true) { (trips, error) in
+            self.stopRefreshing(refreshControl)
             if error == nil {
                 log.info("past trips count: \(trips!.count)")
                 self.trips = trips!
                 self.numTripsLabel.text = "\(trips!.count)"
                 DispatchQueue.main.async {
-//                    self.tripsSummaryTable.reloadData()
+                    //self.tripsSummaryTable.reloadData()
                     self.collectionView.reloadData()
+                }
+                ParseBackend.getAlbumsOnTrips(trips: trips!) { (albums, error) in
+                    self.numAlbumsLabel.text = "\(albums!.count)"
                 }
             } else {
                 log.error(error!)
