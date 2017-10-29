@@ -9,7 +9,7 @@
 import Parse
 import UIKit
 
-class NotificationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InvitationDelegate {
+class NotificationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InvitationDelegate, InviteUserDelegate {
     @IBOutlet weak var notificationTable: UITableView!
     
     let MAX_INVITATIONS: Int = 3
@@ -17,27 +17,64 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
     var expandPending: Bool = true
     var expandPast: Bool = true
     
+    var trips: [Trip] = []
     var pendingInvitations: [TripMember] = []
     var pastInvitations: [TripMember] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarDarkTintColor
-        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-        
+        navigationItem.title = "Notifications"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Invite", style: .plain, target: self, action: #selector(inviteTapped))
         
         notificationTable.delegate = self
         notificationTable.dataSource = self
-        fakeNotifications()
+        
+        // fakeNotifications()
+        requestNotifications()
         notificationTable.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func requestNotifications() {
+        if let user = PFUser.current() {
+            ParseBackend.getInvitedTrips(user: user) {
+                (tripMember, error) in
+                if let tripMember = tripMember {
+                    self.pendingInvitations = tripMember
+                    DispatchQueue.main.async {
+                        self.notificationTable.reloadData()
+                    }
+                } else {
+                    print("Error to get invited trips \(error)")
+                }
+            }
+            ParseBackend.getTripsCreatedByUser(user: user) {
+                (trips, error) in
+                if let trips = trips {
+                    self.trips = trips
+                    print("trips created by me: \(trips.count)")
+                    ParseBackend.getTripMemberOnTrips(trips: trips) {
+                        (tripMember, error) in
+                        if let tripMember = tripMember {
+                            self.pastInvitations = tripMember
+                            DispatchQueue.main.async {
+                                self.notificationTable.reloadData()
+                            }
+                        } else {
+                            print("Error to get past invitations: \(error)")
+                        }
+                    }
+                    self.notificationTable.reloadData()
+                } else {
+                    print("Error to get created trips: \(error)")
+                }
+            }
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -99,14 +136,18 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
             if (!isLast(indexPath: indexPath)) {
                 return 90.0
             } else {
-                return 60.0
+                return 50.0
             }
         } else {
-            return 60.0
+            return 50.0
         }
     }
 
     func inviteTapped(_ sender: Any) {
+        if let vc = InviteToTripViewController.storyboardInstance() {
+            vc.delegate = self
+            self.show(vc, sender: self)
+        }
     }
     
     private func isPendingSection(section: Int) -> Bool {
@@ -169,13 +210,47 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    func addInvitation(tripMember: TripMember) {
+        self.pastInvitations.append(tripMember)
+        DispatchQueue.main.async {
+            self.notificationTable.reloadData()
+        }
+        tripMember.saveInBackground(block: { (success, error) in
+            if (error != nil) {
+                log.error("Error inviting trip member: \(error)")
+            } else {
+                log.info("TripMember invited")
+            }
+        })
+    }
+    
     func confirmInvitation(index: Int) {
         self.pendingInvitations[index].status = InviteStatus.Confirmed.hashValue
-        print("confirm Invitation \(index)")
+        self.pendingInvitations[index].saveInBackground{ (success, error) in
+            if success {
+                log.info("Invitation \(index) confirmed")
+            } else {
+                guard let error = error else {
+                    log.error("Unknown error occurred confirming invitations")
+                    return
+                }
+                log.error("Error confirming invitations: \(error)")
+            }
+        }
     }
     
     func rejectInvitation(index: Int) {
         self.pendingInvitations[index].status = InviteStatus.Rejected.hashValue
-        print("reject Invitation \(index)")
+        self.pendingInvitations[index].saveInBackground{ (success, error) in
+            if success {
+                log.info("Invitation \(index) rejected")
+            } else {
+                guard let error = error else {
+                    log.error("Unknown error occurred rejecting invitations")
+                    return
+                }
+                log.error("Error rejecting invitations: \(error)")
+            }
+        }
     }
 }

@@ -177,6 +177,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="dIj-uk-j9S" secondAttribute="trailing" constant="16" id="8xf-ci-T9G"/>
                                                 <constraint firstItem="dIj-uk-j9S" firstAttribute="leading" secondItem="ZxS-cc-ZL4" secondAttribute="leadingMargin" constant="16" id="MDw-ot-Aj3"/>
                                                 <constraint firstItem="dIj-uk-j9S" firstAttribute="centerY" secondItem="ZxS-cc-ZL4" secondAttribute="centerY" id="VjR-SV-vvG"/>
                                             </constraints>

@@ -21,7 +21,10 @@ class FriendsListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var trip: Trip?
-    var friends = [PFUser]()
+    var knownTripMember: [TripMember] = []
+    var friends: [(PFUser, TripMember?)] = []
+    var selectedIndex: Int = -1
+    var delegate: InviteUserDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,26 +37,34 @@ class FriendsListViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80
 
-        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarLightTintColor
-        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarLightTintColor]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-        navigationItem.title = "Invite People To Trip"
+        navigationItem.title = "Invite Friend"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Invite", style: .plain, target: self, action: #selector(inviteTapped))
         
         searchBar.tintColor = Constants.Colors.NavigationBarLightTintColor
         
         ParseBackend.getUsers { (users, error) in
             if error == nil {
-                for user in users! {
-                    log.info(user.username!)
-                }
-                self.friends = users!
+                self.zipFriendsAndKnownUsers(users: users!)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
             } else {
                 log.error(error!)
             }
+        }
+    }
+    
+    private func zipFriendsAndKnownUsers(users: [PFUser]) {
+        self.friends = []
+        for user in users {
+            var found: TripMember? = nil
+            for curMember in self.knownTripMember {
+                if (curMember.user.username == user.username) {
+                    log.info("User is already on the trip!")
+                    found = curMember
+                }
+            }
+            self.friends.append((user, found))
         }
     }
     
@@ -70,8 +81,30 @@ class FriendsListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func inviteTapped(_ sender: Any) {
+        // Add selected user to the trip
+        guard let trip = self.trip else {
+            log.info("No trip to add friends to")
+            return
+        }
+        guard selectedIndex >= 0 else {
+            log.info("No friend is selected")
+            return
+        }
+        guard friends[self.selectedIndex].1 == nil else {
+            log.info("User is already on the trip!")
+            return
+        }
+        let selectedUser = friends[self.selectedIndex].0
+        let tripMember = TripMember(user: selectedUser, isCreator: false, trip: trip)
+        
+        friends[self.selectedIndex].1 = tripMember
+        if let delegate = self.delegate {
+            delegate.addInvitation(tripMember: tripMember)
+        }
+        self.tableView.reloadData()
+    }
 }
-
 extension FriendsListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,30 +113,23 @@ extension FriendsListViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ReuseableCellIdentifiers.FriendUserCell, for: indexPath) as! FriendUserCell
-        cell.user = friends[indexPath.row]
+        cell.user = friends[indexPath.row].0
+        if let tripMember = friends[indexPath.row].1 {
+            cell.setStatus(onTrip: tripMember.status)
+        } else {
+            cell.setStatus(onTrip: -1)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Add selected user to the trip
-        guard let trip = self.trip else {
-            log.info("No trip to add friends to")
-            return
+        
+        if (self.selectedIndex >= 0) {
+            tableView.deselectRow(at: IndexPath(row: self.selectedIndex, section: 0), animated: true)
         }
-        
-        let selectedUser = friends[indexPath.row]
+        self.selectedIndex = indexPath.row
+    }
 
-        let tripMember = TripMember(user: selectedUser, isCreator: false, trip: trip)
-        tripMember.saveInBackground(block: { (success, error) in
-            if (error != nil) {
-                log.error(error!)
-            } else {
-                let username = selectedUser.username ?? "No Name"
-                let tripName = trip.name ?? "No Name"
-                log.info("Saved \(username) as a member to trip \(tripName)")
-            }
-        })
-        
 //        ParseBackend.getTripsCreatedByUser(user: selectedUser) { (trips, error) in
 //            if (error == nil) {
 //                log.info("\(selectedUser.username ?? "") has created \(trips!.count) trips.")
@@ -137,11 +163,8 @@ extension FriendsListViewController: UITableViewDelegate, UITableViewDataSource 
 //                log.error("Error saving trip: \(error)")
 //            }
 //        }
-    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-    
-
 }
