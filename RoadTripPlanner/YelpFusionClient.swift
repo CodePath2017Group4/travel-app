@@ -42,9 +42,10 @@ class YelpFusionClient {
             }
         })
     }
-    
+    //used in create trip
     func searchQueryWith(location: CLLocationCoordinate2D, term: String, params: [String]? , completionHandler: @escaping ([YLPBusiness]?, Error?) -> Void) {
 
+        print("entered searchQueryWith")
         let query = YLPQuery(coordinate: YLPCoordinate(latitude: location.latitude, longitude: location.longitude))
         query.term = term
         query.limit = 10
@@ -58,10 +59,10 @@ class YelpFusionClient {
             let businesses = search?.businesses
             completionHandler(businesses, nil)
             
-            // log.info(businesses)
+             log.info(businesses)
             
             let notificationName = NSNotification.Name(rawValue: "BussinessesDidUpdate")
-            NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["businesses": businesses as! [YLPBusiness]?])
+            NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["businesses": businesses as! [YLPBusiness]?, "type": term])
             
             for b in businesses! {
                 log.info (b.name)
@@ -71,12 +72,12 @@ class YelpFusionClient {
         
     }
     
-    
+    // working - used in code
     func searchQueryWith(location: CLLocation, term: String, completionHandler: @escaping ([YLPBusiness]?, Error?) -> Void) {
         let query = YLPQuery(coordinate: YLPCoordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
         query.term = term
-        query.limit = 20
-        //query.radiusFilter = 25
+        query.limit = 5
+        query.radiusFilter = 8046
         query.sort = YLPSortType.distance
         var category = Category(term: term)
         query.categoryFilter = category.getCategoryList()
@@ -257,16 +258,19 @@ class YelpFusionClient {
 
     
     func searchQueryWith(location: CLLocation, term: String, completionHandler: @escaping ([CDYelpBusiness]?, Error?) -> Void) {
-        let query = YLPQuery(coordinate: YLPCoordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+       /* let query = YLPQuery(coordinate: YLPCoordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
         query.term = term
         query.limit = 20
         //query.radiusFilter = 25
         query.sort = YLPSortType.distance
         var category = Category(term: term)
         query.categoryFilter = category.getCategoryList()
-        print("apiClient in searchQueryWith \(apiClient)")
+        print("apiClient in searchQueryWith \(apiClient)")*/
+        
+        print("term \(term)")
+        
 
-        apiClient?.searchBusinesses(byTerm: term, location: nil, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, radius: nil, categories: nil, locale: nil, limit: 5, offset: 0, sortBy: nil, priceTiers: nil, openNow: nil, openAt: nil, attributes: nil) { (response: CDYelpSearchResponse?, error: Error?) in
+        apiClient?.searchBusinesses(byTerm: term, location: nil, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, radius: 40000, categories: nil, locale: nil, limit: 50, offset: 0, sortBy: CDYelpSortType.distance, priceTiers: nil, openNow: nil, openAt: nil, attributes: nil) { (response: CDYelpSearchResponse?, error: Error?) in
             
             let businesses = response?.businesses
             completionHandler(businesses, nil)

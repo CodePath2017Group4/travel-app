@@ -57,7 +57,7 @@ class LandingPageViewController: UIViewController {
     //poi // publicservicesgovt - civiccenter, landmarks,
     //entertainmneet// arts - movietheaters, galleries, theater
     // servicestations
-    let categoriesList = ["auto", "food, restaurants", "publicservicesgovt"/*poi*/,"shopping"/*shopping"*/, "hotels", "arts, active", "nightlife", "arts"]
+    let categoriesList = ["auto", "food, restaurant", "publicservicesgovt"/*poi*/,"shopping"/*shopping"*/, "hotels", "arts, active", "nightlife", "arts"]
     
     var selectedType = [String] ()
     
@@ -279,20 +279,10 @@ class LandingPageViewController: UIViewController {
                 selectedType.removeAll()
             }
             else {
-                
-                    
-                    gasImageView.alpha = 0.5
-                
-                    
-                    foodImageView.alpha = 0.5
-               
-                    
-                    poiImageView.alpha = 0.5
-                
-                
-                    
-                    shoppingImageView.alpha = 0.5
-                
+                gasImageView.alpha = 0.5
+                foodImageView.alpha = 0.5
+                poiImageView.alpha = 0.5
+                shoppingImageView.alpha = 0.5
                 
                 selectedImg?.transform = CGAffineTransform(scaleX: 1.1,y: 1.1);
                 selectedImg?.alpha = 0.0
@@ -305,8 +295,6 @@ class LandingPageViewController: UIViewController {
                 selectedType.removeAll()
                 selectedType.append(categoriesList[selectedIndex!])
             }
-            
-            
         }
         else {
             if gasImageView.tag != selectedIndex {
@@ -402,15 +390,11 @@ class LandingPageViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("segue.identifier \(segue.identifier!)")
 
-        if segue.identifier! == "NearMe"{//Constants.segueFilterIdentifier {
-            print("Etered segue.identifier \(segue.identifier)")
+        if segue.identifier! == "NearMe" {
 
             let mapViewController = segue.destination  as! MapViewController
             mapViewController.businesses = businesses
             mapViewController.searchTerm = selectedType
-           //// mapViewController.searchBar = searchBar
-           // mapViewController.filters = filters
-            //    mapViewController.filters1 = filters1*/
             
         }
         else if segue.identifier! == "CreateTrip" {
@@ -450,7 +434,6 @@ class LandingPageViewController: UIViewController {
     }
     
     @IBAction func onNearMe(_ sender: Any) {
-print("selectedType  \(selectedType)")
         performSearch(selectedType)
         
     }
@@ -465,36 +448,13 @@ print("selectedType  \(selectedType)")
             YelpFusionClient.shared.searchQueryWith(location: locationManager.location!, term: term[0], completionHandler: {(businesses: [CDYelpBusiness]?, error: Error?) -> Void in
                 
                 self.businesses = businesses
-                
-                print("self.businesses  in %^%^%Z^Z%^^^^^^^^$$$$$ search ---\(String(describing: self.businesses?.count))")
-                for bus in businesses! {
-                    print("bus.distance \(bus.distance)")
-                    print("bus.orice \(bus.price)")
-                    print("photos \(bus.photos?.count)")
-
-                }
+    
             })
             // working
             /*YelpFusionClient.sharedInstance.searchQueryWith(location: locationManager.location!, term: term[0], completionHandler: {(businesses: [YLPBusiness]?, error: Error?) -> Void in
                      self.businesses = businesses
-                
-                   print("self.businesses  in %^%^%Z^Z%^^^^^^^^^$$$$$$$$$$$ search ---\(String(describing: self.businesses?.count))")
-                
+                                
                 })*/
-
-           // YelpFusionClient.sharedInstance.searchWith(location: (locationManager.location?.coordinate)!, term: term[0], completionHandler: {(businesses: [YLPBusiness]?, error: Error?) -> Void in
-           //     self.businesses = businesses
-
-            //    print("self.businesses  in query search ---\(String(describing: self.businesses?.count))")
-
-            ///})
-            
-            /*YelpFusionClient.sharedInstance.search(inCurrent: (locationManager.location?.coordinate)!, term: term[0], completionHandler:  { (businesses: [YLPBusiness]?, error: Error?) -> Void in
-                
-                self.businesses = businesses
-                print("self.businesse    in current search ---\(self.businesses.count)")
-
-            })*/
         }
     }
 }
