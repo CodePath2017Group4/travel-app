@@ -9,7 +9,7 @@
 import Parse
 import UIKit
 
-class NotificationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InvitationDelegate {
+class NotificationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InvitationDelegate, InviteUserDelegate {
     @IBOutlet weak var notificationTable: UITableView!
     
     let MAX_INVITATIONS: Int = 3
@@ -24,10 +24,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarDarkTintColor
-        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
-        
+        navigationItem.title = "Notifications"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Invite", style: .plain, target: self, action: #selector(inviteTapped))
         
         notificationTable.delegate = self
@@ -147,6 +144,10 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func inviteTapped(_ sender: Any) {
+        if let vc = InviteToTripViewController.storyboardInstance() {
+            vc.delegate = self
+            self.show(vc, sender: self)
+        }
     }
     
     private func isPendingSection(section: Int) -> Bool {
@@ -207,6 +208,20 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
             }
             self.pastInvitations.append(tripMember)
         }
+    }
+    
+    func addInvitation(tripMember: TripMember) {
+        self.pastInvitations.append(tripMember)
+        DispatchQueue.main.async {
+            self.notificationTable.reloadData()
+        }
+        tripMember.saveInBackground(block: { (success, error) in
+            if (error != nil) {
+                log.error("Error inviting trip member: \(error)")
+            } else {
+                log.info("TripMember invited")
+            }
+        })
     }
     
     func confirmInvitation(index: Int) {

@@ -10,7 +10,9 @@
 		0399EEE1F94DD690043F7306 /* Pods_RoadTripPlannerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 357EAF1F849D9F86BCB0DECC /* Pods_RoadTripPlannerUITests.framework */; };
 		2A04FDBE15D76378875B18EE /* Pods_RoadTripPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE6504BFAEDF829CB7707C0 /* Pods_RoadTripPlanner.framework */; };
 		3813C226DA5D1B53E31622D6 /* Pods_RoadTripPlannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE5FA00D8C198D75B481719C /* Pods_RoadTripPlannerTests.framework */; };
-		480C97CE1FA59FDE004C9BEA /* InviteUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 480C97CD1FA59FDE004C9BEA /* InviteUserViewController.storyboard */; };
+		480A8AB61FA5A7AE00E5E494 /* InviteToTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480A8AB51FA5A7AE00E5E494 /* InviteToTripViewController.swift */; };
+		480A8AB81FA5AC0E00E5E494 /* InviteUserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480A8AB71FA5AC0E00E5E494 /* InviteUserDelegate.swift */; };
+		480C97CE1FA59FDE004C9BEA /* InviteToTripViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 480C97CD1FA59FDE004C9BEA /* InviteToTripViewController.storyboard */; };
 		481BDE6F1FA504750083B885 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481BDE6E1FA504750083B885 /* NotificationViewController.swift */; };
 		481BDE721FA504B50083B885 /* PendingInvitationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481BDE711FA504B50083B885 /* PendingInvitationTableViewCell.swift */; };
 		481BDE741FA504D80083B885 /* HistoryInvitationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481BDE731FA504D80083B885 /* HistoryInvitationTableViewCell.swift */; };
@@ -131,7 +133,9 @@
 		0F02A5D3F2710568F9C5A658 /* Pods-RoadTripPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlanner/Pods-RoadTripPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 		32FA5684804643DC22FE3AB7 /* Pods-RoadTripPlannerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoadTripPlannerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoadTripPlannerUITests/Pods-RoadTripPlannerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		357EAF1F849D9F86BCB0DECC /* Pods_RoadTripPlannerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoadTripPlannerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		480C97CD1FA59FDE004C9BEA /* InviteUserViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InviteUserViewController.storyboard; sourceTree = "<group>"; };
+		480A8AB51FA5A7AE00E5E494 /* InviteToTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToTripViewController.swift; sourceTree = "<group>"; };
+		480A8AB71FA5AC0E00E5E494 /* InviteUserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteUserDelegate.swift; sourceTree = "<group>"; };
+		480C97CD1FA59FDE004C9BEA /* InviteToTripViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InviteToTripViewController.storyboard; sourceTree = "<group>"; };
 		481BDE6E1FA504750083B885 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		481BDE711FA504B50083B885 /* PendingInvitationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingInvitationTableViewCell.swift; sourceTree = "<group>"; };
 		481BDE731FA504D80083B885 /* HistoryInvitationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInvitationTableViewCell.swift; sourceTree = "<group>"; };
@@ -286,6 +290,8 @@
 			children = (
 				481BDE6E1FA504750083B885 /* NotificationViewController.swift */,
 				481BDE781FA52C050083B885 /* InvitationDelegate.swift */,
+				480A8AB51FA5A7AE00E5E494 /* InviteToTripViewController.swift */,
+				480A8AB71FA5AC0E00E5E494 /* InviteUserDelegate.swift */,
 			);
 			name = Notification;
 			sourceTree = "<group>";
@@ -361,7 +367,7 @@
 				DFCC37801F970A30003BDCA6 /* TripSettingsViewController.storyboard */,
 				DFCC379C1F9935D2003BDCA6 /* TempLandingViewController.storyboard */,
 				DFCC37A01F9950F9003BDCA6 /* TempCreateTripViewController.storyboard */,
-				480C97CD1FA59FDE004C9BEA /* InviteUserViewController.storyboard */,
+				480C97CD1FA59FDE004C9BEA /* InviteToTripViewController.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -632,7 +638,7 @@
 				DF989F881F9EAB4200061AFA /* FriendsListViewController.storyboard in Resources */,
 				DFCC378F1F970E41003BDCA6 /* MapViewController.storyboard in Resources */,
 				DFCC37851F970C3D003BDCA6 /* Photo.storyboard in Resources */,
-				480C97CE1FA59FDE004C9BEA /* InviteUserViewController.storyboard in Resources */,
+				480C97CE1FA59FDE004C9BEA /* InviteToTripViewController.storyboard in Resources */,
 				DFCC378B1F970D5F003BDCA6 /* CategoryListViewController.storyboard in Resources */,
 				DFB6250F1FA3CC4F00397933 /* TripCollectionViewCell.xib in Resources */,
 				DFCC37911F97C604003BDCA6 /* LoginViewController.storyboard in Resources */,
@@ -864,6 +870,7 @@
 				F8B6A3E31F93207500942820 /* TripDetailsCell.swift in Sources */,
 				DF7BC0701F9D4ED700B3746B /* AddStopViewController.swift in Sources */,
 				DFCC37A91F99C5AC003BDCA6 /* TripSegmentCell.swift in Sources */,
+				480A8AB81FA5AC0E00E5E494 /* InviteUserDelegate.swift in Sources */,
 				486E3C461F945EEB003D2FFF /* AlbumListViewController.swift in Sources */,
 				F80559C61F9B5DE100454EB6 /* CategoryRow.swift in Sources */,
 				DF989F861F9EAB2E00061AFA /* FriendsListViewController.swift in Sources */,
@@ -927,6 +934,7 @@
 				DFC85C201F9D379A00797D92 /* AddAlbumDelegate.swift in Sources */,
 				481BDE791FA52C060083B885 /* InvitationDelegate.swift in Sources */,
 				DFECC5701F9C2DDD00F3B63E /* TestData.swift in Sources */,
+				480A8AB61FA5A7AE00E5E494 /* InviteToTripViewController.swift in Sources */,
 				486E3C401F945ED8003D2FFF /* Album.swift in Sources */,
 				DFECC5671F9C1CFB00F3B63E /* BusinessCollectionCell.swift in Sources */,
 				48CCC83F1F9D0A4900050176 /* DeleteAlbumDelegate.swift in Sources */,
