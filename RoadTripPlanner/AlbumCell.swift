@@ -35,6 +35,7 @@ class AlbumCell: UITableViewCell {
         }
         self.album!.updated(copyFrom: album)
         albumImage.image = UIImage(named: "album-default")
+        albumImage.contentMode = .scaleAspectFit
         
         if (album.photos.count > 0) {
             album.photos[0].getDataInBackground(block: { (data, error) -> Void in
@@ -42,6 +43,7 @@ class AlbumCell: UITableViewCell {
                     if let data = data {
                         DispatchQueue.main.async {
                             self.albumImage.image = UIImage(data: data)
+                            self.albumImage.contentMode = .scaleAspectFill
                         }
                     }
                 }

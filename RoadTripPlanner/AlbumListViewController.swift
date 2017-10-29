@@ -127,20 +127,29 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func deleteAlbum(album: Album, indexPath: IndexPath) {
         // TODO: should use @album
-        print("delete albums \(indexPath.row)")
-        self.albums.remove(at: indexPath.row)
-        album.deleteInBackground { (success, error) in
-            if success {
-                log.info("Album \(album.albumName) deleted")
-            } else {
-                guard let error = error else {
-                    log.error("Unknown error occurred deleting album \(album.albumName)")
-                    return
+        if (album.owner == nil || album.owner != PFUser.current()) {
+            let alertController = UIAlertController(title: "Request denied", message: "You don't have permission to remove the album.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+                NSLog("The \"OK\" alert occured.")
+            }))
+            
+            self.present(alertController, animated: true)
+        } else {
+            print("delete albums \(indexPath.row)")
+            self.albums.remove(at: indexPath.row)
+            album.deleteInBackground { (success, error) in
+                if success {
+                    log.info("Album \(album.albumName) deleted")
+                } else {
+                    guard let error = error else {
+                        log.error("Unknown error occurred deleting album \(album.albumName)")
+                        return
+                    }
+                    log.error("Error deleting album \(album.albumName): \(error)")
                 }
-                log.error("Error deleting album \(album.albumName): \(error)")
             }
+            self.albumsTable.reloadData()
         }
-        self.albumsTable.reloadData()
     }
     
     func updateAlbum(album: Album, indexPath: IndexPath?) {

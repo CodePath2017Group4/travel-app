@@ -14,8 +14,8 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
     
     let MAX_INVITATIONS: Int = 3
     
-    var expandPending: Bool = true
-    var expandPast: Bool = true
+    var expandPending: Bool = false
+    var expandPast: Bool = false
     
     var trips: [Trip] = []
     var pendingInvitations: [TripMember] = []
@@ -24,6 +24,10 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarDarkTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
         navigationItem.title = "Notifications"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Invite", style: .plain, target: self, action: #selector(inviteTapped))
         

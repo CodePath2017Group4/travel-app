@@ -50,6 +50,8 @@ class AddAlbumViewController: UIViewController, UITableViewDelegate, UITableView
         tripTable.delegate = self
         tripTable.dataSource = self
         tripTable.reloadData()
+        
+        albumNameText.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
