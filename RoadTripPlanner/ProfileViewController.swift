@@ -55,12 +55,11 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
             let avatarFile = PFUser.current()?.object(forKey: "avatar") as? PFFile
             if avatarFile != nil {
                 Utils.fileToImage(file: avatarFile!, callback: { (avatarImage: UIImage) in
-                    self.profileButton.setBackgroundImage(avatarImage, for: .normal)
+                    self.profileButton.setImage(avatarImage, for: .normal)
                 })
             } else {
-                self.profileButton.setBackgroundImage(UIImage(named: "user"), for: .normal)
+                self.profileButton.setImage(UIImage(named: "user"), for: .normal)
             }
-            
             
             requestTrips()
             requestAlbums()
@@ -130,24 +129,11 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
     }
     
     private func requestTrips() {
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            ParseBackend.getTrips(completionHandler: { (trips, error) in
-                if trips != nil {
-                    
-//                    self.trips = trips!
-                    
-                    DispatchQueue.main.async {
-                        self.numTripsLabel.text = "\(trips!.count)"
-                    }
-                }
-            })
-        }
-        
-        ParseBackend.getTripsForUser(user: PFUser.current()!, areUpcoming: false) { (trips, error) in
+        ParseBackend.getTripsForUser(user: PFUser.current()!, areUpcoming: false, onlyConfirmed: true) { (trips, error) in
             if error == nil {
                 log.info("past trips count: \(trips!.count)")
                 self.trips = trips!
+                self.numTripsLabel.text = "\(trips!.count)"
                 DispatchQueue.main.async {
 //                    self.tripsSummaryTable.reloadData()
                     self.collectionView.reloadData()
@@ -172,7 +158,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
     
     func addPhoto(image: UIImage?) {
         if let image = image {
-            profileButton.setBackgroundImage(image, for: .normal)
+            self.profileButton.setImage(image, for: .normal)
             
             let avatar = Utils.imageToFile(image: image)
             PFUser.current()!.setObject(avatar!, forKey: "avatar")
@@ -194,11 +180,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
         return trips.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "tripCell") as! TripSummaryCell
-//        cell.setTrip(trip: trips[indexPath.row])
-//        return cell
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
         let tripCell = tableView.dequeueReusableCell(withIdentifier: Constants.ReuseableCellIdentifiers.TripTableViewCell, for: indexPath) as! TripTableViewCell
         tripCell.trip = trips[indexPath.row]
         return tripCell
