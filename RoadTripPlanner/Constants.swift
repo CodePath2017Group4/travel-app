@@ -18,6 +18,7 @@ struct Constants {
         static let AlbumsNavigationController = "PhotoGallery"
         static let ProfileNavigationController = "Profile"
         static let TripsNavigationController = "LandingPage"
+        static let NotificationNavigationController = "Notifications"
     }
     
     struct NotificationNames {

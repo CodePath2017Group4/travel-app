@@ -189,7 +189,7 @@ class LandingPageViewController: UIViewController {
     }
 
     fileprivate func loadUpcomingTrips() {
-        ParseBackend.getTripsForUser(user: PFUser.current()!, areUpcoming: true) { (trips, error) in
+        ParseBackend.getTripsForUser(user: PFUser.current()!, areUpcoming: true, onlyConfirmed: true) { (trips, error) in
             if error == nil {
                 if let t = trips {
                     log.info("Upcoming trip count \(t.count)")

@@ -25,33 +25,34 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarDarkTintColor
         let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-
         
-        requestAlbums()
 //        fakeAlbums()
-        requestTrips()
+        requestTripsAndAlbums()
     }
     
-    private func requestAlbums() {
-        ParseBackend.getAlbums { (albums, error) in
-            if error == nil {
-                self.albums = albums!
-                DispatchQueue.main.async {
-                    self.albumsTable.reloadData()
+    private func requestTripsAndAlbums() {
+        if let user = PFUser.current() {
+            ParseBackend.getTripsForUser(user: user, areUpcoming: false, onlyConfirmed: true) { (trips, error) in
+                if error == nil {
+                    self.trips = trips!
+                    print("I have \(trips!.count) trips")
+                    ParseBackend.getAlbumsOnTrips(trips: trips!) { (albums, error) in
+                        if error == nil {
+                            print("I have \(albums!.count) albums")
+                            self.albums = albums!
+                            DispatchQueue.main.async {
+                                self.albumsTable.reloadData()
+                            }
+                        } else {
+                            log.error("Error fetching albums: \(error!)")
+                        }
+                    }
+                } else {
+                    log.error("Error fetching trips: \(error!)")
                 }
-            } else {
-                log.error("Error fetching albums: \(error!)")
             }
-        }
-    }
-    
-    private func requestTrips() {
-        ParseBackend.getTrips { (trips, error) in
-            if error == nil {
-                self.trips = trips!
-            } else {
-               log.error("Error fetching trips: \(error!)")
-            }
+        } else {
+            self.trips = []
         }
     }
     
@@ -65,12 +66,6 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         var photos: [UIImage] = [
             UIImage(named: "sf")!,
-            UIImage(named: "profile1")!,
-            UIImage(named: "profile2")!,
-            UIImage(named: "profile3")!,
-            UIImage(named: "profile1")!,
-            UIImage(named: "profile2")!,
-            UIImage(named: "profile3")!,
             UIImage(named: "profile1")!,
             UIImage(named: "profile2")!,
             UIImage(named: "profile3")!]

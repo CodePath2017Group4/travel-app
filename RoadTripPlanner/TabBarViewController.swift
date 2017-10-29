@@ -28,12 +28,15 @@ class TabBarViewController: UITabBarController {
         
         addLogoutButton(to: albumsNavigtaionViewController)
         
+        let notificationsNavigationController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.NotificationNavigationController) as! UINavigationController
+        notificationsNavigationController.tabBarItem = UITabBarItem(title: "Notifications", image: #imageLiteral(resourceName: "notification-tab"), tag: 2)
+        
         let profileNavigationController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllerIdentifiers.ProfileNavigationController) as! UINavigationController
-        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "profile-tab"), tag: 2)
+        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "profile-tab"), tag: 3)
         
         addLogoutButton(to: profileNavigationController)
         
-        let viewControllerList = [tripsNavigtaionController, albumsNavigtaionViewController, profileNavigationController]
+        let viewControllerList = [tripsNavigtaionController, albumsNavigtaionViewController, notificationsNavigationController, profileNavigationController]
         
         // Set the viewControllers property of our UITabBarController
         viewControllers = viewControllerList

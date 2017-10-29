@@ -13,8 +13,7 @@ class FriendUserCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var invitationStatusImageView: UIImageView!
-    
+    @IBOutlet weak var invitationStatus: UILabel!
     
     var user: PFUser! {
         didSet {
@@ -28,6 +27,18 @@ class FriendUserCell: UITableViewCell {
             } else {
                 avatarImageView.image = #imageLiteral(resourceName: "user")
             }
+        }
+    }
+    
+    func setStatus(onTrip: Int) {
+        if (onTrip == InviteStatus.Pending.hashValue) {
+            invitationStatus.text = "Invitation Status: Pending"
+        } else if (onTrip == InviteStatus.Confirmed.hashValue) {
+            invitationStatus.text = "Invitation Status: Confirmed"
+        }  else if (onTrip == InviteStatus.Rejected.hashValue) {
+            invitationStatus.text = "Invitation Status: Rejected"
+        } else {
+            invitationStatus.text = "No invitation sent before"
         }
     }
     
