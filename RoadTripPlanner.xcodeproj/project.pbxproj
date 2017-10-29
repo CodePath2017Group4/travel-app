@@ -86,6 +86,7 @@
 		F806F2F81F8ECB2300E11785 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = F806F2F71F8ECB2300E11785 /* Business.swift */; };
 		F8607B1D1F8FCC8E0029DB02 /* TripDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8607B1C1F8FCC8E0029DB02 /* TripDetailsViewController.swift */; };
 		F8607B251F903FC20029DB02 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8607B241F903FC20029DB02 /* User.swift */; };
+		F86330181FA517DA0074071E /* PlacesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86330171FA517DA0074071E /* PlacesView.swift */; };
 		F891E10C1F94375D006B2DD6 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E10B1F94375D006B2DD6 /* CreateUserViewController.swift */; };
 		F891E1151F943796006B2DD6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F891E1141F943796006B2DD6 /* ProfileViewController.swift */; };
 		F898F1FA1FA02AA600EE0293 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = F898F1F91FA02AA600EE0293 /* Places.swift */; };
@@ -212,6 +213,7 @@
 		F806F2F71F8ECB2300E11785 /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		F8607B1C1F8FCC8E0029DB02 /* TripDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailsViewController.swift; sourceTree = "<group>"; };
 		F8607B241F903FC20029DB02 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F86330171FA517DA0074071E /* PlacesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesView.swift; sourceTree = "<group>"; };
 		F891E10B1F94375D006B2DD6 /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		F891E1141F943796006B2DD6 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F898F1F91FA02AA600EE0293 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				DF32B9C71F9470F200594F0B /* TripMember.swift */,
 				DFCC37A41F99B9FF003BDCA6 /* TripSegment.swift */,
 				F898F1F91FA02AA600EE0293 /* Places.swift */,
+				F86330171FA517DA0074071E /* PlacesView.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -554,7 +557,6 @@
 					F806F2761F8DA42A00E11785 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 8Z5KC369JZ;
-						DevelopmentTeam = 8F2PWFTJG8;
 						ProvisioningStyle = Automatic;
 					};
 					F806F28A1F8DA42B00E11785 = {
@@ -830,6 +832,7 @@
 				F8B6A3E31F93207500942820 /* TripDetailsCell.swift in Sources */,
 				DF7BC0701F9D4ED700B3746B /* AddStopViewController.swift in Sources */,
 				DFCC37A91F99C5AC003BDCA6 /* TripSegmentCell.swift in Sources */,
+				F86330181FA517DA0074071E /* PlacesView.swift in Sources */,
 				486E3C461F945EEB003D2FFF /* AlbumListViewController.swift in Sources */,
 				F80559C61F9B5DE100454EB6 /* CategoryRow.swift in Sources */,
 				DF989F861F9EAB2E00061AFA /* FriendsListViewController.swift in Sources */,
@@ -1049,7 +1052,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8Z5KC369JZ;
-				DEVELOPMENT_TEAM = 8F2PWFTJG8;
 				INFOPLIST_FILE = RoadTripPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1070,7 +1072,6 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8Z5KC369JZ;
-				DEVELOPMENT_TEAM = 8F2PWFTJG8;
 				INFOPLIST_FILE = RoadTripPlanner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

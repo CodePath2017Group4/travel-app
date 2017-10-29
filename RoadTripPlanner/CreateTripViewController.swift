@@ -597,6 +597,9 @@ class CreateTripViewController: UIViewController {
                 termCategory.updateValue(categoryArray!, forKey: "auto")
 
             }
+            else {
+                termCategory.updateValue([autoCategoriesList[selectedIndex!]], forKey: "auto")
+            }
         }
         else {
             if selectedIndex == 1 {
@@ -630,7 +633,6 @@ class CreateTripViewController: UIViewController {
                     var categoryArray = termCategory["restaurants"]
                     if !(categoryArray?.contains(foodCategoriesList[selectedIndex!]))! {
                         categoryArray?.append(foodCategoriesList[selectedIndex!])
-                        print("categoryArray in if ===== >  \(categoryArray)")
                     }
                     termCategory["restaurants"] = categoryArray
                 }
@@ -643,7 +645,6 @@ class CreateTripViewController: UIViewController {
                     var categoryArray = termCategory["nightlife"]
                     if !(categoryArray?.contains("bars"))! {
                         categoryArray?.append("bars")
-                        print("categoryArray in if ===== >  \(categoryArray)")
                     }
                     termCategory.updateValue(categoryArray!, forKey: "nightlife")
 
@@ -688,7 +689,9 @@ class CreateTripViewController: UIViewController {
                 termCategory.updateValue(categoryArray!, forKey: "publicservicesgovt")
                 
             }
-
+            else {
+                termCategory.updateValue([poiCategoriesList[selectedIndex!]], forKey: "publicservicesgovt")
+            }
 
         }
         else {
@@ -724,10 +727,12 @@ class CreateTripViewController: UIViewController {
                 var categoryArray = termCategory["hotels"]
                 if !(categoryArray?.contains(lodgingCategoriesList[selectedIndex!]))! {
                     categoryArray?.append(lodgingCategoriesList[selectedIndex!])
-                    print("categoryArray in if ===== >  \(categoryArray)")
                 }
                 termCategory.updateValue(categoryArray!, forKey: "hotels")
                 
+            }
+            else {
+                termCategory.updateValue([lodgingCategoriesList[selectedIndex!]], forKey: "hotels")
             }
         }
         else {
@@ -885,11 +890,11 @@ class CreateTripViewController: UIViewController {
     @IBAction func onStartTrip(_ sender: Any) {
         
         performSearch(termCategory: termCategory)
-        
+
     }
     
     final func performSearch(termCategory: [String : [String]]/*_ term: [String]?*/) {
-       
+        
     }
     
     func showAddressTable(addresses: [String], textField: UITextField, placemarks: [CLPlacemark]) {
