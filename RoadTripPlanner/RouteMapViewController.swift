@@ -17,6 +17,7 @@ class RouteMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var directionsTableView: DirectionsTableView!
     
+    @IBOutlet weak var navImageView: UIImageView!
     let fromLocation:CLLocation = CLLocation(latitude: 24.186965, longitude: 120.633268)
 
     
@@ -38,13 +39,29 @@ class RouteMapViewController: UIViewController {
     var routeVar = [MKRoute]()
     var routeCoordinatesDB = [String : [CLLocationCoordinate2D]]()
     var coords: [CLLocationCoordinate2D] = []
-
+    
+    
+    private let goldenGate = TripSegment(name: "Golden Gate Bridge",
+                                         address: "Golden Gate Bridge, San Francisco, CA 94129",
+                                         location: CLLocation(latitude: 37.8199328, longitude: -122.4804491))
+    private let ghiradelli = TripSegment(name: "Ghirardelli Square",
+                                         address: "North Point Street, San Francisco, CA",
+                                         location: CLLocation(latitude: 37.8058763, longitude: -122.4251442))
+    
+    private let facebook = TripSegment(name: "Facebook Headquarters",
+                                       address: "1 Hacker Way, Menlo Park, CA 94025",
+                                       location: CLLocation(latitude: 37.4845317, longitude: -122.1496421))
+    
+    private let apple = TripSegment(name: "Apple Infinite Loop",
+                                    address: "1 Infinite Loop, Cupertino, CA 95014",
+                                    location: CLLocation(latitude: 37.3316756, longitude: -122.032383))
+var loadTripOnMap = true
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.register(PlacesMarkerView.self,forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
        // mapView.register(PlacesView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
 //========================================================================
-        
+        if !loadTripOnMap {
         let startCoordinate = locationArray[0].mapItem?.placemark.coordinate
      startPlace = Places(cllocation: CLLocation.init(latitude: (startCoordinate?.latitude)!, longitude: (startCoordinate?.longitude)!)
             , distance: 0, coordinate: startCoordinate!)
@@ -72,6 +89,24 @@ class RouteMapViewController: UIViewController {
             if self.coords.count != 0 {
                 ARSLineProgress.hide()
             }        }
+        
+        }
+        else {
+        
+        var tripSF = Trip.createTrip(name: "Unnamed Trip", date: Date(), creator: PFUser.current()!)
+        tripSF.addSegment(tripSegment: apple)
+        tripSF.addSegment(tripSegment: facebook)
+        tripSF.addSegment(tripSegment: ghiradelli)
+        tripSF.addSegment(tripSegment: goldenGate)
+            loadTripOnMap(trip: tripSF)
+
+        
+        }
+        
+        let navImageTap = UITapGestureRecognizer(target: self, action: #selector(navImgTapped))
+        navImageTap.numberOfTapsRequired = 1
+        navImageView.isUserInteractionEnabled = true
+        navImageView.addGestureRecognizer(navImageTap)
         
         mapView.delegate = self
         
@@ -111,6 +146,25 @@ class RouteMapViewController: UIViewController {
         
         
     }
+    
+    func navImgTapped(_ sender: UITapGestureRecognizer) {
+        let latitude: CLLocationDegrees = 37.2
+        let longitude: CLLocationDegrees = 22.9
+        
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = "Place Name"
+        mapItem.openInMaps(launchOptions: options)
+    }
+    
+
     
     func calculateSegmentDirections(index: Int, time: TimeInterval, routes: [MKRoute]) /*-> [MKRoute]*/ {
         let request: MKDirectionsRequest = MKDirectionsRequest()
@@ -284,6 +338,96 @@ class RouteMapViewController: UIViewController {
                                    // self?.addAnnotationFor(businesses: (self?.businesses)!)
                                     print("<<<<===Route viewcontriller===>>>>>>> \(self?.businesses.count)")
                                     self?.mapView.reloadInputViews()
+        }
+        
+    }
+    
+    func tripWasModified(notification: NSNotification) {
+        let info = notification.userInfo
+        let trip = info!["trip"] as! Trip
+        
+        loadTripOnMap(trip: trip)
+    }
+    
+    func loadTripOnMap(trip: Trip) {
+
+        let stops = trip.segments
+        var stops2Load =  [Places]()
+        
+        var startTrip: Places?
+        var destTrip: Places?
+print("stops \(stops)")
+        if stops?.count != 0 && (stops?.count)! > 1 {
+            var start = stops![0]
+            startTrip = Places(cllocation: CLLocation.init(latitude: (start.geoPoint?.latitude)!, longitude: (start.geoPoint?.longitude)!),
+                               distance: 0,
+                               coordinate: CLLocationCoordinate2D(latitude: (start.geoPoint?.latitude)!, longitude: (start.geoPoint?.longitude)!))
+                startTrip?.type = "start"
+            var stopPlacemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: (start.geoPoint?.latitude)!, longitude: (start.geoPoint?.longitude)!), addressDictionary: nil)
+            var stopMapItem = MKMapItem(placemark: stopPlacemark)
+
+            locationArray.append((textField: UITextField(), mapItem: stopMapItem))
+
+            var dest = stops![((stops?.endIndex)! - 1)]
+
+            destTrip = Places(cllocation: CLLocation.init(latitude: (dest.geoPoint?.latitude)!, longitude: (dest.geoPoint?.longitude)!), distance: 0, coordinate: CLLocationCoordinate2D(latitude: (dest.geoPoint?.latitude)!, longitude: (dest.geoPoint?.longitude)!))
+                destTrip?.type = "finish"
+        
+            for stopIndex in 1..<(stops!.count - 1) {
+                
+                let stop = stops! [stopIndex]
+                let tripStopPlace = Places(cllocation: CLLocation.init(latitude: (stop.geoPoint?.latitude)!, longitude: (stop.geoPoint?.longitude)!), distance: 0, coordinate: CLLocationCoordinate2D(latitude: (stop.geoPoint?.latitude)!, longitude: (stop.geoPoint?.longitude)!))
+                
+                tripStopPlace.calculateDistance(fromLocation: startTrip?.cllocation)
+                
+                placestops.append(tripStopPlace)
+            }
+            
+            placestops.sort(by: { ($0.distance?.isLess(than: $1.distance! ))! })
+
+            var toProceed = false
+            var stopIndex = 0
+            for i in 0...placestops.count-1 {
+                let stop = placestops[i]
+                stop.type = "\(i + 1)"
+                placestops[i] = stop
+                print("stop type changed  **************\(placestops.count)**********************")
+                print("stop type for \(i) changed  to \(i+1) == \(stop.type)")
+                
+                stopPlacemark = MKPlacemark(coordinate: stop.coordinate, addressDictionary: nil)
+                stopMapItem = MKMapItem(placemark: stopPlacemark)
+                
+                locationArray.append((textField: UITextField(), mapItem: stopMapItem))
+                
+            }
+            
+            placestops.insert(startTrip!, at: 0)
+            placestops.append(destTrip!)
+            
+            stopPlacemark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: (dest.geoPoint?.latitude)!, longitude: (dest.geoPoint?.longitude)!), addressDictionary: nil)
+            stopMapItem = MKMapItem(placemark: stopPlacemark)
+            
+            locationArray.append((textField: UITextField(), mapItem: stopMapItem))
+            
+            print("placestops.count \(placestops.count)")
+            
+            self.mapView.removeOverlays(self.mapView.overlays)
+            calculateSegmentDirections(index: 0, time: 0, routes: [])
+            
+            /*for stops in placestops {
+             mapView.addAnnotation(stops)
+             //self.annotations.append(stops)
+             
+             }*/
+            
+            print("placestops.count \(placestops.count)")
+            print("(mapView.annotations.count ============================ \(mapView.annotations.count)")
+            
+            self.mapView.addAnnotations((self.placestops)) //only route
+            
+            
+            
+            
         }
 
     }
