@@ -191,12 +191,6 @@ class TripDetailsViewController: UIViewController {
         
         showAlertController()
         
-//        guard let settingsVC = TripSettingsViewController.storyboardInstance() else { return }
-//        settingsVC.trip = trip
-//        navigationController?.pushViewController(settingsVC, animated: true)
-    }
-    
-    @IBAction func albumButtonPressed(_ sender: Any) {
     }
     
     @IBAction func mapButtonPressed(_ sender: Any) {
@@ -303,10 +297,9 @@ class TripDetailsViewController: UIViewController {
     func showAlertController() {
         
         let alert = UIAlertController()
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Trip Settings", comment: "Default action"),
-                                      style: .`default`,
-                                      handler: { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Trip Settings", comment: "Default action"), style: .`default`, handler: { _ in
             log.verbose("Trip Settings selected")
+            self.showSettings()
         }))
         
         alert.addAction(UIAlertAction(title: "Link Album", style: .default, handler: { _ in
@@ -319,13 +312,52 @@ class TripDetailsViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "Delete Trip", style: .destructive, handler: { _ in
             log.verbose("Delete Trip selected")
+            self.deleteTrip()
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
             log.verbose("Cancel selected")
-            alert.dismiss(animated: true, completion: nil)
         }))
         
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Action sheet action handlers
+    func showSettings() {
+        guard let settingsVC = TripSettingsViewController.storyboardInstance() else { return }
+        settingsVC.trip = trip
+        navigationController?.pushViewController(settingsVC, animated: true)
+    }
+    
+    func deleteTrip() {
+        // Confirm they want the trip deleted.
+        let alert = UIAlertController(title: "Delete Trip?", message: "Are you sure you would like to delete this trip", preferredStyle: .alert)
+        
+        let noAction = UIAlertAction(title: "No", style: .default, handler: { _ in
+            log.verbose("No selected")
+        })
+        
+        let confirmAction = UIAlertAction(title: "I'm Sure!", style: .default, handler: { _ in
+            log.verbose("Delete confirmed")
+            self.trip?.deleteInBackground(block: { (success, error) in
+                if error == nil {
+                    log.info("Trip deletion success: \(success)")
+                    if success {
+                        // Post a notification that the trip has been deleted.
+                        NotificationCenter.default.post(name: Constants.NotificationNames.TripDeletedNotification, object: nil, userInfo: ["trip": self.trip!])
+                        // Return to the previous screen.
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                } else {
+                    log.error("Error deleting trip: \(error!)")
+                }
+            })
+        })
+        
+        alert.addAction(noAction)
+        alert.addAction(confirmAction)
+        
+        alert.preferredAction = noAction
         self.present(alert, animated: true, completion: nil)
     }
 }
