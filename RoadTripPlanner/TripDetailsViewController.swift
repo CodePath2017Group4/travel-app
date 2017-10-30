@@ -168,10 +168,6 @@ class TripDetailsViewController: UIViewController {
         })
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)        
-    }
-    
     // MARK: - IBAction methods
     
     @IBAction func editButtonPressed(_ sender: Any) {
@@ -192,9 +188,12 @@ class TripDetailsViewController: UIViewController {
     }
     
     @IBAction func tripSettingButtonPressed(_ sender: Any) {
-        guard let settingsVC = TripSettingsViewController.storyboardInstance() else { return }
-        settingsVC.trip = trip
-        navigationController?.pushViewController(settingsVC, animated: true)
+        
+        showAlertController()
+        
+//        guard let settingsVC = TripSettingsViewController.storyboardInstance() else { return }
+//        settingsVC.trip = trip
+//        navigationController?.pushViewController(settingsVC, animated: true)
     }
     
     @IBAction func albumButtonPressed(_ sender: Any) {
@@ -298,6 +297,36 @@ class TripDetailsViewController: UIViewController {
             animated: true,
             completion: nil
         )
+    }
+    
+    // MARK: - UIAlertController action sheet
+    func showAlertController() {
+        
+        let alert = UIAlertController()
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Trip Settings", comment: "Default action"),
+                                      style: .`default`,
+                                      handler: { _ in
+            log.verbose("Trip Settings selected")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Link Album", style: .default, handler: { _ in
+            log.verbose("Link Album selected")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Write a Review", style: .default, handler: { _ in
+            log.verbose("Review selected")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Delete Trip", style: .destructive, handler: { _ in
+            log.verbose("Delete Trip selected")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            log.verbose("Cancel selected")
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
