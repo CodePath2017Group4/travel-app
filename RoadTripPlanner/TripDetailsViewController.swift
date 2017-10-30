@@ -24,8 +24,7 @@ class TripDetailsViewController: UIViewController {
     @IBOutlet weak var emailGroupImageView: UIImageView!
     @IBOutlet weak var editTableButton: UIButton!
     @IBOutlet weak var addStopButton: UIButton!
-    @IBOutlet weak var addFriendsButton: UIButton!
-    @IBOutlet weak var tripSettingsButton: UIButton!
+    @IBOutlet weak var addFriendsButton: UIButton!    
     
     @IBOutlet weak var tripSettingsImageView: UIImageView!
     
@@ -53,12 +52,18 @@ class TripDetailsViewController: UIViewController {
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 3.0
         
-        view.backgroundColor = Constants.Colors.ViewBackgroundColor        
+        // Make the navigation bar completely transparent.
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+
+        
         navigationController?.navigationBar.tintColor = Constants.Colors.ColorPalette3314Color4
         let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.ColorPalette3314Color4]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+                
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "md_settings"), style: .plain, target: self, action: #selector(tripSettingButtonPressed(_:)))
 
-        
         
         registerForNotifications()
         
@@ -172,11 +177,11 @@ class TripDetailsViewController: UIViewController {
     @IBAction func editButtonPressed(_ sender: Any) {
         if tableView.isEditing {
             tableView.setEditing(false, animated: true)
-            editTableButton.setTitle("  Edit", for: .normal)
-            editTableButton.setTitleColor(UIColor.black, for: .normal)
+            editTableButton.setTitle(" Edit", for: .normal)
+            editTableButton.setTitleColor(UIColor.white, for: .normal)
         } else {
             tableView.setEditing(true, animated: true)
-            editTableButton.setTitle("  Done", for: .normal)
+            editTableButton.setTitle(" Done", for: .normal)
             let doneColor = UIColor(red: 234/255.0, green: 76/255.0, blue: 28/255.0, alpha: 1)
             editTableButton.setTitleColor(doneColor, for: .normal)
         }
