@@ -224,7 +224,7 @@ class TripDetailsViewController: UIViewController {
         let routeMapViewController = storyboard.instantiateViewController(withIdentifier: "RouteMapView") as! RouteMapViewController
         routeMapViewController.trip  = trip
         routeMapViewController.locationArray = locations
-        routeMapViewController.termCategory = ["All" : ["All"]]
+        routeMapViewController.termCategory = ["restaurant" : ["restaurant"]]
         navigationController?.pushViewController(routeMapViewController, animated: true)
     }
     
