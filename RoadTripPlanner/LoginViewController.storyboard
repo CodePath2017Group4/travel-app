@@ -9,8 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
+        <array key="Verdana.ttf">
+            <string>Verdana</string>
         </array>
     </customFonts>
     <scenes>
@@ -26,13 +26,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_name_white" translatesAutoresizingMaskIntoConstraints="NO" id="aK9-Jz-7Ko">
-                                <rect key="frame" x="88" y="40" width="199" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="836-Mj-zAI"/>
-                                    <constraint firstAttribute="width" constant="199" id="Nh1-GE-sM2"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trD-Z8-Odu">
                                 <rect key="frame" x="59" y="245" width="256" height="40"/>
                                 <color key="backgroundColor" red="0.27979743480000002" green="0.35620298979999998" blue="0.4063227177" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -40,9 +33,9 @@
                                     <constraint firstAttribute="height" constant="40" id="1IQ-ur-7ir"/>
                                     <constraint firstAttribute="width" constant="256" id="q09-oG-7nC"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                 <state key="normal" title="LOG IN">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="5Ow-9g-h8t" eventType="touchUpInside" id="4aI-fK-fhO"/>
@@ -69,21 +62,28 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="alphabet" keyboardAppearance="light" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_name_white_verdana" translatesAutoresizingMaskIntoConstraints="NO" id="aK9-Jz-7Ko">
+                                <rect key="frame" x="69" y="68" width="236" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="QCy-0J-Bbd"/>
+                                    <constraint firstAttribute="width" constant="236" id="iZl-A3-Xoj"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.3147298992" green="0.55744743350000003" blue="0.74876743560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fb4-wr-Hwq" firstAttribute="centerX" secondItem="YvO-NO-bIE" secondAttribute="centerX" id="CtF-in-VJS"/>
+                            <constraint firstItem="aK9-Jz-7Ko" firstAttribute="top" secondItem="KmT-EA-dwO" secondAttribute="bottom" constant="48" id="JHK-eg-jdq"/>
+                            <constraint firstItem="aK9-Jz-7Ko" firstAttribute="centerX" secondItem="YvO-NO-bIE" secondAttribute="centerX" id="KRz-Id-b8V"/>
                             <constraint firstItem="F6y-57-rz4" firstAttribute="centerX" secondItem="YvO-NO-bIE" secondAttribute="centerX" id="P0H-ka-7Rt"/>
                             <constraint firstItem="F6y-57-rz4" firstAttribute="width" secondItem="16b-9d-AAB" secondAttribute="width" id="UDL-Nf-mig"/>
                             <constraint firstItem="F6y-57-rz4" firstAttribute="top" secondItem="16b-9d-AAB" secondAttribute="bottom" constant="20" id="Xck-Xh-MiT"/>
                             <constraint firstItem="trD-Z8-Odu" firstAttribute="width" secondItem="16b-9d-AAB" secondAttribute="width" id="gin-0k-ard"/>
                             <constraint firstItem="16b-9d-AAB" firstAttribute="centerX" secondItem="YvO-NO-bIE" secondAttribute="centerX" id="h2C-kV-22B"/>
                             <constraint firstItem="trD-Z8-Odu" firstAttribute="centerX" secondItem="YvO-NO-bIE" secondAttribute="centerX" id="hXc-yk-Xqp"/>
-                            <constraint firstItem="16b-9d-AAB" firstAttribute="top" secondItem="aK9-Jz-7Ko" secondAttribute="bottom" constant="50" id="hkl-Wf-4x4"/>
                             <constraint firstItem="trD-Z8-Odu" firstAttribute="top" secondItem="F6y-57-rz4" secondAttribute="bottom" constant="40" id="j4Z-5p-HZs"/>
-                            <constraint firstItem="aK9-Jz-7Ko" firstAttribute="centerX" secondItem="YvO-NO-bIE" secondAttribute="centerX" id="kNg-Bk-bmk"/>
-                            <constraint firstItem="aK9-Jz-7Ko" firstAttribute="top" secondItem="KmT-EA-dwO" secondAttribute="bottom" constant="20" id="lKu-Rl-ivc"/>
                             <constraint firstItem="fb4-wr-Hwq" firstAttribute="top" secondItem="trD-Z8-Odu" secondAttribute="bottom" constant="20" id="n6I-IC-jUY"/>
+                            <constraint firstItem="16b-9d-AAB" firstAttribute="top" secondItem="aK9-Jz-7Ko" secondAttribute="bottom" constant="33" id="rSN-uW-ZIa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IKw-9N-Vgp"/>
                     </view>
@@ -99,6 +99,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app_name_white" width="199" height="32"/>
+        <image name="app_name_white_verdana" width="236" height="24"/>
     </resources>
 </document>
