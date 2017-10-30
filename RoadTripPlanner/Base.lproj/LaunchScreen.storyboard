@@ -27,20 +27,20 @@
                                     <constraint firstAttribute="height" constant="256" id="ojE-Fk-Row"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_name_white" translatesAutoresizingMaskIntoConstraints="NO" id="JBu-cr-x30">
-                                <rect key="frame" x="88" y="84" width="199" height="35"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_name_white_verdana" translatesAutoresizingMaskIntoConstraints="NO" id="JBu-cr-x30">
+                                <rect key="frame" x="69.5" y="96" width="236" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="199" id="ZAU-JJ-jz4"/>
-                                    <constraint firstAttribute="height" constant="35" id="hRh-0E-69A"/>
+                                    <constraint firstAttribute="height" constant="24" id="Uw0-4d-EcS"/>
+                                    <constraint firstAttribute="width" constant="236" id="WRQ-8Z-kql"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.3147298992" green="0.55744743350000003" blue="0.74876743560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.31472989916801453" green="0.55744743347167969" blue="0.7487674355506897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="JBu-cr-x30" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Yn1-s3-Jdb"/>
-                            <constraint firstItem="JBu-cr-x30" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="64" id="ff0-ej-2fF"/>
+                            <constraint firstItem="JBu-cr-x30" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="76" id="d2A-ik-Z8K"/>
                             <constraint firstItem="JQR-po-8Xm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="p3A-8N-nyH"/>
-                            <constraint firstItem="JQR-po-8Xm" firstAttribute="top" secondItem="JBu-cr-x30" secondAttribute="bottom" constant="25" id="wqB-iK-Xxc"/>
+                            <constraint firstItem="JQR-po-8Xm" firstAttribute="top" secondItem="JBu-cr-x30" secondAttribute="bottom" constant="24" id="pU2-Xn-cL5"/>
+                            <constraint firstItem="JBu-cr-x30" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="vde-zN-OJ0"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -50,7 +50,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app_name_white" width="199" height="32"/>
+        <image name="app_name_white_verdana" width="236" height="24"/>
         <image name="map" width="256" height="256"/>
     </resources>
 </document>

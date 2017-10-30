@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -49,7 +48,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBx-iX-cwN">
                                 <rect key="frame" x="59.5" y="295" width="256" height="40"/>
-                                <color key="backgroundColor" red="0.91943794489999997" green="0.29798597100000002" blue="0.1084863767" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.350430727" green="0.42672774200000002" blue="0.4810048938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="NkF-Ii-b3X"/>
                                     <constraint firstAttribute="width" constant="256" id="Wod-WK-u6k"/>
@@ -61,7 +60,7 @@
                                     <action selector="signUpButtonPressed:" destination="acZ-Zd-Eyy" eventType="touchUpInside" id="E8p-6f-TNi"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_name" translatesAutoresizingMaskIntoConstraints="NO" id="IkT-ne-4zf">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_name_white" translatesAutoresizingMaskIntoConstraints="NO" id="IkT-ne-4zf">
                                 <rect key="frame" x="88" y="40" width="199" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="199" id="6ZZ-XT-jTu"/>
@@ -69,7 +68,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.16051313280000001" green="0.63281899689999999" blue="0.61406725650000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.3147298992" green="0.55744743350000003" blue="0.74876743560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="NaZ-VG-H74" firstAttribute="centerX" secondItem="LfL-U4-fNh" secondAttribute="centerX" id="135-GK-q3t"/>
                             <constraint firstItem="gBx-iX-cwN" firstAttribute="centerX" secondItem="LfL-U4-fNh" secondAttribute="centerX" id="8Vk-ye-2EC"/>
@@ -98,6 +97,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="app_name" width="199" height="32"/>
+        <image name="app_name_white" width="199" height="32"/>
     </resources>
 </document>

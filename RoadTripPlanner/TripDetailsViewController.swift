@@ -11,6 +11,7 @@ import Parse
 import ParseUI
 import AFNetworking
 import MessageUI
+import MapKit
 
 class TripDetailsViewController: UIViewController {
         
@@ -35,7 +36,7 @@ class TripDetailsViewController: UIViewController {
     var tripSegments: [TripSegment] = []
     
     static func storyboardInstance() -> TripDetailsViewController? {
-        let storyboard = UIStoryboard(name: "TripDetailsViewController", bundle: nil)
+        let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
         
         return storyboard.instantiateInitialViewController() as? TripDetailsViewController
     }
@@ -192,6 +193,39 @@ class TripDetailsViewController: UIViewController {
     }
     
     @IBAction func albumButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func mapButtonPressed(_ sender: Any) {
+        
+        // Create a locations array from the trip segments.  Locations array consists of tuples of UITextFields and MKMapItem objects.
+        guard let trip = trip else { return }
+        
+        var locations: [(textField: UITextField?, mapItem: MKMapItem?)]  = []
+        
+        if let segments = trip.segments {
+            for segment in segments {
+                
+                let address = segment.address
+                
+                let lat = segment.geoPoint?.latitude
+                let lng = segment.geoPoint?.longitude
+                let location = CLLocation(latitude: lat!, longitude: lng!)
+                let placemark = MKPlacemark(coordinate: location.coordinate)
+                let mapItem = MKMapItem(placemark: placemark) as MKMapItem?
+                let textField = UITextField(frame: CGRect.zero) as UITextField?
+                textField?.text = address
+                let tuple = (textField: textField, mapItem: mapItem)
+                locations.append(tuple)
+            }
+        }
+        
+        // Launch the map screen.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let routeMapViewController = storyboard.instantiateViewController(withIdentifier: "RouteMapView") as! RouteMapViewController
+        routeMapViewController.trip  = trip
+        routeMapViewController.locationArray = locations
+        routeMapViewController.termCategory = ["restaurant" : ["restaurant"]]
+        navigationController?.pushViewController(routeMapViewController, animated: true)
     }
     
     @IBAction func addFriendsButtonPressed(_ sender: Any) {

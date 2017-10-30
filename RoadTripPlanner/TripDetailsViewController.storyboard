@@ -37,23 +37,24 @@
                                 <color key="backgroundColor" red="0.45377934640000001" green="0.45377934640000001" blue="0.45377934640000001" alpha="0.29917594178082191" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jyt-0v-Erg">
-                                <rect key="frame" x="329" y="28" width="30" height="30"/>
+                                <rect key="frame" x="337" y="20" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="IgU-ln-xzs"/>
                                     <constraint firstAttribute="height" constant="30" id="aLV-94-7bL"/>
                                 </constraints>
-                                <state key="normal" image="settings-1"/>
+                                <viewLayoutGuide key="safeArea" id="97p-Qy-lE3"/>
+                                <state key="normal" image="md_settings"/>
                                 <connections>
                                     <action selector="tripSettingButtonPressed:" destination="hqY-Tb-qs5" eventType="touchUpInside" id="TPF-ZD-xq4"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpb-cL-Rxj">
-                                <rect key="frame" x="309" y="66" width="50" height="50"/>
+                                <rect key="frame" x="337" y="58" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="ouF-j7-0kf"/>
-                                    <constraint firstAttribute="width" constant="50" id="vu4-Er-IUg"/>
+                                    <constraint firstAttribute="width" constant="30" id="ULU-xy-oh6"/>
+                                    <constraint firstAttribute="height" constant="30" id="npu-Yr-LiW"/>
                                 </constraints>
-                                <state key="normal" image="album"/>
+                                <state key="normal" image="md_album"/>
                                 <connections>
                                     <action selector="albumButtonPressed:" destination="hqY-Tb-qs5" eventType="touchUpInside" id="HdS-KW-j8M"/>
                                 </connections>
@@ -142,7 +143,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NeQ-wn-Pgt" id="aC9-jI-DQb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="67.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="maps-and-flags" translatesAutoresizingMaskIntoConstraints="NO" id="7fG-7h-rjs">
@@ -216,14 +217,26 @@
                                     <outlet property="delegate" destination="hqY-Tb-qs5" id="Cq6-HS-neg"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hia-Yz-1YN">
+                                <rect key="frame" x="337" y="96" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="YYn-p0-VVQ"/>
+                                    <constraint firstAttribute="width" constant="30" id="fya-Mr-vtS"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="Z6h-rI-ZkB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" image="md_map"/>
+                                <connections>
+                                    <action selector="mapButtonPressed:" destination="hqY-Tb-qs5" eventType="touchUpInside" id="tKK-4n-Mxx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yRa-tl-ihp" firstAttribute="trailing" secondItem="LUT-Lz-EEq" secondAttribute="trailing" id="0BC-Js-1yE"/>
                             <constraint firstItem="yRa-tl-ihp" firstAttribute="leading" secondItem="LUT-Lz-EEq" secondAttribute="leading" id="0EY-uB-22v"/>
-                            <constraint firstItem="hpb-cL-Rxj" firstAttribute="top" secondItem="jyt-0v-Erg" secondAttribute="bottom" constant="8" id="4I4-zI-7fA"/>
-                            <constraint firstItem="LUT-Lz-EEq" firstAttribute="trailing" secondItem="jyt-0v-Erg" secondAttribute="trailing" constant="16" id="6En-BJ-JXO"/>
-                            <constraint firstAttribute="trailing" secondItem="hpb-cL-Rxj" secondAttribute="trailing" constant="16" id="AxO-2U-XKG"/>
+                            <constraint firstItem="hpb-cL-Rxj" firstAttribute="top" secondItem="jyt-0v-Erg" secondAttribute="bottom" constant="8" id="0Ut-gK-Acf"/>
+                            <constraint firstItem="LUT-Lz-EEq" firstAttribute="trailing" secondItem="jyt-0v-Erg" secondAttribute="trailing" constant="8" id="6En-BJ-JXO"/>
                             <constraint firstItem="Rki-9m-NAC" firstAttribute="top" secondItem="e5Y-Dr-f4V" secondAttribute="bottom" id="Bvy-MN-L9o"/>
                             <constraint firstItem="e5Y-Dr-f4V" firstAttribute="trailing" secondItem="LUT-Lz-EEq" secondAttribute="trailing" id="F6q-JF-8kl"/>
                             <constraint firstItem="E8P-QQ-Sw3" firstAttribute="width" secondItem="Kqj-Ga-opx" secondAttribute="width" id="I1h-hh-1zE"/>
@@ -233,16 +246,19 @@
                             <constraint firstItem="J3B-Zv-z5m" firstAttribute="trailing" secondItem="LUT-Lz-EEq" secondAttribute="trailing" id="QLY-8p-Mqm"/>
                             <constraint firstItem="hmc-BS-I36" firstAttribute="leading" secondItem="LUT-Lz-EEq" secondAttribute="leading" id="RRj-qQ-FzZ"/>
                             <constraint firstItem="QaE-ZD-mWd" firstAttribute="centerX" secondItem="kd3-cp-tTY" secondAttribute="centerX" id="Rnf-iU-nQa"/>
+                            <constraint firstItem="LUT-Lz-EEq" firstAttribute="trailing" secondItem="hia-Yz-1YN" secondAttribute="trailing" constant="8" id="RzQ-sz-J9d"/>
                             <constraint firstItem="Kqj-Ga-opx" firstAttribute="leading" secondItem="LUT-Lz-EEq" secondAttribute="leading" id="VQn-QM-s3T"/>
                             <constraint firstItem="e5Y-Dr-f4V" firstAttribute="leading" secondItem="LUT-Lz-EEq" secondAttribute="leading" id="WVA-O3-pYj"/>
                             <constraint firstItem="J3B-Zv-z5m" firstAttribute="top" secondItem="hmc-BS-I36" secondAttribute="bottom" constant="8" id="YHD-Dp-vKG"/>
+                            <constraint firstItem="hia-Yz-1YN" firstAttribute="top" secondItem="hpb-cL-Rxj" secondAttribute="bottom" constant="8" id="avM-Wa-Bu6"/>
                             <constraint firstItem="Kqj-Ga-opx" firstAttribute="top" secondItem="kd3-cp-tTY" secondAttribute="top" id="bMb-q7-hbP"/>
                             <constraint firstItem="J3B-Zv-z5m" firstAttribute="leading" secondItem="LUT-Lz-EEq" secondAttribute="leading" id="dAT-MT-K9f"/>
                             <constraint firstItem="E8P-QQ-Sw3" firstAttribute="top" secondItem="kd3-cp-tTY" secondAttribute="top" id="dzg-aN-DZ6"/>
                             <constraint firstItem="E8P-QQ-Sw3" firstAttribute="height" secondItem="Kqj-Ga-opx" secondAttribute="height" id="e0c-aK-r9F"/>
                             <constraint firstItem="QaE-ZD-mWd" firstAttribute="top" secondItem="s1M-wn-uKP" secondAttribute="bottom" constant="8" id="eK6-zG-5FY"/>
+                            <constraint firstItem="LUT-Lz-EEq" firstAttribute="trailing" secondItem="hpb-cL-Rxj" secondAttribute="trailing" constant="8" id="ef4-PF-WgG"/>
                             <constraint firstItem="Kqj-Ga-opx" firstAttribute="centerX" secondItem="kd3-cp-tTY" secondAttribute="centerX" id="fkz-Ay-qmJ"/>
-                            <constraint firstItem="jyt-0v-Erg" firstAttribute="top" secondItem="s1M-wn-uKP" secondAttribute="bottom" constant="8" id="gRG-Yo-f1L"/>
+                            <constraint firstItem="jyt-0v-Erg" firstAttribute="top" secondItem="s1M-wn-uKP" secondAttribute="bottom" id="gRG-Yo-f1L"/>
                             <constraint firstItem="J3B-Zv-z5m" firstAttribute="top" secondItem="Kqj-Ga-opx" secondAttribute="bottom" id="gaq-W6-bqS"/>
                             <constraint firstItem="Kqj-Ga-opx" firstAttribute="trailing" secondItem="LUT-Lz-EEq" secondAttribute="trailing" id="jNV-47-1C2"/>
                             <constraint firstItem="E8P-QQ-Sw3" firstAttribute="trailing" secondItem="LUT-Lz-EEq" secondAttribute="trailing" id="mih-4B-uEL"/>
@@ -270,10 +286,11 @@
     </scenes>
     <resources>
         <image name="add-stop" width="28" height="28"/>
-        <image name="album" width="50" height="50"/>
         <image name="edit-1" width="28" height="28"/>
         <image name="maps-and-flags" width="64" height="64"/>
-        <image name="settings-1" width="30" height="30"/>
+        <image name="md_album" width="30" height="30"/>
+        <image name="md_map" width="30" height="30"/>
+        <image name="md_settings" width="30" height="30"/>
         <image name="trip_placeholder" width="327" height="184"/>
         <image name="user" width="128" height="128"/>
         <image name="users-1" width="28" height="26"/>

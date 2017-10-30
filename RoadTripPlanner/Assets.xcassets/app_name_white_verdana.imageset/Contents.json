@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "iconmonstr-picture-1-240.png",
+      "filename" : "app_name_white_verdana.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "app_name_white_verdana@2x.png",
       "scale" : "2x"
     },
     {
