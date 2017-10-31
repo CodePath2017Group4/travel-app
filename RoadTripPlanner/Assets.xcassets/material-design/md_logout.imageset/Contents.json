@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "md_logout.png",
+      "filename" : "ic_exit_to_app_white_24px.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "md_logout@2x.png",
+      "filename" : "ic_exit_to_app_white_24px@2x.png",
       "scale" : "2x"
     },
     {

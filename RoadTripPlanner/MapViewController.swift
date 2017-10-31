@@ -25,7 +25,7 @@ class MapViewController: UIViewController {
 
     var businesses: [CDYelpBusiness]!
     var business: CDYelpBusiness!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -150,7 +150,30 @@ extension MapViewController: MKMapViewDelegate {
         return annotationView
     }
     
-    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        log.info("Selected business in map")
+        
+        let coordinate = view.annotation?.coordinate
+        // Find the corresponding business
+        let matches = businesses.filter { (business) -> Bool in
+            business.coordinates?.latitude == coordinate?.latitude && business.coordinates?.longitude == coordinate?.longitude
+        }
+        
+        if matches.count > 0 {
+            let b = matches.first!
+            // what index is this business at?
+            let index = businesses.index(where: { (business) -> Bool in
+                business.id == b.id
+            })
+            guard let idx = index else { return }
+            log.info("Found business at index: \(idx)")
+            
+            // Scroll to this index in the collection view
+            let indexPath = IndexPath(row: idx, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+        }
+        
+    }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
@@ -211,6 +234,7 @@ extension MapViewController: CLLocationManagerDelegate {
                 annotation.title = business.name
                 annotation.subtitle = business.id
                 self.annotations.append(annotation)
+                
             }
             self.mapView.addAnnotations((self.searchedPlaces))
         }
