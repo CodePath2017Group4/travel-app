@@ -79,7 +79,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
                 if let trips = trips {
                     self.trips = trips
                     print("trips created by me: \(trips.count)")
-                    ParseBackend.getTripMemberOnTrips(trips: trips) {
+                    ParseBackend.getTripMemberOnTrips(trips: trips, excludeCreator: true) {
                         (tripMember, error) in
                         self.stopRefreshing(refreshControl)
                         if let tripMember = tripMember {

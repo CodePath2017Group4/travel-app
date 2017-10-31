@@ -232,7 +232,7 @@
                                     <constraint firstAttribute="width" constant="50" id="IEh-VN-fvz"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="mZL-Pb-LJ4">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="mZL-Pb-LJ4">
                                 <rect key="frame" x="32" y="97" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="cUE-r3-lf8"/>
@@ -343,6 +343,7 @@
                         <outlet property="dateLabel" destination="foN-mw-F8A" id="rYh-g1-QJe"/>
                         <outlet property="descriptionLabel" destination="6P1-JY-V1E" id="P96-Hx-pG2"/>
                         <outlet property="leftButton" destination="5jE-Uf-t6i" id="mXR-cA-QhZ"/>
+                        <outlet property="numPeopleLabel" destination="epQ-R4-zW9" id="fsT-gL-Jzt"/>
                         <outlet property="photoCollections" destination="6rZ-dH-g5T" id="dfG-Ne-TPW"/>
                         <outlet property="rightButton" destination="z8J-8y-QTi" id="dir-bu-BuC"/>
                         <outlet property="tripLabel" destination="hsF-Ma-NPb" id="L9F-7S-Rbu"/>

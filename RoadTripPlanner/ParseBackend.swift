@@ -109,13 +109,15 @@ class ParseBackend {
         }
     }
     
-    static func getTripMemberOnTrips(trips: [Trip], completion: @escaping ([TripMember]?, Error?) -> Void) {
+    static func getTripMemberOnTrips(trips: [Trip], excludeCreator: Bool, completion: @escaping ([TripMember]?, Error?) -> Void) {
         var completedQueries = 0
         var tripMembers: [TripMember] = []
         for trip in trips {
             let query = PFQuery(className: TripMember.parseClassName())
             query.whereKey("trip", equalTo: trip)
-            query.whereKey("isCreatingUser", equalTo: false)
+            if (excludeCreator) {
+                query.whereKey("isCreatingUser", equalTo: false)
+            }
             query.includeKey("trip")
             query.includeKey("user")
             query.findObjectsInBackground { (objects, error) in
