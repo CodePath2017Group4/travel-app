@@ -259,6 +259,7 @@
                         <outlet property="tableView" destination="e5Y-Dr-f4V" id="leq-il-y9T"/>
                         <outlet property="tripDateLabel" destination="hmc-BS-I36" id="LZx-Ph-0Sc"/>
                         <outlet property="tripNameLabel" destination="yRa-tl-ihp" id="Gy8-N0-mVY"/>
+                        <outlet property="viewOnMapButton" destination="hia-Yz-1YN" id="gzE-Z2-GQA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9hP-GG-Uu4" userLabel="First Responder" sceneMemberID="firstResponder"/>

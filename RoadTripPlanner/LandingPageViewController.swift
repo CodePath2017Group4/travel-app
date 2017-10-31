@@ -228,7 +228,7 @@ class LandingPageViewController: UIViewController {
         let tripId = trip.objectId
         
         // Find the trip in the trips array.
-        log.info("Trip with id: \(tripId) has been modified.")
+        log.info("Trip with id: \(String(describing: tripId)) has been modified.")
         
         let matchingTrips = trips.filter { (trip) -> Bool in
             return trip.objectId == tripId
