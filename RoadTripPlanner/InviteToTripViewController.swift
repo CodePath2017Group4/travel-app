@@ -63,7 +63,7 @@ class InviteToTripViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let trip = self.trips[indexPath.row]
-        ParseBackend.getTripMemberOnTrips(trips: [trip]) {
+        ParseBackend.getTripMemberOnTrips(trips: [trip], excludeCreator: false) {
             (tripMember, error) in
             if let tripMember = tripMember {
                 if let vc = FriendsListViewController.storyboardInstance() {
