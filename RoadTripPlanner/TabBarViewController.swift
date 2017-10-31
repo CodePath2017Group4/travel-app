@@ -47,7 +47,8 @@ class TabBarViewController: UITabBarController {
     
     fileprivate func addLogoutButton(to navigationController: UINavigationController) {
         let topViewController = navigationController.topViewController
-        topViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logoutButtonPressed))
+//        topViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logoutButtonPressed))
+        topViewController?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "md_logout"), style: .plain, target: self, action: #selector(logoutButtonPressed))
     }
     
     func logoutButtonPressed() {
