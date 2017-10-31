@@ -710,19 +710,23 @@ print("stop type changed  **************\(placestops.count)*********************
             
             placestops.sort(by: { ($0.distance?.isLess(than: $1.distance! ))! })
             
-            var stopIndex = 0
-            for i in 0...placestops.count-1 {
-                let stop = placestops[i]
-                stop.type = "\(i + 1)"
-                placestops[i] = stop
+            // Prevent Crash if placestops length is zero..
+            if placestops.count > 0 {
                 
-                //========= already available from trip details but route calculation error =========
-                stopPlacemark = MKPlacemark(coordinate: stop.coordinate, addressDictionary: nil)
-                stopMapItem = MKMapItem(placemark: stopPlacemark)
-                
-                locationArray.append((textField: UITextField(), mapItem: stopMapItem))
-                //-==================================
+                for i in 0...placestops.count-1 {
+                    let stop = placestops[i]
+                    stop.type = "\(i + 1)"
+                    placestops[i] = stop
+                    
+                    //========= already available from trip details but route calculation error =========
+                    stopPlacemark = MKPlacemark(coordinate: stop.coordinate, addressDictionary: nil)
+                    stopMapItem = MKMapItem(placemark: stopPlacemark)
+                    
+                    locationArray.append((textField: UITextField(), mapItem: stopMapItem))
+                    //-==================================
+                }
             }
+            
             
             placestops.insert(startTrip!, at: 0)
             placestops.append(destTrip!)
