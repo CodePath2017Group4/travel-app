@@ -122,7 +122,11 @@ extension FriendsListViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ReuseableCellIdentifiers.FriendUserCell, for: indexPath) as! FriendUserCell
         cell.user = friends[indexPath.row].0
         if let tripMember = friends[indexPath.row].1 {
-            cell.setStatus(onTrip: tripMember.status)
+            if (tripMember.isCreatingUser) {
+                cell.setStatus(onTrip: InviteStatus.Confirmed.hashValue)
+            } else {
+                cell.setStatus(onTrip: tripMember.status)
+            }
         } else {
             cell.setStatus(onTrip: -1)
         }

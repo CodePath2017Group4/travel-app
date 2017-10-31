@@ -146,10 +146,10 @@ extension MapViewController: MKMapViewDelegate {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseID) // customize the annotion view
             annotationView!.canShowCallout = true
             annotationView!.rightCalloutAccessoryView = UIButton.init(type: .detailDisclosure) as UIView
-            
         }
         return annotationView
     }
+    
     
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -193,6 +193,7 @@ extension MapViewController: CLLocationManagerDelegate {
         self.mapView.removeAnnotations(self.mapView.annotations)
         
         if(businesses != nil) {
+            var tagValue = 0
             for business in businesses {
 
                 let annotation = MKPointAnnotation()
@@ -210,7 +211,6 @@ extension MapViewController: CLLocationManagerDelegate {
                 annotation.title = business.name
                 annotation.subtitle = business.id
                 self.annotations.append(annotation)
-                
             }
             self.mapView.addAnnotations((self.searchedPlaces))
         }
@@ -267,7 +267,7 @@ extension MapViewController : UICollectionViewDataSource, UICollectionViewDelega
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         let businss = businesses?[indexPath.row]
         controller.business = businss
-        
+       // collectionView.visibleCells
         present(controller, animated: true, completion: nil)
     }
     

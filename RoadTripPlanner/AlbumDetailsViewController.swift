@@ -19,6 +19,8 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var userImage2: UIImageView!
     @IBOutlet weak var userImage3: UIImageView!
     
+    @IBOutlet weak var numPeopleLabel: UILabel!
+    
     @IBOutlet weak var photoCollections: UICollectionView!
     
     @IBOutlet weak var leftButton: UIButton!
@@ -52,6 +54,7 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
         photoCollections.dataSource = self
         
         self.setAlbumMetadata()
+        self.setUserAvatar()
         self.setPhotos()
         self.setState()
     }
@@ -79,6 +82,50 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
             if let trip = album.trip {
                 tripLabel.text = trip.name
                 dateLabel.text = Utils.formatDate(date: trip.date)
+            }
+        }
+    }
+    
+    private func getImage(_ id: Int) -> UIImageView? {
+        if (id == 0) {
+            return self.userImage1
+        } else if (id == 1) {
+            return self.userImage2
+        } else if (id == 2) {
+            return self.userImage3
+        }
+        return nil
+    }
+    
+    private func setUserAvatar() {
+        if let album = self.album {
+            let trips: [Trip] = [album.trip!]
+            print("setUserAvatar for \(album.trip!)")
+            ParseBackend.getTripMemberOnTrips(trips: trips, excludeCreator: false) {
+                (tripMember, error) in
+                if let tripMember = tripMember {
+                    print("setUserAvatar, tripMember \(tripMember)")
+                    print("setUserAvatar, owner \(album.trip!.creator)")
+                    self.numPeopleLabel.text = "\(tripMember.count) people"
+                    var numAvatarShown = 3
+                    if (tripMember.count < numAvatarShown) {
+                        numAvatarShown = tripMember.count
+                        for i in tripMember.count ... 2 {
+                            self.getImage(i)!.isHidden = true
+                        }
+                    }
+                    
+                    for i in  0 ... numAvatarShown - 1 {
+                        self.getImage(i)!.image = #imageLiteral(resourceName: "user")
+                        if let file = tripMember[i].user.object(forKey: "avatar") as? PFFile {
+                            Utils.fileToImage(file: file) {
+                                avatar in self.getImage(i)!.image = avatar
+                            }
+                        }
+                    }
+                } else {
+                    print("Error to get past invitations: \(error)")
+                }
             }
         }
     }

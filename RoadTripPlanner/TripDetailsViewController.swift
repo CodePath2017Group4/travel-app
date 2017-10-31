@@ -233,6 +233,7 @@ class TripDetailsViewController: UIViewController {
         routeMapViewController.trip  = trip
         routeMapViewController.locationArray = locations
         routeMapViewController.termCategory = ["restaurant" : ["restaurant"]]
+        routeMapViewController.loadTripOnMap = true
         navigationController?.pushViewController(routeMapViewController, animated: true)
     }
     

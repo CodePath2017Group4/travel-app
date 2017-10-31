@@ -292,13 +292,13 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUw-9F-wiy">
                                                             <rect key="frame" x="18" y="154" width="73.5" height="17.5"/>
                                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.91241295720000004" green="0.91241295720000004" blue="0.91241295720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Epp-8r-Pus">
                                                             <rect key="frame" x="250.5" y="178.5" width="31.5" height="18"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" red="0.91241295720000004" green="0.91241295720000004" blue="0.91241295720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzG-bp-THH">
@@ -2771,6 +2771,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="navigation" translatesAutoresizingMaskIntoConstraints="NO" id="jnT-2n-5tR">
+                                <rect key="frame" x="319" y="72" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2792,6 +2796,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="iDy-uQ-iZ0" id="Xyy-aM-jzk"/>
+                        <outlet property="navImageView" destination="jnT-2n-5tR" id="u0Q-D0-Ub0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HfF-xg-fXv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3273,6 +3278,7 @@
         <image name="monument" width="50" height="50"/>
         <image name="movies" width="50" height="50"/>
         <image name="museum" width="50" height="50"/>
+        <image name="navigation" width="20" height="20"/>
         <image name="nightlife" width="50" height="50"/>
         <image name="notification-tab" width="24" height="24"/>
         <image name="parking" width="50" height="50"/>

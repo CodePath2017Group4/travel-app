@@ -14,6 +14,7 @@ import CDYelpFusionKit
 class BusCell: UICollectionViewCell {
 
     let detailView = DetailView(frame: CGRect.zero)
+    var id: String!
     
     // @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var businessName: UILabel!
@@ -23,7 +24,7 @@ class BusCell: UICollectionViewCell {
         didSet {
             businessName.text = business.name
             // imageView?.clipsToBounds = true
-            
+            id = business.id
             if let businessImageUrl = business.imageUrl {
                 //     imageView?.setImageWith(businessImageUrl)
                 let backgroundImageView = UIImageView()

@@ -15,7 +15,7 @@ import Parse
 class BusinessBottomSheetViewController: UIViewController {
     // holdView can be UIImageView instead
     @IBOutlet weak var holdView: UIView!
-    @IBOutlet weak var left: UIButton!
+    //@IBOutlet weak var left: UIButton!
     @IBOutlet weak var right: UIButton!
     
     @IBOutlet weak var businessImage: UIImageView!
@@ -36,7 +36,7 @@ class BusinessBottomSheetViewController: UIViewController {
     
     @IBOutlet weak var ratingTotalLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    
+    @IBOutlet weak var addPriceSymbolLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     let fullView: CGFloat = 100
     @IBOutlet weak var phoneLabel: UILabel!
@@ -103,13 +103,26 @@ class BusinessBottomSheetViewController: UIViewController {
             
             
             if let price = business.price {
-                priceLabel.text = price
+                var nDollar = price.count
+                
+                var missingDollar = 4-nDollar
+                var labelDollar = "$"
+                var mPrice = ""
+                for i in 0..<missingDollar {
+                    mPrice += labelDollar
+
+                }
+                priceLabel.text = "\(price)"
+                addPriceSymbolLabel.text = "\(mPrice)"
             }
             else {
                 priceLabel.isHidden = true
+                addPriceSymbolLabel.isHidden = true
             }
+                
             
-            print("business.distance \(business.distance)")
+            
+            //print("business.distance \(business.distance)")
 
             if let distance = business.distance {
                 var distInMiles = Double.init(distance as! NSNumber) * 0.000621371
@@ -206,15 +219,6 @@ class BusinessBottomSheetViewController: UIViewController {
             }
                 
             
-            if let tran = business.transactions {
-                
-                for t in tran {
-                    print("t \(t)")
-
-                }
-            }
-
-            
             if let ratingsCount = business.rating {
             
                 
@@ -271,7 +275,7 @@ class BusinessBottomSheetViewController: UIViewController {
 
         }
         }
-        roundViews()
+      //  roundViews()
     }
     
     
@@ -302,7 +306,7 @@ class BusinessBottomSheetViewController: UIViewController {
         UIView.animate(withDuration: 0.6, animations: { [weak self] in
             let frame = self?.view.frame
         //    let yComponent = self?.partialView
-       //     self?.view.frame = CGRect(x: 0, y: yComponent!, width: frame!.width, height: frame!.height)
+       //    self?.view.frame = CGRect(x: 0, y: yComponent!, width: frame!.width, height: frame!.height)
         })
     }
     
@@ -323,7 +327,8 @@ class BusinessBottomSheetViewController: UIViewController {
         }
     }
     
-    @IBAction func onAddRemoveTrip(_ sender: Any) {
+   // @IBAction
+    func onAddRemoveTrip(_ sender: Any) {
         print("onAddRemoveTrip")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         print("businesses \(businesses)")
@@ -392,7 +397,7 @@ class BusinessBottomSheetViewController: UIViewController {
         print("clicked")
     }
     
-    func roundViews() {
+ /*   func roundViews() {
         view.layer.cornerRadius = 5
         holdView.layer.cornerRadius = 3
         left.layer.cornerRadius = 10
@@ -400,7 +405,7 @@ class BusinessBottomSheetViewController: UIViewController {
         left.layer.borderColor = UIColor(colorLiteralRed: 0, green: 148/255, blue: 247.0/255.0, alpha: 1).cgColor
         left.layer.borderWidth = 1
         view.clipsToBounds = true
-    }
+    }*/
     
     @IBAction func onSavePlace(_ sender: Any) {
         

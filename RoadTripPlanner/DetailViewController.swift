@@ -27,14 +27,14 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-registerForNotifications()
+        registerForNotifications()
         contentView.backgroundColor = UIColor.white
         contentView.frame = CGRect(x: 0, y: kContentViewTopOffset, width: view.bounds.width, height: view.bounds.height-kContentViewTopOffset)
 
         contentView.layer.shadowRadius = 5
         contentView.layer.shadowOpacity = 0.3
         contentView.layer.shadowOffset = CGSize.zero
-       //self.businessDetailView = BusinessDetailView(frame: CGRect(x: 10, y: kContentViewTopOffset, width: view.bounds.width, height: view.bounds.height-kContentViewTopOffset))
+       ///self.businessDetailView = BusinessDetailView(frame: CGRect(x: 10, y: kContentViewTopOffset, width: view.bounds.width, height: view.bounds.height-kContentViewTopOffset))
        // self.myPopupView = popupView(frame: CGRect(x: 10, y: 200, width: 300, height: 200))
         let businessView = BusinessBottomSheetViewController()
         businessView.business = business
@@ -49,22 +49,9 @@ registerForNotifications()
             detailView.contentMode = .scaleAspectFill
             detailView.clipsToBounds = true
         }
-      //  print("business?.description in detial \(businessView)")
-       // print("business?.description in detial \(businessView.reviewCountLabel)")
-
-      //  businessDetailView.businessNameLabel.text = business?.name
-      //  businessDetailView.reviewCountLabel.text = "\((business?.reviewCount)!)"
-      /*  businessView.
-        business.isClosed
-        business.location
-        business.phone
-        business.rating
-        business.reviewCount
-        business.url
-        business.imageURL
-        business.identifier*/
+    
        //contentView.addSubview(businessView.view)
-        contentView.addSubview(businessView.view)
+       // contentView.addSubview(businessView.view)
        // businessView.didMove(toParentViewController: self)
         let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         view.addGestureRecognizer(pan)
@@ -90,7 +77,7 @@ registerForNotifications()
         let businessView = BusinessBottomSheetViewController()
         businessView.business = business
         contentView.addSubview(businessView.view)
-        businessView.didMove(toParentViewController: self)
+       // businessView.didMove(toParentViewController: self)
 
     }
     
