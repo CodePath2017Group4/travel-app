@@ -13,7 +13,7 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         // Create view controllers from storyboard.
@@ -35,6 +35,9 @@ class TabBarViewController: UITabBarController {
         profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "profile-tab"), tag: 3)
         
         addLogoutButton(to: profileNavigationController)
+        
+        // Set the appearance of the tab bar
+        UITabBar.appearance().tintColor = Constants.Colors.ColorPalette3495Color2
         
         let viewControllerList = [tripsNavigtaionController, albumsNavigtaionViewController, notificationsNavigationController, profileNavigationController]
         

@@ -94,38 +94,62 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
                                                selector: #selector(tripWasModified(notification:)),
                                                name: Constants.NotificationNames.TripModifiedNotification,
                                                object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(tripDeleted(notification:)),
+                                               name: Constants.NotificationNames.TripDeletedNotification,
+                                               object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func tripWasModified(notification: NSNotification) {
+    func tripFromNotification(notification: NSNotification) -> Trip? {
         let info = notification.userInfo
         let trip = info!["trip"] as! Trip
         let tripId = trip.objectId!
-        
-        // Find the trip in the trips array.
-        log.info("Trip with id: \(trip.objectId) has been modified.")
         
         let matchingTrips = trips.filter { (trip) -> Bool in
             return trip.objectId == tripId
         }
         
-        if matchingTrips.count > 0 {
-            let match = matchingTrips.first!
-            let index = trips.index(of: match)
-            
-            guard let idx = index else { return }
-            
-            // replace the trip with the new trip
-            trips[idx] = trip
-            
-            // reload the trips
-            collectionView.reloadData()
+        return matchingTrips.first
+    }
+    
+    func tripWasModified(notification: NSNotification) {
+        
+        guard let trip = tripFromNotification(notification: notification) else {
+            return
         }
         
+        let index = trips.index(of: trip)
+        guard let idx = index else { return }
         
+        // replace the trip with the new trip
+        trips[idx] = trip
+        
+        // reload the trips
+        collectionView.reloadData()
+        
+    }
+    
+    func tripDeleted(notification: NSNotification) {
+        
+        guard let trip = tripFromNotification(notification: notification) else {
+            return
+        }
+        
+        let index = trips.index(of: trip)
+        guard let idx = index else { return }
+
+        // Remove the deleted trip from the trips array
+        trips.remove(at: idx)
+        
+        self.numTripsLabel.text = "\(trips.count)"
+        
+        // Reload the collection view
+        collectionView.reloadData()
     }
     
     private func requestTripsAndAlbums(_ refreshControl: UIRefreshControl?) {

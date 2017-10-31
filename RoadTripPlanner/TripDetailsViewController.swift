@@ -24,16 +24,14 @@ class TripDetailsViewController: UIViewController {
     @IBOutlet weak var emailGroupImageView: UIImageView!
     @IBOutlet weak var editTableButton: UIButton!
     @IBOutlet weak var addStopButton: UIButton!
-    @IBOutlet weak var addFriendsButton: UIButton!
-    @IBOutlet weak var tripSettingsButton: UIButton!
+    @IBOutlet weak var addFriendsButton: UIButton!    
+    @IBOutlet weak var viewOnMapButton: UIButton!
     
     @IBOutlet weak var tripSettingsImageView: UIImageView!
     
     @IBOutlet weak var albumImageView: UIImageView!
     
     var trip: Trip?
-    
-    var tripSegments: [TripSegment] = []
     
     static func storyboardInstance() -> TripDetailsViewController? {
         let storyboard = UIStoryboard(name: String(describing: self), bundle: nil)
@@ -53,20 +51,24 @@ class TripDetailsViewController: UIViewController {
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 3.0
         
-        view.backgroundColor = Constants.Colors.ViewBackgroundColor        
+        // Make the navigation bar completely transparent.
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+
+        
         navigationController?.navigationBar.tintColor = Constants.Colors.ColorPalette3314Color4
         let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.ColorPalette3314Color4]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+                
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "md_settings"), style: .plain, target: self, action: #selector(tripSettingButtonPressed(_:)))
 
-        
         
         registerForNotifications()
         
-        if trip != nil {
-            guard let trip = trip else { return }
-            
-            setUserInterfaceValues(trip: trip)
-        }
+        guard let trip = trip else { return }
+        setUserInterfaceValues(trip: trip)
+        
     }
     
     fileprivate func setUserInterfaceValues(trip: Trip) {
@@ -88,8 +90,6 @@ class TripDetailsViewController: UIViewController {
             coverPhotoImageView.loadInBackground()
         }
         
-        guard let segments = trip.segments else { return }
-        tripSegments = segments
         tableView.reloadData()
     }
         
@@ -163,8 +163,17 @@ class TripDetailsViewController: UIViewController {
         })
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)        
+    fileprivate func saveChanges() {
+        guard let trip = self.trip else { return }
+        trip.saveInBackground(block: { (success, error) in
+            if error == nil {
+                log.info("Trip save success: \(success)")
+                
+                
+            } else {
+                log.error("Error saving trip: \(error!)")
+            }
+        })
     }
     
     // MARK: - IBAction methods
@@ -172,11 +181,12 @@ class TripDetailsViewController: UIViewController {
     @IBAction func editButtonPressed(_ sender: Any) {
         if tableView.isEditing {
             tableView.setEditing(false, animated: true)
-            editTableButton.setTitle("  Edit", for: .normal)
-            editTableButton.setTitleColor(UIColor.black, for: .normal)
+            editTableButton.setTitle(" Edit", for: .normal)
+            editTableButton.setTitleColor(UIColor.white, for: .normal)
+            saveChanges()
         } else {
             tableView.setEditing(true, animated: true)
-            editTableButton.setTitle("  Done", for: .normal)
+            editTableButton.setTitle(" Done", for: .normal)
             let doneColor = UIColor(red: 234/255.0, green: 76/255.0, blue: 28/255.0, alpha: 1)
             editTableButton.setTitleColor(doneColor, for: .normal)
         }
@@ -184,15 +194,13 @@ class TripDetailsViewController: UIViewController {
         // Disable other buttons if we are editing the table.
         addStopButton.isEnabled = !tableView.isEditing
         addFriendsButton.isEnabled = !tableView.isEditing
+        viewOnMapButton.isEnabled = !tableView.isEditing
     }
     
     @IBAction func tripSettingButtonPressed(_ sender: Any) {
-        guard let settingsVC = TripSettingsViewController.storyboardInstance() else { return }
-        settingsVC.trip = trip
-        navigationController?.pushViewController(settingsVC, animated: true)
-    }
-    
-    @IBAction func albumButtonPressed(_ sender: Any) {
+        
+        showAlertController()
+        
     }
     
     @IBAction func mapButtonPressed(_ sender: Any) {
@@ -295,19 +303,85 @@ class TripDetailsViewController: UIViewController {
             completion: nil
         )
     }
+    
+    // MARK: - UIAlertController action sheet
+    func showAlertController() {
+        
+        let alert = UIAlertController()
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Trip Settings", comment: "Default action"), style: .`default`, handler: { _ in
+            log.verbose("Trip Settings selected")
+            self.showSettings()
+        }))
+        
+//        alert.addAction(UIAlertAction(title: "Write a Review", style: .default, handler: { _ in
+//            log.verbose("Review selected")
+//        }))
+        
+        alert.addAction(UIAlertAction(title: "Delete Trip", style: .destructive, handler: { _ in
+            log.verbose("Delete Trip selected")
+            self.deleteTrip()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            log.verbose("Cancel selected")
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Action sheet action handlers
+    func showSettings() {
+        guard let settingsVC = TripSettingsViewController.storyboardInstance() else { return }
+        settingsVC.trip = trip
+        navigationController?.pushViewController(settingsVC, animated: true)
+    }
+    
+    func deleteTrip() {
+        // Confirm they want the trip deleted.
+        let alert = UIAlertController(title: "Delete Trip?", message: "Are you sure you would like to delete this trip", preferredStyle: .alert)
+        
+        let noAction = UIAlertAction(title: "No", style: .default, handler: { _ in
+            log.verbose("No selected")
+        })
+        
+        let confirmAction = UIAlertAction(title: "I'm Sure!", style: .default, handler: { _ in
+            log.verbose("Delete confirmed")
+            self.trip?.deleteInBackground(block: { (success, error) in
+                if error == nil {
+                    log.info("Trip deletion success: \(success)")
+                    if success {
+                        // Post a notification that the trip has been deleted.
+                        NotificationCenter.default.post(name: Constants.NotificationNames.TripDeletedNotification, object: nil, userInfo: ["trip": self.trip!])
+                        // Return to the previous screen.
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                } else {
+                    log.error("Error deleting trip: \(error!)")
+                }
+            })
+        })
+        
+        alert.addAction(noAction)
+        alert.addAction(confirmAction)
+        
+        alert.preferredAction = noAction
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension TripDetailsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tripSegments.count
+        guard let trip = self.trip else { return 0 }
+        guard let segments = trip.segments else { return 0 }
+        return segments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ReuseableCellIdentifiers.TripSegmentCell, for: indexPath) as! TripSegmentCell
-        cell.tripSegment = tripSegments[indexPath.row]
+        cell.tripSegment = trip?.segments?[indexPath.row]
         return cell
     }
     
@@ -321,10 +395,32 @@ extension TripDetailsViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let tripSegmentToMove = tripSegments[sourceIndexPath.row]
+        guard let trip = self.trip else { return }
+        guard var segments = trip.segments else { return }
         
-        tripSegments.remove(at: sourceIndexPath.row)
-        tripSegments.insert(tripSegmentToMove, at: destinationIndexPath.row)
+        let tripSegmentToMove = segments[sourceIndexPath.row]
+        
+        segments.remove(at: sourceIndexPath.row)
+        segments.insert(tripSegmentToMove, at: destinationIndexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        guard let trip = self.trip else { return }
+        
+        if editingStyle == .delete {
+            
+            tableView.beginUpdates()
+            // Remove the segment from the segments array.
+            trip.deleteSegment(atIndex: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+            
+            saveChanges()
+            
+            // Post a notification that the trip has been modified
+            NotificationCenter.default.post(name: Constants.NotificationNames.TripModifiedNotification, object: nil, userInfo: ["trip": trip])
+        }
     }
     
 }

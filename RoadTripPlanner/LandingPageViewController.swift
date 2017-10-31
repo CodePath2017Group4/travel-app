@@ -211,6 +211,11 @@ class LandingPageViewController: UIViewController {
                                                selector: #selector(tripWasModified(notification:)),
                                                name: Constants.NotificationNames.TripModifiedNotification,
                                                object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(tripDeleted(notification:)),
+                                               name: Constants.NotificationNames.TripDeletedNotification,
+                                               object: nil)
     }
     
     deinit {
@@ -223,7 +228,7 @@ class LandingPageViewController: UIViewController {
         let tripId = trip.objectId
         
         // Find the trip in the trips array.
-        log.info("Trip with id: \(trip.objectId) has been modified.")
+        log.info("Trip with id: \(String(describing: tripId)) has been modified.")
         
         let matchingTrips = trips.filter { (trip) -> Bool in
             return trip.objectId == tripId
@@ -241,8 +246,11 @@ class LandingPageViewController: UIViewController {
             // reload the trips
             collectionView.reloadData()
         }
-        
-        
+    }
+    
+    func tripDeleted(notification: NSNotification) {
+        // Reload trips
+        loadUpcomingTrips()
     }
     
     func categoryTapped(_ sender: UITapGestureRecognizer) {

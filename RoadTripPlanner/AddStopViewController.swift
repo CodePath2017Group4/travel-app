@@ -134,7 +134,13 @@ extension AddStopViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 // Insert this new segment into the trip.
                 self.trip?.insertSegment(tripSegment: tripSegment, atIndex: 1)
-                
+                self.trip?.saveInBackground(block: { (success, error) in
+                    if error == nil {
+                        log.info("Trip save success: \(success)")
+                    } else {
+                        log.error("Error saving trip: \(error!)")
+                    }
+                })
                 self.dismiss(animated: true, completion: {
                     // Post a notification that the trip has been modified
                     NotificationCenter.default.post(name: Constants.NotificationNames.TripModifiedNotification, object: nil, userInfo: ["trip": self.trip!])

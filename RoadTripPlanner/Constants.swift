@@ -24,6 +24,7 @@ struct Constants {
     struct NotificationNames {
         static let LogoutPressedNotification = Notification.Name("LogoutPressedNotification")
         static let TripModifiedNotification = Notification.Name("TripModifiedNotification")
+        static let TripDeletedNotification = Notification.Name("TripDeletedNotification")
     }
     
     struct ReuseableCellIdentifiers {

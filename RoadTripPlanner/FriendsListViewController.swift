@@ -37,7 +37,7 @@ class FriendsListViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 80
 
-        navigationItem.title = "Invite Friend"
+        navigationItem.title = "Invite Friends"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Invite", style: .plain, target: self, action: #selector(inviteTapped))
         
         searchBar.tintColor = Constants.Colors.NavigationBarLightTintColor
@@ -104,7 +104,7 @@ class FriendsListViewController: UIViewController {
         }
         tripMember.saveInBackground(block: { (success, error) in
             if (error != nil) {
-                log.error("Error inviting trip member: \(error)")
+                log.error("Error inviting trip member: \(error!)")
             } else {
                 log.info("TripMember invited")
             }

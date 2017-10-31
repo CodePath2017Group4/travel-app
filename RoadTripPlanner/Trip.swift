@@ -65,6 +65,10 @@ class Trip: PFObject, PFSubclassing {
         self.segments?.insert(tripSegment, at: index)
     }
     
+    func deleteSegment(atIndex index: Int) {
+        self.segments?.remove(at: index)
+    }
+    
     class func parseClassName() -> String {
         return "Trip"
     }
