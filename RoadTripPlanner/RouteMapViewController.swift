@@ -710,8 +710,7 @@ print("stop type changed  **************\(placestops.count)*********************
             
             placestops.sort(by: { ($0.distance?.isLess(than: $1.distance! ))! })
             
-            var stopIndex = 0
-// Prevent Crash if placestops length is zero..
+            // Prevent Crash if placestops length is zero..
             if placestops.count > 0 {
                 
                 for i in 0...placestops.count-1 {
