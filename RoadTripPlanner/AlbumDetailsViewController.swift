@@ -230,6 +230,7 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
                         photoSelected.append(false)
                     }
                 }
+                print("reload data \(album.photos.count)")
                 self.photoCollections.reloadData()
             }
         } else if (mode == .PhotoEdit) {
@@ -265,20 +266,28 @@ class AlbumDetailsViewController: UIViewController, UICollectionViewDelegate, UI
         } else if (mode == .PhotoEdit) {
             // Delete Photos
             if let album = self.album {
-                var photos: [PFFile] = []
+                mode = .View
+                if (photoSelected.count == 0) {
+                    setState()
+                    return
+                }
+                var files: [PFFile] = []
+                var updatedPhotos: [UIImage] = []
                 for i in 0 ... photoSelected.count - 1 {
                     if (!photoSelected[i]) {
-                        photos.append(album.photos[i])
+                        files.append(album.photos[i])
+                        updatedPhotos.append(self.photos[i])
                     }
                 }
-                album.photos = photos
-                if let delegate = self.delegate {
-                    delegate.updateAlbum(album: album, indexPath: self.albumIndex!)
-                }
+                self.album!.photos = files
+                self.photos = updatedPhotos
                 
-                mode = .View
-                self.album = album
                 setState()
+                if let delegate = self.delegate {
+                    DispatchQueue.main.async {
+                        delegate.updateAlbum(album: self.album!, indexPath: self.albumIndex!)
+                    }
+                }
             }
         }
     }
