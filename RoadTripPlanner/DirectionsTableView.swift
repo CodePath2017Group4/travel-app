@@ -63,14 +63,16 @@ extension DirectionsTableView: UITableViewDelegate {
     }
     
     func setLabelBackgroundColor(_ label: UILabel, section: Int) {
-        switch section {
+        label.backgroundColor = Constants.Colors.ColorPalette3314Color3//UIColor.blue.withAlphaComponent(0.75)
+
+       /* switch section {
         case 0:
-            label.backgroundColor = UIColor.blue.withAlphaComponent(0.75)
+            label.backgroundColor = Constants.Colors.ColorPalette3314Color3//UIColor.blue.withAlphaComponent(0.75)
         case 1:
             label.backgroundColor = UIColor.green.withAlphaComponent(0.75)
         default:
             label.backgroundColor = UIColor.red.withAlphaComponent(0.75)
-        }
+        }*/
     }
 }
 
@@ -90,18 +92,15 @@ extension DirectionsTableView: UITableViewDataSource {
         cell?.textLabel?.numberOfLines = 4
         cell?.textLabel?.font = UIFont(name: "HoeflerText-Regular", size: 12)
         cell?.isUserInteractionEnabled = false
-        // 1
+       
         let steps = directionsArray[indexPath.section].route.steps
-        // 2
         let step = steps[indexPath.row]
-        // 3
         let instructions = step.instructions
         print("instructions \(instructions)")
 
-        // 4
         let distance = step.distance.miles()
         print("distance \(distance)")
-        // 5
+
         cell?.textLabel?.text = "\(indexPath.row+1). \((instructions)) - \((distance)) miles"
         return cell!
     }

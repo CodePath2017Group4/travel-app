@@ -16,7 +16,9 @@ import ARSLineProgress
 class RouteMapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var directionsTableView: DirectionsTableView!
-    
+    @IBOutlet weak var totalTimeLabel: UILabel!
+
+    @IBOutlet weak var mapTypes: UIImageView!
     @IBOutlet weak var navImageView: UIImageView!
     let fromLocation:CLLocation = CLLocation(latitude: 24.186965, longitude: 120.633268)
 
@@ -40,7 +42,7 @@ class RouteMapViewController: UIViewController {
     var routeCoordinatesDB = [String : [CLLocationCoordinate2D]]()
     var coords: [CLLocationCoordinate2D] = []
     var loadTripOnMap = false
-
+    var showDirection = false
     // Remove test data
     /*private let goldenGate = TripSegment(name: "Golden Gate Bridge",
                                          address: "Golden Gate Bridge, San Francisco, CA 94129",
@@ -63,8 +65,13 @@ class RouteMapViewController: UIViewController {
         mapView.register(PlacesMarkerView.self,forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
        // mapView.register(PlacesView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
+        let mapTypesTap = UITapGestureRecognizer(target: self, action: #selector(mapTypesTapped))
+        mapTypesTap.numberOfTapsRequired = 1
+        mapTypes.isUserInteractionEnabled = true
+        mapTypes.addGestureRecognizer(mapTypesTap)
         //========================================================================
-        
+        directionsTableView.isHidden = !showDirection
+
         if !loadTripOnMap {
             
             let startCoordinate = locationArray[0].mapItem?.placemark.coordinate
@@ -141,6 +148,38 @@ class RouteMapViewController: UIViewController {
         }
     }
     
+    func mapTypesTapped() {
+        
+        let  mapNormal = UIAlertAction.init(title: "Normal", style: .default)
+        { (action) in
+            self.mapView.mapType = .standard
+            self.mapView.reloadInputViews()
+        }
+        let  mapHybrid = UIAlertAction.init(title: "Hybrid", style: .default)
+        { (action) in
+            self.mapView.mapType = .hybrid
+            self.mapView.reloadInputViews()
+        }
+        let  mapSatelite = UIAlertAction.init(title: "Satelite", style: .default)
+        { (action) in
+            self.mapView.mapType = .satellite
+            self.mapView.reloadInputViews()
+        }
+        let  cancel = UIAlertAction.init(title: "Cancel", style: .cancel)
+        { (action) in
+            
+        }
+        let mapTypesAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        mapTypesAlert.addAction(mapNormal)
+        mapTypesAlert.addAction(mapHybrid)
+        mapTypesAlert.addAction(mapSatelite)
+        mapTypesAlert.addAction(cancel)
+
+        self.present(mapTypesAlert, animated: true, completion: nil)
+        
+    }
+    
     @IBAction func onSave(_ sender: Any) {
              
         trip?.saveInBackground { (success, error) in
@@ -160,25 +199,6 @@ class RouteMapViewController: UIViewController {
         
         
     }
-    
-    func navImgTapped(_ sender: UITapGestureRecognizer) {
-        let latitude: CLLocationDegrees = 37.2
-        let longitude: CLLocationDegrees = 22.9
-        
-        let regionDistance:CLLocationDistance = 10000
-        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
-        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
-        let options = [
-            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
-            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
-        ]
-        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-        let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = "Place Name"
-        mapItem.openInMaps(launchOptions: options)
-    }
-    
-
     
     func calculateSegmentDirections(index: Int, time: TimeInterval, routes: [MKRoute]) /*-> [MKRoute]*/ {
         let request: MKDirectionsRequest = MKDirectionsRequest()
@@ -356,6 +376,19 @@ class RouteMapViewController: UIViewController {
         
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+ 
+        if segue.identifier == "businessList" {
+            
+            let listViewController = segue.destination as! CategoryListViewController
+            
+            listViewController.businesses = businesses
+            listViewController.locationArray = locationArray
+            listViewController.trip  = trip
+            listViewController.termCategory  = termCategory
+
+        }
+    }
     
     
     
@@ -380,9 +413,18 @@ class RouteMapViewController: UIViewController {
             directionsArray.append(param)
             //[(startingAddress: firstParamText,endAddress: secParamText, route: routeParam )]
         }
-        //displayDirections(directionsArray: directionsArray)
-        //printTimeToLabel(time: time)
+     //   if(showDirection) {
 
+            displayDirections(directionsArray: directionsArray)
+      //  }
+        
+        printTimeToLabel(time: time)
+
+    }
+    
+    func navImgTapped(_ sender: UITapGestureRecognizer) {
+        showDirection = !showDirection
+        directionsTableView.isHidden = !showDirection
     }
     
     func displayDirections(directionsArray: [(startingAddress: String,
@@ -397,7 +439,7 @@ class RouteMapViewController: UIViewController {
     
     func printTimeToLabel(time: TimeInterval) {
         var timeString = time.formatted()
-        //totalTimeLabel.text = "Total Time: \(timeString)"
+        totalTimeLabel.text = "Total Time: \(timeString)"
         print("timeString \(timeString)")
     }
     

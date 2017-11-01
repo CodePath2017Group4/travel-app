@@ -16,7 +16,8 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    @IBOutlet weak var mapTypes: UIImageView!
+
     fileprivate var center: CLLocationCoordinate2D!
     fileprivate var annotations:   [MKPointAnnotation]!
     let locationManager = CLLocationManager()
@@ -32,6 +33,11 @@ class MapViewController: UIViewController {
         registerForNotifications()
         mapView.register(PlaceMarkerView.self,forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
+        let mapTypesTap = UITapGestureRecognizer(target: self, action: #selector(mapTypesTapped))
+        mapTypesTap.numberOfTapsRequired = 1
+        mapTypes.isUserInteractionEnabled = true
+        mapTypes.addGestureRecognizer(mapTypesTap)
+        
         mapView.delegate = self
         mapView.tintColor = UIColor.blue.withAlphaComponent(0.7)
         getLocation()
@@ -41,6 +47,39 @@ class MapViewController: UIViewController {
         
         annotation.coordinate = coordinate
         goToLocation(location: locationManager.location!)
+        
+    }
+    
+    func mapTypesTapped() {
+        
+        let  mapNormal = UIAlertAction.init(title: "Normal", style: .default)
+        { (action) in
+            self.mapView.mapType = .standard
+            self.mapView.reloadInputViews()
+        }
+        let  mapHybrid = UIAlertAction.init(title: "Hybrid", style: .default)
+        { (action) in
+            self.mapView.mapType = .hybrid
+            self.mapView.reloadInputViews()
+        }
+        let  mapSatelite = UIAlertAction.init(title: "Satelite", style: .default)
+        { (action) in
+            self.mapView.mapType = .satellite
+            self.mapView.reloadInputViews()
+        }
+        let  cancel = UIAlertAction.init(title: "Cancel", style: .cancel)
+        { (action) in
+
+        }
+        
+        let mapTypesAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        mapTypesAlert.addAction(mapNormal)
+        mapTypesAlert.addAction(mapHybrid)
+        mapTypesAlert.addAction(mapSatelite)
+        mapTypesAlert.addAction(cancel)
+
+        self.present(mapTypesAlert, animated: true, completion: nil)
         
     }
     

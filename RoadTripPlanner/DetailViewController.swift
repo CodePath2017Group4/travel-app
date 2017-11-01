@@ -12,11 +12,11 @@ import CDYelpFusionKit
 
 
 class DetailViewController: UIViewController {
-
+    
     @IBOutlet weak var detailView: DetailView!
     @IBOutlet var closeButton: UIButton!
     
-  var businessDetailView: BusinessDetailView!
+    var businessDetailView: BusinessDetailView!
     
     let contentView = UIView()
     private let kContentViewTopOffset: CGFloat = 64
@@ -24,24 +24,23 @@ class DetailViewController: UIViewController {
     private let kContentViewAnimationDuration: TimeInterval = 1.4
     var businss: YLPBusiness!
     var business: CDYelpBusiness!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForNotifications()
         contentView.backgroundColor = UIColor.white
         contentView.frame = CGRect(x: 0, y: kContentViewTopOffset, width: view.bounds.width, height: view.bounds.height-kContentViewTopOffset)
-
+        
         contentView.layer.shadowRadius = 5
         contentView.layer.shadowOpacity = 0.3
         contentView.layer.shadowOffset = CGSize.zero
-       ///self.businessDetailView = BusinessDetailView(frame: CGRect(x: 10, y: kContentViewTopOffset, width: view.bounds.width, height: view.bounds.height-kContentViewTopOffset))
-       // self.myPopupView = popupView(frame: CGRect(x: 10, y: 200, width: 300, height: 200))
+
         let businessView = BusinessBottomSheetViewController()
         businessView.business = business
-
+        
         detailView.titleLabel.text = business.name
         if let businessImageUrl = business.imageUrl {
-            //     imageView?.setImageWith(businessImageUrl)
+
             let backgroundImageView = UIImageView()
             let backgroundImage = UIImage()
             backgroundImageView.setImageWith(businessImageUrl)
@@ -49,10 +48,9 @@ class DetailViewController: UIViewController {
             detailView.contentMode = .scaleAspectFill
             detailView.clipsToBounds = true
         }
-    
-       //contentView.addSubview(businessView.view)
-       // contentView.addSubview(businessView.view)
-       // businessView.didMove(toParentViewController: self)
+        
+        contentView.addSubview(businessView.view)
+
         let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         view.addGestureRecognizer(pan)
         view.addSubview(contentView)
@@ -63,24 +61,17 @@ class DetailViewController: UIViewController {
                                                object: nil, queue: OperationQueue.main) {
                                                 [weak self] (notification: Notification) in
                                                 self?.business = notification.userInfo!["business"] as! CDYelpBusiness
-                                                //self?.addAnnotationFor(businesses: (self?.businesses)!)
-                                                print("self?.business in nitofocation \(self?.business.id)")
-                                                //self?.tableView.reloadData()
-                                                //self?.collectionView.reloadData()
-                                                //self?.mapView.reloadInputViews()
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        //  addBottomSheetView()
-        let businessView = BusinessBottomSheetViewController()
-        businessView.business = business
-        contentView.addSubview(businessView.view)
-       // businessView.didMove(toParentViewController: self)
-
+    @IBAction func onTripAdd(_ sender: Any) {
+        print("onTripAdd")
+        
+        print("self. business \(self.business.name )")
+        let button  = sender as! UIButton
+        button.setTitle("Saved", for: .normal)
+        
     }
-    
     
     @IBAction func onClose(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -129,12 +120,6 @@ class DetailViewController: UIViewController {
         default: print("default")
         ()
         }
-        
-        
     }
-    
-   
-
-    
-
 }
+
