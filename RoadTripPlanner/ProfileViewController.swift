@@ -78,6 +78,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
         registerForNotifications()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarDarkTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
         print("refresh!")
         requestTripsAndAlbums(refreshControl)
