@@ -110,6 +110,9 @@ class CreateTripViewController: UIViewController {
         //filtered += [filtered.first!] //Round trip
         return filtered
     }
+    
+    // MARK: - View Lifecycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         startTextField.tag = 1
@@ -170,6 +173,22 @@ class CreateTripViewController: UIViewController {
         if(selectedTypes == nil) {
             selectedTypes = [String]()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarDarkTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarLightTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarLightTintColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     func setupAutoView() {
