@@ -21,6 +21,8 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
 
         albumsTable.delegate = self
         albumsTable.dataSource = self
+        albumsTable.tableFooterView = UIView()
+
         
         navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarDarkTintColor
         let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
@@ -52,6 +54,10 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
                 if error == nil {
                     self.trips = trips!
                     print("I have \(trips!.count) trips")
+                    
+                    if (trips?.isEmpty)! {
+                        self.stopRefreshing(refreshControl)
+                    }
                     ParseBackend.getAlbumsOnTrips(trips: trips!) { (albums, error) in
                         self.stopRefreshing(refreshControl)
                         if error == nil {
@@ -104,6 +110,17 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if albums.count == 0 {
+            let messageLabel = UILabel(frame: CGRect(x: 0,y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+            messageLabel.text = "No albums available. Pleaae pull down to refresh"
+            messageLabel.textColor = UIColor.gray
+            messageLabel.numberOfLines = 0;
+            messageLabel.textAlignment = .center;
+            messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
+            messageLabel.sizeToFit()
+            self.albumsTable.backgroundView = messageLabel
+            self.albumsTable.backgroundView?.isHidden = false
+        }
         return albums.count
     }
     

@@ -147,6 +147,11 @@ class LandingPageViewController: UIViewController {
         let foodImageTap = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
         foodImageTap.numberOfTapsRequired = 1
         foodImageView.isUserInteractionEnabled = true
+        let foodImageFromFile = UIImage(named: "food")!
+        
+        foodImageView.image = foodImageFromFile.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        foodImageView.tintColor = UIColor(red: 22/255, green: 134/255, blue: 36/255, alpha: 1)//.green*/
+
         foodImageView.tag = 1
         foodImageView.addGestureRecognizer(foodImageTap)
         labelTwo.text = "Food"
@@ -179,7 +184,7 @@ class LandingPageViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        //self.navigationController?.navigationBar.isHidden = true
+        
         
         // Make the navigation bar completely transparent.
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -590,6 +595,11 @@ extension LandingPageViewController : UIScrollViewDelegate {
             gasImageView.tag = 0
 
             foodImageView?.image = UIImage(named: "food")
+            let foodImageFromFile = UIImage(named: "food")!
+            
+            foodImageView.image = foodImageFromFile.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+            foodImageView.tintColor = UIColor(red: 22/255, green: 134/255, blue: 36/255, alpha: 1)//.green*/
+
             labelTwo.text = "Food"
             foodImageView.tag = 1
             poiImageView.tag = 2
@@ -637,7 +647,21 @@ extension LandingPageViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if  trips.isEmpty {
+                print("trips == \(trips.count)")
+                let messageLabel = UILabel(frame: CGRect(x: 0,y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+                messageLabel.text = "You dont have any upcoming trips."
+                messageLabel.textColor = UIColor.gray
+                messageLabel.numberOfLines = 0;
+                messageLabel.textAlignment = .center;
+                messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
+                messageLabel.sizeToFit()
+                self.collectionView.backgroundView = messageLabel
+                self.collectionView.backgroundView?.isHidden = false
+            
+        }
         return trips.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

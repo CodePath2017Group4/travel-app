@@ -216,8 +216,10 @@ class BusinessListCell: UITableViewCell {
              
              }
              }*/
-            
             let ratingsCount = business.rating
+            
+            print("ratingsCount \(ratingsCount)")
+
             
             if ratingsCount == 0  {
                 reviewImage.image = UIImage(named: "0star")

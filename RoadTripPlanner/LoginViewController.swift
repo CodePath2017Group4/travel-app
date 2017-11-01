@@ -23,6 +23,13 @@ class LoginViewController: UIViewController {
         return storyboard.instantiateInitialViewController() as? LoginViewController
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
+        navigationItem.leftBarButtonItem = backButton
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

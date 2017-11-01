@@ -38,7 +38,7 @@ extension DirectionsTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.font = UIFont(name: "HoeflerText-Regular", size: 14)
+        label.font = UIFont(name: "HoeflerText-Regular", size: 15)
         label.numberOfLines = 5
         setLabelBackgroundColor(label, section: section)
         label.text = "SEGMENT #\(section+1)\n\nStarting point: \(directionsArray[section].startingAddress)\n"

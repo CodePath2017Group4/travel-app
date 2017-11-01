@@ -213,6 +213,19 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, A
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if  trips.isEmpty {
+            
+            let messageLabel = UILabel(frame: CGRect(x: 0,y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+            messageLabel.text = "You dont have any trips."
+            messageLabel.textColor = UIColor.gray
+            messageLabel.numberOfLines = 0;
+            messageLabel.textAlignment = .center;
+            messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
+            messageLabel.sizeToFit()
+            self.collectionView.backgroundView = messageLabel
+            self.collectionView.backgroundView?.isHidden = false
+            
+        }
         return trips.count
     }
     
