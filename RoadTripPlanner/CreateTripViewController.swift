@@ -240,6 +240,12 @@ class CreateTripViewController: UIViewController {
         // Main Food Category
         let foodImageTap = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
         foodImageTap.numberOfTapsRequired = 1
+        
+        let foodImageFromFile = UIImage(named: "food")!
+        
+        foodImageView.image = foodImageFromFile.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        foodImageView.tintColor = UIColor(red: 22/255, green: 134/255, blue: 36/255, alpha: 1)//.green*/
+
         foodImageView.isUserInteractionEnabled = true
         foodImageView.tag = 1
         foodImageView.addGestureRecognizer(foodImageTap)
@@ -247,6 +253,12 @@ class CreateTripViewController: UIViewController {
         // Food Subcategory
         let backFoodImageTap = UITapGestureRecognizer(target: self, action: #selector(foodSubCategoryTapped))
         backFoodImageTap.numberOfTapsRequired = 1
+
+        let foodBackImageFromFile = UIImage(named: "autoback")!
+
+        foodBackImageView.image = foodBackImageFromFile.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        foodBackImageView.tintColor = UIColor(red: 22/255, green: 134/255, blue: 36/255, alpha: 1)//.green*/
+
         foodBackImageView.isUserInteractionEnabled = true
         foodBackImageView.tag = 0
         foodBackImageView.addGestureRecognizer(backFoodImageTap)
@@ -254,6 +266,11 @@ class CreateTripViewController: UIViewController {
         let allFoodImageTap = UITapGestureRecognizer(target: self, action: #selector(foodSubCategoryTapped))
         allFoodImageTap.numberOfTapsRequired = 1
         allFoodImageView.isUserInteractionEnabled = true
+        let foodAllImageFromFile = UIImage(named: "autoall")!
+        
+        allFoodImageView.image = foodAllImageFromFile.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        allFoodImageView.tintColor = UIColor(red: 22/255, green: 134/255, blue: 36/255, alpha: 1)//.green*/
+
         allFoodImageView.tag = 1
         allFoodImageView.addGestureRecognizer(allFoodImageTap)
         
@@ -302,12 +319,23 @@ class CreateTripViewController: UIViewController {
         let backPOIImageTap = UITapGestureRecognizer(target: self, action: #selector(poiSubCategoryTapped))
         backPOIImageTap.numberOfTapsRequired = 1
         poiBackImage.isUserInteractionEnabled = true
+        
+        let poiBackImageFromFile = UIImage(named: "autoback")!
+        
+        poiBackImage.image = poiBackImageFromFile.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        poiBackImage.tintColor = UIColor(red: 28/255, green: 188/255, blue: 156/255, alpha: 1)//.green*/
+        
         poiBackImage.tag = 0
         poiBackImage.addGestureRecognizer(backPOIImageTap)
         
         let allPOIImageTap = UITapGestureRecognizer(target: self, action: #selector(poiSubCategoryTapped))
         allPOIImageTap.numberOfTapsRequired = 1
         allPoiImageView.isUserInteractionEnabled = true
+        let poiAllImageFromFile = UIImage(named: "autoall")!
+        
+        allPoiImageView.image = poiAllImageFromFile.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        allPoiImageView.tintColor = UIColor(red: 28/255, green: 188/255, blue: 156/255, alpha: 1)//.green*/
+        
         allPoiImageView.tag = 1
         allPoiImageView.addGestureRecognizer(allPOIImageTap)
         
@@ -356,12 +384,22 @@ class CreateTripViewController: UIViewController {
         let backLodgingImageTap = UITapGestureRecognizer(target: self, action: #selector(lodgingSubCategoryTapped))
         backLodgingImageTap.numberOfTapsRequired = 1
         lodgingBackImageView.isUserInteractionEnabled = true
+        let lodgingBackImageFromFile = UIImage(named: "autoback")!
+        
+        lodgingBackImageView.image = lodgingBackImageFromFile.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        lodgingBackImageView.tintColor = UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1)//.green*/
+        
         lodgingBackImageView.tag = 0
         lodgingBackImageView.addGestureRecognizer(backLodgingImageTap)
         
         let allImageTap = UITapGestureRecognizer(target: self, action: #selector(lodgingSubCategoryTapped))
         allImageTap.numberOfTapsRequired = 1
         allLodgingImageView.isUserInteractionEnabled = true
+        let lodgingallImageFromFile = UIImage(named: "autoall")!
+        
+        allLodgingImageView.image = lodgingallImageFromFile.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        allLodgingImageView.tintColor = UIColor(red: 41/255, green: 120/255, blue: 185/255, alpha: 1)//.green*/
+        
         allLodgingImageView.tag = 1
         allLodgingImageView.addGestureRecognizer(allImageTap)
         
@@ -402,6 +440,7 @@ class CreateTripViewController: UIViewController {
         // Main TTD Category
         let ttdImageTap = UITapGestureRecognizer(target: self, action: #selector(categoryTapped))
         ttdImageTap.numberOfTapsRequired = 1
+        
         ttdImageView.isUserInteractionEnabled = true
         ttdImageView.tag = 5
         ttdImageView.addGestureRecognizer(ttdImageTap)
@@ -409,12 +448,27 @@ class CreateTripViewController: UIViewController {
         // TTD Subcategory
         let ttdBackImageTap = UITapGestureRecognizer(target: self, action: #selector(ttdSubCategoryTapped))
         ttdBackImageTap.numberOfTapsRequired = 1
-        ttdBackImage.isUserInteractionEnabled = true
+        
+        let ttdBackkmageFromFile = UIImage(named: "autoback")!
+        
+        ttdBackImage.image = ttdBackkmageFromFile.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        ttdBackImage.tintColor = UIColor(red: 230/255, green: 126/255, blue: 35/255, alpha: 1)//.orange*/
+
+        
         ttdBackImage.tag = 0
         ttdBackImage.addGestureRecognizer(ttdBackImageTap)
         
         let allImageTap = UITapGestureRecognizer(target: self, action: #selector(ttdSubCategoryTapped))
         allImageTap.numberOfTapsRequired = 1
+        
+        
+        ttdBackImage.isUserInteractionEnabled = true
+        
+        let ttdAllkmageFromFile = UIImage(named: "autoall")!
+        
+        allBackImageView.image = ttdAllkmageFromFile.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        allBackImageView.tintColor = UIColor(red: 230/255, green: 126/255, blue: 35/255, alpha: 1)//.orange*/
+
         allBackImageView.isUserInteractionEnabled = true
         allBackImageView.tag = 1
         allBackImageView.addGestureRecognizer(allImageTap)
@@ -464,12 +518,22 @@ class CreateTripViewController: UIViewController {
         let backImageTap = UITapGestureRecognizer(target: self, action: #selector(entertainmentSubCategoryTapped))
         backImageTap.numberOfTapsRequired = 1
         entertainmentBackImageView.isUserInteractionEnabled = true
+        let backImageFromFile = UIImage(named: "autoback")!
+        
+        entertainmentBackImageView.image = backImageFromFile.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        entertainmentBackImageView.tintColor = UIColor(red: 108/255, green: 49/255, blue: 97/255, alpha: 1)//.green*/
+        
         entertainmentBackImageView.tag = 0
         entertainmentBackImageView.addGestureRecognizer(backImageTap)
         
         let allImageTap = UITapGestureRecognizer(target: self, action: #selector(entertainmentSubCategoryTapped))
         allImageTap.numberOfTapsRequired = 1
         allEntertainmentImageView.isUserInteractionEnabled = true
+        let allImageFromFile = UIImage(named: "autoall")!
+        
+        allEntertainmentImageView.image = allImageFromFile.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        allEntertainmentImageView.tintColor = UIColor(red: 108/255, green: 49/255, blue: 97/255, alpha: 1)//.green*/
+        
         allEntertainmentImageView.tag = 1
         allEntertainmentImageView.addGestureRecognizer(allImageTap)
         

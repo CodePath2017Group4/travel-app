@@ -33,7 +33,13 @@ class CategoryListViewController: UIViewController {
         tableView.estimatedRowHeight = 120
         tableView.separatorStyle = .none
         
-        self.navigationController?.navigationItem.backBarButtonItem?.isEnabled = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: navigationController, action: nil)
+        navigationItem.leftBarButtonItem = backButton
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

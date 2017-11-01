@@ -20,6 +20,8 @@ class AddressTableView: UITableView {
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
         self.register(UITableViewCell.self, forCellReuseIdentifier: "AddressCell")
+        self.tableFooterView = UIView()
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -78,7 +80,7 @@ extension AddressTableView: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell") as UITableViewCell!
         cell?.textLabel?.numberOfLines = 3
-        cell?.textLabel?.font = UIFont(name: "HoeflerText-Regular", size: 11)
+        cell?.textLabel?.font = UIFont(name: "HoeflerText-Regular", size: 15)
         
         if addresses.count > indexPath.row {
             cell?.textLabel?.text = addresses[indexPath.row]

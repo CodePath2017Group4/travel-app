@@ -33,7 +33,8 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
         
         notificationTable.delegate = self
         notificationTable.dataSource = self
-        
+        notificationTable.tableFooterView = UIView()
+
         // Add "Pull to refresh"
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
@@ -67,6 +68,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
                 self.stopRefreshing(refreshControl)
                 if let tripMember = tripMember {
                     self.pendingInvitations = tripMember
+                    
                     DispatchQueue.main.async {
                         self.notificationTable.reloadData()
                     }

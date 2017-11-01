@@ -30,7 +30,7 @@ class InviteToTripViewController: UIViewController, UITableViewDataSource, UITab
         let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         
-        navigationItem.title = "Select trip"
+        navigationItem.title = "Select Trip"
         tripTable.delegate = self
         tripTable.dataSource = self
         requestTrips()

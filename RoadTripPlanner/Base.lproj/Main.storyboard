@@ -23,9 +23,6 @@
         <array key="HoeflerText.ttc">
             <string>HoeflerText-Regular</string>
         </array>
-        <array key="Verdana.ttf">
-            <string>Verdana</string>
-        </array>
         <array key="VerdanaBold.ttf">
             <string>Verdana-Bold</string>
         </array>
@@ -455,17 +452,17 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHn-2i-RTZ">
                                 <rect key="frame" x="4" y="151" width="194" height="0.0"/>
-                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="15"/>
-                                <color key="textColor" red="0.350430727" green="0.42672774200000002" blue="0.4810048938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="15"/>
+                                <color key="textColor" red="0.31372549019607843" green="0.55686274509803924" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLY-sb-Wey">
                                 <rect key="frame" x="354" y="151" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="15"/>
-                                <color key="textColor" red="0.34901960784313724" green="0.42745098039215684" blue="0.4823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="15"/>
+                                <color key="textColor" red="0.31372549020000001" green="0.5568627451" blue="0.74901960779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sun" translatesAutoresizingMaskIntoConstraints="NO" id="GVY-vB-RQi">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sun" translatesAutoresizingMaskIntoConstraints="NO" id="GVY-vB-RQi">
                                 <rect key="frame" x="314" y="135" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="UDm-CJ-XGu"/>
@@ -532,7 +529,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.96470588235294119" green="1" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.96470588239999999" green="1" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="L2v-a7-ut5" firstAttribute="top" secondItem="n3E-QC-llD" secondAttribute="top" constant="21" id="0y0-Mk-Vuw"/>
                                     <constraint firstItem="L2v-a7-ut5" firstAttribute="centerX" secondItem="n3E-QC-llD" secondAttribute="centerX" multiplier="1:4" id="5gG-h4-5MA"/>
@@ -593,14 +590,14 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRu-5x-Nht">
-                                <rect key="frame" x="140" y="301" width="87" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRu-5x-Nht">
+                                <rect key="frame" x="138" y="301" width="91" height="30"/>
                                 <color key="backgroundColor" red="0.27979743480000002" green="0.35620298979999998" blue="0.4063227177" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ted-Nw-Dro"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title=" Create Trip ">
+                                <state key="normal" title="  Create Trip  ">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -645,12 +642,12 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="aIx-cH-lAB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="15"/>
-                                <color key="textColor" red="0.350430727" green="0.42672774200000002" blue="0.4810048938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="15"/>
+                                <color key="textColor" red="0.31372549019607843" green="0.55686274509803924" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Zx9-rn-dbY" firstAttribute="top" secondItem="QhZ-oR-5Gg" secondAttribute="bottom" constant="31" id="0oi-I7-eEd"/>
                             <constraint firstItem="HRu-5x-Nht" firstAttribute="centerX" secondItem="wt7-oN-5HN" secondAttribute="centerX" constant="-4" id="4iR-Ql-VWZ"/>
@@ -2779,7 +2776,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="LNb-hr-weG" customClass="DirectionsTableView" customModule="RoadTripPlanner" customModuleProvider="target">
-                                <rect key="frame" x="27" y="348" width="320" height="264"/>
+                                <rect key="frame" x="27" y="306" width="320" height="264"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -2794,37 +2791,37 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Time: --" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4P0-P0-weH">
-                                <rect key="frame" x="27" y="620" width="320" height="40"/>
+                                <rect key="frame" x="27" y="578" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.12941176470588234" green="0.25098039215686274" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="layers" translatesAutoresizingMaskIntoConstraints="NO" id="9Ft-od-pFA">
-                                <rect key="frame" x="319" y="234" width="40" height="40"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigation" translatesAutoresizingMaskIntoConstraints="NO" id="jnT-2n-5tR">
+                                <rect key="frame" x="327" y="126" width="35" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="82N-qc-BBr"/>
-                                    <constraint firstAttribute="height" constant="40" id="yQt-nf-tkY"/>
+                                    <constraint firstAttribute="height" constant="35" id="Ayr-SY-7ay"/>
+                                    <constraint firstAttribute="width" constant="35" id="CYM-9z-F6J"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navigation" translatesAutoresizingMaskIntoConstraints="NO" id="jnT-2n-5tR">
-                                <rect key="frame" x="319" y="151" width="40" height="40"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="layers" translatesAutoresizingMaskIntoConstraints="NO" id="9Ft-od-pFA">
+                                <rect key="frame" x="327" y="176" width="35" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Ayr-SY-7ay"/>
-                                    <constraint firstAttribute="width" constant="40" id="CYM-9z-F6J"/>
+                                    <constraint firstAttribute="width" constant="35" id="82N-qc-BBr"/>
+                                    <constraint firstAttribute="height" constant="35" id="yQt-nf-tkY"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9Ft-od-pFA" firstAttribute="leading" secondItem="BCl-CX-cKJ" secondAttribute="leading" constant="319" id="4Zy-qq-Zfz"/>
-                            <constraint firstItem="9Ft-od-pFA" firstAttribute="top" secondItem="jnT-2n-5tR" secondAttribute="bottom" constant="43" id="9wm-mt-IRm"/>
-                            <constraint firstItem="jnT-2n-5tR" firstAttribute="leading" secondItem="BCl-CX-cKJ" secondAttribute="leading" constant="319" id="bMt-Wy-wnx"/>
+                            <constraint firstItem="9Ft-od-pFA" firstAttribute="leading" secondItem="BCl-CX-cKJ" secondAttribute="leading" constant="327" id="4Zy-qq-Zfz"/>
+                            <constraint firstItem="9Ft-od-pFA" firstAttribute="top" secondItem="jnT-2n-5tR" secondAttribute="bottom" constant="15" id="9wm-mt-IRm"/>
+                            <constraint firstItem="jnT-2n-5tR" firstAttribute="leading" secondItem="BCl-CX-cKJ" secondAttribute="leading" constant="327" id="bMt-Wy-wnx"/>
                             <constraint firstItem="9Ft-od-pFA" firstAttribute="trailing" secondItem="jnT-2n-5tR" secondAttribute="trailing" id="ed8-rJ-WOC"/>
-                            <constraint firstItem="jnT-2n-5tR" firstAttribute="top" secondItem="9Pm-ax-MFs" secondAttribute="bottom" constant="131" id="kpd-v1-7Rc"/>
-                            <constraint firstAttribute="trailing" secondItem="jnT-2n-5tR" secondAttribute="trailing" constant="16" id="oRN-f1-6Fo"/>
-                            <constraint firstAttribute="trailing" secondItem="9Ft-od-pFA" secondAttribute="trailing" constant="16" id="zbA-av-Vr6"/>
+                            <constraint firstItem="jnT-2n-5tR" firstAttribute="top" secondItem="9Pm-ax-MFs" secondAttribute="bottom" constant="62" id="kpd-v1-7Rc"/>
+                            <constraint firstAttribute="trailing" secondItem="jnT-2n-5tR" secondAttribute="trailing" constant="13" id="oRN-f1-6Fo"/>
+                            <constraint firstAttribute="trailing" secondItem="9Ft-od-pFA" secondAttribute="trailing" constant="13" id="zbA-av-Vr6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2z8-kw-0dp">
@@ -3308,7 +3305,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="271" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hz5-Gx-cAR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusinessListCell" rowHeight="271" id="Dgq-ZD-NPE" customClass="BusinessListCell" customModule="RoadTripPlanner" customModuleProvider="target">
@@ -3546,9 +3543,8 @@
         <image name="vbar" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uCK-QB-fvE"/>
         <segue reference="TEW-Lj-QBf"/>
-        <segue reference="TmD-fi-kjy"/>
+        <segue reference="h2Z-ly-fdQ"/>
         <segue reference="bXJ-92-7ab"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -39,12 +39,10 @@ class BusCell: UICollectionViewCell {
             let ratingsCount = business.rating
             
             if !(ratingsCount?.isLess(than: 4.0))!  {
-//                ratingsCountLabel.backgroundColor = UIColor.green
-                ratingsCountLabel.backgroundColor = Constants.Colors.ColorPalette3495Color1
+                ratingsCountLabel.backgroundColor = UIColor.green
             }
             else if !(ratingsCount?.isLess(than: 3.0))! && (ratingsCount?.isLess(than: 4.0))! {
-//                ratingsCountLabel.backgroundColor = UIColor.green
-                ratingsCountLabel.backgroundColor = Constants.Colors.ColorPalette3495Color1
+                ratingsCountLabel.backgroundColor = UIColor.orange
             }
             else {
                 ratingsCountLabel.backgroundColor = UIColor.yellow
