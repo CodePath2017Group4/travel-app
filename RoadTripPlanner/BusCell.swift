@@ -39,10 +39,12 @@ class BusCell: UICollectionViewCell {
             let ratingsCount = business.rating
             
             if !(ratingsCount?.isLess(than: 4.0))!  {
-                ratingsCountLabel.backgroundColor = UIColor.green
+//                ratingsCountLabel.backgroundColor = UIColor.green
+                ratingsCountLabel.backgroundColor = Constants.Colors.ColorPalette3495Color1
             }
             else if !(ratingsCount?.isLess(than: 3.0))! && (ratingsCount?.isLess(than: 4.0))! {
-                ratingsCountLabel.backgroundColor = UIColor.green
+//                ratingsCountLabel.backgroundColor = UIColor.green
+                ratingsCountLabel.backgroundColor = Constants.Colors.ColorPalette3495Color1
             }
             else {
                 ratingsCountLabel.backgroundColor = UIColor.yellow
@@ -71,6 +73,7 @@ class BusCell: UICollectionViewCell {
     }
     
     func setup() {
+        
         backgroundColor = UIColor.clear
         //contentView.addSubview(detailView)
         layer.shadowRadius = 2
