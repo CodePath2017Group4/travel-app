@@ -92,7 +92,7 @@ import UIKit
         clipsToBounds = true
         
         titleLabel.text = "Title of Business"
-        subtitleLabel.text = "Description of Business"
+        //subtitleLabel.text = "Description of Business"
         imageView.image = UIImage(named: "sf")
     }
     
