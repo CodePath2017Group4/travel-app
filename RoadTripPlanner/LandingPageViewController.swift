@@ -216,10 +216,20 @@ class LandingPageViewController: UIViewController {
                                                selector: #selector(tripDeleted(notification:)),
                                                name: Constants.NotificationNames.TripDeletedNotification,
                                                object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(tripCreated(notification:)),
+                                               name: Constants.NotificationNames.TripCreatedNotification,
+                                               object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func tripCreated(notification: NSNotification) {
+        // Reload trips
+        loadUpcomingTrips()
     }
     
     func tripWasModified(notification: NSNotification) {

@@ -126,6 +126,22 @@ class RouteMapViewController: UIViewController {
         mapView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarDarkTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarLightTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarLightTintColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
     func addActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(frame: UIScreen.main.bounds)
         activityIndicator?.activityIndicatorViewStyle = .whiteLarge
@@ -151,13 +167,15 @@ class RouteMapViewController: UIViewController {
             }
         }
         
+        // Post a notification that the trip has been created.
+        NotificationCenter.default.post(name: Constants.NotificationNames.TripCreatedNotification, object: nil, userInfo: ["trip": self.trip!])
+        
         // Push the TripDetailsViewController onto the nav stack.
 
         guard let tripDetailsViewController = TripDetailsViewController.storyboardInstance() else { return }
         tripDetailsViewController.trip  = trip
         
         navigationController?.pushViewController(tripDetailsViewController, animated: true)
-        
         
     }
     
