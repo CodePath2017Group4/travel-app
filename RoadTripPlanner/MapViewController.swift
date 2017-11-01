@@ -80,7 +80,14 @@ class MapViewController: UIViewController {
         mapTypesAlert.addAction(cancel)
 
         self.present(mapTypesAlert, animated: true, completion: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarLightTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarLightTintColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
     func getLocation() {

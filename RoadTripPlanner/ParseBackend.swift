@@ -78,7 +78,7 @@ class ParseBackend {
                     for o in objects {
                         let status = o.object(forKey: "status") as! Int
                         let isCreator = o.object(forKey: "isCreatingUser") as! Bool
-                        log.info("status: \(String(describing: status))")
+//                        log.info("status: \(String(describing: status))")
                         if (!onlyConfirmed || isCreator || status == InviteStatus.Confirmed.hashValue) {
                             let trip = o.object(forKey: "trip") as! Trip
                             trips.append(trip)

@@ -133,6 +133,22 @@ class RouteMapViewController: UIViewController {
         mapView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarDarkTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarDarkTintColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.tintColor = Constants.Colors.NavigationBarLightTintColor
+        let textAttributes = [NSForegroundColorAttributeName:Constants.Colors.NavigationBarLightTintColor]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
     func addActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(frame: UIScreen.main.bounds)
         activityIndicator?.activityIndicatorViewStyle = .whiteLarge
@@ -190,13 +206,15 @@ class RouteMapViewController: UIViewController {
             }
         }
         
+        // Post a notification that the trip has been created.
+        NotificationCenter.default.post(name: Constants.NotificationNames.TripCreatedNotification, object: nil, userInfo: ["trip": self.trip!])
+        
         // Push the TripDetailsViewController onto the nav stack.
 
         guard let tripDetailsViewController = TripDetailsViewController.storyboardInstance() else { return }
         tripDetailsViewController.trip  = trip
         
         navigationController?.pushViewController(tripDetailsViewController, animated: true)
-        
         
     }
     
@@ -485,7 +503,12 @@ extension RouteMapViewController: CLLocationManagerDelegate {
     
 }
 
+// MARK: - MKMapViewDelegate
 extension RouteMapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        log.info("Selected business in map")
+    }
     
     func addAnnotationFor(businesses: [YLPBusiness]) {
         print("addAnnotationFor")
@@ -617,10 +640,12 @@ extension RouteMapViewController: MKMapViewDelegate {
 
 
             //self.mapView.removeAnnotations(placestops)
-
+            
             print("Annotation '\(selectedLoc?.title!)' has been selected")
             
             let currentLocMapItem = MKMapItem.forCurrentLocation()
+            
+            
             
             let selectedPlacemark = MKPlacemark(coordinate: (selectedLoc?.coordinate)!, addressDictionary: nil)
             let selectedMapItem = MKMapItem(placemark: selectedPlacemark)
@@ -632,17 +657,27 @@ extension RouteMapViewController: MKMapViewDelegate {
             //MKMapItem.openMaps(with: mapItems, launchOptions:launchOptions)
 
             // get the stop
-            var placemark = MKPlacemark(coordinate: (view.annotation?.coordinate)!)
+            let placemark = MKPlacemark(coordinate: (view.annotation?.coordinate)!)
             mapView.deselectAnnotation(view.annotation, animated: false)
             self.mapView.removeAnnotation(selectedLoc!)
 
             let addMapItem =  MKMapItem(placemark: placemark)
             
             // stop added
-            let intermediateLocation = CLLocation.init(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude)
+            let coordinate = selectedLoc?.coordinate
+            // Find the corresponding business
+            let matches = businesses.filter { (b) -> Bool in
+                b.location.coordinate?.latitude == coordinate?.latitude && b.location.coordinate?.longitude == coordinate?.longitude
+            }
             
-            let intermediateSegment = TripSegment(name: placemark.title!, address: "Temp Address", geoPoint: PFGeoPoint(location: intermediateLocation))
-            self.trip?.addSegment(tripSegment: intermediateSegment)
+            if matches.count > 0 {
+                let b = matches.first!
+                log.info("Name: \(b.name), Address: \(b.location.address)")
+                let intermediateLocation = CLLocation.init(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude)
+                let intermediateSegment = TripSegment(name: b.name, address: b.location.address.first!, geoPoint: PFGeoPoint(location: intermediateLocation))
+                self.trip?.insertSegment(tripSegment: intermediateSegment, atIndex: 1)
+            }
+            
             
             let selectedPlace = Places(cllocation: CLLocation.init(latitude: placemark.coordinate.latitude, longitude: placemark.coordinate.longitude)
                 , distance: 0, coordinate: placemark.coordinate)

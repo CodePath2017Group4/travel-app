@@ -62,7 +62,7 @@ class TripDetailsViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
                 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "md_settings"), style: .plain, target: self, action: #selector(tripSettingButtonPressed(_:)))
-
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "md_home"), style: .plain, target: self, action: #selector(homeButtonPressed(_:)))
         
         registerForNotifications()
         
@@ -200,7 +200,11 @@ class TripDetailsViewController: UIViewController {
     @IBAction func tripSettingButtonPressed(_ sender: Any) {
         
         showAlertController()
-        
+    }
+    
+    @IBAction func homeButtonPressed(_ sender: Any) {
+        // Unwind to the root view controller.
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func mapButtonPressed(_ sender: Any) {
@@ -338,7 +342,7 @@ class TripDetailsViewController: UIViewController {
     
     func deleteTrip() {
         // Confirm they want the trip deleted.
-        let alert = UIAlertController(title: "Delete Trip?", message: "Are you sure you would like to delete this trip", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Delete Trip?", message: "Are you sure you would like to delete this trip?", preferredStyle: .alert)
         
         let noAction = UIAlertAction(title: "No", style: .default, handler: { _ in
             log.verbose("No selected")
