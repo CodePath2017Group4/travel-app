@@ -102,7 +102,14 @@ class ParseBackend {
         query.findObjectsInBackground { (objects, error) in
             if error == nil {
                 let tripMember: [TripMember] = objects as! [TripMember]
-                completion(tripMember, nil)
+                // Filter the deleted trip
+                var realTripMember: [TripMember] = []
+                for member in tripMember {
+                    if (member.trip != nil) {
+                        realTripMember.append(member)
+                    }
+                }
+                completion(realTripMember, nil)
             } else {
                 completion(nil, error)
             }

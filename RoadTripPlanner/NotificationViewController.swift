@@ -114,6 +114,7 @@ class NotificationViewController: UIViewController, UITableViewDelegate, UITable
                 let cell = tableView.dequeueReusableCell(withIdentifier: "pendingCell") as! PendingInvitationTableViewCell
                 cell.displayInvitaion(tripMember: self.pendingInvitations[indexPath.row])
                 cell.delegate = self
+                cell.index = indexPath.row
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "controlCell") as! NotificationControlTableViewCell

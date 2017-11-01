@@ -304,8 +304,8 @@
                                                             <color key="textColor" red="0.91241295720000004" green="0.91241295720000004" blue="0.91241295720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzG-bp-THH">
-                                                            <rect key="frame" x="18" y="127" width="119" height="24"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PzG-bp-THH">
+                                                            <rect key="frame" x="18" y="127" width="264" height="24"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                                             <color key="textColor" red="0.91241295720000004" green="0.91241295720000004" blue="0.91241295720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -314,6 +314,7 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="NUw-9F-wiy" firstAttribute="top" secondItem="PzG-bp-THH" secondAttribute="bottom" constant="3" id="6xQ-mx-S0D"/>
+                                                        <constraint firstAttribute="trailing" secondItem="PzG-bp-THH" secondAttribute="trailing" constant="18" id="MLj-ih-6pU"/>
                                                         <constraint firstItem="NUw-9F-wiy" firstAttribute="leading" secondItem="u35-bj-fhv" secondAttribute="leading" constant="18" id="Yjq-NI-P0h"/>
                                                         <constraint firstAttribute="trailing" secondItem="FiG-i6-9iV" secondAttribute="trailing" constant="8" id="fAN-RH-az6"/>
                                                         <constraint firstItem="B6y-Af-dG5" firstAttribute="leading" secondItem="u35-bj-fhv" secondAttribute="leading" constant="18" id="fqb-V7-QxP"/>
