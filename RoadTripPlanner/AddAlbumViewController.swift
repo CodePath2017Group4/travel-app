@@ -9,7 +9,7 @@
 import Parse
 import UIKit
 
-class AddAlbumViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddAlbumViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
 
     @IBOutlet weak var albumNameText: UITextField!
     @IBOutlet weak var albumDescriptionText: UITextView!
@@ -26,6 +26,12 @@ class AddAlbumViewController: UIViewController, UITableViewDelegate, UITableView
     var selectedTrip: Trip?
     var trips: [Trip] = []
     
+    private let NAME_PLACEHOLDER = "Album Name"
+    private let DESC_PLACEHOLDER = "Say something about the album"
+    private let NAME_COLOR = UIColor.white
+    private let DESC_COLOR = Constants.Colors.ColorPalette3495Color4
+    private let DEFAULT_COLOR = UIColor.darkGray
+    
     static func getVC() -> AddAlbumViewController {
         let storyboard = UIStoryboard(name: "Album", bundle: nil)
         let addAlbumVC = storyboard.instantiateViewController(withIdentifier: "AddAlbumVC") as! AddAlbumViewController
@@ -35,10 +41,18 @@ class AddAlbumViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        albumNameText.addTarget(self, action: #selector(albumNameBeginEditing), for: .editingDidBegin)
+        albumNameText.addTarget(self, action: #selector(albumNameEndEditing), for: .editingDidEnd)
+        albumDescriptionText.delegate = self
+        albumNameText.textColor = DEFAULT_COLOR
+        albumDescriptionText.textColor = DEFAULT_COLOR
+        
         if (!shouldAddAlbum) {
             if let album = album {
                 albumNameText.text = album.albumName
                 albumDescriptionText.text = album.albumDescription
+                albumNameText.textColor = NAME_COLOR
+                albumDescriptionText.textColor = DESC_COLOR
             }
         }
         
@@ -52,6 +66,34 @@ class AddAlbumViewController: UIViewController, UITableViewDelegate, UITableView
         tripTable.reloadData()
         
         albumNameText.becomeFirstResponder()
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if (textView.textColor == DEFAULT_COLOR) {
+            textView.text = nil
+            textView.textColor = DESC_COLOR
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if (textView.text.isEmpty) {
+            textView.text = DESC_PLACEHOLDER
+            textView.textColor = DEFAULT_COLOR
+        }
+    }
+    
+    @objc private func albumNameBeginEditing(_ textField: UITextField) {
+        if (textField.textColor == DEFAULT_COLOR) {
+            textField.text = nil
+            textField.textColor = NAME_COLOR
+        }
+    }
+    
+    @objc private func albumNameEndEditing(_ textField: UITextField) {
+        if (textField.text == nil || textField.text!.isEmpty) {
+            textField.text = NAME_PLACEHOLDER
+            textField.textColor = DEFAULT_COLOR
+        }
     }
 
     override func didReceiveMemoryWarning() {
