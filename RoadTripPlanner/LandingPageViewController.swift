@@ -659,6 +659,8 @@ extension LandingPageViewController: UICollectionViewDelegate, UICollectionViewD
                 self.collectionView.backgroundView = messageLabel
                 self.collectionView.backgroundView?.isHidden = false
             
+        } else {
+            self.collectionView.backgroundView?.isHidden = true
         }
         return trips.count
         

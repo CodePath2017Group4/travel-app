@@ -470,10 +470,10 @@
 				F8B6A3E81F93D72A00942820 /* ReviewViewController.swift */,
 				DFECC5641F9C1CFA00F3B63E /* RouteMapViewController.swift */,
 				DFA0E2A71F96EB2D005D7528 /* TabBarViewController.swift */,
-				F8607B1C1F8FCC8E0029DB02 /* TripDetailsViewController.swift */,
 				DF4E2C961FA7D0170005E8DF /* TripReviewViewController.swift */,
 				F8B6A3E61F935E9600942820 /* TripSettingsViewController.swift */,
 				DFCC379A1F9935BE003BDCA6 /* TempLandingViewController.swift */,
+				F8607B1C1F8FCC8E0029DB02 /* TripDetailsViewController.swift */,
 				DFCC379E1F9950E5003BDCA6 /* TempCreateTripViewController.swift */,
 				F8F56C6A1FA2B2A00045C2AD /* DetailViewController.swift */,
 			);
