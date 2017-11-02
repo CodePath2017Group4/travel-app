@@ -120,6 +120,9 @@ class AlbumListViewController: UIViewController, UITableViewDelegate, UITableVie
             messageLabel.sizeToFit()
             self.albumsTable.backgroundView = messageLabel
             self.albumsTable.backgroundView?.isHidden = false
+        } else {
+            self.albumsTable.backgroundView?.isHidden = true
+
         }
         return albums.count
     }
